@@ -10,7 +10,7 @@ metadata:
 spec:
   selector:
       matchLabels:
-        app: feynlab-api
+        app: console
         env: dev
   replicas: 2
   template:
@@ -20,7 +20,7 @@ spec:
         env: dev
     spec:
       containers:
-      - name: feynlab-api
+      - name: console
         image: feynlabdevacr.azurecr.io/console:placeholdertag
         imagePullPolicy: Always
         resources:
