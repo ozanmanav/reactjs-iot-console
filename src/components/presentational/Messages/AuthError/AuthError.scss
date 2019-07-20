@@ -1,0 +1,13 @@
+:local(.container) {
+  position: absolute;
+  border: 1px solid red;
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  background: red;
+  color: white;
+  font-weight: 600;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

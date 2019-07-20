@@ -1,0 +1,98 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: console-production
+  labels:
+    app: console
+    env: production
+spec:
+  ports:
+  - port: 443
+    targetPort: 3000
+  selector:
+    app: console
+    env: production
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: console-production
+  labels:
+    app: console
+    env: production
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: console
+      env: production
+  template:
+    metadata:
+      labels:
+        app: console
+        env: production
+    spec:
+      containers:
+      - image: console-image:1
+        name:  console-production
+        imagePullPolicy: IfNotPresent  
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "128Mi"
+        ports:
+        - containerPort:  3000
+      restartPolicy: Always   
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: console-production
+  annotations:
+    ingress.bluemix.net/redirect-to-https: "True"
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-production
+
+spec:
+  tls:
+  - hosts:
+    - console.feynlab.io
+    secretName: letsencrypt-production
+  rules:
+    - host: console.feynlab.io
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: console-production
+            servicePort: 443
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: console-production
+  labels:
+    app: console
+    env: production
+spec:
+  minReplicas: 2
+  maxReplicas: 5
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: console-production
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 100
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: 100

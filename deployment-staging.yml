@@ -1,0 +1,96 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: console-staging
+  labels:
+    app: console
+    env: staging
+spec:
+  ports:
+  - port: 443
+    targetPort: 3000
+  selector:
+    app: console
+    env: staging
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: console-staging
+  labels:
+    app: console
+    env: staging
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: console
+      env: staging
+  template:
+    metadata:
+      labels:
+        app: console
+        env: staging
+    spec:
+      containers:
+      - image: console-image:1
+        name:  console-staging
+        imagePullPolicy: IfNotPresent  
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "128Mi"
+        ports:
+        - containerPort:  3000
+      restartPolicy: Always   
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: console-staging
+  annotations:
+    ingress.bluemix.net/redirect-to-https: "True"
+    ingress.bluemix.net/appid-auth: "bindSecret=binding-feynlab-cluster-staging namespace=default requestType=web serviceName=console-staging"
+spec:
+  tls:
+  - hosts:
+    - console.feynlab-cluster.eu-gb.containers.appdomain.cloud
+    secretName: feynlab-cluster
+  rules:
+    - host: console.feynlab-cluster.eu-gb.containers.appdomain.cloud
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: console-staging
+            servicePort: 443
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: console-staging
+  labels:
+    app: console
+    env: staging
+spec:
+  minReplicas: 2
+  maxReplicas: 5
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: console-staging
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 100
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: 100

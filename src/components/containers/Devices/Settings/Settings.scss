@@ -1,0 +1,171 @@
+:local(.api-container) {
+  width: 600px;
+  height: 50px;
+  border-radius: 6px;
+  border: solid 1px #d8d8d8;
+  background-color: #fafafa;
+  position: relative;
+  :local(.api-label) {
+    font-size: 10px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: #9b9b9b;
+    position: absolute;
+    left: 20px;
+    top: 8px;
+  }
+  :local(.api-input) {
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #9b9b9b;
+    background-color: #fafafa;
+    border: none;
+    position: absolute;
+    left: 20px;
+    bottom: 8px;
+    width: 510px;
+  }
+  :local(.api-copy-container) {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -1px;
+    right: -1px;
+    border-left: 1px solid #d8d8d8;
+    border-radius: 0 6px 6px 0;
+    -webkit-transition: background-color 250ms;
+    -moz-transition: background-color 250ms;
+    -ms-transition: background-color 250ms;
+    -o-transition: background-color 250ms;
+    transition: background-color 250ms;
+    &:hover {
+      background-color: #d8d8d8;
+      cursor: pointer;
+    }
+    :local(.api-copy-icon) {
+      background: url('../../../Assets/copy.svg') no-repeat;
+      width: 18px;
+      height: 23px;
+    }
+  }
+}
+
+:local(.device-model-container) {
+  margin-top: 20px;
+  width: 600px;
+  height: 50px;
+  border-radius: 6px;
+  border: solid 1px #d8d8d8;
+  background-color: #fafafa;
+  position: relative;
+  :local(.device-model-label) {
+    font-size: 10px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: #9b9b9b;
+    position: absolute;
+    left: 20px;
+    top: 8px;
+  }
+  :local(.device-model-input) {
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #9b9b9b;
+    background-color: #fafafa;
+    border: none;
+    position: absolute;
+    left: 20px;
+    bottom: 8px;
+    width: 510px;
+  }
+}
+
+:local(.input-container) {
+  margin-top: 20px;
+  width: 600px;
+  height: 50px;
+  border-radius: 6px;
+  border: solid 1px #d8d8d8;
+  background-color: #ffffff;
+  position: relative;
+
+  :local(.input-label) {
+    font-size: 10px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: #9b9b9b;
+    position: absolute;
+    left: 20px;
+    top: 8px;
+  }
+  :local(.input) {
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #4a4a4a;
+    border: none;
+    position: absolute;
+    left: 20px;
+    bottom: 8px;
+    width: 510px;
+    outline: none;
+  }
+}
+
+:local(.bottom-container) {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 600px;
+  margin-top: 30px;
+  :local(.submit) {
+    width: 72px;
+    height: 50px;
+    border-radius: 6px;
+    background-color: #f68a4d;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    color: #ffffff;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  :local(.delete) {
+    margin-left: auto;
+    background: url('../../../Assets/trash.svg') no-repeat;
+    background-size: contain;
+    width: 18px;
+    height: 23px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

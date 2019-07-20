@@ -1,0 +1,59 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
+import styles from './LeftNav.scss';
+import DashboardIcon from '../../Assets/dashboard-icon.svg';
+import SupportIcon from '../../Assets/support-icon.svg';
+import LeftNavLogo from './LeftNavLogo';
+import LeftNavHeader from './LeftNavHeader';
+import LeftNavProjectsContainer from './LeftNavProjectsContainer';
+import LeftNavAccountContainer from './LeftNavAccountContainer';
+import { getProjects } from '../../../redux/actions/projectActions';
+
+class LeftNav extends React.Component {
+  componentWillMount() {
+    this.props.getProjects();
+  }
+
+  render() {
+    const activeItem = this.props.location.pathname.split('/')[2] || '';
+    return (
+      <React.Fragment>
+        <div className={styles.container}>
+          <LeftNavLogo />
+          <NavLink to={'/dashboard'}>
+            <LeftNavHeader text={'Dashboard'} image={DashboardIcon} activeItem={activeItem} />
+          </NavLink>
+          <LeftNavProjectsContainer
+            items={this.props.projects.list}
+            activeItem={activeItem}
+          />
+          <LeftNavAccountContainer activeItem={activeItem} />
+          <NavLink to={'/support'}>
+            <LeftNavHeader text={'Support'} image={SupportIcon} activeItem={activeItem} />
+          </NavLink>
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+
+LeftNav.propTypes = {
+  router: PropTypes.object.isRequired,
+  projects: PropTypes.object.isRequired,
+  getProjects: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  router: state.router,
+  projects: state.projects
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getProjects
+}, dispatch);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LeftNav));

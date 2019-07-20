@@ -1,0 +1,18 @@
+:local(.container) {
+  border-bottom: 1px solid #f4f4f4 !important;
+  :local(.item) {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    font-stretch: normal !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+    text-align: center !important;
+    color: #9b9b9b !important;
+  }
+  :local(.active) {
+    border-bottom-width: 3px !important;
+    border-bottom-color: #f68a4d !important;
+    color: #4a4a4a !important;
+  }
+}

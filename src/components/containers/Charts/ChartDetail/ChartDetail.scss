@@ -1,0 +1,97 @@
+:local(.header-container) {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+
+  :local(h1) {
+    font-size: 24px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #4a4a4a;
+    margin: 0;
+  }
+  :local(button) {
+    margin-left: auto;
+    border-radius: 6px;
+    background-color: #9b9b9b;
+    width: 96px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    border-style: none;
+  }
+}
+
+:local(.entity-card) {
+  margin: 30px 0;
+  padding: 20px 15px;
+  border-radius: 6px;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
+  border: solid 1px #d8d8d8;
+  background-color: #ffffff;
+}
+
+:local(.entity-header-container) {
+  display: flex;
+}
+
+:local(.entity-header) {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #9b9b9b;
+  margin: 0 0 0 5px;
+}
+
+:local(.entity-color) {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+}
+
+:local(.entity-fields) {
+  display: flex;
+}
+
+:local(.entity-blocks) {
+  display: flex;
+  flex-direction: column;
+}
+
+:local(.entity-value) {
+  font-size: 32px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+
+:local(.entity-name) {
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #9b9b9b;
+}
