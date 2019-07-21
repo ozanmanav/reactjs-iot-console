@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: console
-        image: feynlabdevacr.azurecr.io/console:placeholdertag
+        image: feynlabacrdev.azurecr.io/console:placeholdertag
         imagePullPolicy: Always
         resources:
           requests:
