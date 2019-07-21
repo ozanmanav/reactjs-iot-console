@@ -6,6 +6,7 @@ metadata:
     app: console
     env: dev
 spec:
+  type: LoadBalancer
   ports:
   - port: 443
     targetPort: 3000
