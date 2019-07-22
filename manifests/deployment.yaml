@@ -21,16 +21,16 @@ spec:
     spec:
       containers:
       - name: console
-        image: feynlabacrdev.azurecr.io/console:placeholdertag
+        image: feynlabdevacr.azurecr.io/console:placeholdertag
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "64Mi"
+            memory: "256Mi"
             cpu: "100m"
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
             cpu: "500m"
         ports:
         - containerPort: 3000
       imagePullSecrets:
-      - name: regcred
+      - name: dev-regcred

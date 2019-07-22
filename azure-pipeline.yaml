@@ -13,9 +13,9 @@ variables:
   #dockerRegistryServiceConnection: '2dd8c990-2a0f-43fd-bc98-5e116d346812'
   dockerRegistryServiceConnection: 'FeynLabDevACR'
   imageRepository: 'console'
-  containerRegistry: 'feynlabacrdev.azurecr.io'
+  containerRegistry: 'feynlabdevacr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  kubernetesCluster: 'Feynlab-AKS-Dev'
+  kubernetesCluster: 'FeynLab-Dev-AKS'
   registrySecret: 'dev-regcred'
   tag: '$(Build.BuildId)'
   
