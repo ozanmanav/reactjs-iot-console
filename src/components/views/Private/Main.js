@@ -30,6 +30,13 @@ class Main extends React.Component {
   logout = () => {
     firebase.auth().signOut();
   };
+
+  _onSelect = (selectedOption) => {
+    if (selectedOption.value === 'Sign Out') {
+      this.logout();
+    }
+  };
+
   render() {
     return (
       <div className={styles.main}>
@@ -46,26 +53,15 @@ class Main extends React.Component {
               placeholder="Select an option"
             />
           </a>
-          <a
-            href={'#'}
-            target={'_blank'}
-            onClick={this.logout}
-          >
+          <a>
             <Avatar
-              name="Foo Bar"
+              name="Ozan Manav"
               size="40"
               round="20px"
               className={[styles['external-navigation-avatar']]}
             />
           </a>
-          <a
-            href={'#'}
-            target={'_blank'}
-            className={styles['external-navigation']}
-            onClick={this.logout}
-          >
-            Sign Out
-          </a>
+          <a className={styles['external-navigation-divider']} />
           <a
             href={'https://blog.feynlab.io'}
             target={'_blank'}
@@ -112,7 +108,7 @@ class Main extends React.Component {
             <Route path={'/account'} component={Account} />
           </Switch>
         </div>
-      </div>
+      </div >
     );
   }
 }
