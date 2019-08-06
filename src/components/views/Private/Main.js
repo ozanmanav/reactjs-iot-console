@@ -1,9 +1,12 @@
+import 'react-dropdown/style.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import firebase from 'firebase/app';
+import Avatar from 'react-avatar';
+import Dropdown from 'react-dropdown';
 import 'firebase/auth';
 import styles from './Main.scss';
 import Project from './Project';
@@ -14,6 +17,10 @@ import ChartDetail from '../../containers/Charts/ChartDetail/ChartDetail';
 import AddChart from '../../containers/Charts/Add/Add';
 import Account from './Account';
 import Create from '../../containers/Projects/Create/Create';
+
+const options = [
+  'Sign Out'
+];
 
 class Main extends React.Component {
   componentDidMount() {
@@ -27,6 +34,30 @@ class Main extends React.Component {
     return (
       <div className={styles.main}>
         <div className={styles['menu-container']}>
+          <a
+            className={styles['external-navigation']}
+          // onClick={this.logout}
+          >
+            <Dropdown
+              controlClassName={styles['avatar-control']}
+              options={options}
+              onChange={this._onSelect}
+              value="Ozan Manav"
+              placeholder="Select an option"
+            />
+          </a>
+          <a
+            href={'#'}
+            target={'_blank'}
+            onClick={this.logout}
+          >
+            <Avatar
+              name="Foo Bar"
+              size="40"
+              round="20px"
+              className={[styles['external-navigation-avatar']]}
+            />
+          </a>
           <a
             href={'#'}
             target={'_blank'}
