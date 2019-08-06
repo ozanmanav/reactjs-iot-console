@@ -1,5 +1,5 @@
 :local(.main) {
-  width: calc(100vw - 250px);
+  width: 100%;
   min-width: 725px;
   height: 100vh;
   overflow: auto;
@@ -28,10 +28,35 @@
         background-color: rgba(0, 0, 0, 0.03);
       }
     }
+    :local(.external-navigation-avatar) {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #9b9b9b;
+      float: right;
+      margin-top: 10px;
+      &:local(:hover) {
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+    }
   }
 }
 
 :local(.container) {
   margin: 0 30px;
   position: relative;
+}
+
+:local(.avatar-control) {
+  border: 0px;
 }
