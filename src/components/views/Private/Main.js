@@ -2,7 +2,7 @@ import 'react-dropdown/style.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import firebase from 'firebase/app';
 import Avatar from 'react-avatar';
@@ -39,60 +39,34 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div className={styles.main}>
-        <div className={styles['menu-container']}>
-          <a
-            className={styles['external-navigation']}
-          // onClick={this.logout}
-          >
-            <Dropdown
-              controlClassName={styles['avatar-control']}
-              options={options}
-              onChange={this._onSelect}
-              value="Ozan Manav"
-              placeholder="Select an option"
-            />
-          </a>
-          <a>
-            <Avatar
-              name="Ozan Manav"
-              size="40"
-              round="20px"
-              className={[styles['external-navigation-avatar']]}
-            />
-          </a>
-          <a className={styles['external-navigation-divider']} />
-          <a
-            href={'https://blog.feynlab.io'}
-            target={'_blank'}
-            className={styles['external-navigation']}
-          >
-            Blog
-          </a>
-          <a
-            href={'https://feedback.feynlab.io'}
-            target={'_blank'}
-            className={styles['external-navigation']}
-          >
-            Feedback
-          </a>
-          <a
-            href={'https://forums.feynlab.io'}
-            target={'_blank'}
-            className={styles['external-navigation']}
-          >
-            Forums
-          </a>
-          <a
-            href={'https://docs.feynlab.io'}
-            target={'_blank'}
-            className={styles['external-navigation']}
-          >
-            Documentation
-          </a>
-        </div>
-        <div id={'main-area'} className={styles.container}>
-          <Switch>
+      <Switch>
+        <div className={styles.main}>
+          <div className={styles['menu-container']}>
+            <a
+              className={styles['external-navigation']}
+            // onClick={this.logout}
+            >
+              <Dropdown
+                controlClassName={styles['avatar-control']}
+                options={options}
+                onChange={this._onSelect}
+                value="Ozan Manav"
+                placeholder="Select an option"
+              />
+            </a>
+            <NavLink to="/account">
+              <Avatar
+                name="Ozan Manav"
+                size="40"
+                round="20px"
+                className={[styles['external-navigation-avatar']]}
+              />
+            </NavLink>
+            <a className={styles['external-navigation-divider']} />
+
+          </div>
+          <div id={'main-area'} className={styles.container}>
+
             <Route exact path={'/projects/create'} component={Create} />
             <Route exact path={'/projects/:id/devices/add'} component={AddDevice} />
             <Route
@@ -106,9 +80,10 @@ class Main extends React.Component {
             <Route path={'/projects/:projectId/devices/:deviceId'} component={Device} />
             <Route path={'/projects/:id'} component={Project} />
             <Route path={'/account'} component={Account} />
-          </Switch>
+
+          </div>
         </div>
-      </div >
+      </Switch>
     );
   }
 }

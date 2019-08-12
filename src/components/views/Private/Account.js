@@ -5,7 +5,8 @@ import * as classnames from 'classnames';
 import { Route, Switch } from 'react-router';
 import styles from './Account.scss';
 import TabsMenu from '../../containers/Tabs/TabsMenu';
-import Security from '../../containers/Account/Security/Security';
+import Profile from './Profile';
+// import Security from '../../containers/Account/Security/Security';
 // import PropTypes from 'prop-types';
 
 class Account extends Component {
@@ -20,14 +21,14 @@ class Account extends Component {
         {/* Tab */}
         <div className={classnames('row', styles.tab)}>
           <TabsMenu
-            items={['profile', 'billing', 'security', 'referrals']}
+            items={['profile']}
           />
         </div>
         {/* Switch & Routing */}
         <Switch>
-          <Route path={'/account/profile'} component={() => <h1>Profile</h1>} />
-          <Route path={'/account/billing'} component={() => <h1>Billing</h1>} />
-          <Route path={'/account/security'} component={Security} />
+          <Route path={'/account/profile'} component={Profile} />
+          {/* <Route path={'/account/billing'} component={() => <h1>Billing</h1>} />
+          <Route path={'/account/security'} component={Security} /> */}
         </Switch>
       </div>
     );

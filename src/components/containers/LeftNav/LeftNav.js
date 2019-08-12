@@ -10,8 +10,8 @@ import SupportIcon from '../../Assets/support-icon.svg';
 import LeftNavLogo from './LeftNavLogo';
 import LeftNavHeader from './LeftNavHeader';
 import LeftNavProjectsContainer from './LeftNavProjectsContainer';
-import LeftNavAccountContainer from './LeftNavAccountContainer';
 import { getProjects } from '../../../redux/actions/projectActions';
+
 
 class LeftNav extends React.Component {
   componentWillMount() {
@@ -31,7 +31,22 @@ class LeftNav extends React.Component {
             items={this.props.projects.list}
             activeItem={activeItem}
           />
-          <LeftNavAccountContainer activeItem={activeItem} />
+          <a
+            text={'Documentation'}
+            href={'https://docs.feynlab.io'}
+            image={SupportIcon} activeItem={activeItem} target="_blank" rel="noopener noreferrer"
+          >
+            <LeftNavHeader text={'Documentation'} image={SupportIcon} activeItem={activeItem} />
+          </a>
+          <NavLink to={'/support'}>
+            <LeftNavHeader text={'Forums'} image={SupportIcon} activeItem={activeItem} />
+          </NavLink>
+          <NavLink to={'/support'}>
+            <LeftNavHeader text={'Feedback'} image={SupportIcon} activeItem={activeItem} />
+          </NavLink>
+          <NavLink to={'/support'}>
+            <LeftNavHeader text={'Blog'} image={SupportIcon} activeItem={activeItem} />
+          </NavLink>
           <NavLink to={'/support'}>
             <LeftNavHeader text={'Support'} image={SupportIcon} activeItem={activeItem} />
           </NavLink>
