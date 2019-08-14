@@ -1,8 +1,9 @@
 export default {
-  apiKey: 'AIzaSyBuOwox28XZeaHLTa9gUV_8W1eA9G2m-dc',
-  authDomain: 'feynlab-firebase.firebaseapp.com',
-  databaseURL: 'https://feynlab-firebase.firebaseio.com',
-  projectId: 'feynlab-firebase',
-  storageBucket: 'feynlab-firebase.appspot.com',
-  messagingSenderId: '1029450688828'
+  apiKey: 'AIzaSyCJzV4SuHB5GGNpDhB9HMozwbFP0smRe8I',
+  authDomain: 'feynlab-dev-1.firebaseapp.com',
+  databaseURL: 'https://feynlab-dev-1.firebaseio.com',
+  projectId: 'feynlab-dev-1',
+  storageBucket: '',
+  messagingSenderId: '328512413905',
+  appId: '1:328512413905:web:dc7ded53bd66590d'
 };

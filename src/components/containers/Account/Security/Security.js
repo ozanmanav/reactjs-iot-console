@@ -67,7 +67,6 @@ class Security extends Component {
         <div className="row">
           <div className={styles['change-password-container']}>
             <h4>Change Password</h4>
-            <p>Lorem ipsum</p>
             <div className={styles['input-container']}>
               <FloatingLabelField
                 label={'New Password'}

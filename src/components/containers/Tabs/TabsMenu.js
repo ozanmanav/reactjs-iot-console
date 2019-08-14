@@ -17,10 +17,15 @@ class TabsMenu extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({ activeItem: 'account' });
+    this.props.push(`${this.props.match.url}/profile`);
+  }
+
   handleItemClick = (e, { name }) => {
-    console.log(
-      this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1]
-    );
+    // console.log(
+    //   this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1]
+    // );
     this.setState({ activeItem: name });
     this.props.push(`${this.props.match.url}/${name}`);
   };

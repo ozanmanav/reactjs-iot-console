@@ -1,9 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { push } from 'connected-react-router';
-import moment from 'moment-timezone';
+
 import { auth } from '../types';
-import { getRequest, postRequest } from '../../utils/api/utilFunctions';
+import { getRequest } from '../../utils/api/utilFunctions';
 
 export const checkUser = () => (dispatch, getState) => {
   dispatch({
@@ -35,25 +35,27 @@ export const checkUser = () => (dispatch, getState) => {
           })
           .catch(e => {
             if (e.response && e.response.status === 404) {
-              postRequest('/regiterWithEmail', {}, {
-                timezone: moment.tz.guess(true),
-                location: '',
-                type: 'Pro'
-              })
-                .then(() => {
-                  const redirect =
-                    router.location.pathname !== '/login' ?
-                      router.location.pathname :
-                      '/';
-                  dispatch({
-                    type: auth.USER_LOGGED_IN,
-                    payload: user
-                  });
-                  dispatch(push(redirect));
-                })
-                .catch(e1 => console.error(e1));
-            } else {
               console.error(e);
+              //   postRequest('/registerWithEmail', {}, {
+              //     timezone: moment.tz.guess(true),
+              //     location: '',
+              //     type: 'Pro'
+              //   })
+              //     .then(() => {
+              //       const redirect =
+              //         router.location.pathname !== '/login' ?
+              //           router.location.pathname :
+              //           '/';
+              //       dispatch({
+              //         type: auth.USER_LOGGED_IN,
+              //         payload: user
+              //       });
+              //       dispatch(push(redirect));
+              //     })
+              //     .catch(e1 => console.error(e1));
+              // } else {
+              //   console.error(e);
+              // }
             }
           });
       }
