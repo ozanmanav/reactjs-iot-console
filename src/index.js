@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import { Router } from 'react-router';
+// import { ConnectedRouter } from 'connected-react-router';
+// import { Router } from 'react-router';
 import firebase from 'firebase/app';
 import App from './App';
 import firebaseConfig from './configs/firebaseConfig';
@@ -19,9 +20,7 @@ const render = () => {
     <AppContainer>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <Router history={history}>
-            <App />
-          </Router>
+          <App />
         </ConnectedRouter>
       </Provider>
     </AppContainer>,

@@ -89,11 +89,11 @@ class Create extends Component {
             type={'text'}
           />
           <p className={styles.note}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Integer tincidunt ullamcorper nisi vitae elementum.
             Nulla luctus velit vel ornare aliquam.
             Nulla fringilla et dui eget tempus.
-            Nunc at justo suscipit, congue massa id, suscipit urna.
+            Nunc at justo suscipit, congue massa id, suscipit urna. */}
           </p>
           <button className={styles.submit} onClick={this.submit}>
             {

@@ -19,7 +19,7 @@ class TabsMenu extends React.Component {
 
   componentDidMount() {
     this.setState({ activeItem: 'account' });
-    this.props.push(`${this.props.match.url}/profile`);
+    // this.props.push(`${this.props.match.url}/profile`);
   }
 
   handleItemClick = (e, { name }) => {

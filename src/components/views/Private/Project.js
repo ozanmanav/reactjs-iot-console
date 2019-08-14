@@ -33,6 +33,12 @@ class Project extends React.Component {
   }
 
   render() {
+    const pathName = this.props.location.pathname;
+
+    if (pathName && pathName.includes('create')) {
+      return null;
+    }
+    
     const { projectName } = this.props.projectDetails;
     return (
       <React.Fragment>

@@ -1,6 +1,7 @@
 import { push } from 'connected-react-router';
 import { deleteRequest, getRequest, postRequest, putRequest } from '../../utils/api/utilFunctions';
 import { projects } from '../types';
+import { history } from '../configureStore';
 
 export const getProjects = () => dispatch => {
   dispatch({ type: projects.GET_PROJECTS_REQUEST });
@@ -10,6 +11,16 @@ export const getProjects = () => dispatch => {
         type: projects.GET_PROJECTS_SUCCESS,
         payload: response.data.Projects
       });
+
+      if (!response.data.Projects && response.data.Projects.length > 0) {
+        const project = response.data.Projects[0];
+
+        dispatch(push(`/projects/${project.id}/devices`));
+        history.push(`/projects/${project.id}/devices`);
+      } else {
+        dispatch(push('/projects/create'));
+        history.push('/projects/create');
+      }
     })
     .catch(error => dispatch({
       type: projects.GET_PROJECTS_FAIL,

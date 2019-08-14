@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { push } from 'connected-react-router';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Breadcrumbs from '../../containers/Breadcrumbs/Breadcrumbs';
@@ -18,6 +19,7 @@ class Device extends React.Component {
     const { projectId, deviceId } = this.props.match.params;
     if (deviceId) this.props.getDeviceById(projectId, deviceId);
     if (projectId) this.props.getProjectById(projectId);
+    this.props.push('/devices');
   }
 
   componentDidUpdate(prevProps) {
@@ -34,6 +36,7 @@ class Device extends React.Component {
     const { projectName } = this.props.projectDetails;
     const { deviceName } = this.props.deviceDetails;
     const rootPath = '/projects/:projectId/devices/:deviceId';
+
     return (
       <React.Fragment>
         <Breadcrumbs
@@ -90,6 +93,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getProjectById,
   getDeviceById,
+  push
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Device));

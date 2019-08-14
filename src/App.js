@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { checkUser } from './redux/actions/authActions';
 import PrivateRoutes from './components/routes/PrivateRoutes';
 import PublicRoutes from './components/routes/PublicRoutes';
+
 
 class App extends React.Component {
   componentDidMount() {
@@ -46,4 +48,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   checkUser
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

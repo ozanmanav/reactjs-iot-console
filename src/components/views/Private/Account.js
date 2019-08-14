@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as classnames from 'classnames';
 import { Route, Switch } from 'react-router';
 import styles from './Account.scss';
 import TabsMenu from '../../containers/Tabs/TabsMenu';
 import Profile from './Profile';
+
 // import Security from '../../containers/Account/Security/Security';
 // import PropTypes from 'prop-types';
 
@@ -44,4 +46,5 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Account);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Account));
