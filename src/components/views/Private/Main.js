@@ -85,6 +85,11 @@ class Main extends React.Component {
             <Route path={'/account'} component={Account} />
 
           </div>
+          <div className={styles.footer}>
+            <div className={styles['footer-text']}>
+              Copyright 2018 © FeynLab Technology, Inc.
+            </div>
+            </div>
         </div>
       </Switch>
     );

@@ -6,13 +6,19 @@ import { Route } from 'react-router';
 import Main from '../views/Private/Main';
 import LeftNav from '../containers/LeftNav/LeftNav';
 
+
 class PrivateRoutes extends React.Component {
   render() {
     return (
-      <div style={{ display: 'flex' }}>
+      <div
+        style={{
+          display: 'flex',
+        }}
+      >
         <LeftNav />
         <Route path={'/'} component={Main} />
-      </div>
+
+      </div >
     );
   }
 }

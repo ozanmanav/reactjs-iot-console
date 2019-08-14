@@ -79,3 +79,10 @@
   margin-right: 10px;
   object-fit: contain;
 }
+
+:local(.narrow-button) {
+  border-top: 1px solid #f4f4f4;
+  width: 18%;
+  position: fixed;
+  bottom: 0px;
+}

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import styles from './LeftNav.scss';
 import DashboardIcon from '../../Assets/dashboard-icon.svg';
 import SupportIcon from '../../Assets/support-icon.svg';
+import NarrowIcon from '../../Assets/narrow-icon.svg';
 import LeftNavLogo from './LeftNavLogo';
 import LeftNavHeader from './LeftNavHeader';
 import LeftNavProjectsContainer from './LeftNavProjectsContainer';
@@ -50,6 +51,9 @@ class LeftNav extends React.Component {
           <NavLink to={'/support'}>
             <LeftNavHeader text={'Support'} image={SupportIcon} activeItem={activeItem} />
           </NavLink>
+          <div className={styles['narrow-button']}>
+            <LeftNavHeader text={'Narrow'} image={NarrowIcon} activeItem={activeItem} />
+          </div>
         </div>
       </React.Fragment>
     );
