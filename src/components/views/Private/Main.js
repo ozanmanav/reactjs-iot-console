@@ -17,6 +17,7 @@ import ChartDetail from '../../containers/Charts/ChartDetail/ChartDetail';
 import AddChart from '../../containers/Charts/Add/Add';
 import Account from './Account';
 import Create from '../../containers/Projects/Create/Create';
+import logo from '../../Assets/fullscreen-icon.svg';
 
 const options = [
   'Sign Out'
@@ -63,7 +64,9 @@ class Main extends React.Component {
               />
             </NavLink>
             <a className={styles['external-navigation-divider']} />
-
+            <div className={styles['fullscreen-logo']}>
+              <img src={logo} alt={'logo'} />
+            </div>
           </div>
           <div id={'main-area'} className={styles.container}>
 

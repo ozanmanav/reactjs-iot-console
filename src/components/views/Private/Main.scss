@@ -81,3 +81,22 @@
 :local(.avatar-control) {
   border: 0px;
 }
+
+:local(.fullscreen-logo) {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9b9b9b;
+  float: left;
+  padding: 0 10px;
+}
