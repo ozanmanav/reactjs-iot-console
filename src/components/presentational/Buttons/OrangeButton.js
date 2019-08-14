@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function OrangeButton(props) {
     return (
-        <Button style={{ backgroundColor: 'orange', color: 'white' }}>
+        <Button style={{ backgroundColor: '#f68a4d', color: 'white' }}>
             {props.children}
         </Button>
     );
