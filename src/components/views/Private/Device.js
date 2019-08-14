@@ -19,7 +19,6 @@ class Device extends React.Component {
     const { projectId, deviceId } = this.props.match.params;
     if (deviceId) this.props.getDeviceById(projectId, deviceId);
     if (projectId) this.props.getProjectById(projectId);
-    this.props.push('/devices');
   }
 
   componentDidUpdate(prevProps) {
