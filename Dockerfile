@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 FROM node:carbon-alpine as builder
-RUN yarn global add serve
+RUN npm install serve
 WORKDIR /app
 COPY --from=builder /app/build .
 CMD ["serve", "-p", "80", "-s", "."]
