@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node:carbon-alpine as builder
+FROM node:carbon-alpine
 RUN npm install serve
 WORKDIR /app
 COPY --from=builder /app/build .
