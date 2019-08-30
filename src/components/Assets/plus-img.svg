@@ -1,4 +1,0 @@
-<!--suppress XmlDefaultAttributeValue -->
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-    <path fill="#F68A4D" fill-rule="nonzero" d="M8 .585A7.415 7.415 0 0 0 .585 8v4A7.415 7.415 0 0 0 8 19.415h4A7.415 7.415 0 0 0 19.415 12V8A7.415 7.415 0 0 0 12 .585H8zm0-1.17h4A8.585 8.585 0 0 1 20.585 8v4A8.585 8.585 0 0 1 12 20.585H8A8.585 8.585 0 0 1-.585 12V8A8.585 8.585 0 0 1 8-.585zM11 9h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H5a1 1 0 0 1 0-2h4V5a1 1 0 1 1 2 0v4z"/>
-</svg>

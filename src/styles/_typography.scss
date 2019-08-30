@@ -1,0 +1,127 @@
+@import 'variables';
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./fonts/NotoSans-Light.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./fonts/NotoSans-Regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./fonts/NotoSans-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./fonts/NotoSans-Bold.ttf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./fonts/NotoSans-Black.ttf');
+    font-weight: 900;
+}
+
+html {
+    font-family: 'Noto Sans', sans-serif;
+    color: $black;
+    font-size: $h5;
+}
+
+// font-sizes
+h1,
+.h1 {
+    font-size: $h1;
+}
+
+h2,
+.h2 {
+    font-size: $h2;
+}
+
+h3,
+.h3 {
+    font-size: $h3;
+}
+
+h4,
+.h4 {
+    font-size: $h4;
+}
+
+h5,
+.h5 {
+    font-size: $h5;
+}
+
+h6,
+.h6 {
+    font-size: $h6;
+}
+
+// font-weights
+._font-light {
+    font-weight: 300;
+}
+
+._font-regular {
+    font-weight: 400;
+}
+
+._font-medium {
+    font-weight: 500;
+}
+
+._font-bold {
+    font-weight: 700;
+}
+
+._font-black {
+    font-weight: 900;
+}
+
+// transforms
+._text-uppercase {
+    text-transform: uppercase;
+}
+
+._text-capitalize {
+    text-transform: capitalize;
+}
+
+// colors
+._text-grey {
+    color: $grey;
+}
+
+._text-black {
+    color: $black;
+}
+
+._text-primary {
+    color: $primary;
+}
+
+._text-white {
+    color: $white;
+}
+
+// alignment
+._text-center {
+    text-align: center;
+}
+
+._text-left {
+    text-align: left;
+}
+._text-right {
+    text-align: right;
+}

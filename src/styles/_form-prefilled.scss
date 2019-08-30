@@ -1,0 +1,30 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.f-prefilled {
+    background-color: $white;
+    border-radius: $border-radius-normal;
+    &:not(._wrapped) {
+        border: 1px solid $light-grey;
+        @include shadow-small;
+    }
+    &__body {
+        padding: 35px 20px 0;
+        ._wrapped & {
+            padding: 0;
+        }
+    }
+    &__title {
+        margin-bottom: 40px;
+    }
+    &__footer {
+        padding: 20px;
+        border-top: 1px solid $light-grey;
+        ._wrapped & {
+            margin: 0 -20px -20px;
+        }
+    }
+    &__button {
+        width: 100%;
+    }
+}

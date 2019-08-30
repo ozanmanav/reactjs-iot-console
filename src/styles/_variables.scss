@@ -1,0 +1,56 @@
+// colors
+$black: #363840;
+$white: #ffffff;
+$blue: #5080fa;
+$grey: #9fa2b4;
+$light-grey: #dfe1eb;
+$aliceblue: #eef3f7;
+$ghost-white: #f5f6fa;
+$green: #35c037;
+$red: #fc5764;
+
+$primary: $blue;
+$app-background: $ghost-white;
+
+// fonts
+$h1: 40px;
+$h2: 30px;
+$h3: 25px;
+$h4: 20px;
+$h5: 15px;
+$h6: 12px;
+
+// border-radius
+$border-radius-normal: 5px;
+$border-radius-small: 2px;
+
+// input / buttons
+$input-height: 50px;
+$input-border-color: $light-grey;
+$button-hover-color-change-ratio: 3;
+
+// transition
+$transition-default: 0.15s ease-in-out;
+
+// tables
+$table-border-color: $light-grey;
+
+// accordion
+$accordion-header-vertical-padding: 17px;
+$accordion-content-padding: 20px;
+
+// header
+$header-app-height: 70px;
+$header-landing-height: 90px;
+
+// z-indexes
+$timeline-icon-z-index: 1;
+$timeline-tooltip-z-index: 1;
+$datepicker-wrapper-z-index: 1;
+$filter-dropdown-z-index: 2;
+$autocomplete-dropdown-z-index: 2;
+$maps-block-search-z-index: 3;
+$tasks-z-index: 4;
+$search-z-index: 5;
+$header-z-index: 7;
+$modal-z-index: 10;

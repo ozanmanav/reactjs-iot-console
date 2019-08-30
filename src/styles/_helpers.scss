@@ -1,0 +1,29 @@
+@import 'variables';
+
+@mixin not-last-group {
+    &:not(:last-child) {
+        padding-bottom: 56px;
+        border-bottom: 1px solid $light-grey;
+
+        &._no-border {
+            padding-bottom: 50px;
+            border: none;
+        }
+    }
+}
+
+._not-last-group {
+    @include not-last-group;
+}
+
+.b-group-header {
+    padding: 10px 0;
+
+    &__title {
+        line-height: 1;
+    }
+}
+
+._scroll-removed {
+    overflow: hidden;
+}

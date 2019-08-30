@@ -1,0 +1,104 @@
+@import 'variables';
+
+.b-table {
+    $table: &;
+
+    border-collapse: collapse;
+    width: 100%;
+
+    &__wrapper {
+        background-color: $white;
+        border: 1px solid $table-border-color;
+        border-radius: $border-radius-normal;
+
+        &:not(:last-child) {
+            margin-bottom: 50px;
+        }
+
+        &._margin-small:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__title {
+        margin-bottom: 15px;
+
+        &._margin-top {
+            margin-top: 30px;
+        }
+    }
+
+    &__row {
+        height: 50px;
+
+        &:not(._head):hover {
+            background-color: $white;
+            box-shadow: 0 5px 20px rgba(54, 56, 64, 0.1);
+        }
+
+        &._head #{$table}__cell,
+        &:not(:last-child) > #{$table}__cell {
+            border-bottom: 1px solid $table-border-color;
+        }
+
+        &._small {
+            height: 25px;
+            background-color: transparentize(#edeef3, 0.5);
+        }
+
+        &._medium {
+            height: 40px;
+        }
+    }
+
+    &__cell {
+        text-align: left;
+        padding: 5px 15px;
+        position: relative;
+
+        &._actions-cell {
+            width: 108px;
+            white-space: nowrap;
+            &._border-left {
+                border-left: 1px solid $table-border-color;
+            }
+        }
+
+        ._head & {
+            color: $grey;
+        }
+
+        ._head &,
+        ._small & {
+            text-transform: uppercase;
+            font-size: $h6;
+        }
+
+        ._small & {
+            font-weight: 700;
+            padding: 3.5px 15px;
+        }
+
+        ._align-left &:first-child {
+            width: 30%;
+        }
+    }
+
+    &__head {
+    }
+
+    &__body {
+        background-color: transparentize($ghost-white, 0.5);
+    }
+
+    &._first-cell-border {
+        .b-table__cell {
+            &:first-child {
+                width: 50px;
+                padding: 0;
+                text-align: center;
+                border-right: 1px solid $table-border-color;
+            }
+        }
+    }
+}
