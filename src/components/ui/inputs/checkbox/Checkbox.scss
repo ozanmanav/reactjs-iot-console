@@ -1,0 +1,33 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.f-checkbox {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    border: 1px solid $light-grey;
+    border-radius: $border-radius-small;
+    background-color: $white;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+
+    &__wrapper {
+        @include input-margin-bottom;
+    }
+
+    &:checked {
+        background-image: url('../../../../icons/checkboxCheck.svg');
+        border-color: $primary;
+    }
+
+    &__label {
+        cursor: pointer;
+        min-width: 135px;
+
+        &-text {
+            vertical-align: top;
+        }
+    }
+}

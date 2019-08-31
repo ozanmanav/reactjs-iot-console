@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.b-signup {
+    padding: 60px 0;
+    background-color: $ghost-white;
+    position: relative;
+    &__copyright {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        bottom: 15px;
+        text-align: center;
+    }
+}

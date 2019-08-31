@@ -1,0 +1,53 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.f-checkbox-switch {
+    $inner-padding: 2px;
+    $width: 40px;
+    $border-width: 2px;
+    $caret-size: 12px;
+
+    -webkit-appearance: none;
+    width: $width;
+    height: 20px;
+    flex: 0 0 $width;
+    border: $border-width solid $primary;
+    border-radius: 10px;
+    position: relative;
+    transition: background-color $transition-default;
+    cursor: pointer;
+
+    &:not(:last-child) {
+        margin-right: 15px;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: $inner-padding;
+        left: $inner-padding;
+        width: $caret-size;
+        height: $caret-size;
+        border-radius: 50%;
+        background-color: $primary;
+        transition: transform $transition-default, background-color $transition-default;
+    }
+
+    &:checked {
+        background-color: $primary;
+
+        &:before {
+            transform: translate3d(#{$width - ($inner-padding * 2) - ($border-width * 2) - $caret-size}, 0, 0);
+            background-color: $white;
+        }
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        border-color: $light-grey;
+
+        &:before {
+            background-color: $light-grey;
+        }
+    }
+}

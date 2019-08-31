@@ -1,0 +1,18 @@
+.b-search-input {
+    padding-right: 50px;
+
+    &.f-input {
+        padding-right: 50px;
+    }
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 8px;
+        right: 7px;
+        pointer-events: none;
+    }
+}

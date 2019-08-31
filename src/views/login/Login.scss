@@ -2,53 +2,19 @@
 @import '../../styles/mixins';
 
 .b-login {
-    background-image: url('./loginBackground.jpg');
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
+    // background-image: url('./loginBackground.jpg');
+    // background-size: cover;
+    // background-position: center bottom;
+    // background-repeat: no-repeat;
 
     &__copyright {
         position: absolute;
         bottom: 15px;
-        left: 50%;
+        left: 140px;
         transform: translate3d(-50%, 0, 0);
     }
 
     &__title {
         margin-bottom: 30px;
-    }
-
-    &__form {
-        @include shadow-small;
-        background: $white;
-        border-radius: $border-radius-normal;
-        width: 585px;
-
-        &-content {
-            padding: 35px 20px 0;
-        }
-
-        &-footer {
-            padding: 20px;
-            border-top: 1px solid $light-grey;
-        }
-
-        &-action {
-            width: 100%;
-        }
-
-        &-input {
-            padding-right: 160px;
-
-            &-wrapper {
-                position: relative;
-            }
-
-            &-link {
-                position: absolute;
-                right: 15px;
-                top: 14px;
-            }
-        }
     }
 }

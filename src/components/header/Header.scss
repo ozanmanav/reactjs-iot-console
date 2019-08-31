@@ -1,0 +1,112 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/media';
+
+$header-horizontal-padding: 53px;
+
+.b-header {
+    @include shadow-small;
+    background-color: $white;
+    padding: 20px $header-horizontal-padding;
+    position: relative;
+
+    @include desktop-sm {
+        padding: 20px;
+    }
+
+    &__link-container {
+        user-select: none;
+
+        @include desktop-xs {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        &__inline-links {
+            @include desktop-xs {
+                margin: 15px 0 0 0;
+                background: transparentize($white, 0.5);
+            }
+        }
+
+        &._toggled {
+            @include desktop-xs {
+                padding: 130px 0 0 0;
+                max-height: 1500px;
+
+                *:not(.__toggle-icon) {
+                    display: block;
+                    text-align: left;
+                    margin: 0;
+                }
+            }
+        }
+
+        &__toggle-icon {
+            display: none;
+
+            @include desktop-xs {
+                display: block;
+            }
+
+            padding-top: 25px;
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+
+        &:not(:last-child) {
+            margin-right: 50px;
+
+            @include desktop-sm {
+                &:not(:first-child) {
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
+
+    &__search {
+        padding: 0 30px;
+        border-right: 1px solid $light-grey;
+
+        @include desktop-xs {
+            display: none;
+        }
+
+        @include desktop-sm {
+            padding: 0 15px;
+        }
+
+        &-icon {
+            width: 32px;
+            height: 36px;
+        }
+    }
+
+    &__logo-fixed {
+        position: absolute;
+        top: 30px;
+        left: 70px;
+        transform: translate3d(-50%, 0, 0);
+    }
+
+    &._app {
+        padding-top: 18px;
+        padding-bottom: 18px;
+        height: $header-app-height;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: $header-z-index;
+    }
+
+    &._login {
+        min-height: 80px;
+    }
+}

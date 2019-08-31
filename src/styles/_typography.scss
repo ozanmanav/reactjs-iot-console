@@ -1,37 +1,43 @@
 @import 'variables';
 
 @font-face {
-    font-family: 'Noto Sans';
-    src: url('./fonts/NotoSans-Light.ttf');
+    font-family: 'Exo';
+    src: url('./fonts/Exo-Light.ttf');
     font-weight: 300;
 }
 
 @font-face {
-    font-family: 'Noto Sans';
-    src: url('./fonts/NotoSans-Regular.ttf');
+    font-family: 'Exo';
+    src: url('./fonts/Exo-Regular.ttf');
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Noto Sans';
-    src: url('./fonts/NotoSans-Medium.ttf');
+    font-family: 'Exo';
+    src: url('./fonts/Exo-Medium.ttf');
     font-weight: 500;
 }
 
 @font-face {
-    font-family: 'Noto Sans';
-    src: url('./fonts/NotoSans-Bold.ttf');
+    font-family: 'Exo';
+    src: url('./fonts/Exo-SemiBold.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Exo';
+    src: url('./fonts/Exo-Bold.ttf');
     font-weight: 700;
 }
 
 @font-face {
-    font-family: 'Noto Sans';
-    src: url('./fonts/NotoSans-Black.ttf');
+    font-family: 'Exo';
+    src: url('./fonts/Exo-ExtraBold.ttf');
     font-weight: 900;
 }
 
 html {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Exo', sans-serif;
     color: $black;
     font-size: $h5;
 }

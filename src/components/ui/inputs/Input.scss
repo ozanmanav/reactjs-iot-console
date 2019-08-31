@@ -1,0 +1,49 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.f-input {
+    @include input;
+    @include input-margin-bottom;
+
+    &:focus {
+        border-color: $primary;
+    }
+
+    &._textarea {
+        height: auto;
+    }
+
+    &._squared {
+        max-width: $input-height;
+        padding: 12px 8px;
+        text-align: center;
+    }
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__error {
+        @include input-error;
+    }
+}
+
+._radio-btn {
+    -webkit-appearance: none;
+    text-align: center;
+    max-width: $input-height;
+    flex: 0 0 $input-height;
+    padding: 12px 5px;
+    transition: background-color $transition-default, border-color $transition-default, color $transition-default;
+    cursor: pointer;
+
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    &._selected {
+        background-color: $primary;
+        color: $white;
+        border-color: $primary;
+    }
+}

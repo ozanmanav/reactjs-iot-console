@@ -1,0 +1,48 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.f-radio {
+    $size: 16px;
+
+    appearance: none;
+    width: $size;
+    height: $size;
+    flex: 0 0 $size;
+    margin-right: 10px;
+    border: 1px solid $grey;
+    border-radius: 50%;
+    background-color: $white;
+    transition: background-color $transition-default, border-color $transition-default;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $white;
+        transform: translate3d(-50%, -50%, 0) scale(0);
+        transition: transform $transition-default;
+    }
+
+    &:checked {
+        background-color: $primary;
+        border-color: $primary;
+
+        &:after {
+            transform: translate3d(-50%, -50%, 0) scale(1);
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+}

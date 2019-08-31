@@ -3,3 +3,9 @@
         @content;
     }
 }
+
+@mixin desktop-xs {
+    @media (max-width: 1172px) {
+        @content;
+    }
+}

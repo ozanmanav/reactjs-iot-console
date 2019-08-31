@@ -1,0 +1,44 @@
+@import '../../../styles/variables';
+
+@mixin icons-fill($color) {
+    ._update-color {
+        &._self {
+            fill: $color;
+        }
+
+        &._full {
+            * {
+                fill: $color;
+                stroke: $color;
+            }
+        }
+
+        &._fill {
+            * {
+                fill: $color;
+            }
+        }
+
+        &._stroke {
+            * {
+                stroke: $color;
+            }
+        }
+    }
+}
+
+.link {
+    color: $grey;
+    display: inline-block;
+
+    &._active {
+        color: $primary;
+        @include icons-fill($primary);
+    }
+
+    &._disabled {
+        cursor: not-allowed;
+        color: $light-grey;
+        @include icons-fill($light-grey);
+    }
+}

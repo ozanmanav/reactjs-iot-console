@@ -1,0 +1,1 @@
+export { appendClassName } from './appendClassName';

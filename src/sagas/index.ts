@@ -1,17 +1,8 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
 import { USER_LOGIN } from '../store/auth/types';
+import { requestUserLogin } from './authSaga';
 
 // Register all your watchers
 export const rootSaga = function* root() {
-    yield all([fork(watchUserLoginRequest)]);
+    yield all([takeLatest(USER_LOGIN, requestUserLogin)]);
 };
-
-function* watchUserLoginRequest() {
-    yield takeEvery(USER_LOGIN, requestUserLogin);
-}
-
-function* requestUserLogin(data: any) {
-    console.log(data);
-    console.log('girişi izliyorum hocam kaçamazsın :D');
-    yield null;
-}
