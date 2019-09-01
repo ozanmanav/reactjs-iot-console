@@ -11,19 +11,15 @@ interface AppProps {
     userLogin: typeof userLogin;
 }
 
-const Login: FunctionComponent<AppProps> = ({ userLogin }) => {
-    useEffect(() => {
-        userLogin({ email: 'ozan387@gmail.com', password: '123' });
-    }, [userLogin]);
-
+const LoginBase: FunctionComponent<AppProps> = ({ userLogin }) => {
     return (
-        <>
-            <LoginHeader />
-            <main className="b-login flex flex-column align-center justify-center">
-                <LoginForm onSubmit={() => console.log('ok')} />
-                <p className="b-login__copyright _text-grey h6">{COPYRIGHT_TEXT}</p>
-            </main>
-        </>
+        <main className="b-login flex flex-column align-center justify-center">
+            <LoginForm
+                onSubmit={({ email, password }) => userLogin({ email, password })}
+                initialValues={{ email: 'beray@feynlab.io', password: '123456' }}
+            />
+            <p className="b-login__copyright _text-grey h6">{COPYRIGHT_TEXT}</p>
+        </main>
     );
 };
 
@@ -31,7 +27,7 @@ const mapStateToProps = (state: AppState) => ({
     auth: state.auth,
 });
 
-export const LoginWithRedux = connect(
+export const Login = connect(
     mapStateToProps,
     { userLogin }
-)(Login);
+)(LoginBase);

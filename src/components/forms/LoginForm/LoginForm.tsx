@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { Formik } from 'formik';
 import './LoginForm.scss';
 import { ILoginFormBaseProps, LoginFormDefaultState, LoginFormValidationSchema, ILoginFormProps } from './definitions';
-import { Input } from '../ui';
-import { Button, GithubButton, GoogleButton } from '../ui/buttons';
+import { Input } from '../../ui';
+import { Button, GithubButton, GoogleButton } from '../../ui/buttons';
 
 const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur } = formikProps;

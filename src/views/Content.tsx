@@ -1,19 +1,44 @@
-import React, { FunctionComponent, useState } from 'react';
-import { Application } from './app';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { LoginWithRedux } from './login';
+import { Login } from './login';
+import { Landing } from './landing';
+import { LandingHeader } from '../components/header';
+import { Signup } from './signup';
+import { Application } from './app';
+import { connect } from 'react-redux';
+import { startup } from '../store/startup/actions';
+import { restoreScroll } from '../hooks';
 
-const ContentBase: FunctionComponent<RouteComponentProps> = () => {
+interface ContentBaseProps {
+    startup: typeof startup;
+}
+
+const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = ({ startup, location }) => {
+    useEffect(() => {
+        restoreScroll(true);
+    }, [location.pathname]);
+
+    useEffect(() => {
+        startup();
+    }, []);
+
     return (
-        <Switch>
-            <Route path="/" component={LoginWithRedux} />
-            {/* <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/restore-password" component={RestorePassword} />
-            <Route path="/" component={Landing} /> */}
-        </Switch>
+        <>
+            <LandingHeader />
+            <Switch>
+                <Route path="/app" component={Application} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/" component={Landing} />
+            </Switch>
+        </>
     );
 };
 
-export const Content = withRouter(ContentBase);
+const ContentWithRouter = withRouter(ContentBase);
+
+export const Content = connect(
+    null,
+    { startup }
+)(ContentWithRouter);

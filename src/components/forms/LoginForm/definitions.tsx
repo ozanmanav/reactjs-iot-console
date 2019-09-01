@@ -1,6 +1,6 @@
 import { FormikProps } from 'formik';
 import * as Yup from 'yup';
-import { VALIDATION_ERRORS } from '../../config';
+import { VALIDATION_ERRORS } from '../../../config';
 
 export const LoginFormDefaultState = {
     email: '',

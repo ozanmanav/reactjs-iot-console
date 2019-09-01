@@ -1,14 +1,14 @@
 import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
 import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 import { COPYRIGHT_TEXT } from '../config';
+import { Cockpit } from './cockpit';
 
 export const Application: FunctionComponent<RouteComponentProps> = ({ history }) => {
     return (
         <>
-            {/* <AppHeader /> */}
             <main className="app">
                 <Switch>
-                    {/* <Route path="/app/cockpit" component={Cockpit} /> */}
+                    <Route path="/app/cockpit" component={Cockpit} />
                     {/* <Route path="/app/event/add" component={AddEvent} />
                     <Route path="/app/event/:id" component={Event} />
                     <Route path={["/app/building", "/app/object"]} component={Object} />

@@ -1,1 +1,1 @@
-export { LoginWithRedux } from './Login';
+export { Login } from './Login';

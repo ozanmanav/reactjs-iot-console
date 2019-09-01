@@ -1,8 +1,8 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import './Header.scss';
-import { Logo, CustomNavLink } from '../ui';
+import { Logo, CustomNavLink, ButtonLink } from '../ui';
 import classNames from 'classnames';
-import { NavLinkProps, RouteComponentProps, withRouter } from 'react-router-dom';
+import { NavLinkProps, RouteComponentProps, withRouter, NavLink } from 'react-router-dom';
 
 const HeaderLogo: FunctionComponent<HTMLAttributes<HTMLAnchorElement> & NavLinkProps> = ({ className, to }) => {
     return (
@@ -12,22 +12,33 @@ const HeaderLogo: FunctionComponent<HTMLAttributes<HTMLAnchorElement> & NavLinkP
     );
 };
 
-// export const LandingHeader: FunctionComponent = () => {
-//     return (
-//         <header className="flex justify-between align-center b-header">
-//             <nav className="flex align-center b-header__main-nav">
-//                 <HeaderLogo to="/" />
-//                 <CustomNavLink to="/info1" className="b-header__link" navLink>
-//                     Information 1
-//                 </CustomNavLink>
-//                 <CustomNavLink to="/info2" className="b-header__link" navLink>
-//                     Information 2
-//                 </CustomNavLink>
-//             </nav>
-//             <User />
-//         </header>
-//     );
-// };
+const AuthNav: FunctionComponent = () => {
+    return (
+        <nav className="b-header-user">
+            <NavLink to={'/signup'}>
+                <div className="b-header-user__signup">
+                    <div className="b-Fheader-user__signup-text">Sign Up</div>
+                </div>
+            </NavLink>
+            <NavLink to={'/login'}>
+                <div className="b-header-user__login">
+                    <div className="b-Fheader-user__login-text">Log In</div>
+                </div>
+            </NavLink>
+        </nav>
+    );
+};
+
+export const LandingHeader: FunctionComponent = () => {
+    return (
+        <header className="flex justify-between align-center b-header">
+            <nav className="flex align-center b-header__main-nav">
+                <HeaderLogo to="/" />
+            </nav>
+            <AuthNav />
+        </header>
+    );
+};
 
 export const LoginHeader: FunctionComponent = () => {
     return (

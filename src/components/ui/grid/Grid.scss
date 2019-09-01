@@ -1,0 +1,53 @@
+$columns: 3 4 6;
+$columns-count: 12;
+$gutter-lg: 28px;
+$gutter-md: 20px;
+$gutter: 18px;
+$gutter-sm: 10px;
+
+@mixin columns($col-gutter) {
+    @each $column in $columns {
+        $columnWidth: ($column / $columns-count) * 100%;
+        & > .col-#{$column} {
+            flex: 0 0 #{$columnWidth};
+            padding: 0 $col-gutter;
+            max-width: #{$columnWidth};
+        }
+    }
+
+    & > .col {
+        padding: 0 $col-gutter;
+        flex: 1 0 100%;
+    }
+}
+
+@mixin row-properties($col-gutter) {
+    margin-left: -$col-gutter;
+    margin-right: -$col-gutter;
+
+    @include columns($col-gutter);
+}
+
+.container {
+    max-width: 1172px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include row-properties($gutter);
+
+    &._gutter-lg {
+        @include row-properties($gutter-lg);
+    }
+
+    &._gutter-md {
+        @include row-properties($gutter-md);
+    }
+
+    &._gutter-sm {
+        @include row-properties($gutter-sm);
+    }
+}
