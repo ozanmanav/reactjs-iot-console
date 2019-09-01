@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import { LandingHeader } from '../../components/header';
 
 const LandingMain: FunctionComponent = () => {
     return <></>;

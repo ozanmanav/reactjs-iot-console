@@ -5,16 +5,21 @@ import { VALIDATION_ERRORS } from '../../../config';
 export const LoginFormDefaultState = {
     email: '',
     password: '',
+    loading: false,
 };
 
 export interface ILoginFormDefaultState {
     email: string;
     password: string;
+    loading?: boolean;
 }
 
-export interface ILoginFormBaseProps extends FormikProps<ILoginFormDefaultState> {}
+export interface ILoginFormBaseProps extends FormikProps<ILoginFormDefaultState> {
+    loading?: boolean;
+}
 
 export interface ILoginFormProps {
+    loading?: boolean;
     onSubmit: (state: ILoginFormDefaultState) => void;
     initialValues?: ILoginFormDefaultState;
 }

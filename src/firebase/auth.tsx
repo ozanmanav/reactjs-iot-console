@@ -33,7 +33,7 @@ export function onAuthStateChanged() {
             if (user) {
                 resolve(user);
             } else {
-                reject(new Error('Ops!'));
+                reject('Session expired, please login again!');
             }
         });
     });

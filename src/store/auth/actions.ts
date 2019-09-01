@@ -3,12 +3,10 @@ import {
     USER_LOGIN,
     USER_REGISTER,
     USER_LOGIN_SUCCESS,
-    USER_LOGIN_FAILURE,
-    USER_REGISTER_SUCCESS,
-    USER_REGISTER_FAILURE,
     CHECK_USER,
     CHECK_USER_SUCCESS,
     CHECK_USER_FAILURE,
+    USER_LOGOUT,
 } from './types';
 
 export function userLogin(newSession: AuthState) {
@@ -56,5 +54,11 @@ export function checkUserFailure(newSession: AuthState) {
     return {
         type: CHECK_USER_FAILURE,
         payload: newSession,
+    };
+}
+
+export function userLogout() {
+    return {
+        type: USER_LOGOUT,
     };
 }

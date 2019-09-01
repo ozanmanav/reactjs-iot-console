@@ -4,9 +4,10 @@ import './LoginForm.scss';
 import { ILoginFormBaseProps, LoginFormDefaultState, LoginFormValidationSchema, ILoginFormProps } from './definitions';
 import { Input } from '../../ui';
 import { Button, GithubButton, GoogleButton } from '../../ui/buttons';
+import { ClipLoader } from 'react-spinners';
 
 const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps }) => {
-    const { values, handleSubmit, handleChange, errors, touched, handleBlur } = formikProps;
+    const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
 
     return (
         <form className="f-login__form" onSubmit={handleSubmit}>
@@ -34,7 +35,13 @@ const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps 
                         touched={touched && touched.password}
                     />
                 </div>
-                <Button text="Log In" primary className="f-login__form-action" type="submit" />
+                {loading ? (
+                    <div className="f-login__form-loader">
+                        <ClipLoader sizeUnit={'px'} size={24} color={'#f68a4d'} loading={loading} />
+                    </div>
+                ) : (
+                    <Button text="Log In" primary className="f-login__form-action" type="submit" />
+                )}
             </div>
             <div className="f-login__form-footer">
                 <GoogleButton text="Continue with Google" type="button" />
@@ -47,13 +54,13 @@ const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps 
     );
 };
 
-export const LoginForm: FunctionComponent<ILoginFormProps> = ({ onSubmit, initialValues }) => {
+export const LoginForm: FunctionComponent<ILoginFormProps> = ({ onSubmit, initialValues, loading }) => {
     return (
         <Formik
             onSubmit={onSubmit}
             initialValues={initialValues || LoginFormDefaultState}
             validationSchema={LoginFormValidationSchema}
-            component={(formikProps) => <LoginFormBase {...formikProps} />}
+            component={(formikProps) => <LoginFormBase {...formikProps} loading={loading} />}
         />
     );
 };

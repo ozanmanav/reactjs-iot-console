@@ -3,9 +3,11 @@ import './Icons.scss';
 import { appendClassName } from '../../../utils';
 
 import building from '../../../icons/building.svg';
+import selectArrows from '../../../icons/selectArrows.svg';
+import downArrow from '../../../icons/down-arrow.svg';
 
 // TODO: is string type necessary?
-export type TIconType = 'building' | string;
+export type TIconType = 'building' | 'selectArrows' | 'downArrow' | string;
 
 interface IIcons {
     [key: string]: string;
@@ -13,6 +15,8 @@ interface IIcons {
 
 const ICONS: IIcons = {
     building,
+    selectArrows,
+    downArrow,
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {

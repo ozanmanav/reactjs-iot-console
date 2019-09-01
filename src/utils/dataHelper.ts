@@ -1,17 +1,16 @@
 /* eslint-disable no-fallthrough */
 import axios from 'axios';
-import { firebase } from '../firebase';
 import { BASE_URL } from '../config';
+import { auth } from '../firebase';
 
 export function getRequest(url: any, params = {}) {
     const baseURL = BASE_URL || '';
     return new Promise((resolve, reject) => {
-        firebase &&
-            firebase.auth &&
-            firebase.auth.currentUser &&
-            firebase.auth.currentUser
+        auth.onAuthStateChanged().then((user: any) => {
+            return user
                 .getIdToken(false)
-                .then((token) => {
+                .then((token: string) => {
+                    console.log(token);
                     axios({
                         method: 'GET',
                         headers: { Authorization: `Bearer ${token}` },
@@ -22,8 +21,9 @@ export function getRequest(url: any, params = {}) {
                         .then((result) => resolve(result))
                         .catch((error) => reject(error));
                 })
-                .catch((error) => {
+                .catch((error: any) => {
                     reject(error);
                 });
+        });
     });
 }

@@ -2,19 +2,21 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../store';
 import { userLogin } from '../../store/auth/actions';
-import { LoginHeader } from '../../components/header';
 import { LoginForm } from '../../components/forms';
 import './Login.scss';
 import { COPYRIGHT_TEXT } from '../config';
+import { AuthState } from '../../store/auth/types';
 
 interface AppProps {
     userLogin: typeof userLogin;
+    auth: AuthState;
 }
 
-const LoginBase: FunctionComponent<AppProps> = ({ userLogin }) => {
+const LoginBase: FunctionComponent<AppProps> = ({ userLogin, auth }) => {
     return (
         <main className="b-login flex flex-column align-center justify-center">
             <LoginForm
+                loading={auth.loading && auth.loading.login}
                 onSubmit={({ email, password }) => userLogin({ email, password })}
                 initialValues={{ email: 'beray@feynlab.io', password: '123456' }}
             />

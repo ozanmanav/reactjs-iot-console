@@ -1,7 +1,9 @@
 import { User } from 'firebase';
+import { ILoadingState } from './reducers';
 
 // Describing the shape of the system's slice of state
 export interface AuthState {
+    loading?: ILoadingState;
     loggedIn?: boolean;
     email?: string;
     password?: string;
@@ -19,6 +21,7 @@ export const USER_REGISTER_FAILURE = 'USER_REGISTER_FAILURE ';
 export const CHECK_USER = 'CHECK_USER';
 export const CHECK_USER_SUCCESS = 'CHECK_USER_SUCCESS ';
 export const CHECK_USER_FAILURE = 'CHECK_USER_FAILURE ';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 interface UserLoginAction {
     type: typeof USER_LOGIN;
@@ -63,6 +66,11 @@ interface CheckUserSuccessAction {
     payload: AuthState;
 }
 
+interface UserLogoutAction {
+    type: typeof USER_LOGOUT;
+    payload: AuthState;
+}
+
 export type AuthActionTypes =
     | UserLoginAction
     | UserRegisterAction
@@ -72,4 +80,5 @@ export type AuthActionTypes =
     | UserRegisterSuccessAction
     | CheckUserAction
     | CheckUserFailureAction
-    | CheckUserSuccessAction;
+    | CheckUserSuccessAction
+    | UserLogoutAction;

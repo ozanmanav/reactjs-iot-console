@@ -8,13 +8,15 @@ import { rootSaga } from '../sagas';
 import { createBrowserHistory } from 'history';
 import { startupReducer } from './startup/reducers';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { projectReducer } from './project/reducers';
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     router: connectRouter(history),
-    auth: authReducer,
     startup: startupReducer,
+    auth: authReducer,
+    project: projectReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

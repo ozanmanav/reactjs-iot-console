@@ -7,11 +7,22 @@ import {
     USER_LOGIN_FAILURE,
     USER_REGISTER_SUCCESS,
     USER_REGISTER_FAILURE,
+    CHECK_USER,
+    CHECK_USER_SUCCESS,
+    CHECK_USER_FAILURE,
+    USER_LOGOUT,
 } from './types';
 import { CRYPT_JS_SECRET_KEY } from '../../config';
 import { AES } from 'crypto-js';
 
+export interface ILoadingState {
+    login?: boolean;
+    logout?: boolean;
+    projects?: boolean;
+}
+
 const initialState: AuthState = {
+    loading: <ILoadingState>{},
     loggedIn: false,
     email: '',
     password: '',
@@ -21,12 +32,14 @@ const initialState: AuthState = {
 export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
     switch (action.type) {
         case USER_LOGIN: {
+            state.loading = { login: true } as ILoadingState;
             return {
                 ...state,
                 ...action.payload,
             };
         }
         case USER_LOGIN_SUCCESS: {
+            state.loading = { login: false };
             if (typeof state.password === 'string') {
                 var passwordHash = AES.encrypt(state.password, CRYPT_JS_SECRET_KEY || '');
                 action.payload.password = passwordHash.toString();
@@ -37,6 +50,7 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
             };
         }
         case USER_LOGIN_FAILURE: {
+            state.loading = { login: false };
             return {
                 ...state,
                 ...action.payload,
@@ -58,6 +72,30 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
             return {
                 ...state,
                 ...action.payload,
+            };
+        }
+        case CHECK_USER: {
+            return {
+                ...state,
+                ...action.payload,
+            };
+        }
+        case CHECK_USER_SUCCESS: {
+            return {
+                ...state,
+                ...action.payload,
+            };
+        }
+        case CHECK_USER_FAILURE: {
+            return {
+                ...state,
+                ...action.payload,
+            };
+        }
+        case USER_LOGOUT: {
+            state.loggedIn = false;
+            return {
+                ...state,
             };
         }
         default:

@@ -1,7 +1,6 @@
-import { StartupState, STARTUP, STARTUP_SUCCESS, STARTUP_FAILURE } from './types';
+import { STARTUP, STARTUP_SUCCESS, STARTUP_FAILURE } from './types';
 
 export function startup() {
-    console.log('startup action');
     return {
         type: STARTUP,
     };

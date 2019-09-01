@@ -7,12 +7,8 @@ $header-horizontal-padding: 53px;
 .b-header {
     @include shadow-small;
     background-color: $white;
-    padding: 20px $header-horizontal-padding;
+    padding: 10px 20px 10px 20px;
     position: relative;
-
-    @include desktop-sm {
-        padding: 20px;
-    }
 
     &-user {
         &__signup {
@@ -27,11 +23,6 @@ $header-horizontal-padding: 53px;
                 height: 19px;
                 font-size: 14px;
                 font-weight: 500;
-                font-style: normal;
-                font-stretch: normal;
-                line-height: normal;
-                letter-spacing: normal;
-                text-align: center;
                 color: #9b9b9b;
             }
         }
@@ -47,10 +38,6 @@ $header-horizontal-padding: 53px;
                 height: 19px;
                 font-size: 14px;
                 font-weight: 500;
-                font-style: normal;
-                font-stretch: normal;
-                line-height: normal;
-                letter-spacing: normal;
                 text-align: center;
                 color: #4a4a4a;
             }
@@ -150,6 +137,7 @@ $header-horizontal-padding: 53px;
     }
 
     &._login {
+        padding: 20px;
         min-height: 80px;
     }
 }

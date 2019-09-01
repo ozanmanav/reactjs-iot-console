@@ -29,9 +29,22 @@ export function* checkUserAuth() {
 
         yield put(checkUserSuccess(successCheckSession));
     } catch (error) {
+        console.log(error);
         yield put(push('/login'));
         const errorSession: AuthState = { error, loggedIn: false };
-        showErrorToast(error.message);
+        showErrorToast(error);
+        yield put(checkUserFailure(errorSession));
+    }
+}
+
+export function* requestUserLogout() {
+    try {
+        yield call(auth.doSignOut);
+        yield put(push('/login'));
+    } catch (error) {
+        yield put(push('/login'));
+        const errorSession: AuthState = { error, loggedIn: false };
+        showErrorToast(error);
         yield put(checkUserFailure(errorSession));
     }
 }

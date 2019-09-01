@@ -1,1 +1,0 @@
-export { Cockpit } from './Cockpit';

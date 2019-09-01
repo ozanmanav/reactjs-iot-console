@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { Container } from '../../../components/ui';
 
-export const Cockpit: FunctionComponent = () => {
+export const Dashboard: FunctionComponent = () => {
     return (
         <Container>
-            <div>SELAM BEN GİRİŞ YAPTIM</div>
+            <div>Dashboard</div>
             {/* <EventsTable />
             <ChangesHistory /> */}
         </Container>
