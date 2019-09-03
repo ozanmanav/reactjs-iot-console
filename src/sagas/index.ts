@@ -3,8 +3,8 @@ import { USER_LOGIN, CHECK_USER, USER_LOGOUT } from '../store/auth/types';
 import { requestUserLogin, checkUserAuth, requestUserLogout } from './authSaga';
 import { startup } from './startupSaga';
 import { STARTUP } from '../store/startup/types';
-import { requestGetProjects } from './projectSaga';
-import { GET_PROJECTS } from '../store/project/types';
+import { requestGetProjects, requestGetProjectById } from './projectSaga';
+import { GET_PROJECTS, GET_PROJECT_BY_ID } from '../store/project/types';
 
 // Register all your watchers
 export const rootSaga = function* root() {
@@ -19,5 +19,6 @@ export const rootSaga = function* root() {
 
         // Project
         takeLatest(GET_PROJECTS, requestGetProjects),
+        takeLatest(GET_PROJECT_BY_ID, requestGetProjectById),
     ]);
 };

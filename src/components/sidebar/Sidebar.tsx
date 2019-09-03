@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import DashboardIcon from '../../icons/dashboard-icon.svg';
+import DashboardIconDeactive from '../../icons/dashboard-icon-deactive.svg';
 import SupportIcon from '../../icons/support-icon.svg';
 import SidebarHeader from './SidebarHeader';
 import { AppState } from '../../store';
@@ -18,16 +19,20 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
         getProjects();
     }, []);
 
-    const activeItem = router.location.pathname.split('/')[2] || '';
+    const checkActiveItem = (text: string): boolean => router.location.pathname.includes(text.toLocaleLowerCase());
+
     return (
         <React.Fragment>
             <div className="b-sidebar">
                 <NavLink to={'/app/dashboard'}>
-                    <SidebarHeader text={'Dashboard'} image={DashboardIcon} activeItem={activeItem} />
+                    <SidebarHeader
+                        text={'Dashboard'}
+                        image={DashboardIcon}
+                        deactiveImage={DashboardIconDeactive}
+                        active={checkActiveItem('dashboard')}
+                    />
                 </NavLink>
-                <SidebarProjects
-                // activeItem={activeItem}
-                />
+                <SidebarProjects active={checkActiveItem('projects')} />
                 {/* <a text={'Documentation'}
                     href={'https://docs.feynlab.io'}
                     image={SupportIcon} activeItem={activeItem} target="_blank" rel="noopener noreferrer"
@@ -35,16 +40,16 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
                     <LeftNavHeader text={'Documentation'} image={SupportIcon} activeItem={activeItem} />
                 </a> */}
                 <NavLink to={'/support'}>
-                    <SidebarHeader text={'Forums'} image={SupportIcon} activeItem={activeItem} />
+                    <SidebarHeader text={'Forums'} image={SupportIcon} deactiveImage={SupportIcon} active={checkActiveItem('support')} />
                 </NavLink>
                 <NavLink to={'/support'}>
-                    <SidebarHeader text={'Feedback'} image={SupportIcon} activeItem={activeItem} />
+                    <SidebarHeader text={'Feedback'} image={SupportIcon} deactiveImage={SupportIcon} active={checkActiveItem('feedback')} />
                 </NavLink>
                 <NavLink to={'/support'}>
-                    <SidebarHeader text={'Blog'} image={SupportIcon} activeItem={activeItem} />
+                    <SidebarHeader text={'Blog'} image={SupportIcon} deactiveImage={SupportIcon} active={checkActiveItem('blog')} />
                 </NavLink>
                 <NavLink to={'/support'}>
-                    <SidebarHeader text={'Support'} image={SupportIcon} activeItem={activeItem} />
+                    <SidebarHeader text={'Support'} image={SupportIcon} deactiveImage={SupportIcon} active={checkActiveItem('support')} />
                 </NavLink>
                 {/* <div className={styles['narrow-button']}>
                     <SidebarHeader text={'Narrow'} image={NarrowIcon} activeItem={activeItem} />
