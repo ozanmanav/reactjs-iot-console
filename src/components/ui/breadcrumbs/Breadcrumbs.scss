@@ -1,0 +1,20 @@
+.b-breadcrumbs {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #9b9b9b;
+    &.active {
+        font-weight: 600;
+    }
+
+    &.link {
+        color: #9b9b9b;
+        &:hover {
+            color: #6a6a6a;
+        }
+    }
+}
