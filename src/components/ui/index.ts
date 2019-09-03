@@ -5,3 +5,5 @@ export * from './buttons';
 export * from './icons';
 export * from './toasts';
 export * from './grid';
+export * from './tooltips';
+export * from './accordion';

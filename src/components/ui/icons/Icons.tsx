@@ -5,9 +5,10 @@ import { appendClassName } from '../../../utils';
 import building from '../../../icons/building.svg';
 import selectArrows from '../../../icons/selectArrows.svg';
 import downArrow from '../../../icons/down-arrow.svg';
+import accordionArrow from '../../../icons/accordionArrow.svg';
 
 // TODO: is string type necessary?
-export type TIconType = 'building' | 'selectArrows' | 'downArrow' | string;
+export type TIconType = 'building' | 'selectArrows' | 'downArrow' | 'accordionArrow' | string;
 
 interface IIcons {
     [key: string]: string;
@@ -17,6 +18,7 @@ const ICONS: IIcons = {
     building,
     selectArrows,
     downArrow,
+    accordionArrow,
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {

@@ -1,0 +1,74 @@
+@import '../../../styles/variables';
+
+$timeline-tooltip-grey: #434552;
+
+.b-timeline-tooltip {
+    position: absolute;
+    z-index: $timeline-tooltip-z-index;
+    background-color: #363740;
+    min-width: 230px;
+    border-radius: $border-radius-normal;
+    top: 100%;
+    left: 50%;
+    transform: translate3d(-50%, 9px, 0);
+    text-align: center;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        border-bottom: 6px solid $timeline-tooltip-grey;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        transform: translate3d(-50%, -100%, 0);
+    }
+
+    &__header {
+        padding: 15px 25px 10px;
+        background-color: $timeline-tooltip-grey;
+        border-top-left-radius: $border-radius-normal;
+        border-top-right-radius: $border-radius-normal;
+    }
+
+    &__footer {
+        padding: 17px 20px 25px;
+    }
+
+    &__tag {
+        background-color: #6c6f81;
+        border: 1px solid #808395;
+        border-radius: $border-radius-normal;
+        margin: 12px 10px 0;
+        height: 28px;
+        min-width: 85px;
+        padding: 3px;
+    }
+}
+
+.b-info-tooltip {
+    $tooltip: &;
+
+    position: relative;
+    pointer-events: auto;
+    margin-left: 0.5em;
+
+    &__content {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translate3d(-50%, -8px, 0);
+        background-color: $timeline-tooltip-grey;
+        color: $white;
+        border-radius: $border-radius-normal;
+        padding: 10px;
+        font-size: $h6;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity $transition-default;
+
+        #{$tooltip}:hover & {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+}

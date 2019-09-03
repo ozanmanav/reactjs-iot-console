@@ -1,0 +1,50 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.b-accordion {
+    &__wrapper {
+        @include shadow-default;
+        background-color: $white;
+        border-radius: $border-radius-normal;
+
+        &:not(:last-child) {
+            margin-bottom: 50px;
+        }
+    }
+
+    &__header {
+        width: 100%;
+        padding: $accordion-header-vertical-padding 26px $accordion-header-vertical-padding 28px;
+        &_custom {
+            padding: 0px;
+        }
+    }
+
+    &__title {
+        color: $black;
+    }
+
+    &__content {
+        display: none;
+        background-color: #fafbfc;
+        border-top: 1px solid $light-grey;
+        border-bottom-left-radius: $border-radius-normal;
+        border-bottom-right-radius: $border-radius-normal;
+
+        ._open & {
+            display: block;
+        }
+    }
+
+    &__arrow {
+        width: 10px;
+        height: 7px;
+        margin-right: 20px;
+        transition: transform $transition-default;
+        transform: rotate(180deg);
+
+        ._open & {
+            transform: none;
+        }
+    }
+}
