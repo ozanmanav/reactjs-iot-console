@@ -1,13 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { ProjectDetails } from './projectDetails';
+import { Details } from './Details';
 
 export const Project: FunctionComponent = () => {
     return (
-        <>
-            <Switch>
-                <Route path={['/app/project/:id']} exact component={ProjectDetails} />
-            </Switch>
-        </>
+        <Switch>
+            <Route path={'/app/projects/:id'} component={Details} />
+        </Switch>
     );
 };

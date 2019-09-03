@@ -30,9 +30,9 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
                 <div className="b-sidebar-projects-list">
                     {projects &&
                         projects.map((item) => (
-                            <NavLink to={`/projects/${item.id}/devices`} key={item.id}>
+                            <NavLink to={`/app/projects/${item.id}`} key={item.id}>
                                 <div key={item.id} className={classnames('b-sidebar-projects-list__item', 'active')}>
-                                    {/* <img src={item.image || ProjectLogo} alt="logo" className={styles.icon} /> */}
+                                    <img src={/*item.projectImage1x ||*/ ProjectLogo} alt="logo" className="b-sidebar-projects__image" />
                                     <span
                                         style={{
                                             display: 'inline-block',
@@ -46,7 +46,7 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
                                 </div>
                             </NavLink>
                         ))}
-                    <NavLink to={'/projects/create'}>
+                    <NavLink to={'/app/projects/create'}>
                         <div className={classnames('b-sidebar-projects-list__item', 'active')}>
                             <img src={NewProjectIcon} alt="logo" className="b-sidebar-projects__image" />
                             <span>New Project</span>

@@ -1,14 +1,15 @@
 import React, { FunctionComponent } from 'react';
-import './ProjectDetails.scss';
+import './Details.scss';
 import { Container } from '../../../../components/ui';
 import { RouteComponentProps } from 'react-router';
 
-export const ProjectDetails: FunctionComponent<RouteComponentProps<{ id: string }>> = ({ match, location }) => {
+export const Details: FunctionComponent<RouteComponentProps<{ id: string }>> = ({ match, location }) => {
     const projectId = match.params.id;
     return (
         <div className="b-object-details">
             <Container>
                 {projectId}
+                Project Details
                 {/* <ObjectDetailsTable objectId={objectId} />
              
                 <FilesList
