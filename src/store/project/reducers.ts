@@ -8,9 +8,11 @@ import {
     GET_PROJECT_BY_ID,
     GET_PROJECT_BY_ID_SUCCESS,
     GET_PROJECT_BY_ID_FAILURE,
+    IProjectLoadingState,
 } from './types';
 
 const initialState: ProjectState = {
+    loading: { projects: false, currentProject: false },
     projects: [],
     currentProject: undefined,
     error: undefined,
@@ -39,17 +41,29 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
         case GET_PROJECT_BY_ID: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    currentProject: true,
+                },
             };
         }
         case GET_PROJECT_BY_ID_SUCCESS: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    currentProject: false,
+                },
                 currentProject: action.payload,
             };
         }
         case GET_PROJECT_BY_ID_FAILURE: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    currentProject: false,
+                },
                 currentProject: action.payload,
             };
         }

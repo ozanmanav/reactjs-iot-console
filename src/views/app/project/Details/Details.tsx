@@ -5,15 +5,16 @@ import Breadcrumbs from '../../../../components/ui/breadcrumbs/Breadcrumbs';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
 import { getProjectById } from '../../../../store/project/actions';
-import { IProject } from '../../../../store/project/types';
-
+import { ProjectState } from '../../../../store/project/types';
+import { Loading } from '../../../../components/ui/loading';
+import { ProjectInfo } from './ProjectInfo';
 interface DetailsBaseProps extends RouteComponentProps {
     getProjectById: typeof getProjectById;
-    currentProject?: IProject;
+    project: ProjectState;
     router?: any;
 }
 
-const DetailsBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectById, currentProject }) => {
+const DetailsBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectById, project }) => {
     const projectId = router.location.pathname.split('/')[3] || '';
 
     useEffect(() => {
@@ -22,19 +23,20 @@ const DetailsBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
         }
     }, [projectId]);
 
-    return (
+    if (project.loading && project.loading.currentProject) {
+        return <Loading loading={project.loading.currentProject} />;
+    }
+
+    return project.currentProject ? (
         <div className="b-project-details">
-            <Breadcrumbs
-                className="b-create-project__breadcrumbs"
-                route={'Projects / '}
-                present={currentProject && currentProject.projectName}
-            />
+            <Breadcrumbs className="b-project-details__breadcrumbs" route={'Projects / '} present={project.currentProject.projectName} />
+            <ProjectInfo project={project.currentProject} />
         </div>
-    );
+    ) : null;
 };
 
 const mapStateToProps = (state: AppState) => ({
-    currentProject: state.project.currentProject,
+    project: state.project,
     router: state.router,
 });
 

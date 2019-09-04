@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import './CreateProject.scss';
-import { Container, Row } from '../../../../components/ui';
 import { RouteComponentProps } from 'react-router';
 import { CreateProjectForm } from '../../../../components/forms/CreateProjectForm';
 import Breadcrumbs from '../../../../components/ui/breadcrumbs/Breadcrumbs';

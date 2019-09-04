@@ -11,18 +11,13 @@ import {
     CHECK_USER_SUCCESS,
     CHECK_USER_FAILURE,
     USER_LOGOUT,
+    IAuthLoadingState,
 } from './types';
 import { CRYPT_JS_SECRET_KEY } from '../../config';
 import { AES } from 'crypto-js';
 
-export interface ILoadingState {
-    login?: boolean;
-    logout?: boolean;
-    projects?: boolean;
-}
-
 const initialState: AuthState = {
-    loading: <ILoadingState>{},
+    loading: <IAuthLoadingState>{},
     loggedIn: false,
     email: '',
     password: '',
@@ -32,7 +27,7 @@ const initialState: AuthState = {
 export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
     switch (action.type) {
         case USER_LOGIN: {
-            state.loading = { login: true } as ILoadingState;
+            state.loading = { login: true };
             return {
                 ...state,
                 ...action.payload,

@@ -7,7 +7,13 @@ export interface IProject {
     projectName: string;
 }
 
+export interface IProjectLoadingState {
+    projects?: boolean;
+    currentProject?: boolean;
+}
+
 export interface ProjectState {
+    loading?: IProjectLoadingState;
     projects?: IProject[];
     currentProject?: IProject;
     error?: string;

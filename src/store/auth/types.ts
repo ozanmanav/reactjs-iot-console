@@ -1,9 +1,13 @@
 import { User } from 'firebase';
-import { ILoadingState } from './reducers';
 
 // Describing the shape of the system's slice of state
+export interface IAuthLoadingState {
+    login?: boolean;
+    logout?: boolean;
+}
+
 export interface AuthState {
-    loading?: ILoadingState;
+    loading?: IAuthLoadingState;
     loggedIn?: boolean;
     email?: string;
     password?: string;
