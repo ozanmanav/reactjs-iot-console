@@ -7,7 +7,13 @@
     height: 100vh;
     border-right: 1px solid #d8d8d8;
 
+    &__root {
+        position: relative !important;
+        overflow-y: hidden !important;
+    }
+
     &__sidebar {
+        position: relative !important;
         overflow-y: hidden !important;
     }
 
@@ -15,7 +21,7 @@
         position: absolute !important;
         z-index: 10 !important;
         left: 25px !important;
-        top: calc(95%) !important;
+        top: calc(83%) !important;
         &-icon-container {
             &-icon {
                 cursor: pointer;

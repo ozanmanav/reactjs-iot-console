@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history';
 import { startupReducer } from './startup/reducers';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { projectReducer } from './project/reducers';
+import { uiReducer } from './ui/reducers';
 
 export const history = createBrowserHistory();
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     startup: startupReducer,
     auth: authReducer,
     project: projectReducer,
+    ui: uiReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

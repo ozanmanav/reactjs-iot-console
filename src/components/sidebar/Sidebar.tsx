@@ -7,6 +7,7 @@ import SidebarHeader from './SidebarHeader';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
 import { getProjects } from '../../store/project/actions';
+import { setSidebarStatus } from '../../store/ui/actions';
 import './Sidebar.scss';
 import SidebarProjects from './SidebarProjects';
 import Sidebar from 'react-sidebar';
@@ -16,15 +17,20 @@ import classNames from 'classnames';
 interface SidebarBaseProps {
     router?: any;
     getProjects: typeof getProjects;
+    isSidebarOpen: boolean;
+    setSidebarStatus: any;
 }
-export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getProjects }) => {
-    const [isSidebarOpen, setSidebarOpen] = useState(true);
-
+export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getProjects, isSidebarOpen, setSidebarStatus }) => {
     useEffect(() => {
         getProjects();
     }, []);
 
     const checkActiveItem = (text: string): boolean => router.location.pathname.includes(text.toLocaleLowerCase());
+
+    const changeStatusSidebar = (e: any) => {
+        e.preventDefault();
+        setSidebarStatus(!isSidebarOpen);
+    };
 
     const SidebarInner = () => (
         <div className="b-sidebar">
@@ -62,32 +68,32 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
     );
 
     return (
-        <div>
-            <Sidebar
-                sidebar={<SidebarInner />}
-                docked={isSidebarOpen}
-                onSetOpen={setSidebarOpen}
-                dragToggleDistance={1}
-                contentClassName="b-sidebar__content"
-                sidebarClassName="b-sidebar__sidebar"
-            >
-                <div className="b-sidebar__content-icon-container">
-                    <Icon
-                        icon={`${isSidebarOpen ? 'narrowIcon' : 'narrowIconDeactive'}`}
-                        className={classNames('b-sidebar__content-icon-container-icon', { _open: isSidebarOpen })}
-                        onClick={() => setSidebarOpen((prevState) => !prevState)}
-                    />
-                </div>
-            </Sidebar>
-        </div>
+        <Sidebar
+            sidebar={<SidebarInner />}
+            docked={isSidebarOpen}
+            onSetOpen={setSidebarStatus}
+            dragToggleDistance={1}
+            contentClassName="b-sidebar__content"
+            sidebarClassName="b-sidebar__sidebar"
+            rootClassName="b-sidebar__root"
+        >
+            <div className="b-sidebar__content-icon-container">
+                <Icon
+                    icon={`${isSidebarOpen ? 'narrowIcon' : 'narrowIconDeactive'}`}
+                    className={classNames('b-sidebar__content-icon-container-icon', { _open: isSidebarOpen })}
+                    onClick={changeStatusSidebar}
+                />
+            </div>
+        </Sidebar>
     );
 };
 
 const mapStateToProps = (state: AppState) => ({
     router: state.router,
+    isSidebarOpen: state.ui.isSidebarOpen,
 });
 
 export const SidebarWrapped = connect(
     mapStateToProps,
-    { getProjects }
+    { getProjects, setSidebarStatus }
 )(SidebarBase);

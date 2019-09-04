@@ -8,31 +8,32 @@ import './Application.scss';
 import { CreateProject } from './project/CreateProject';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
-import { AuthState } from '../../store/auth/types';
-import { Loading } from '../../components/ui/loading';
+import classNames from 'classnames';
+import { UIState } from '../../store/ui/types';
 
 interface ApplicationBaseProps {
-    auth?: AuthState;
+    ui?: UIState;
 }
 
-export const ApplicationBase: FunctionComponent<ApplicationBaseProps> = ({ auth }) => {
+export const ApplicationBase: FunctionComponent<ApplicationBaseProps> = ({ ui }) => {
     return (
         <>
             <main className="app">
                 <SidebarWrapped />
-                <Switch>
-                    <Route exact path="/app/dashboard" component={Dashboard} />
-                    <Route path="/app/projects/create" component={CreateProject} />
-                    <Route path="/app/projects/:id" component={Project} />
-                    {/* <Route path="/app/event/add" component={AddEvent} />
+                <div className={classNames('content', { _close: ui && !ui.isSidebarOpen })}>
+                    <Switch>
+                        <Route exact path="/app/dashboard" component={Dashboard} />
+                        <Route path="/app/projects/create" component={CreateProject} />
+                        <Route path="/app/projects/:id" component={Project} />
+                        {/* <Route path="/app/event/add" component={AddEvent} />
                     <Route path="/app/event/:id" component={Event} />
                     <Route path={["/app/building", "/app/object"]} component={Object} />
                     <Route path={"/app/settings"} component={Settings} />
                     <Route path={"/app/admin"} component={AdminPanel} />
                     <Route path="/app/export" component={Export} /> */}
-                    <Route component={Dashboard} />
-                </Switch>
-
+                        <Route component={Dashboard} />
+                    </Switch>
+                </div>
                 <p className="_text-grey h6 _text-center app__copyright">{COPYRIGHT_TEXT}</p>
             </main>
         </>
@@ -40,7 +41,7 @@ export const ApplicationBase: FunctionComponent<ApplicationBaseProps> = ({ auth 
 };
 
 const mapStateToProps = (state: AppState) => ({
-    auth: state.auth,
+    ui: state.ui,
 });
 
 export const Application = connect(

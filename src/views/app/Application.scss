@@ -9,3 +9,9 @@
         width: 100%;
     }
 }
+
+.content {
+    &._close {
+        position: absolute;
+    }
+}
