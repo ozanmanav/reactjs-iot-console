@@ -7,12 +7,12 @@ import './Login.scss';
 import { COPYRIGHT_TEXT } from '../config';
 import { AuthState } from '../../store/auth/types';
 
-interface AppProps {
+interface LoginBaseProps {
     userLogin: typeof userLogin;
     auth: AuthState;
 }
 
-const LoginBase: FunctionComponent<AppProps> = ({ userLogin, auth }) => {
+const LoginBase: FunctionComponent<LoginBaseProps> = ({ userLogin, auth }) => {
     return (
         <main className="b-login flex flex-column align-center justify-center">
             <LoginForm

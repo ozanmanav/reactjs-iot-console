@@ -10,9 +10,9 @@ const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps 
     const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
 
     return (
-        <form className="f-login__form" onSubmit={handleSubmit}>
-            <div className="f-login__form-content">
-                <h2 className="h1 f-login__form-title">Log In</h2>
+        <form className="f-signup__form" onSubmit={handleSubmit}>
+            <div className="f-signup__form-content">
+                <h2 className="h1 f-signup__form-title">Log In</h2>
                 <Input
                     placeholder="E-mail Address"
                     name="email"
@@ -22,9 +22,9 @@ const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps 
                     error={errors && errors.email}
                     touched={touched && touched.email}
                 />
-                <div className="f-login__form-input-wrapper">
+                <div className="f-signup__form-input-wrapper">
                     <Input
-                        className="f-login__form-input"
+                        className="f-signup__form-input"
                         placeholder="Password"
                         name="password"
                         type="password"
@@ -36,17 +36,17 @@ const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps 
                     />
                 </div>
                 {loading ? (
-                    <div className="f-login__form-loader">
+                    <div className="f-signup__form-loader">
                         <ClipLoader sizeUnit={'px'} size={24} color={'#f68a4d'} loading={loading} />
                     </div>
                 ) : (
-                    <Button text="Log In" primary className="f-login__form-action" type="submit" />
+                    <Button text="Log In" primary className="f-signup__form-action" type="submit" />
                 )}
             </div>
-            <div className="f-login__form-footer">
+            <div className="f-signup__form-footer">
                 <GoogleButton text="Continue with Google" type="button" />
                 <GithubButton text="Continue with GitHub" type="button" />
-                <button type="button" className="f-login__form-input-link-forgot">
+                <button type="button" className="f-signup__form-input-link-forgot">
                     Forgot password?
                 </button>
             </div>

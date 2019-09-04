@@ -9,12 +9,16 @@ import { Application } from './app';
 import { connect } from 'react-redux';
 import { startup } from '../store/startup/actions';
 import { restoreScroll } from '../hooks';
+import { AppState } from '../store';
+import { AuthState } from '../store/auth/types';
+import { Loading } from '../components/ui/loading';
 
 interface ContentBaseProps {
     startup: typeof startup;
+    auth: AuthState;
 }
 
-const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = ({ startup, location }) => {
+const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = ({ startup, location, auth }) => {
     useEffect(() => {
         restoreScroll(true);
     }, [location.pathname]);
@@ -22,6 +26,10 @@ const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = (
     useEffect(() => {
         startup();
     }, []);
+
+    if (auth && auth.loading && auth.loading.checkUser) {
+        return <Loading />;
+    }
 
     return (
         <>
@@ -31,6 +39,7 @@ const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = (
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/" component={Landing} />
+                <Route component={Application} />
             </Switch>
         </>
     );
@@ -38,7 +47,11 @@ const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = (
 
 const ContentWithRouter = withRouter(ContentBase);
 
+const mapStateToProps = (state: AppState) => ({
+    auth: state.auth,
+});
+
 export const Content = connect(
-    null,
+    mapStateToProps,
     { startup }
 )(ContentWithRouter);

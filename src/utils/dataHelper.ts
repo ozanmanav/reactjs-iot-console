@@ -10,7 +10,6 @@ export function getRequest(url: any, params = {}) {
             return user
                 .getIdToken(false)
                 .then((token: string) => {
-                    console.log(token);
                     axios({
                         method: 'GET',
                         headers: { Authorization: `Bearer ${token}` },

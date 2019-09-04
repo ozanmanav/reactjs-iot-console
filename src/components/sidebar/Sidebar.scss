@@ -7,6 +7,31 @@
     height: 100vh;
     border-right: 1px solid #d8d8d8;
 
+    &__sidebar {
+        overflow-y: hidden !important;
+    }
+
+    &__content {
+        position: absolute !important;
+        z-index: 10 !important;
+        left: 25px !important;
+        top: calc(95%) !important;
+        &-icon-container {
+            &-icon {
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                transition: transform $transition-default;
+                transform: rotate(180deg);
+
+                &._open {
+                    transform: translate(12em, 0);
+                    background-color: white;
+                }
+            }
+        }
+    }
+
     &-header {
         height: 54px;
         color: #9b9b9b;

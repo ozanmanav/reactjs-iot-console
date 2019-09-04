@@ -72,18 +72,30 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
         case CHECK_USER: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    checkUser: true,
+                },
                 ...action.payload,
             };
         }
         case CHECK_USER_SUCCESS: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    checkUser: false,
+                },
                 ...action.payload,
             };
         }
         case CHECK_USER_FAILURE: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    checkUser: false,
+                },
                 ...action.payload,
             };
         }

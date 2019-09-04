@@ -13,7 +13,6 @@ interface UserNavProps {
 }
 
 export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout }) => {
-    console.log(user);
     return (
         <nav className="b-header-user flex">
             <div className="b-header-user__info-wrapper">

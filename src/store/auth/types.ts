@@ -4,6 +4,7 @@ import { User } from 'firebase';
 export interface IAuthLoadingState {
     login?: boolean;
     logout?: boolean;
+    checkUser?: boolean;
 }
 
 export interface AuthState {

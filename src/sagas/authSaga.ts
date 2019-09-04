@@ -12,7 +12,7 @@ export function* requestUserLogin(data: any) {
         const successSession: AuthState = { user: response.user, loggedIn: true };
 
         yield put(userLoginSuccess(successSession));
-        yield put(push('/app'));
+        yield put(push('/app/dashboard'));
     } catch (error) {
         yield put(push('/login'));
         const errorSession: AuthState = { error, loggedIn: false };
@@ -28,6 +28,7 @@ export function* checkUserAuth() {
         const successCheckSession: AuthState = { user: currentUser, loggedIn: true };
 
         yield put(checkUserSuccess(successCheckSession));
+        yield put(push('/app'));
     } catch (error) {
         console.log(error);
         yield put(push('/login'));
