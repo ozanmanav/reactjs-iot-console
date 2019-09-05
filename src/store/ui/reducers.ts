@@ -1,7 +1,7 @@
 import { SET_SIDEBAR_STATUS, UIState, UIActionTypes, SET_SIDEBAR_STATUS_SUCCESS, SET_SIDEBAR_STATUS_FAILURE } from './types';
 
 const initialState: UIState = {
-    isSidebarOpen: false,
+    isSidebarOpen: true,
 };
 
 export function uiReducer(state = initialState, action: UIActionTypes): UIState {

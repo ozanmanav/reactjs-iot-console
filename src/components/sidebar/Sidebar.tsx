@@ -33,7 +33,7 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
     };
 
     const SidebarInner = () => (
-        <div className="b-sidebar">
+        <div className={classNames('b-sidebar', { _open: isSidebarOpen })}>
             <NavLink to={'/app/dashboard'}>
                 <SidebarHeader
                     text={'Dashboard'}
@@ -77,12 +77,30 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
             sidebarClassName="b-sidebar__sidebar"
             rootClassName="b-sidebar__root"
         >
+            {/* <div className="b-sidebar">
+                <NavLink to={'/app/dashboard'}>
+                    <SidebarHeader
+                        text={'Dashboard'}
+                        image={DashboardIcon}
+                        deactiveImage={DashboardIconDeactive}
+                        active={checkActiveItem('dashboard')}
+                    />
+                </NavLink>
+            </div> */}
             <div className="b-sidebar__content-icon-container">
+                {/* <NavLink to={'/app/dashboard'}>
+                    <SidebarHeader
+                        text={''}
+                        image={DashboardIcon}
+                        deactiveImage={DashboardIconDeactive}
+                        active={checkActiveItem('dashboard')}
+                    />
+                </NavLink>
                 <Icon
                     icon={`${isSidebarOpen ? 'narrowIcon' : 'narrowIconDeactive'}`}
                     className={classNames('b-sidebar__content-icon-container-icon', { _open: isSidebarOpen })}
                     onClick={changeStatusSidebar}
-                />
+                /> */}
             </div>
         </Sidebar>
     );

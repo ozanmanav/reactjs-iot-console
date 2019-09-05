@@ -17,6 +17,42 @@
         margin: 0px 5px 10px;
     }
 
+    &-device-details {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        &__title {
+            font-family: Exo;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4a4a4a;
+            text-transform: capitalize;
+        }
+        &__add-device {
+            display: flex;
+            &_icon {
+                height: 20px;
+                width: 20px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .react-tabs__tab {
+        margin-top: 30px;
+        border: none;
+        border-bottom: 3px solid transparent;
+        margin-right: 20px;
+    }
+    .react-tabs__tab--selected {
+        border-color: #f68a4d;
+    }
+
+    .react-tabs__tab-list {
+        border-bottom: 1px solid #f4f4f4;
+    }
+
     &__info {
         display: flex;
         &-container {

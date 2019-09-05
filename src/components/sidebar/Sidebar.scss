@@ -4,7 +4,7 @@
 
 .b-sidebar {
     width: 240px;
-    height: 100vh;
+    height: 90vh;
     border-right: 1px solid #d8d8d8;
 
     &__root {
@@ -44,6 +44,9 @@
         font-size: 14px;
         font-weight: 500;
         padding-left: 20px;
+        &._open {
+            padding-left: 20px;
+        }
         display: flex;
         align-items: center;
 
