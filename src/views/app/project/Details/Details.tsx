@@ -10,6 +10,7 @@ import { Loading } from '../../../../components/ui/loading';
 import { ProjectInfo } from './ProjectInfo';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import AddDeviceIcon from '../../../../icons/plus-feynlab.png';
+import { Devices } from './Devices';
 interface DetailsBaseProps extends RouteComponentProps {
     getProjectById: typeof getProjectById;
     project: ProjectState;
@@ -23,7 +24,7 @@ const DetailsBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
         if (projectId) {
             getProjectById(projectId);
         }
-    }, [projectId]);
+    }, [projectId, getProjectById]);
 
     if (project.loading && project.loading.currentProject) {
         return <Loading loading={project.loading.currentProject} />;
@@ -33,21 +34,23 @@ const DetailsBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
         <div className="b-project-details">
             <Breadcrumbs className="b-project-details__breadcrumbs" route={'Projects / '} present={project.currentProject.projectName} />
             <ProjectInfo project={project.currentProject} />
-            <Tabs>
+            <Tabs className="b-project-details__tabs">
                 <TabList>
                     <Tab>Devices</Tab>
                     <Tab>Triggers</Tab>
                     <Tab>Activity</Tab>
-                    <Tab>Collaborators</Tab>
                     <Tab>Settings</Tab>
                 </TabList>
                 <TabPanel>
                     <div className="b-project-details-device-details">
-                        <div className="b-project-details-device-details__title">DEVICE DETAILS </div>
-                        <div className="b-project-details-device-details__add-device">
-                            <img src={AddDeviceIcon} alt="logo" className="b-project-details-device-details__add-device_icon" />
-                            <span>Add Device</span>
+                        <div className="b-project-details-device-details__info">
+                            <div className="b-project-details-device-details__title">DEVICE DETAILS </div>
+                            <div className="b-project-details-device-details__add-device">
+                                <img src={AddDeviceIcon} alt="logo" className="b-project-details-device-details__add-device_icon" />
+                                <span>Add Device</span>
+                            </div>
                         </div>
+                        <Devices />
                     </div>
                 </TabPanel>
                 <TabPanel>
@@ -55,9 +58,6 @@ const DetailsBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
                 </TabPanel>
                 <TabPanel>
                     <h2>Activity</h2>
-                </TabPanel>
-                <TabPanel>
-                    <h2>Collaborators</h2>
                 </TabPanel>
                 <TabPanel>
                     <h2>Settings</h2>

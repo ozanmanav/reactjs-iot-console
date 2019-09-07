@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../store';
 import { userLogin } from '../../store/auth/actions';

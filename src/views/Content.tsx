@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { Login } from './login';
@@ -25,7 +25,7 @@ const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = (
 
     useEffect(() => {
         startup();
-    }, []);
+    }, [startup]);
 
     if (auth && auth.loading && auth.loading.checkUser) {
         return <Loading />;

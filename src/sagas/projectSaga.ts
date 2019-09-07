@@ -1,6 +1,13 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { getRequest } from '../utils/dataHelper';
-import { getProjectsSuccess, getProjectsFailure, getProjectByIdSuccess, getProjectByIdFailure } from '../store/project/actions';
+import {
+    getProjectsSuccess,
+    getProjectsFailure,
+    getProjectByIdSuccess,
+    getProjectByIdFailure,
+    getDevicesSuccess,
+    getDevicesFailure,
+} from '../store/project/actions';
 import { ProjectState } from '../store/project/types';
 
 function fetchProjects() {
@@ -46,6 +53,37 @@ export function* requestGetProjectById(data: any) {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getProjectByIdFailure(errorSession));
+        console.log(error);
+    }
+}
+
+function fetchDevices(projectId: string) {
+    return getRequest(`/user/projects/${projectId}/devices`)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestGetDevices() {
+    try {
+        let currentProject = yield select((state) => state.project.currentProject);
+
+        if (currentProject && currentProject.id) {
+            const devicesResponse = yield call(fetchDevices, currentProject.id);
+
+            const successDevicesResponse: ProjectState = { devices: devicesResponse.data.Devices };
+
+            yield put(getDevicesSuccess(successDevicesResponse));
+        } else {
+            const errorSession: ProjectState = { error: 'Not current project selected' };
+            yield put(getDevicesFailure(errorSession));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(getDevicesFailure(errorSession));
         console.log(error);
     }
 }

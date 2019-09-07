@@ -17,7 +17,7 @@ import { CRYPT_JS_SECRET_KEY } from '../../config';
 import { AES } from 'crypto-js';
 
 const initialState: AuthState = {
-    loading: <IAuthLoadingState>{},
+    loading: {} as IAuthLoadingState,
     loggedIn: false,
     email: '',
     password: '',

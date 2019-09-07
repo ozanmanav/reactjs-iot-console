@@ -4,16 +4,18 @@ import {
     GET_PROJECTS_SUCCESS,
     GET_PROJECTS_FAILURE,
     ProjectState,
-    IProject,
     GET_PROJECT_BY_ID,
     GET_PROJECT_BY_ID_SUCCESS,
     GET_PROJECT_BY_ID_FAILURE,
-    IProjectLoadingState,
+    GET_DEVICES,
+    GET_DEVICES_SUCCESS,
+    GET_DEVICES_FAILURE,
 } from './types';
 
 const initialState: ProjectState = {
-    loading: { projects: false, currentProject: false },
+    loading: { projects: false, currentProject: false, devices: false },
     projects: [],
+    devices: [],
     currentProject: undefined,
     error: undefined,
 };
@@ -45,6 +47,7 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
                     ...state.loading,
                     currentProject: true,
                 },
+                devices: [],
             };
         }
         case GET_PROJECT_BY_ID_SUCCESS: {
@@ -65,6 +68,35 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
                     currentProject: false,
                 },
                 currentProject: action.payload,
+            };
+        }
+        case GET_DEVICES: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    devices: true,
+                },
+                devices: [],
+            };
+        }
+        case GET_DEVICES_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    devices: false,
+                },
+                ...action.payload,
+            };
+        }
+        case GET_DEVICES_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    devices: false,
+                },
             };
         }
         default:

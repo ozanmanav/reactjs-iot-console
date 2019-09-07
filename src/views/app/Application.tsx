@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
-import { Switch, Route, RouteComponentProps, Router } from 'react-router-dom';
+import React, { FunctionComponent } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { COPYRIGHT_TEXT } from '../config';
 import { Dashboard } from './dashboard';
 import { SidebarWrapped } from '../../components/sidebar';
