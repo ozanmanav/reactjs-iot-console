@@ -1,1 +1,1 @@
-export { SidebarWrapped } from './Sidebar';
+export { Sidebar } from './Sidebar';

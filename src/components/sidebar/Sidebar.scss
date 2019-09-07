@@ -4,39 +4,8 @@
 
 .b-sidebar {
     width: 240px;
-    height: 90vh;
+    height: 100vh;
     border-right: 1px solid #d8d8d8;
-
-    &__root {
-        position: relative !important;
-        overflow-y: hidden !important;
-    }
-
-    &__sidebar {
-        position: relative !important;
-        overflow-y: hidden !important;
-    }
-
-    &__content {
-        position: absolute !important;
-        z-index: 10 !important;
-        left: 25px !important;
-        top: calc(83%) !important;
-        &-icon-container {
-            &-icon {
-                cursor: pointer;
-                width: 20px;
-                height: 20px;
-                transition: transform $transition-default;
-                transform: rotate(180deg);
-
-                &._open {
-                    transform: translate(12em, 0);
-                    background-color: white;
-                }
-            }
-        }
-    }
 
     &-header {
         height: 54px;
@@ -44,9 +13,6 @@
         font-size: 14px;
         font-weight: 500;
         padding-left: 20px;
-        &._open {
-            padding-left: 20px;
-        }
         display: flex;
         align-items: center;
 

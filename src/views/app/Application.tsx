@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { COPYRIGHT_TEXT } from '../config';
 import { Dashboard } from './dashboard';
-import { SidebarWrapped } from '../../components/sidebar';
+import { Sidebar } from '../../components/sidebar';
 import { Project } from './project/Project';
 import './Application.scss';
 import { CreateProject } from './project/CreateProject';
@@ -19,7 +19,7 @@ export const ApplicationBase: FunctionComponent<ApplicationBaseProps> = ({ ui })
     return (
         <>
             <main className="app">
-                <SidebarWrapped />
+                <Sidebar />
                 <div className={classNames('content', { _close: ui && !ui.isSidebarOpen })}>
                     <Switch>
                         <Route exact path="/app/dashboard" component={Dashboard} />
