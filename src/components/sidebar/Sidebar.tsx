@@ -61,17 +61,7 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
         </div>
     );
 
-    return (
-        <Sidebar
-            sidebar={<SidebarInner />}
-            docked={isSidebarOpen}
-            onSetOpen={setSidebarStatus}
-            dragToggleDistance={1}
-            contentClassName="b-sidebar__content"
-            sidebarClassName="b-sidebar__sidebar"
-            rootClassName="b-sidebar__root"
-        ></Sidebar>
-    );
+    return <SidebarInner />;
 };
 
 const mapStateToProps = (state: AppState) => ({

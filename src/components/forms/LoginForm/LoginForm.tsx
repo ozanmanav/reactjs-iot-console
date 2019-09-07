@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import './LoginForm.scss';
 import { ILoginFormBaseProps, LoginFormDefaultState, LoginFormValidationSchema, ILoginFormProps } from './definitions';
 import { Input } from '../../ui';
-import { Button, GithubButton, GoogleButton } from '../../ui/buttons';
+import { Button } from '../../ui/buttons';
 import { ClipLoader } from 'react-spinners';
 import { ProviderLogin } from '../../providerLogin';
 

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent } from 'react';
 import './ProviderLogin.scss';
 import { GoogleButton, GithubButton } from '../ui';
 import { GoogleLogin } from 'react-google-login';
