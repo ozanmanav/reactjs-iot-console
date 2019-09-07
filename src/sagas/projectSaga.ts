@@ -7,6 +7,10 @@ import {
     getProjectByIdFailure,
     getDevicesSuccess,
     getDevicesFailure,
+    getTriggersSuccess,
+    getTriggersFailure,
+    getActivitiesSuccess,
+    getActivitiesFailure,
 } from '../store/project/actions';
 import { ProjectState } from '../store/project/types';
 
@@ -84,6 +88,70 @@ export function* requestGetDevices() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getDevicesFailure(errorSession));
+        console.log(error);
+    }
+}
+
+function fetchTriggers(projectId: string) {
+    return getRequest(`/project/${projectId}/triggers`)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestGetTriggers() {
+    try {
+        let currentProject = yield select((state) => state.project.currentProject);
+
+        if (currentProject && currentProject.id) {
+            const triggersResponse = yield call(fetchTriggers, currentProject.id);
+            console.log(triggersResponse);
+            const successTriggersResponse: ProjectState = {
+                triggers: { alarm: triggersResponse.data.alarm, periodic: triggersResponse.data.periodic },
+            };
+
+            yield put(getTriggersSuccess(successTriggersResponse));
+        } else {
+            const errorSession: ProjectState = { error: 'Not current project selected' };
+            yield put(getTriggersFailure(errorSession));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(getTriggersFailure(errorSession));
+        console.log(error);
+    }
+}
+
+function fetchActivities(projectId: string) {
+    return getRequest(`user/projects/${projectId}/activities`)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestGetActivities() {
+    try {
+        let currentProject = yield select((state) => state.project.currentProject);
+
+        if (currentProject && currentProject.id) {
+            const activitiesResponse = yield call(fetchActivities, currentProject.id);
+
+            const successTriggersResponse: ProjectState = { activities: activitiesResponse.data.Activities };
+
+            yield put(getActivitiesSuccess(successTriggersResponse));
+        } else {
+            const errorSession: ProjectState = { error: 'Not current project selected' };
+            yield put(getActivitiesFailure(errorSession));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(getActivitiesFailure(errorSession));
         console.log(error);
     }
 }

@@ -10,12 +10,20 @@ import {
     GET_DEVICES,
     GET_DEVICES_SUCCESS,
     GET_DEVICES_FAILURE,
+    GET_TRIGGERS,
+    GET_TRIGGERS_SUCCESS,
+    GET_TRIGGERS_FAILURE,
+    GET_ACTIVITIES,
+    GET_ACTIVITIES_SUCCESS,
+    GET_ACTIVITIES_FAILURE,
+    ITriggerResponse,
 } from './types';
 
 const initialState: ProjectState = {
-    loading: { projects: false, currentProject: false, devices: false },
+    loading: { projects: false, currentProject: false, devices: false, triggers: false, activities: false },
     projects: [],
     devices: [],
+    triggers: {} as ITriggerResponse,
     currentProject: undefined,
     error: undefined,
 };
@@ -96,6 +104,64 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
                 loading: {
                     ...state.loading,
                     devices: false,
+                },
+            };
+        }
+        case GET_TRIGGERS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    triggers: true,
+                },
+                triggers: {} as ITriggerResponse,
+            };
+        }
+        case GET_TRIGGERS_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    triggers: false,
+                },
+                ...action.payload,
+            };
+        }
+        case GET_TRIGGERS_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    triggers: false,
+                },
+            };
+        }
+        case GET_ACTIVITIES: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    activities: true,
+                },
+                activities: [],
+            };
+        }
+        case GET_ACTIVITIES_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    activities: false,
+                },
+                ...action.payload,
+            };
+        }
+        case GET_ACTIVITIES_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    activities: false,
                 },
             };
         }

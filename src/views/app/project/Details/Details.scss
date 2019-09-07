@@ -23,46 +23,17 @@
         margin: 0px 5px 10px;
     }
 
-    &-device-details {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: column;
-
-        &__devices {
-            margin-top: 30px;
-        }
-
-        &__info {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-        }
-        &__title {
-            font-family: Exo;
-            font-size: 12px;
-            font-weight: 500;
-            color: #4a4a4a;
-            text-transform: capitalize;
-        }
-        &__add-device {
-            display: flex;
-            color: $primary;
-            &_icon {
-                height: 20px;
-                width: 20px;
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-        }
-    }
-
     .react-tabs__tab {
+        font-size: 14px;
+        font-weight: 500;
+        color: #9b9b9b;
         margin-top: 30px;
         border: none;
         border-bottom: 3px solid transparent;
         margin-right: 20px;
     }
     .react-tabs__tab--selected {
+        color: #4a4a4a;
         border-color: #f68a4d;
     }
 

@@ -9,6 +9,9 @@ import {
     GET_DEVICES,
     GET_DEVICES_SUCCESS,
     GET_DEVICES_FAILURE,
+    GET_TRIGGERS,
+    GET_TRIGGERS_SUCCESS,
+    GET_TRIGGERS_FAILURE,
 } from './types';
 
 export function getProjects() {
@@ -69,5 +72,45 @@ export function getDevicesFailure(devices: ProjectState) {
     return {
         type: GET_DEVICES_FAILURE,
         payload: devices,
+    };
+}
+
+export function getTriggers() {
+    return {
+        type: GET_TRIGGERS,
+    };
+}
+
+export function getTriggersSuccess(triggers: ProjectState) {
+    return {
+        type: GET_TRIGGERS_SUCCESS,
+        payload: triggers,
+    };
+}
+
+export function getTriggersFailure(triggers: ProjectState) {
+    return {
+        type: GET_TRIGGERS_FAILURE,
+        payload: triggers,
+    };
+}
+
+export function getActivities() {
+    return {
+        type: GET_TRIGGERS,
+    };
+}
+
+export function getActivitiesSuccess(triggers: ProjectState) {
+    return {
+        type: GET_TRIGGERS_SUCCESS,
+        payload: triggers,
+    };
+}
+
+export function getActivitiesFailure(triggers: ProjectState) {
+    return {
+        type: GET_TRIGGERS_FAILURE,
+        payload: triggers,
     };
 }

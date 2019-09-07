@@ -1,9 +1,15 @@
 @import '../../../../../styles/variables';
 
-.b-project-devices {
+.b-project-triggers {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    &-loader {
+        position: absolute;
+        top: calc(50% - 8em);
+        left: calc(40%);
+    }
 
     &-details {
         margin-top: 30px;

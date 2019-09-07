@@ -9,8 +9,8 @@ import { ProjectState } from '../../../../store/project/types';
 import { Loading } from '../../../../components/ui/loading';
 import { ProjectInfo } from './ProjectInfo';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import AddDeviceIcon from '../../../../icons/plus-feynlab.png';
 import { Devices } from './Devices';
+import { Triggers } from './Triggers';
 interface DetailsBaseProps extends RouteComponentProps {
     getProjectById: typeof getProjectById;
     project: ProjectState;
@@ -42,19 +42,10 @@ const DetailsBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
                     <Tab>Settings</Tab>
                 </TabList>
                 <TabPanel>
-                    <div className="b-project-details-device-details">
-                        <div className="b-project-details-device-details__info">
-                            <div className="b-project-details-device-details__title">DEVICE DETAILS </div>
-                            <div className="b-project-details-device-details__add-device">
-                                <img src={AddDeviceIcon} alt="logo" className="b-project-details-device-details__add-device_icon" />
-                                <span>Add Device</span>
-                            </div>
-                        </div>
-                        <Devices />
-                    </div>
+                    <Devices />
                 </TabPanel>
                 <TabPanel>
-                    <h2>Triggers</h2>
+                    <Triggers />
                 </TabPanel>
                 <TabPanel>
                     <h2>Activity</h2>

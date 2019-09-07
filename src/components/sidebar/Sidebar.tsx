@@ -17,7 +17,7 @@ interface SidebarBaseProps {
 export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getProjects }) => {
     useEffect(() => {
         getProjects();
-    }, []);
+    }, [getProjects]);
 
     const checkActiveItem = (text: string): boolean => router.location.pathname.includes(text.toLocaleLowerCase());
 
