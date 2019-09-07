@@ -1,0 +1,10 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/media';
+
+.c-provider-login {
+    &-loader {
+        text-align: center;
+        margin: 0px 5px 10px;
+    }
+}

@@ -5,6 +5,7 @@ import { ILoginFormBaseProps, LoginFormDefaultState, LoginFormValidationSchema, 
 import { Input } from '../../ui';
 import { Button, GithubButton, GoogleButton } from '../../ui/buttons';
 import { ClipLoader } from 'react-spinners';
+import { ProviderLogin } from '../../providerLogin';
 
 const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
@@ -44,8 +45,7 @@ const LoginFormBase: FunctionComponent<ILoginFormBaseProps> = ({ ...formikProps 
                 )}
             </div>
             <div className="f-signup__form-footer">
-                <GoogleButton text="Continue with Google" type="button" />
-                <GithubButton text="Continue with GitHub" type="button" />
+                <ProviderLogin />
                 <button type="button" className="f-signup__form-input-link-forgot">
                     Forgot password?
                 </button>

@@ -3,7 +3,6 @@ import './Devices.scss';
 import { getDevices } from '../../../../../store/project/actions';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../store';
-import { RouteComponentProps } from 'react-router';
 import { IDevice, IProjectLoadingState } from '../../../../../store/project/types';
 import { DeviceCard } from '../../../../../components/ui/cards';
 

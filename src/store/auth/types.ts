@@ -3,8 +3,10 @@ import { User } from 'firebase';
 // Describing the shape of the system's slice of state
 export interface IAuthLoadingState {
     login?: boolean;
+    register?: boolean;
     logout?: boolean;
     checkUser?: boolean;
+    googleLogin?: boolean;
 }
 
 export interface AuthState {
@@ -14,6 +16,7 @@ export interface AuthState {
     password?: string;
     error?: string;
     user?: User;
+    registerUser?: User;
 }
 
 // Describing the different ACTION NAMES available
@@ -27,6 +30,9 @@ export const CHECK_USER = 'CHECK_USER';
 export const CHECK_USER_SUCCESS = 'CHECK_USER_SUCCESS ';
 export const CHECK_USER_FAILURE = 'CHECK_USER_FAILURE ';
 export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_GOOGLE_LOGIN = 'USER_GOOGLE_LOGIN';
+export const USER_GOOGLE_LOGIN_SUCCESS = 'USER_GOOGLE_LOGIN_SUCCESS';
+export const USER_GOOGLE_LOGIN_FAILURE = 'USER_GOOGLE_LOGIN_FAILURE';
 
 interface UserLoginAction {
     type: typeof USER_LOGIN;
@@ -76,6 +82,21 @@ interface UserLogoutAction {
     payload: AuthState;
 }
 
+interface UserGoogleLoginAction {
+    type: typeof USER_GOOGLE_LOGIN;
+    payload: AuthState;
+}
+
+export interface UserGoogleLoginSuccessAction {
+    type: typeof USER_GOOGLE_LOGIN_SUCCESS;
+    payload: AuthState;
+}
+
+export interface UserGoogleLoginFailureAction {
+    type: typeof USER_GOOGLE_LOGIN_FAILURE;
+    payload: AuthState;
+}
+
 export type AuthActionTypes =
     | UserLoginAction
     | UserRegisterAction
@@ -86,4 +107,7 @@ export type AuthActionTypes =
     | CheckUserAction
     | CheckUserFailureAction
     | CheckUserSuccessAction
-    | UserLogoutAction;
+    | UserLogoutAction
+    | UserGoogleLoginAction
+    | UserGoogleLoginSuccessAction
+    | UserGoogleLoginFailureAction;

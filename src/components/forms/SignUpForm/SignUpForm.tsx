@@ -3,7 +3,8 @@ import { Formik } from 'formik';
 import './SignUpForm.scss';
 import { ISignUpFormBaseProps, SignUpFormDefaultState, SignUpFormValidationSchema, ISignUpFormProps } from './definitions';
 import { Input } from '../../ui';
-import { Button, GithubButton, GoogleButton } from '../../ui/buttons';
+import { Button } from '../../ui/buttons';
+import { ProviderLogin } from '../../providerLogin';
 
 const SignUpFormBase: FunctionComponent<ISignUpFormBaseProps> = ({ ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur } = formikProps;
@@ -37,8 +38,7 @@ const SignUpFormBase: FunctionComponent<ISignUpFormBaseProps> = ({ ...formikProp
                 <Button text="Sign Up" primary className="f-signup__form-action" type="submit" />
             </div>
             <div className="f-signup__form-footer">
-                <GoogleButton text="Continue with Google" type="button" />
-                <GithubButton text="Continue with GitHub" type="button" />
+                <ProviderLogin />
                 <button type="button" className="f-signup__form-input-link-forgot">
                     Forgot password?
                 </button>

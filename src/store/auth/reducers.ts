@@ -12,6 +12,9 @@ import {
     CHECK_USER_FAILURE,
     USER_LOGOUT,
     IAuthLoadingState,
+    USER_GOOGLE_LOGIN,
+    USER_GOOGLE_LOGIN_SUCCESS,
+    USER_GOOGLE_LOGIN_FAILURE,
 } from './types';
 import { CRYPT_JS_SECRET_KEY } from '../../config';
 import { AES } from 'crypto-js';
@@ -27,45 +30,67 @@ const initialState: AuthState = {
 export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
     switch (action.type) {
         case USER_LOGIN: {
-            state.loading = { login: true };
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    login: true,
+                },
                 ...action.payload,
             };
         }
         case USER_LOGIN_SUCCESS: {
-            state.loading = { login: false };
             if (typeof state.password === 'string') {
                 var passwordHash = AES.encrypt(state.password, CRYPT_JS_SECRET_KEY || '');
                 action.payload.password = passwordHash.toString();
             }
+
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    login: false,
+                },
                 ...action.payload,
             };
         }
         case USER_LOGIN_FAILURE: {
-            state.loading = { login: false };
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    login: false,
+                },
                 ...action.payload,
             };
         }
         case USER_REGISTER: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    register: true,
+                },
                 ...action.payload,
             };
         }
         case USER_REGISTER_SUCCESS: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    register: false,
+                },
                 ...action.payload,
             };
         }
         case USER_REGISTER_FAILURE: {
             return {
                 ...state,
+                loading: {
+                    ...state.loading,
+                    register: false,
+                },
                 ...action.payload,
             };
         }
@@ -100,9 +125,39 @@ export function authReducer(state = initialState, action: AuthActionTypes): Auth
             };
         }
         case USER_LOGOUT: {
-            state.loggedIn = false;
             return {
                 ...state,
+                loggedIn: false,
+            };
+        }
+        case USER_GOOGLE_LOGIN: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    googleLogin: true,
+                },
+                ...action.payload,
+            };
+        }
+        case USER_GOOGLE_LOGIN_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    googleLogin: false,
+                },
+                ...action.payload,
+            };
+        }
+        case USER_GOOGLE_LOGIN_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    googleLogin: false,
+                },
+                ...action.payload,
             };
         }
         default:

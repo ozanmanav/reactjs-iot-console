@@ -1,4 +1,4 @@
-import { auth } from './firebase';
+import { auth, googleAuth } from './firebase';
 
 // Sign Up
 export const doCreateUserWithEmailAndPassword = (email: string, password: string) => auth.createUserWithEmailAndPassword(email, password);
@@ -38,3 +38,13 @@ export function onAuthStateChanged() {
         });
     });
 }
+
+export const doSignInWithGoogle = (idToken: string, accessToken: string) => {
+    if (googleAuth) {
+        const credential = googleAuth.credential(idToken, accessToken);
+        if (credential) {
+            return auth.signInWithCredential(credential);
+        }
+    }
+    throw Error('No Auth User!');
+};

@@ -7,6 +7,11 @@ import {
     CHECK_USER_SUCCESS,
     CHECK_USER_FAILURE,
     USER_LOGOUT,
+    USER_REGISTER_SUCCESS,
+    USER_REGISTER_FAILURE,
+    USER_GOOGLE_LOGIN,
+    USER_GOOGLE_LOGIN_SUCCESS,
+    USER_GOOGLE_LOGIN_FAILURE,
 } from './types';
 
 export function userLogin(newSession: AuthState) {
@@ -30,9 +35,23 @@ export function userLoginFailure(newSession: AuthState) {
     };
 }
 
-export function userRegister(newSession: AuthState) {
+export function userGoogleLogin(newSession: AuthState) {
     return {
-        type: USER_REGISTER,
+        type: USER_GOOGLE_LOGIN,
+        payload: newSession,
+    };
+}
+
+export function userGoogleLoginSuccess(newSession: AuthState) {
+    return {
+        type: USER_GOOGLE_LOGIN_SUCCESS,
+        payload: newSession,
+    };
+}
+
+export function userGoogleLoginFailure(newSession: AuthState) {
+    return {
+        type: USER_GOOGLE_LOGIN_FAILURE,
         payload: newSession,
     };
 }
@@ -60,5 +79,26 @@ export function checkUserFailure(newSession: AuthState) {
 export function userLogout() {
     return {
         type: USER_LOGOUT,
+    };
+}
+
+export function userRegister(newSession: AuthState) {
+    return {
+        type: USER_REGISTER,
+        payload: newSession,
+    };
+}
+
+export function userRegisterSuccess(newSession: AuthState) {
+    return {
+        type: USER_REGISTER_SUCCESS,
+        payload: newSession,
+    };
+}
+
+export function userRegisterFailure(newSession: AuthState) {
+    return {
+        type: USER_REGISTER_FAILURE,
+        payload: newSession,
     };
 }

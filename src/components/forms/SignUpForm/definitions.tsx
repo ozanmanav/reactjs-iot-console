@@ -23,8 +23,10 @@ export interface ISignUpFormProps {
 export const SignUpFormValidationSchema = Yup.object().shape({
     email: Yup.string()
         .trim()
+        .email()
         .required(VALIDATION_ERRORS.required),
     password: Yup.string()
         .trim()
+        .min(6)
         .required(VALIDATION_ERRORS.required),
 });

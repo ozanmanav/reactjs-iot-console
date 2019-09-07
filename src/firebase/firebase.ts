@@ -8,3 +8,5 @@ if (!firebase.apps.length) {
 }
 
 export const auth = firebase.auth() || undefined;
+
+export const googleAuth = firebase.auth.GoogleAuthProvider || undefined;
