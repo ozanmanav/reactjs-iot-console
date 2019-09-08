@@ -1,11 +1,15 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
+@import '../../../styles/media';
 
 .f-signup__form {
     @include shadow-small;
     background: $white;
     border-radius: $border-radius-normal;
     width: 585px;
+    @include desktop-xs {
+        width: 100%;
+    }
     margin-top: -100px;
 
     &-content {

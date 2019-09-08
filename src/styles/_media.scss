@@ -5,7 +5,7 @@
 }
 
 @mixin desktop-xs {
-    @media (max-width: 1172px) {
+    @media (max-width: 585px) {
         @content;
     }
 }

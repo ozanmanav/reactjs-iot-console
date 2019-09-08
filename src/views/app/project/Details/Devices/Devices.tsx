@@ -28,8 +28,17 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
                     <span>Add Device</span>
                 </div>
             </div>
-            <div className="b-project-devices">
-                {loading && !loading.devices && devices && devices.map((device) => <DeviceCard device={device} />)}
+            <div className="container b-project-devices-details__devices">
+                <div className="row">
+                    {loading &&
+                        !loading.devices &&
+                        devices &&
+                        devices.map((device) => (
+                            <div className="col-md-6 col-sm-12 col-xs-12 b-project-devices-details__devices-card">
+                                <DeviceCard device={device} />{' '}
+                            </div>
+                        ))}
+                </div>
             </div>
         </div>
     );

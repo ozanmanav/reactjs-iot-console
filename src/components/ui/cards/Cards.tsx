@@ -15,7 +15,7 @@ export const DeviceCard: FunctionComponent<IDeviceCardProps> = ({
     device: { id, deviceImage, deviceName, deviceDescription, deviceModel, deviceStatus },
 }) => {
     return (
-        <div className="c-card__device-container" key={id}>
+        <div key={id}>
             <Link to="{device.deviceLink}">
                 <div className="c-card__device-card">
                     <img src={DeviceImageStatic} alt={'device'} style={{ width: 50, height: 50 }} />
