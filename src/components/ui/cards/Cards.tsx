@@ -18,7 +18,15 @@ export const DeviceCard: FunctionComponent<IDeviceCardProps> = ({
         <div key={id}>
             <Link to="{device.deviceLink}">
                 <div className="c-card__device-card">
-                    <img src={DeviceImageStatic} alt={'device'} style={{ width: 50, height: 50 }} />
+                    <img
+                        src={deviceImage}
+                        onError={(e: any) => {
+                            e.target.onerror = null;
+                            e.target.src = DeviceImageStatic;
+                        }}
+                        alt={'device'}
+                        style={{ width: 50, height: 50 }}
+                    />
                     <div className="c-card__device-card-info">
                         <div className="c-card__device-card-info-title">{deviceName}</div>
                         <div className="c-card__device-card-info-description">{deviceDescription}</div>
@@ -51,7 +59,15 @@ export const TriggerCard: FunctionComponent<ITriggerCardProps> = ({
         <div className="c-card__device-container" key={id}>
             <Link to="{device.deviceLink}">
                 <div className="c-card__device-card">
-                    <img src={DeviceImageStatic} alt={'device'} style={{ width: 50, height: 50 }} />
+                    <img
+                        src={triggerImage}
+                        onError={(e: any) => {
+                            e.target.onerror = null;
+                            e.target.src = DeviceImageStatic;
+                        }}
+                        alt={'device'}
+                        style={{ width: 50, height: 50 }}
+                    />
                     <div className="c-card__device-card-info">
                         <div className="c-card__device-card-info-title">{name}</div>
                         <div className="c-card__device-card-info-description">{integration}</div>
