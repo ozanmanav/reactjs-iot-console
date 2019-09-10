@@ -12,6 +12,9 @@ import {
     GET_TRIGGERS,
     GET_TRIGGERS_SUCCESS,
     GET_TRIGGERS_FAILURE,
+    GET_ACTIVITIES,
+    GET_ACTIVITIES_SUCCESS,
+    GET_ACTIVITIES_FAILURE,
 } from './types';
 
 export function getProjects() {
@@ -97,20 +100,20 @@ export function getTriggersFailure(triggers: ProjectState) {
 
 export function getActivities() {
     return {
-        type: GET_TRIGGERS,
+        type: GET_ACTIVITIES,
     };
 }
 
-export function getActivitiesSuccess(triggers: ProjectState) {
+export function getActivitiesSuccess(activities: ProjectState) {
     return {
-        type: GET_TRIGGERS_SUCCESS,
-        payload: triggers,
+        type: GET_ACTIVITIES_SUCCESS,
+        payload: activities,
     };
 }
 
-export function getActivitiesFailure(triggers: ProjectState) {
+export function getActivitiesFailure(activities: ProjectState) {
     return {
-        type: GET_TRIGGERS_FAILURE,
-        payload: triggers,
+        type: GET_ACTIVITIES_FAILURE,
+        payload: activities,
     };
 }

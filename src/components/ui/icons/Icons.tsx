@@ -8,9 +8,18 @@ import downArrow from '../../../icons/down-arrow.svg';
 import accordionArrow from '../../../icons/accordionArrow.svg';
 import narrowIcon from '../../../icons/narrow-icon.svg';
 import narrowIconDeactive from '../../../icons/narrow-icon-deactive.svg';
+import history from '../../../icons/history.svg';
 
 // TODO: is string type necessary?
-export type TIconType = 'building' | 'selectArrows' | 'downArrow' | 'accordionArrow' | 'narrowIcon' | 'narrowIconDeactive' | string;
+export type TIconType =
+    | 'building'
+    | 'selectArrows'
+    | 'downArrow'
+    | 'accordionArrow'
+    | 'narrowIcon'
+    | 'narrowIconDeactive'
+    | 'history'
+    | string;
 
 interface IIcons {
     [key: string]: string;
@@ -23,6 +32,7 @@ const ICONS: IIcons = {
     accordionArrow,
     narrowIcon,
     narrowIconDeactive,
+    history,
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {

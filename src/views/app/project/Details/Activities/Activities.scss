@@ -1,0 +1,25 @@
+@import '../../../../../styles/variables';
+
+.b-project-activities {
+    margin-top: 20px;
+    &-loader {
+        position: absolute;
+        top: calc(50% - 8em);
+        left: calc(40%);
+    }
+
+    &-title {
+        font-family: Exo;
+        font-size: 12px;
+        font-weight: 500;
+        color: #4a4a4a;
+        text-transform: capitalize;
+    }
+
+    &__timeline {
+        height: auto;
+        max-height: 450px;
+        overflow: auto;
+        margin-top: 10px;
+    }
+}

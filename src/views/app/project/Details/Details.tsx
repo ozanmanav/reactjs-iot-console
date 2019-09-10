@@ -11,6 +11,7 @@ import { ProjectInfo } from './ProjectInfo';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Devices } from './Devices';
 import { Triggers } from './Triggers';
+import { Activities } from './Activities';
 interface DetailsBaseProps extends RouteComponentProps {
     getProjectById: typeof getProjectById;
     project: ProjectState;
@@ -48,7 +49,7 @@ const DetailsBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
                     <Triggers />
                 </TabPanel>
                 <TabPanel>
-                    <h2>Activity</h2>
+                    <Activities />
                 </TabPanel>
                 <TabPanel>
                     <h2>Settings</h2>

@@ -19,7 +19,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout 
                 <button className="flex align-center b-header-user__company-button">
                     <div className="b-header-user__company flex align-center justify-center _font-bold _text-primary">O</div>
                     <div className="flex flex-column b-header-user__info">
-                        <p className=" _text-left _font-bold">{user && user.email}</p>
+                        <div className=" _text-left _font-bold">{user && user.email}</div>
                     </div>
                 </button>
             </div>

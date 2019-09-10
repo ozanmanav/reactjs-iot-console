@@ -142,9 +142,9 @@ export function* requestGetActivities() {
         if (currentProject && currentProject.id) {
             const activitiesResponse = yield call(fetchActivities, currentProject.id);
 
-            const successTriggersResponse: ProjectState = { activities: activitiesResponse.data.Activities };
+            const successActivitiesResponse: ProjectState = { activities: activitiesResponse.data.Activities };
 
-            yield put(getActivitiesSuccess(successTriggersResponse));
+            yield put(getActivitiesSuccess(successActivitiesResponse));
         } else {
             const errorSession: ProjectState = { error: 'Not current project selected' };
             yield put(getActivitiesFailure(errorSession));
