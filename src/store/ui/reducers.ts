@@ -1,10 +1,10 @@
 import { SET_SIDEBAR_STATUS, UIState, UIActionTypes, SET_SIDEBAR_STATUS_SUCCESS, SET_SIDEBAR_STATUS_FAILURE } from './types';
 
-const initialState: UIState = {
+export const UIInitialState: UIState = {
     isSidebarOpen: true,
 };
 
-export function uiReducer(state = initialState, action: UIActionTypes): UIState {
+export function uiReducer(state = UIInitialState, action: UIActionTypes): UIState {
     switch (action.type) {
         case SET_SIDEBAR_STATUS: {
             return {

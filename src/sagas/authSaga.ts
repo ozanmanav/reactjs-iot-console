@@ -34,6 +34,7 @@ export function* requestGoogleLogin(data: any) {
     try {
         const response = yield call(auth.doSignInWithGoogle, data.payload.tokenId, data.payload.accessToken);
 
+        console.log(response);
         const successSession: AuthState = { user: response.user, loggedIn: true };
 
         yield put(userGoogleLoginSuccess(successSession));

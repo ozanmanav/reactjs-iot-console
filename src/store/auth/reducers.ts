@@ -19,7 +19,7 @@ import {
 import { CRYPT_JS_SECRET_KEY } from '../../config';
 import { AES } from 'crypto-js';
 
-const initialState: AuthState = {
+export const AuthInitialState: AuthState = {
     loading: {} as IAuthLoadingState,
     loggedIn: false,
     email: '',
@@ -27,7 +27,7 @@ const initialState: AuthState = {
     error: undefined,
 };
 
-export function authReducer(state = initialState, action: AuthActionTypes): AuthState {
+export function authReducer(state = AuthInitialState, action: AuthActionTypes): AuthState {
     switch (action.type) {
         case USER_LOGIN: {
             return {

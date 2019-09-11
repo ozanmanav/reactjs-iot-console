@@ -19,7 +19,7 @@ import {
     ITriggerResponse,
 } from './types';
 
-const initialState: ProjectState = {
+export const ProjectInitialState: ProjectState = {
     loading: { projects: false, currentProject: false, devices: false, triggers: false, activities: false },
     projects: [],
     devices: [],
@@ -28,7 +28,7 @@ const initialState: ProjectState = {
     error: undefined,
 };
 
-export function projectReducer(state = initialState, action: ProjectActionTypes): ProjectState {
+export function projectReducer(state = ProjectInitialState, action: ProjectActionTypes): ProjectState {
     switch (action.type) {
         case GET_PROJECTS: {
             return {
@@ -46,6 +46,7 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
             return {
                 ...state,
                 ...action.payload,
+                projects: [],
             };
         }
         case GET_PROJECT_BY_ID: {
@@ -75,7 +76,7 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
                     ...state.loading,
                     currentProject: false,
                 },
-                currentProject: action.payload,
+                currentProject: undefined,
             };
         }
         case GET_DEVICES: {
@@ -105,6 +106,7 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
                     ...state.loading,
                     devices: false,
                 },
+                devices: [],
             };
         }
         case GET_TRIGGERS: {
@@ -134,6 +136,7 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
                     ...state.loading,
                     triggers: false,
                 },
+                triggers: {} as ITriggerResponse,
             };
         }
         case GET_ACTIVITIES: {
@@ -163,6 +166,7 @@ export function projectReducer(state = initialState, action: ProjectActionTypes)
                     ...state.loading,
                     activities: false,
                 },
+                activities: [],
             };
         }
         default:

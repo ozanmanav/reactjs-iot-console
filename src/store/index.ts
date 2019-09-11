@@ -10,6 +10,7 @@ import { startupReducer } from './startup/reducers';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { projectReducer } from './project/reducers';
 import { uiReducer } from './ui/reducers';
+import { USER_LOGOUT } from './auth/types';
 
 export const history = createBrowserHistory();
 
@@ -21,6 +22,14 @@ const rootReducer = combineReducers({
     ui: uiReducer,
 });
 
+const resetEnhancer: any = (rootReducer: any): any => (state: any, action: any) => {
+    if (action.type !== USER_LOGOUT) return rootReducer(state, action);
+
+    const newState = rootReducer(undefined, {});
+    newState.router = state.router;
+    return newState;
+};
+
 export type AppState = ReturnType<typeof rootReducer>;
 
 export default function configureStore() {
@@ -28,7 +37,7 @@ export default function configureStore() {
     const middlewares = [thunkMiddleware, sagaMiddleware, logger, routerMiddleware(history)];
     const middleWareEnhancer = applyMiddleware(...middlewares);
 
-    const store = createStore(rootReducer, composeWithDevTools(middleWareEnhancer));
+    const store = createStore(resetEnhancer(rootReducer), composeWithDevTools(middleWareEnhancer));
 
     sagaMiddleware.run(rootSaga);
 

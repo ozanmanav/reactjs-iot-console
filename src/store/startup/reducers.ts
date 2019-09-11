@@ -1,8 +1,8 @@
 import { StartupState, StartupActionTypes, STARTUP, STARTUP_SUCCESS, STARTUP_FAILURE } from './types';
 
-const initialState: StartupState = {};
+export const StartupInitialState: StartupState = {};
 
-export function startupReducer(state = initialState, action: StartupActionTypes): StartupState {
+export function startupReducer(state = StartupInitialState, action: StartupActionTypes): StartupState {
     switch (action.type) {
         case STARTUP: {
             return {
