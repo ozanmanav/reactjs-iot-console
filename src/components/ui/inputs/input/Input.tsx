@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, useState } from 'react';
+import React, { FunctionComponent, useRef } from 'react';
 import classnames from 'classnames';
 import { IInputProps } from '../config';
 import { Icon } from '../../icons';

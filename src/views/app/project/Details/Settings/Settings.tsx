@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import './Settings.scss';
 import { getSettings } from '../../../../../store/project/actions';
 import { connect } from 'react-redux';
