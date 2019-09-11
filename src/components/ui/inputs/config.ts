@@ -9,6 +9,7 @@ export interface IInputBaseProps {
     squared?: boolean;
     error?: string | FormikErrors<any>;
     touched?: boolean | FormikTouched<any>;
+    showCopyIcon?: boolean;
 }
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement>, IInputBaseProps {}

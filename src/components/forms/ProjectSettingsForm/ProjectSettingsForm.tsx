@@ -18,15 +18,17 @@ const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> 
     return (
         <form className="f-project-settings__form" onSubmit={handleSubmit}>
             <div className="f-project-settings__form-content">
-                <FormCaption>Device Token</FormCaption>
+                <FormCaption>Project Id</FormCaption>
                 <Input
-                    placeholder="Device Token"
-                    name="deviceToken"
+                    placeholder="Project Id"
+                    name="id"
+                    showCopyIcon={true}
+                    disabled={true}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    value={values.deviceToken}
-                    error={errors && errors.deviceToken}
-                    touched={touched && touched.deviceToken}
+                    value={values.id}
+                    error={errors && errors.id}
+                    touched={touched && touched.id}
                 />
                 <FormCaption>Project Name</FormCaption>
                 <Input

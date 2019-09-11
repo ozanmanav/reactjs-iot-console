@@ -19,6 +19,7 @@ export const SettingsBase: FunctionComponent<SettingsBaseProps & { currentProjec
     }
 
     let initialValues: IProjectSettingsFormDefaultState = {
+        id: currentProject.id,
         name: currentProject.projectName,
         description: currentProject.projectDescription,
     };

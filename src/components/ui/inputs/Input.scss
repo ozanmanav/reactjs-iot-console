@@ -21,6 +21,14 @@
 
     &__wrapper {
         position: relative;
+        &-copy {
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 35px;
+            width: 23px;
+            height: 18px;
+        }
     }
 
     &__error {

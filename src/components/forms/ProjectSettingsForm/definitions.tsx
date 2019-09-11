@@ -5,14 +5,14 @@ import { VALIDATION_ERRORS } from '../../../config';
 export const ProjectSettingsFormDefaultState = {
     name: '',
     description: '',
-    deviceToken: '',
+    id: '',
     loading: false,
 };
 
 export interface IProjectSettingsFormDefaultState {
     name: string;
     description: string;
-    deviceToken?: string;
+    id?: string;
     loading?: boolean;
 }
 
