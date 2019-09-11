@@ -17,9 +17,16 @@
     }
 
     &__timeline {
-        height: auto;
-        max-height: 450px;
-        overflow: auto;
+        // height: auto;
+        // max-height: 450px;
+        // overflow: auto;
         margin-top: 10px;
+        margin-bottom: 60px;
+    }
+}
+
+.app {
+    &__copyright {
+        display: none;
     }
 }

@@ -20,7 +20,7 @@ function fetchProjects() {
             return response;
         })
         .catch((e) => {
-            return e;
+            throw e;
         });
 }
 
@@ -34,7 +34,6 @@ export function* requestGetProjects() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getProjectsFailure(errorSession));
-        console.log(error);
     }
 }
 
@@ -57,7 +56,6 @@ export function* requestGetProjectById(data: any) {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getProjectByIdFailure(errorSession));
-        console.log(error);
     }
 }
 
@@ -88,7 +86,6 @@ export function* requestGetDevices() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getDevicesFailure(errorSession));
-        console.log(error);
     }
 }
 
@@ -121,7 +118,6 @@ export function* requestGetTriggers() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getTriggersFailure(errorSession));
-        console.log(error);
     }
 }
 
@@ -152,6 +148,5 @@ export function* requestGetActivities() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getActivitiesFailure(errorSession));
-        console.log(error);
     }
 }

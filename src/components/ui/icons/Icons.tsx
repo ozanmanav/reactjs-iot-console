@@ -9,6 +9,7 @@ import accordionArrow from '../../../icons/accordionArrow.svg';
 import narrowIcon from '../../../icons/narrow-icon.svg';
 import narrowIconDeactive from '../../../icons/narrow-icon-deactive.svg';
 import history from '../../../icons/history.svg';
+import trash from '../../../icons/trash.svg';
 
 // TODO: is string type necessary?
 export type TIconType =
@@ -19,6 +20,7 @@ export type TIconType =
     | 'narrowIcon'
     | 'narrowIconDeactive'
     | 'history'
+    | 'trash'
     | string;
 
 interface IIcons {
@@ -33,6 +35,7 @@ const ICONS: IIcons = {
     narrowIcon,
     narrowIconDeactive,
     history,
+    trash,
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {
@@ -40,7 +43,6 @@ interface IIconProps<T> extends ImgHTMLAttributes<T> {
 }
 
 export const Icon: FunctionComponent<IIconProps<HTMLImageElement>> = ({ icon, className, ...props }) => {
-    console.log(icon);
     if (!ICONS[icon]) {
         console.error(`Icon ${icon} does not exist`);
 

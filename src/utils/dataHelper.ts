@@ -18,7 +18,7 @@ export function getRequest(url: any, params = {}) {
                         params,
                     })
                         .then((result) => resolve(result))
-                        .catch((error) => reject(error));
+                        .catch((error) => reject(error.response.data));
                 })
                 .catch((error: any) => {
                     reject(error);

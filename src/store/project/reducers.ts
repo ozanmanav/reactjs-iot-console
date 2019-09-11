@@ -169,6 +169,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 activities: [],
             };
         }
+
         default:
             return state;
     }

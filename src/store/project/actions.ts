@@ -117,3 +117,23 @@ export function getActivitiesFailure(activities: ProjectState) {
         payload: activities,
     };
 }
+
+export function getSettings() {
+    return {
+        type: GET_ACTIVITIES,
+    };
+}
+
+export function getSettingsSuccess(settings: ProjectState) {
+    return {
+        type: GET_ACTIVITIES_SUCCESS,
+        payload: settings,
+    };
+}
+
+export function getSettingsFailure(settings: ProjectState) {
+    return {
+        type: GET_ACTIVITIES_FAILURE,
+        payload: settings,
+    };
+}
