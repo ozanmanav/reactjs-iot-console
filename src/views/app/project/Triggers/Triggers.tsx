@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import './Triggers.scss';
-import { getTriggers } from '../../../../../store/project/actions';
+import { getTriggers } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
-import { AppState } from '../../../../../store';
-import { IProjectLoadingState, ITriggerResponse } from '../../../../../store/project/types';
-import { TriggerCard } from '../../../../../components/ui/cards';
-import { Loading } from '../../../../../components/ui/loading';
+import { AppState } from '../../../../store';
+import { IProjectLoadingState, ITriggerResponse } from '../../../../store/project/types';
+import { TriggerCard } from '../../../../components/ui/cards';
+import { Loading } from '../../../../components/ui/loading';
 
 interface TriggersBaseProps {
     getTriggers: typeof getTriggers;

@@ -16,34 +16,30 @@ export const DeviceCard: FunctionComponent<IDeviceCardProps> = ({
 }) => {
     return (
         <div key={id}>
-            <Link to="{device.deviceLink}">
-                <div className="c-card__device-card">
-                    <img
-                        src={deviceImage}
-                        onError={(e: any) => {
-                            e.target.onerror = null;
-                            e.target.src = DeviceImageStatic;
-                        }}
-                        alt={'device'}
-                        style={{ width: 50, height: 50 }}
-                    />
-                    <div className="c-card__device-card-info">
-                        <div className="c-card__device-card-info-title">{deviceName}</div>
-                        <div className="c-card__device-card-info-description">{deviceDescription}</div>
-                        <div className="c-card__device-card-info-location">{deviceModel}</div>
-                    </div>
-                    <div className="c-card__device-card-status">
-                        <span className="c-card__device-card-status-text">{deviceStatus}</span>
-                        <div
-                            className={classNames(
-                                deviceStatus === 'Active'
-                                    ? 'c-card__device-card-status-online-icon'
-                                    : 'c-card__device-card-status-offline-icon'
-                            )}
-                        />
-                    </div>
+            <div className="c-card__device-card">
+                <img
+                    src={deviceImage}
+                    onError={(e: any) => {
+                        e.target.onerror = null;
+                        e.target.src = DeviceImageStatic;
+                    }}
+                    alt={'device'}
+                    style={{ width: 50, height: 50 }}
+                />
+                <div className="c-card__device-card-info">
+                    <div className="c-card__device-card-info-title">{deviceName}</div>
+                    <div className="c-card__device-card-info-description">{deviceDescription}</div>
+                    <div className="c-card__device-card-info-location">{deviceModel}</div>
                 </div>
-            </Link>
+                <div className="c-card__device-card-status">
+                    <span className="c-card__device-card-status-text">{deviceStatus}</span>
+                    <div
+                        className={classNames(
+                            deviceStatus === 'Active' ? 'c-card__device-card-status-online-icon' : 'c-card__device-card-status-offline-icon'
+                        )}
+                    />
+                </div>
+            </div>
         </div>
     );
 };

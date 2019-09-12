@@ -3,8 +3,15 @@ import { USER_LOGIN, CHECK_USER, USER_LOGOUT, USER_REGISTER, USER_GOOGLE_LOGIN }
 import { requestUserLogin, checkUserAuth, requestUserLogout, requestUserRegister, requestGoogleLogin } from './authSaga';
 import { startup } from './startupSaga';
 import { STARTUP } from '../store/startup/types';
-import { requestGetProjects, requestGetProjectById, requestGetDevices, requestGetTriggers, requestGetActivities } from './projectSaga';
-import { GET_PROJECTS, GET_PROJECT_BY_ID, GET_DEVICES, GET_TRIGGERS, GET_ACTIVITIES } from '../store/project/types';
+import {
+    requestGetProjects,
+    requestGetProjectById,
+    requestGetDevices,
+    requestGetTriggers,
+    requestGetActivities,
+    requestGetDeviceById,
+} from './projectSaga';
+import { GET_PROJECTS, GET_PROJECT_BY_ID, GET_DEVICES, GET_TRIGGERS, GET_ACTIVITIES, GET_DEVICE_BY_ID } from '../store/project/types';
 import { SET_SIDEBAR_STATUS } from '../store/ui/types';
 import { requestSidebarOpen } from './uiSaga';
 
@@ -25,6 +32,7 @@ export const rootSaga = function* root() {
         takeLatest(GET_PROJECTS, requestGetProjects),
         takeLatest(GET_PROJECT_BY_ID, requestGetProjectById),
         takeLatest(GET_DEVICES, requestGetDevices),
+        takeLatest(GET_DEVICE_BY_ID, requestGetDeviceById),
         takeLatest(GET_TRIGGERS, requestGetTriggers),
         takeLatest(GET_ACTIVITIES, requestGetActivities),
 

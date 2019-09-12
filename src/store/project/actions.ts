@@ -15,6 +15,9 @@ import {
     GET_ACTIVITIES,
     GET_ACTIVITIES_SUCCESS,
     GET_ACTIVITIES_FAILURE,
+    GET_DEVICE_BY_ID,
+    GET_DEVICE_BY_ID_SUCCESS,
+    GET_DEVICE_BY_ID_FAILURE,
 } from './types';
 
 export function getProjects() {
@@ -75,6 +78,27 @@ export function getDevicesFailure(devices: ProjectState) {
     return {
         type: GET_DEVICES_FAILURE,
         payload: devices,
+    };
+}
+
+export function getDeviceById(id: string) {
+    return {
+        type: GET_DEVICE_BY_ID,
+        payload: id,
+    };
+}
+
+export function getDeviceByIdSuccess(project: ProjectState) {
+    return {
+        type: GET_DEVICE_BY_ID_SUCCESS,
+        payload: project.currentDevice,
+    };
+}
+
+export function getDeviceByIdFailure(project: ProjectState) {
+    return {
+        type: GET_DEVICE_BY_ID_FAILURE,
+        payload: project.currentDevice,
     };
 }
 

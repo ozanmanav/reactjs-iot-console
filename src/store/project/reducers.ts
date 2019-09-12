@@ -17,14 +17,18 @@ import {
     GET_ACTIVITIES_SUCCESS,
     GET_ACTIVITIES_FAILURE,
     ITriggerResponse,
+    GET_DEVICE_BY_ID,
+    GET_DEVICE_BY_ID_SUCCESS,
+    GET_DEVICE_BY_ID_FAILURE,
 } from './types';
 
 export const ProjectInitialState: ProjectState = {
-    loading: { projects: false, currentProject: false, devices: false, triggers: false, activities: false },
+    loading: { projects: false, currentProject: false, devices: false, currentDevice: false, triggers: false, activities: false },
     projects: [],
     devices: [],
     triggers: {} as ITriggerResponse,
     currentProject: undefined,
+    currentDevice: undefined,
     error: undefined,
 };
 
@@ -56,7 +60,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                     ...state.loading,
                     currentProject: true,
                 },
-                devices: [],
+                currentProject: undefined,
             };
         }
         case GET_PROJECT_BY_ID_SUCCESS: {
@@ -107,6 +111,36 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                     devices: false,
                 },
                 devices: [],
+            };
+        }
+        case GET_DEVICE_BY_ID: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    currentDevice: true,
+                },
+                currentDevice: undefined,
+            };
+        }
+        case GET_DEVICE_BY_ID_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    currentDevice: false,
+                },
+                currentDevice: action.payload,
+            };
+        }
+        case GET_DEVICE_BY_ID_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    currentDevice: false,
+                },
+                currentDevice: undefined,
             };
         }
         case GET_TRIGGERS: {

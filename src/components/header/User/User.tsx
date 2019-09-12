@@ -2,17 +2,18 @@ import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { User } from 'firebase';
 import { AppState } from '../../../store';
-import { Button } from '../../ui';
+import { Icon, useModal } from '../../ui';
 import { userLogout } from '../../../store/auth/actions';
 import './User.scss';
 import 'react-dropdown/style.css';
+import { ConfirmModal } from '../../modals';
 
 interface UserNavProps {
     user?: User;
-    userLogout?: () => void;
+    userLogout: () => void;
 }
-
 export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout }) => {
+    const { open, hide, isOpen } = useModal();
     return (
         <nav className="b-header-user flex">
             <div className="b-header-user__info-wrapper">
@@ -23,7 +24,8 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout 
                     </div>
                 </button>
             </div>
-            <Button text="Logout" className="b-header-user__logout" onClick={userLogout} />
+            <Icon icon="logout" width={20} onClick={open} className="_cursor-pointer" />
+            <ConfirmModal title="Are you sure log out?" onConfirm={userLogout} hide={hide} isOpen={isOpen} />
         </nav>
     );
 };

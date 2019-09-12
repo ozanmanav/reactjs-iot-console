@@ -8,3 +8,4 @@ export * from './grid';
 export * from './tooltips';
 export * from './accordion';
 export * from './breadcrumbs';
+export * from './modal';

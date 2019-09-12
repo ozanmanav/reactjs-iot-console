@@ -1,11 +1,12 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import './Devices.scss';
-import { getDevices } from '../../../../../store/project/actions';
+import { getDevices } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
-import { AppState } from '../../../../../store';
-import { IDevice, IProjectLoadingState, IProject } from '../../../../../store/project/types';
-import { DeviceCard } from '../../../../../components/ui/cards';
-import AddDeviceIcon from '../../../../../icons/plus-feynlab.png';
+import { AppState } from '../../../../store';
+import { IDevice, IProjectLoadingState, IProject } from '../../../../store/project/types';
+import { DeviceCard } from '../../../../components/ui/cards';
+import AddDeviceIcon from '../../../../icons/plus-feynlab.png';
+import { NavLink } from 'react-router-dom';
 
 interface DevicesBaseProps {
     getDevices: typeof getDevices;
@@ -37,9 +38,12 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
                         !loading.devices &&
                         devices &&
                         devices.map((device) => (
-                            <div className="col-md-6 col-sm-12 col-xs-12 b-project-devices-details__devices-card">
+                            <NavLink
+                                to={`/app/projects/${currentProject && currentProject.id}/devices/${device.id}`}
+                                className="col-md-6 col-sm-12 col-xs-12 b-project-devices-details__devices-card"
+                            >
                                 <DeviceCard device={device} />{' '}
-                            </div>
+                            </NavLink>
                         ))}
                 </div>
             </div>

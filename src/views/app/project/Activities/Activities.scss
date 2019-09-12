@@ -1,0 +1,46 @@
+@import '../../../../styles/variables';
+
+.b-project-activities {
+    margin-top: 20px;
+    &-loader {
+        position: absolute;
+        top: calc(50% - 8em);
+        left: calc(40%);
+    }
+
+    &-title {
+        font-family: Exo;
+        font-size: 12px;
+        font-weight: 500;
+        color: #4a4a4a;
+        text-transform: capitalize;
+    }
+
+    &__timeline {
+        margin-top: 10px;
+        margin-bottom: 60px;
+        &-container {
+            font-size: 80%;
+            position: relative;
+            &__title {
+                margin-bottom: 3px;
+                color: rgb(48, 62, 73);
+            }
+            &__card {
+                width: 98%;
+                background-color: rgb(255, 255, 255);
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
+                margin-top: 1em;
+                margin-bottom: 1em;
+                line-height: 1.6;
+                padding: 0.5em 1em;
+            }
+        }
+    }
+}
+
+.app {
+    &__copyright {
+        display: none;
+    }
+}

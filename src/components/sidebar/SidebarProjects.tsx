@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import classnames from 'classnames';
 import NewProjectIcon from '../../icons/plus-feynlab.png';
 import ProjectIcon from '../../icons/project-icon.svg';
@@ -36,7 +36,7 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
                 <div className="b-sidebar-projects-list">
                     {projects &&
                         projects.map((item) => (
-                            <NavLink to={`/app/projects/${item.id}`} key={item.id}>
+                            <Link to={`/app/projects/${item.id}`} key={item.id}>
                                 <div
                                     key={item.id}
                                     className={classnames('b-sidebar-projects-list__item', { active: projectId === item.id })}
@@ -44,7 +44,7 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
                                     <img src={/*item.projectImage1x ||*/ ProjectLogo} alt="logo" className="b-sidebar-projects__image" />
                                     <span>{item.projectName}</span>
                                 </div>
-                            </NavLink>
+                            </Link>
                         ))}
                     <NavLink to={'/app/projects/create'}>
                         <div

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import './Details.scss';
-import { IProject } from '../../../../store/project/types';
-import ProjectImage from '../../../../icons/ProjectLogo.png';
+import './Project.scss';
+import { IProject } from '../../../store/project/types';
+import ProjectImage from '../../../icons/ProjectLogo.png';
 
 export const ProjectInfo: FunctionComponent<{ project: IProject }> = ({ project }) => {
     return (

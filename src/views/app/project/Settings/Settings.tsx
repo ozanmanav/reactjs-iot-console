@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import './Settings.scss';
-import { getSettings } from '../../../../../store/project/actions';
+import { getSettings } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
-import { AppState } from '../../../../../store';
-import { IProjectLoadingState, ITriggerResponse, IProject } from '../../../../../store/project/types';
-import { ProjectSettingsForm } from '../../../../../components/forms';
-import { IProjectSettingsFormDefaultState } from '../../../../../components/forms/ProjectSettingsForm/definitions';
+import { AppState } from '../../../../store';
+import { IProjectLoadingState, ITriggerResponse, IProject } from '../../../../store/project/types';
+import { ProjectSettingsForm } from '../../../../components/forms';
+import { IProjectSettingsFormDefaultState } from '../../../../components/forms/ProjectSettingsForm/definitions';
 interface SettingsBaseProps {
     getSettings: typeof getSettings;
     settings?: ITriggerResponse;

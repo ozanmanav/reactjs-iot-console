@@ -11,6 +11,8 @@ import {
     getTriggersFailure,
     getActivitiesSuccess,
     getActivitiesFailure,
+    getDeviceByIdSuccess,
+    getDeviceByIdFailure,
 } from '../store/project/actions';
 import { ProjectState } from '../store/project/types';
 
@@ -86,6 +88,36 @@ export function* requestGetDevices() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getDevicesFailure(errorSession));
+    }
+}
+
+function fetchDeviceById(projectId: string, deviceId: string) {
+    return getRequest(`/user/projects/${projectId}/devices/${deviceId}`)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestGetDeviceById(data: any) {
+    try {
+        let currentProject = yield select((state) => state.project.currentProject);
+
+        if (currentProject && data.payload) {
+            const deviceResponse = yield call(fetchDeviceById, currentProject.id, data.payload);
+
+            const successDeviceResponse: ProjectState = { currentDevice: deviceResponse.data.Device };
+
+            yield put(getDeviceByIdSuccess(successDeviceResponse));
+        } else {
+            const errorSession: ProjectState = { error: 'Not current project or device selected' };
+            yield put(getDeviceByIdFailure(errorSession));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(getDeviceByIdFailure(errorSession));
     }
 }
 

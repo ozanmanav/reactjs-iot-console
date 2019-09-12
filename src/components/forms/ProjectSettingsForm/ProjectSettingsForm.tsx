@@ -6,30 +6,20 @@ import {
     ProjectSettingsFormValidationSchema,
     IProjectSettingsFormProps,
 } from './definitions';
-import { Input, Icon } from '../../ui';
+import { Input, Icon, useModal } from '../../ui';
 import { Button } from '../../ui/buttons';
 import { ClipLoader } from 'react-spinners';
 import './ProjectSettingsForm.scss';
 import { FormCaption } from '../FormsUI';
+import { ConfirmModal } from '../../modals';
 
 const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> = ({ ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
+    const { open, hide, isOpen } = useModal();
 
     return (
         <form className="f-project-settings__form" onSubmit={handleSubmit}>
             <div className="f-project-settings__form-content">
-                <FormCaption>Project Id</FormCaption>
-                <Input
-                    placeholder="Project Id"
-                    name="id"
-                    showCopyIcon={true}
-                    disabled={true}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.id}
-                    error={errors && errors.id}
-                    touched={touched && touched.id}
-                />
                 <FormCaption>Project Name</FormCaption>
                 <Input
                     placeholder="Project Name"
@@ -58,7 +48,13 @@ const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> 
                 ) : (
                     <div className="f-project-settings__form-action-container">
                         <Button text="Save" primary className="f-project-settings__form-action" type="submit" />
-                        <Icon icon="trash" />
+                        <Icon icon="trash" className="_cursor-pointer" onClick={open} />
+                        <ConfirmModal
+                            title="Are you sure log out?"
+                            onConfirm={() => console.log('delete project')}
+                            hide={hide}
+                            isOpen={isOpen}
+                        />
                     </div>
                 )}
             </div>

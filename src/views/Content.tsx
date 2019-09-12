@@ -39,7 +39,7 @@ const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = (
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/" component={Landing} />
-                <Route component={Application} />
+                {/* <Route component={Application} /> */}
             </Switch>
         </>
     );

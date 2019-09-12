@@ -11,6 +11,7 @@ import narrowIconDeactive from '../../../icons/narrow-icon-deactive.svg';
 import history from '../../../icons/history.svg';
 import trash from '../../../icons/trash.svg';
 import copy from '../../../icons/copy.svg';
+import logout from '../../../icons/logout.svg';
 
 // TODO: is string type necessary?
 export type TIconType =
@@ -23,6 +24,7 @@ export type TIconType =
     | 'history'
     | 'trash'
     | 'copy'
+    | 'logout'
     | string;
 
 interface IIcons {
@@ -39,6 +41,7 @@ const ICONS: IIcons = {
     history,
     trash,
     copy,
+    logout,
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {
