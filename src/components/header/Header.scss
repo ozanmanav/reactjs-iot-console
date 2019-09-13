@@ -2,138 +2,87 @@
 @import '../../styles/mixins';
 @import '../../styles/media';
 
-$header-horizontal-padding: 53px;
-
 .b-header {
     @include shadow-small;
     background-color: $white;
     padding: 10px 20px 10px 20px;
     position: relative;
 
-    &-user {
-        &__signup {
-            width: 70px;
-            height: 80px;
-            position: absolute;
-            right: 70px;
-            justify-content: center;
-            align-items: center;
-            &-text {
-                width: 49.5px;
-                height: 19px;
-                font-size: 14px;
-                font-weight: 500;
-                color: #9b9b9b;
-            }
-        }
-        &__login {
-            width: 60px;
-            height: 80px;
-            position: absolute;
-            right: 10px;
-            justify-content: center;
-            align-items: center;
-            &-text {
-                width: 40px;
-                height: 19px;
-                font-size: 14px;
-                font-weight: 500;
-                text-align: center;
-                color: #4a4a4a;
-            }
-        }
-    }
-
-    &__link-container {
-        user-select: none;
-
-        @include desktop-xs {
-            max-height: 0;
-            overflow: hidden;
-        }
-
-        &__inline-links {
-            @include desktop-xs {
-                margin: 15px 0 0 0;
-                background: transparentize($white, 0.5);
-            }
-        }
-
-        &._toggled {
-            @include desktop-xs {
-                padding: 130px 0 0 0;
-                max-height: 1500px;
-
-                *:not(.__toggle-icon) {
-                    display: block;
-                    text-align: left;
-                    margin: 0;
-                }
-            }
-        }
-
-        &__toggle-icon {
-            display: none;
-
-            @include desktop-xs {
-                display: block;
-            }
-
-            padding-top: 25px;
-            position: absolute;
-            top: 0;
-        }
-    }
-
-    &__link {
-        display: inline-flex;
-        align-items: center;
-
-        &:not(:last-child) {
-            margin-right: 50px;
-
-            @include desktop-sm {
-                &:not(:first-child) {
-                    margin-right: 30px;
-                }
-            }
-        }
-    }
-
-    &__search {
-        padding: 0 30px;
-        border-right: 1px solid $light-grey;
-
-        @include desktop-xs {
-            display: none;
-        }
-
-        @include desktop-sm {
-            padding: 0 15px;
-        }
-
-        &-icon {
-            width: 32px;
-            height: 36px;
-        }
-    }
-
-    &__logo-fixed {
+    &__signup {
+        width: 70px;
+        height: 80px;
         position: absolute;
-        top: 30px;
-        left: 70px;
-        transform: translate3d(-50%, 0, 0);
+        right: 70px;
+        justify-content: center;
+        align-items: center;
+        &-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        &:hover {
+            color: #9b9b9b;
+        }
+    }
+    &__login {
+        width: 60px;
+        height: 80px;
+        position: absolute;
+        right: 10px;
+        justify-content: center;
+        align-items: center;
+        &-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        &:hover {
+            color: #9b9b9b;
+        }
     }
 
-    &._app {
-        padding-top: 18px;
-        padding-bottom: 18px;
-        height: $header-app-height;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: $header-z-index;
+    &-user {
+        display: flex;
+        align-items: center;
+        &__info {
+            font-family: Exo;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a4a4a;
+            overflow: hidden;
+
+            &-wrapper {
+                margin-right: 20px;
+                position: relative;
+            }
+        }
+
+        &__container {
+            $size: 41px;
+            width: $size;
+            height: $size;
+            flex: 0 0 $size;
+            border-radius: 50%;
+            border: 1px solid $primary;
+            margin-right: 10px;
+
+            &-button {
+                cursor: pointer;
+                padding: 14px 10px 15px 30px;
+                width: 100%;
+
+                &:disabled {
+                    cursor: not-allowed;
+                }
+
+                &._active {
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $ghost-white;
+                    }
+                }
+            }
+        }
     }
 
     &._login {

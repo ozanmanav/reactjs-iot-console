@@ -1,8 +1,15 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import './Header.scss';
-import { Logo, CustomNavLink } from '../ui';
+import { Logo, CustomNavLink, useModal, Icon } from '../ui';
 import classNames from 'classnames';
 import { NavLinkProps, NavLink } from 'react-router-dom';
+import { AuthState } from '../../store/auth/types';
+import { Loading } from '../ui/loading';
+import { userLogout } from '../../store/auth/actions';
+import { AppState } from '../../store';
+import { connect } from 'react-redux';
+import { User } from 'firebase';
+import { ConfirmModal } from '../modals';
 
 export const HeaderLogo: FunctionComponent<HTMLAttributes<HTMLAnchorElement> & NavLinkProps> = ({ className, to }) => {
     return (
@@ -14,17 +21,73 @@ export const HeaderLogo: FunctionComponent<HTMLAttributes<HTMLAnchorElement> & N
 
 export const AuthNav: FunctionComponent = () => {
     return (
-        <nav className="b-header-user">
+        <nav className="b-header">
             <NavLink to={'/signup'}>
-                <div className="b-header-user__signup">
-                    <div className="b-Fheader-user__signup-text">Sign Up</div>
+                <div className="b-header__signup">
+                    <div className="b-header-user__signup-text">Sign Up</div>
                 </div>
             </NavLink>
             <NavLink to={'/login'}>
-                <div className="b-header-user__login">
-                    <div className="b-Fheader-user__login-text">Log In</div>
+                <div className="b-header__login">
+                    <div className="b-header__login-text">Log In</div>
                 </div>
             </NavLink>
         </nav>
     );
 };
+
+interface UserNavProps {
+    user?: User;
+    userLogout: () => void;
+}
+export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout }) => {
+    const { open, hide, isOpen } = useModal();
+    return (
+        <nav className="b-header-user">
+            <div className="b-header-user__info-wrapper">
+                <button className="flex align-center b-header-user__container-button">
+                    <div className="b-header-user__container flex align-center justify-center _font-bold _text-primary">O</div>
+                    <div className="flex flex-column b-header-user__info">
+                        <div className=" _text-left _font-bold">{user && user.email}</div>
+                    </div>
+                </button>
+            </div>
+            <Icon icon="logout" width={20} height={20} onClick={open} className="_cursor-pointer" />
+            <ConfirmModal title="Are you sure log out?" onConfirm={userLogout} hide={hide} isOpen={isOpen} />
+        </nav>
+    );
+};
+
+const mapStateToPropsUser = (state: AppState) => ({
+    user: state.auth.user,
+});
+
+export const UserNav = connect(
+    mapStateToPropsUser,
+    { userLogout }
+)(UserNavBase);
+
+interface LandingHeaderBaseProps {
+    auth?: AuthState;
+}
+
+const LandingHeaderBase: FunctionComponent<LandingHeaderBaseProps> = ({ auth }) => {
+    return (
+        <header className={classNames('flex justify-between align-center b-header', { _login: auth && !auth.loggedIn })}>
+            <nav className="flex align-center b-header__main-nav">
+                <HeaderLogo to="/app/dashboard" />
+            </nav>
+            <Loading loading={auth && auth.loading && auth.loading.checkUser} />
+            {auth && auth.loggedIn ? <UserNav /> : <AuthNav />}
+        </header>
+    );
+};
+
+const mapStateToProps = (state: AppState) => ({
+    auth: state.auth,
+});
+
+export const LandingHeader = connect(
+    mapStateToProps,
+    null
+)(LandingHeaderBase);
