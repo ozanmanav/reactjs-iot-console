@@ -14,8 +14,18 @@
         width: 80%;
     }
 
-    &__breadcrumbs {
-        margin-bottom: 20px;
+    &__breadcrumb-wrapper {
+        display: flex;
+        &__present {
+            margin-top: 20px;
+            font-size: 12px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #9b9b9b;
+        }
     }
 
     &-loader {

@@ -1,4 +1,5 @@
-.b-breadcrumbs-simple {
+.b-breadcrumbs {
+    display: flex;
     margin-top: 10px;
     font-size: 12px;
     font-weight: normal;
@@ -9,6 +10,19 @@
     color: #9b9b9b;
     &.active {
         font-weight: 600;
+    }
+
+    &-container {
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        list-style: none;
+        border-radius: 0.25rem;
+    }
+
+    &.slash {
+        margin-left: 5px;
     }
 
     &.link {

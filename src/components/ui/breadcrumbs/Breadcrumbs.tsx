@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import classNames from 'classnames';
 import './Breadcrumbs.scss';
 
@@ -11,15 +11,18 @@ interface IRoute {
 
 const Breadcrumbs = (props: any) => {
     return (
-        <div className={classNames('b-breadcrumbs', props.className)}>
+        <div className={classNames('b-breadcrumbs-simple', props.className)}>
             {props.route}
             {props.routes &&
                 props.routes.map((route: IRoute) => (
-                    <a className={classNames('b-breadcrumbs link', { active: route.active })}>
-                        {route.title} {!route.active && <>/</>}
-                    </a>
+                    <>
+                        <NavLink to={route.link} className={classNames('b-breadcrumbs-simple link', { active: route.active })}>
+                            {route.title} {!route.active && <>/</>}
+                        </NavLink>
+                        <Route path={`${route.link}/:path`} component={Breadcrumbs} />
+                    </>
                 ))}
-            <span className="b-breadcrumbs active">{props.present}</span>
+            <span className="b-breadcrumbs-simple active">{props.present}</span>
         </div>
     );
 };

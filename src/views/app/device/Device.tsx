@@ -9,6 +9,7 @@ import { ProjectState } from '../../../store/project/types';
 import { Loading } from '../../../components/ui/loading';
 import { DeviceInfo } from './DeviceInfo';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import BreadcrumbsAdv from '../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 // import { Devices } from './Devices';
 // import { Triggers } from './Triggers';
 // import { Activities } from './Activities';
@@ -34,19 +35,23 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
     }
 
     return project.currentProject && project.currentDevice ? (
-        <div className="b-project-details">
-            <Breadcrumbs
+        <div className="b-device-details">
+            {/* <Breadcrumbs
                 className="b-project-details__breadcrumbs"
                 routes={[
-                    { title: 'Projects', link: '' },
+                    { title: 'Projects', link: '/app/projects' },
                     { title: project.currentProject.projectName, link: '' },
                     { title: project.currentDevice.deviceName, link: '', active: true },
                 ]}
-                // route={'Projects / '}
-                // present={`${project.currentProject.projectName} / ${project.currentDevice.deviceName}`}
-            />
+            // route={'Projects / '}
+            // present={`${project.currentProject.projectName} / ${project.currentDevice.deviceName}`}
+            /> */}
+            <div className="b-device-details__breadcrumb-wrapper">
+                <div className="b-device-details__breadcrumb-wrapper__present">Projects /</div>
+                <BreadcrumbsAdv />
+            </div>
             <DeviceInfo device={project.currentDevice} />
-            <Tabs className="b-project-details__tabs">
+            <Tabs className="b-device-details__tabs">
                 <TabList>
                     <Tab>Charts</Tab>
                     <Tab>Triggers</Tab>

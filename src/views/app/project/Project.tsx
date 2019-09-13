@@ -13,6 +13,7 @@ import { Devices } from './Devices';
 import { Triggers } from './Triggers';
 import { Activities } from './Activities';
 import { Settings } from './Settings';
+import BreadcrumbsAdv from '../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 interface DetailsBaseProps extends RouteComponentProps {
     getProjectById: typeof getProjectById;
     project: ProjectState;
