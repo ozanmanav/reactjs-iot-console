@@ -7,6 +7,7 @@ import { IProjectLoadingState, IActivity } from '../../../../store/project/types
 import { Loading } from '../../../../components/ui/loading';
 import moment from 'moment';
 import { Container } from '../../../../components/ui';
+import uniq from 'lodash/uniq';
 
 interface ActivitiesBaseProps {
     getActivities: typeof getActivities;
@@ -19,22 +20,40 @@ export const ActivitiesBase: FunctionComponent<ActivitiesBaseProps> = ({ activit
     useEffect(() => {
         getActivities();
     }, [getActivities]);
-
+    const sectionHeaders = uniq(
+        activities && activities.map((activity) => moment.unix(parseInt(activity.activityCreated)).format('dddd, MMMM Do YYYY'))
+    );
     return (
         <div className="b-project-activities">
             {loading && loading.activities ? (
                 <Loading className="b-project-activities-loader" />
             ) : (
                 <Container className="b-project-activities__timeline">
-                    {activities &&
-                        activities.length > 0 &&
-                        activities.map((activity) => {
+                    {sectionHeaders &&
+                        sectionHeaders.length > 0 &&
+                        sectionHeaders.map((sectionHeader) => {
+                            const sectionDay = sectionHeader.split(',')[0];
+                            const sectionDate = sectionHeader.split(',')[1];
                             return (
                                 <div className="b-project-activities__timeline-container">
-                                    <div className="b-project-activities__timeline-container__title">
-                                        {activity && moment(parseInt(activity.activityCreated)).format()}
+                                    <div className="b-project-activities__timeline-container-section">
+                                        <div className="b-project-activities__timeline-container-section__day">{sectionDay},</div>
+                                        <div className="b-project-activities__timeline-container-section__date">{sectionDate}</div>
                                     </div>
-                                    <div className="b-project-activities__timeline-container__card">{activity.activityDescription}</div>
+                                    {activities &&
+                                        activities.length > 0 &&
+                                        activities.map((activity) => {
+                                            return (
+                                                <div className="b-project-activities__timeline-container__card">
+                                                    <div className="b-project-activities__timeline-container__card-title">
+                                                        {activity.activityDescription}
+                                                    </div>
+                                                    <div className="b-project-activities__timeline-container__card-time">
+                                                        {moment(activity && parseInt(activity.activityCreated)).format('HH:mm:ss')}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
                                 </div>
                             );
                         })}
