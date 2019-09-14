@@ -34,6 +34,7 @@
     "prettier": "^1.18.2",
     "ramda": "^0.26.1",
     "react": "^16.9.0",
+    "react-avatar": "^3.6.0",
     "react-cookie": "^4.0.1",
     "react-dom": "^16.9.0",
     "react-dropdown": "^1.6.4",

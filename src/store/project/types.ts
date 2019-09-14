@@ -14,6 +14,7 @@ export interface IProjectLoadingState {
     devices?: boolean;
     triggers?: boolean;
     activities?: boolean;
+    deviceActivities?: boolean;
 }
 
 export interface IDevice {
@@ -62,6 +63,7 @@ export interface ProjectState {
     devices?: IDevice[];
     triggers?: ITriggerResponse;
     activities?: IActivity[];
+    deviceActivities?: IActivity[];
     currentProject?: IProject;
     currentDevice?: IDevice;
     error?: string;
@@ -85,6 +87,9 @@ export const GET_TRIGGERS_FAILURE = 'GET_TRIGGERS_FAILURE';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const GET_ACTIVITIES_SUCCESS = 'GET_ACTIVITIES_SUCCESS';
 export const GET_ACTIVITIES_FAILURE = 'GET_ACTIVITIES_FAILURE';
+export const GET_DEVICE_ACTIVITIES = 'GET_DEVICE_ACTIVITIES';
+export const GET_DEVICE_ACTIVITIES_SUCCESS = 'GET_DEVICE_ACTIVITIES_SUCCESS';
+export const GET_DEVICE_ACTIVITIES_FAILURE = 'GET_DEVICE_ACTIVITIES_FAILURE';
 
 interface GetProjectsAction {
     type: typeof GET_PROJECTS;
@@ -176,6 +181,21 @@ interface GetActivitiesFailureAction {
     payload: ProjectState;
 }
 
+interface GetDeviceActivitiesAction {
+    type: typeof GET_DEVICE_ACTIVITIES;
+    payload: ProjectState;
+}
+
+interface GetDeviceActivitiesSuccessAction {
+    type: typeof GET_DEVICE_ACTIVITIES_SUCCESS;
+    payload: ProjectState;
+}
+
+interface GetDeviceActivitiesFailureAction {
+    type: typeof GET_DEVICE_ACTIVITIES_FAILURE;
+    payload: ProjectState;
+}
+
 export type ProjectActionTypes =
     | GetProjectsAction
     | GetProjectsSuccessAction
@@ -194,4 +214,7 @@ export type ProjectActionTypes =
     | GetActivitiesFailureAction
     | GetDeviceByIdAction
     | GetDeviceByIdSuccessAction
-    | GetDeviceByIdFailureAction;
+    | GetDeviceByIdFailureAction
+    | GetDeviceActivitiesAction
+    | GetDeviceActivitiesSuccessAction
+    | GetDeviceActivitiesFailureAction;

@@ -10,8 +10,17 @@ import {
     requestGetTriggers,
     requestGetActivities,
     requestGetDeviceById,
+    requestGetDeviceActivities,
 } from './projectSaga';
-import { GET_PROJECTS, GET_PROJECT_BY_ID, GET_DEVICES, GET_TRIGGERS, GET_ACTIVITIES, GET_DEVICE_BY_ID } from '../store/project/types';
+import {
+    GET_PROJECTS,
+    GET_PROJECT_BY_ID,
+    GET_DEVICES,
+    GET_TRIGGERS,
+    GET_ACTIVITIES,
+    GET_DEVICE_BY_ID,
+    GET_DEVICE_ACTIVITIES,
+} from '../store/project/types';
 import { SET_SIDEBAR_STATUS } from '../store/ui/types';
 import { requestSidebarOpen } from './uiSaga';
 
@@ -35,6 +44,7 @@ export const rootSaga = function* root() {
         takeLatest(GET_DEVICE_BY_ID, requestGetDeviceById),
         takeLatest(GET_TRIGGERS, requestGetTriggers),
         takeLatest(GET_ACTIVITIES, requestGetActivities),
+        takeLatest(GET_DEVICE_ACTIVITIES, requestGetDeviceActivities),
 
         // // UI
         takeLatest(SET_SIDEBAR_STATUS, requestSidebarOpen),

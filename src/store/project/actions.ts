@@ -18,6 +18,9 @@ import {
     GET_DEVICE_BY_ID,
     GET_DEVICE_BY_ID_SUCCESS,
     GET_DEVICE_BY_ID_FAILURE,
+    GET_DEVICE_ACTIVITIES,
+    GET_DEVICE_ACTIVITIES_SUCCESS,
+    GET_DEVICE_ACTIVITIES_FAILURE,
 } from './types';
 
 export function getProjects() {
@@ -67,17 +70,17 @@ export function getDevices() {
     };
 }
 
-export function getDevicesSuccess(devices: ProjectState) {
+export function getDevicesSuccess(projects: ProjectState) {
     return {
         type: GET_DEVICES_SUCCESS,
-        payload: devices,
+        payload: projects,
     };
 }
 
-export function getDevicesFailure(devices: ProjectState) {
+export function getDevicesFailure(projects: ProjectState) {
     return {
         type: GET_DEVICES_FAILURE,
-        payload: devices,
+        payload: projects,
     };
 }
 
@@ -88,17 +91,17 @@ export function getDeviceById(id: string) {
     };
 }
 
-export function getDeviceByIdSuccess(project: ProjectState) {
+export function getDeviceByIdSuccess(projects: ProjectState) {
     return {
         type: GET_DEVICE_BY_ID_SUCCESS,
-        payload: project.currentDevice,
+        payload: projects.currentDevice,
     };
 }
 
-export function getDeviceByIdFailure(project: ProjectState) {
+export function getDeviceByIdFailure(projects: ProjectState) {
     return {
         type: GET_DEVICE_BY_ID_FAILURE,
-        payload: project.currentDevice,
+        payload: projects.currentDevice,
     };
 }
 
@@ -108,17 +111,17 @@ export function getTriggers() {
     };
 }
 
-export function getTriggersSuccess(triggers: ProjectState) {
+export function getTriggersSuccess(projects: ProjectState) {
     return {
         type: GET_TRIGGERS_SUCCESS,
-        payload: triggers,
+        payload: projects,
     };
 }
 
-export function getTriggersFailure(triggers: ProjectState) {
+export function getTriggersFailure(projects: ProjectState) {
     return {
         type: GET_TRIGGERS_FAILURE,
-        payload: triggers,
+        payload: projects,
     };
 }
 
@@ -128,17 +131,17 @@ export function getActivities() {
     };
 }
 
-export function getActivitiesSuccess(activities: ProjectState) {
+export function getActivitiesSuccess(projects: ProjectState) {
     return {
         type: GET_ACTIVITIES_SUCCESS,
-        payload: activities,
+        payload: projects,
     };
 }
 
-export function getActivitiesFailure(activities: ProjectState) {
+export function getActivitiesFailure(projects: ProjectState) {
     return {
         type: GET_ACTIVITIES_FAILURE,
-        payload: activities,
+        payload: projects,
     };
 }
 
@@ -148,16 +151,36 @@ export function getSettings() {
     };
 }
 
-export function getSettingsSuccess(settings: ProjectState) {
+export function getSettingsSuccess(projects: ProjectState) {
     return {
         type: GET_ACTIVITIES_SUCCESS,
-        payload: settings,
+        payload: projects,
     };
 }
 
-export function getSettingsFailure(settings: ProjectState) {
+export function getSettingsFailure(projects: ProjectState) {
     return {
         type: GET_ACTIVITIES_FAILURE,
-        payload: settings,
+        payload: projects,
+    };
+}
+
+export function getDeviceActivities() {
+    return {
+        type: GET_DEVICE_ACTIVITIES,
+    };
+}
+
+export function getDeviceActivitiesSuccess(projects: ProjectState) {
+    return {
+        type: GET_DEVICE_ACTIVITIES_SUCCESS,
+        payload: projects,
+    };
+}
+
+export function getDeviceActivitiesFailure(projects: ProjectState) {
+    return {
+        type: GET_DEVICE_ACTIVITIES_FAILURE,
+        payload: projects,
     };
 }

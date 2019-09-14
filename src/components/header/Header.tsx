@@ -10,6 +10,7 @@ import { AppState } from '../../store';
 import { connect } from 'react-redux';
 import { User } from 'firebase';
 import { ConfirmModal } from '../modals';
+import Avatar from 'react-avatar';
 
 export const HeaderLogo: FunctionComponent<HTMLAttributes<HTMLAnchorElement> & NavLinkProps> = ({ className, to }) => {
     return (
@@ -46,7 +47,14 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout 
         <nav className="b-header-user">
             <div className="b-header-user__info-wrapper">
                 <button className="flex align-center b-header-user__container-button">
-                    <div className="b-header-user__container flex align-center justify-center _font-bold _text-primary">O</div>
+                    <div className="b-header-user__container flex align-center justify-center _font-bold _text-primary">
+                        {' '}
+                        {user && user.photoURL ? (
+                            <Avatar round={true} src={(user && user.photoURL) || ''} size="40" />
+                        ) : (
+                            <Icon icon="avatar" />
+                        )}{' '}
+                    </div>
                     <div className="flex flex-column b-header-user__info">
                         <div className=" _text-left _font-bold">{user && user.email}</div>
                     </div>

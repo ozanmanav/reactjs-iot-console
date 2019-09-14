@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import './Device.scss';
 import { RouteComponentProps } from 'react-router';
-import Breadcrumbs from '../../../components/ui/breadcrumbs/Breadcrumbs';
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
 import { getDeviceById } from '../../../store/project/actions';
@@ -10,10 +9,8 @@ import { Loading } from '../../../components/ui/loading';
 import { DeviceInfo } from './DeviceInfo';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BreadcrumbsAdv from '../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
-// import { Devices } from './Devices';
-// import { Triggers } from './Triggers';
-// import { Activities } from './Activities';
-// import { Settings } from './Settings';
+import { DeviceActivities } from './DeviceActivities';
+
 interface DetailsBaseProps extends RouteComponentProps {
     getDeviceById: typeof getDeviceById;
     project: ProjectState;
@@ -36,16 +33,6 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
 
     return project.currentProject && project.currentDevice ? (
         <div className="b-device-details">
-            {/* <Breadcrumbs
-                className="b-project-details__breadcrumbs"
-                routes={[
-                    { title: 'Projects', link: '/app/projects' },
-                    { title: project.currentProject.projectName, link: '' },
-                    { title: project.currentDevice.deviceName, link: '', active: true },
-                ]}
-            // route={'Projects / '}
-            // present={`${project.currentProject.projectName} / ${project.currentDevice.deviceName}`}
-            /> */}
             <div className="b-device-details__breadcrumb-wrapper">
                 <div className="b-device-details__breadcrumb-wrapper__present">Projects /</div>
                 <BreadcrumbsAdv />
@@ -61,14 +48,14 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
                 </TabList>
                 <TabPanel>Charts</TabPanel>
                 <TabPanel>Triggers</TabPanel>
-                <TabPanel>Activity</TabPanel>
+                <TabPanel>
+                    <DeviceActivities />
+                </TabPanel>
                 <TabPanel>Archive</TabPanel>
                 <TabPanel>Settings</TabPanel>
             </Tabs>
         </div>
-    ) : (
-        <div>DEVICE PAGEEEEEE</div>
-    );
+    ) : null;
 };
 
 const mapStateToProps = (state: AppState) => ({

@@ -13,6 +13,8 @@ import {
     getActivitiesFailure,
     getDeviceByIdSuccess,
     getDeviceByIdFailure,
+    getDeviceActivitiesSuccess,
+    getDeviceActivitiesFailure,
 } from '../store/project/actions';
 import { ProjectState } from '../store/project/types';
 
@@ -180,5 +182,36 @@ export function* requestGetActivities() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getActivitiesFailure(errorSession));
+    }
+}
+
+function fetchDeviceActivities(projectId: string, deviceId: string) {
+    return getRequest(`user/projects/${projectId}/device/${deviceId}/activities`)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestGetDeviceActivities() {
+    try {
+        let currentProject = yield select((state) => state.project.currentProject);
+        let currentDevice = yield select((state) => state.project.currentDevice);
+
+        if (currentProject && currentDevice) {
+            const deviceActivitiesResponse = yield call(fetchDeviceActivities, currentProject.id, currentDevice.id);
+
+            const successDeviceActivitiesResponse: ProjectState = { deviceActivities: deviceActivitiesResponse.data.Activities };
+
+            yield put(getDeviceActivitiesSuccess(successDeviceActivitiesResponse));
+        } else {
+            const errorSession: ProjectState = { error: 'Not current project selected' };
+            yield put(getDeviceActivitiesFailure(errorSession));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(getDeviceActivitiesFailure(errorSession));
     }
 }

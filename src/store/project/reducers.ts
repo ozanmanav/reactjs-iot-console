@@ -20,12 +20,25 @@ import {
     GET_DEVICE_BY_ID,
     GET_DEVICE_BY_ID_SUCCESS,
     GET_DEVICE_BY_ID_FAILURE,
+    GET_DEVICE_ACTIVITIES,
+    GET_DEVICE_ACTIVITIES_SUCCESS,
+    GET_DEVICE_ACTIVITIES_FAILURE,
 } from './types';
 
 export const ProjectInitialState: ProjectState = {
-    loading: { projects: false, currentProject: false, devices: false, currentDevice: false, triggers: false, activities: false },
+    loading: {
+        projects: false,
+        currentProject: false,
+        devices: false,
+        currentDevice: false,
+        triggers: false,
+        activities: false,
+        deviceActivities: false,
+    },
     projects: [],
     devices: [],
+    activities: [],
+    deviceActivities: [],
     triggers: {} as ITriggerResponse,
     currentProject: undefined,
     currentDevice: undefined,
@@ -201,6 +214,36 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                     activities: false,
                 },
                 activities: [],
+            };
+        }
+        case GET_DEVICE_ACTIVITIES: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceActivities: true,
+                },
+                deviceActivities: [],
+            };
+        }
+        case GET_DEVICE_ACTIVITIES_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceActivities: false,
+                },
+                ...action.payload,
+            };
+        }
+        case GET_DEVICE_ACTIVITIES_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceActivities: false,
+                },
+                deviceActivities: [],
             };
         }
 

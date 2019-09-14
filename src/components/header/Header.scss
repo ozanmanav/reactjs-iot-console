@@ -62,8 +62,10 @@
             height: $size;
             flex: 0 0 $size;
             border-radius: 50%;
-            border: 1px solid $primary;
             margin-right: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a4a4a;
 
             &-button {
                 cursor: pointer;
