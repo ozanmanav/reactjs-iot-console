@@ -18,11 +18,7 @@ export const ActivitiesBase: FunctionComponent<ActivitiesBaseProps> = ({ activit
         getActivities();
     }, [getActivities]);
 
-    if (activities && activities.length < 1) {
-        return <div>Activity not found</div>;
-    } else {
-        return <ActivityList activities={activities} loading={loading && loading.activities} />;
-    }
+    return <ActivityList activities={activities} loading={loading && loading.activities} />;
 };
 
 const mapStateToProps = (state: AppState) => ({
