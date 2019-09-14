@@ -12,6 +12,7 @@ export const Input: FunctionComponent<IInputProps> = ({
     marginBottom = 'normal',
     squared,
     showCopyIcon,
+    copyText = 'Copied!',
     ...props
 }) => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -26,7 +27,7 @@ export const Input: FunctionComponent<IInputProps> = ({
     const copyToClipboard = (e: any) => {
         if (inputRef && inputRef.current) {
             navigator.clipboard.writeText(inputRef.current.value);
-            showSuccessToast('Copied to Clipboard!');
+            showSuccessToast(copyText);
         }
     };
 

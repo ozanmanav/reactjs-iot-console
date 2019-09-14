@@ -7,6 +7,8 @@ export const DeviceSettingsFormDefaultState = {
     clientSecret: '',
     name: '',
     description: '',
+    location: '',
+    model: '',
     id: '',
     loading: false,
 };
@@ -16,6 +18,8 @@ export interface IDeviceSettingsFormDefaultState {
     clientSecret: string;
     name: string;
     description: string;
+    location: string;
+    model: string;
     id?: string;
     loading?: boolean;
 }

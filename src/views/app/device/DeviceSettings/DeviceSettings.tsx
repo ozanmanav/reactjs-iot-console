@@ -23,6 +23,8 @@ export const DeviceSettingsBase: FunctionComponent<DeviceSettingsBaseProps> = ({
     let initialValues: IDeviceSettingsFormDefaultState = {
         id: currentDevice.id,
         name: currentDevice.deviceName,
+        model: currentDevice.deviceModel,
+        location: currentDevice.deviceLocation,
         description: currentDevice.deviceDescription,
         deviceToken: currentDevice.deviceTokens && currentDevice.deviceTokens.apiToken,
         clientSecret: currentDevice.deviceTokens && currentDevice.deviceTokens.clientSecret,

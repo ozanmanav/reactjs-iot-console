@@ -12,6 +12,7 @@ import { ClipLoader } from 'react-spinners';
 import { FormCaption } from '../FormsUI';
 import { ConfirmModal } from '../../modals';
 import './DeviceSettingsForm.scss';
+import isNil from 'ramda/es/isNil';
 
 const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = ({ ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
@@ -24,9 +25,12 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
                 <Input
                     placeholder="Device Token"
                     name="deviceToken"
+                    showCopyIcon={!isNil(values.deviceToken)}
+                    copyText="Device Token copied to clipboard!"
+                    disabled={true}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    value={values.deviceToken}
+                    value={values.deviceToken || 'Device Token not found'}
                     error={errors && errors.deviceToken}
                     touched={touched && touched.deviceToken}
                 />
@@ -34,15 +38,32 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
                 <Input
                     placeholder="Client Secret"
                     name="clientSecret"
+                    showCopyIcon={!isNil(values.clientSecret)}
+                    copyText="Client Secret copied to clipboard!"
+                    disabled={true}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    value={values.clientSecret}
+                    value={values.clientSecret || 'Client Secret not found'}
                     error={errors && errors.clientSecret}
                     touched={touched && touched.clientSecret}
                 />
+                <FormCaption>Device Model</FormCaption>
+                <Input
+                    className="f-device-settings__form-input"
+                    placeholder="Device Model"
+                    name="model"
+                    showCopyIcon={!isNil(values.model)}
+                    copyText="Device Model copied to clipboard!"
+                    disabled={true}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.model}
+                    error={errors && errors.model}
+                    touched={touched && touched.model}
+                />
                 <FormCaption>Device Name</FormCaption>
                 <Input
-                    placeholder="Project Name"
+                    placeholder="Device Name"
                     name="name"
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -53,13 +74,24 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
                 <FormCaption>Device Description</FormCaption>
                 <Input
                     className="f-device-settings__form-input"
-                    placeholder="Project Description"
+                    placeholder="Device Description"
                     name="description"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.description}
                     error={errors && errors.description}
                     touched={touched && touched.description}
+                />
+                <FormCaption>Device Location</FormCaption>
+                <Input
+                    className="f-device-settings__form-input"
+                    placeholder="Device Location"
+                    name="location"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.location}
+                    error={errors && errors.location}
+                    touched={touched && touched.location}
                 />
                 {loading ? (
                     <div className="f-device-settings__form-loader">
