@@ -21,6 +21,12 @@ import {
     GET_DEVICE_ACTIVITIES,
     GET_DEVICE_ACTIVITIES_SUCCESS,
     GET_DEVICE_ACTIVITIES_FAILURE,
+    GET_DEVICE_SETTINGS,
+    GET_DEVICE_SETTINGS_SUCCESS,
+    GET_DEVICE_SETTINGS_FAILURE,
+    GET_DEVICE_TOKENS,
+    GET_DEVICE_TOKENS_SUCCESS,
+    GET_DEVICE_TOKENS_FAILURE,
 } from './types';
 
 export function getProjects() {
@@ -181,6 +187,46 @@ export function getDeviceActivitiesSuccess(projects: ProjectState) {
 export function getDeviceActivitiesFailure(projects: ProjectState) {
     return {
         type: GET_DEVICE_ACTIVITIES_FAILURE,
+        payload: projects,
+    };
+}
+
+export function getDeviceSettings() {
+    return {
+        type: GET_DEVICE_SETTINGS,
+    };
+}
+
+export function getDeviceSettingsSuccess(projects: ProjectState) {
+    return {
+        type: GET_DEVICE_SETTINGS_SUCCESS,
+        payload: projects,
+    };
+}
+
+export function getDeviceSettingsFailure(projects: ProjectState) {
+    return {
+        type: GET_DEVICE_SETTINGS_FAILURE,
+        payload: projects,
+    };
+}
+
+export function getDeviceTokens() {
+    return {
+        type: GET_DEVICE_TOKENS,
+    };
+}
+
+export function getDeviceTokensSuccess(projects: ProjectState) {
+    return {
+        type: GET_DEVICE_TOKENS_SUCCESS,
+        payload: projects,
+    };
+}
+
+export function getDeviceTokensFailure(projects: ProjectState) {
+    return {
+        type: GET_DEVICE_TOKENS_FAILURE,
         payload: projects,
     };
 }

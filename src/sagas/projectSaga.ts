@@ -15,8 +15,11 @@ import {
     getDeviceByIdFailure,
     getDeviceActivitiesSuccess,
     getDeviceActivitiesFailure,
+    getDeviceTokensSuccess,
+    getDeviceTokensFailure,
+    getDeviceTokens,
 } from '../store/project/actions';
-import { ProjectState } from '../store/project/types';
+import { ProjectState, IDevice } from '../store/project/types';
 
 function fetchProjects() {
     return getRequest('/user/projects')
@@ -108,7 +111,7 @@ export function* requestGetDeviceById(data: any) {
         let currentProject = yield select((state) => state.project.currentProject);
 
         if (currentProject && data.payload) {
-            const deviceResponse = yield call(fetchDeviceById, currentProject.id, data.payload);
+            let deviceResponse = yield call(fetchDeviceById, currentProject.id, data.payload);
 
             const successDeviceResponse: ProjectState = { currentDevice: deviceResponse.data.Device };
 
@@ -213,5 +216,41 @@ export function* requestGetDeviceActivities() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getDeviceActivitiesFailure(errorSession));
+    }
+}
+
+function fetchDeviceTokens(projectId: string, deviceId: string) {
+    return getRequest(`user/projects/${projectId}/devices/${deviceId}/retrievetokens`)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestGetDeviceTokens() {
+    try {
+        let currentProject = yield select((state) => state.project.currentProject);
+        let currentDevice: IDevice = yield select((state) => state.project.currentDevice);
+
+        if (currentProject && currentDevice) {
+            const deviceTokensResponse = yield call(fetchDeviceTokens, currentProject.id, currentDevice.id);
+
+            currentDevice.deviceTokens = {
+                apiToken: deviceTokensResponse.data.ApiToken,
+                clientSecret: deviceTokensResponse.data.ClientSecret,
+            };
+
+            const successDeviceTokensResponse: ProjectState = { currentDevice };
+
+            yield put(getDeviceTokensSuccess(successDeviceTokensResponse));
+        } else {
+            const errorSession: ProjectState = { error: 'Not current project or device selected' };
+            yield put(getDeviceTokensFailure(errorSession));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(getDeviceTokensFailure(errorSession));
     }
 }

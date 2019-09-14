@@ -23,6 +23,12 @@ import {
     GET_DEVICE_ACTIVITIES,
     GET_DEVICE_ACTIVITIES_SUCCESS,
     GET_DEVICE_ACTIVITIES_FAILURE,
+    GET_DEVICE_SETTINGS,
+    GET_DEVICE_SETTINGS_SUCCESS,
+    GET_DEVICE_SETTINGS_FAILURE,
+    GET_DEVICE_TOKENS,
+    GET_DEVICE_TOKENS_SUCCESS,
+    GET_DEVICE_TOKENS_FAILURE,
 } from './types';
 
 export const ProjectInitialState: ProjectState = {
@@ -34,6 +40,7 @@ export const ProjectInitialState: ProjectState = {
         triggers: false,
         activities: false,
         deviceActivities: false,
+        deviceTokens: false,
     },
     projects: [],
     devices: [],
@@ -244,6 +251,64 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                     deviceActivities: false,
                 },
                 deviceActivities: [],
+            };
+        }
+        case GET_DEVICE_SETTINGS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceActivities: true,
+                },
+                deviceActivities: [],
+            };
+        }
+        case GET_DEVICE_SETTINGS_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceActivities: false,
+                },
+                ...action.payload,
+            };
+        }
+        case GET_DEVICE_SETTINGS_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceActivities: false,
+                },
+                deviceActivities: [],
+            };
+        }
+        case GET_DEVICE_TOKENS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceTokens: true,
+                },
+            };
+        }
+        case GET_DEVICE_TOKENS_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceTokens: false,
+                },
+                currentDevice: action.payload.currentDevice,
+            };
+        }
+        case GET_DEVICE_TOKENS_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    deviceTokens: false,
+                },
             };
         }
 

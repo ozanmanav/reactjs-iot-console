@@ -15,6 +15,12 @@ export interface IProjectLoadingState {
     triggers?: boolean;
     activities?: boolean;
     deviceActivities?: boolean;
+    deviceTokens?: boolean;
+}
+
+export interface IDeviceToken {
+    apiToken: string;
+    clientSecret: string;
 }
 
 export interface IDevice {
@@ -26,6 +32,7 @@ export interface IDevice {
     deviceDescription: string;
     deviceStatus: string;
     deviceLastSeen: string;
+    deviceTokens: IDeviceToken;
 }
 
 interface ITriggerThresholds {
@@ -90,6 +97,12 @@ export const GET_ACTIVITIES_FAILURE = 'GET_ACTIVITIES_FAILURE';
 export const GET_DEVICE_ACTIVITIES = 'GET_DEVICE_ACTIVITIES';
 export const GET_DEVICE_ACTIVITIES_SUCCESS = 'GET_DEVICE_ACTIVITIES_SUCCESS';
 export const GET_DEVICE_ACTIVITIES_FAILURE = 'GET_DEVICE_ACTIVITIES_FAILURE';
+export const GET_DEVICE_SETTINGS = 'GET_DEVICE_SETTINGS';
+export const GET_DEVICE_SETTINGS_SUCCESS = 'GET_DEVICE_SETTINGS_SUCCESS';
+export const GET_DEVICE_SETTINGS_FAILURE = 'GET_DEVICE_SETTINGS_FAILURE';
+export const GET_DEVICE_TOKENS = 'GET_DEVICE_TOKENS';
+export const GET_DEVICE_TOKENS_SUCCESS = 'GET_DEVICE_TOKENS_SUCCESS';
+export const GET_DEVICE_TOKENS_FAILURE = 'GET_DEVICE_TOKENS_FAILURE';
 
 interface GetProjectsAction {
     type: typeof GET_PROJECTS;
@@ -196,6 +209,36 @@ interface GetDeviceActivitiesFailureAction {
     payload: ProjectState;
 }
 
+interface GetDeviceSettingsAction {
+    type: typeof GET_DEVICE_SETTINGS;
+    payload: ProjectState;
+}
+
+interface GetDeviceSettingsSuccessAction {
+    type: typeof GET_DEVICE_SETTINGS_SUCCESS;
+    payload: ProjectState;
+}
+
+interface GetDeviceSettingsFailureAction {
+    type: typeof GET_DEVICE_SETTINGS_FAILURE;
+    payload: ProjectState;
+}
+
+interface GetDeviceTokensAction {
+    type: typeof GET_DEVICE_TOKENS;
+    payload: ProjectState;
+}
+
+interface GetDeviceTokensSuccessAction {
+    type: typeof GET_DEVICE_TOKENS_SUCCESS;
+    payload: ProjectState;
+}
+
+interface GetDeviceTokensFailureAction {
+    type: typeof GET_DEVICE_TOKENS_FAILURE;
+    payload: ProjectState;
+}
+
 export type ProjectActionTypes =
     | GetProjectsAction
     | GetProjectsSuccessAction
@@ -217,4 +260,10 @@ export type ProjectActionTypes =
     | GetDeviceByIdFailureAction
     | GetDeviceActivitiesAction
     | GetDeviceActivitiesSuccessAction
-    | GetDeviceActivitiesFailureAction;
+    | GetDeviceActivitiesFailureAction
+    | GetDeviceSettingsAction
+    | GetDeviceSettingsSuccessAction
+    | GetDeviceSettingsFailureAction
+    | GetDeviceTokensAction
+    | GetDeviceTokensSuccessAction
+    | GetDeviceTokensFailureAction;

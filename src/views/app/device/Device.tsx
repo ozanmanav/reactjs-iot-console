@@ -3,13 +3,14 @@ import './Device.scss';
 import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
-import { getDeviceById } from '../../../store/project/actions';
+import { getDeviceById, getDeviceTokens } from '../../../store/project/actions';
 import { ProjectState } from '../../../store/project/types';
 import { Loading } from '../../../components/ui/loading';
 import { DeviceInfo } from './DeviceInfo';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BreadcrumbsAdv from '../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 import { DeviceActivities } from './DeviceActivities';
+import { DeviceSettings } from './DeviceSettings';
 
 interface DetailsBaseProps extends RouteComponentProps {
     getDeviceById: typeof getDeviceById;
@@ -52,7 +53,9 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
                     <DeviceActivities />
                 </TabPanel>
                 <TabPanel>Archive</TabPanel>
-                <TabPanel>Settings</TabPanel>
+                <TabPanel>
+                    <DeviceSettings />
+                </TabPanel>
             </Tabs>
         </div>
     ) : null;
