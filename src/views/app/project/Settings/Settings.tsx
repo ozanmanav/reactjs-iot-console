@@ -1,19 +1,20 @@
 import React, { FunctionComponent } from 'react';
 import './Settings.scss';
-import { getSettings } from '../../../../store/project/actions';
+import { saveProjectSettings } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
 import { IProjectLoadingState, ITriggerResponse, IProject } from '../../../../store/project/types';
 import { ProjectSettingsForm } from '../../../../components/forms';
 import { IProjectSettingsFormDefaultState } from '../../../../components/forms/ProjectSettingsForm/definitions';
 interface SettingsBaseProps {
-    getSettings: typeof getSettings;
+    saveProjectSettings: (newSettings: IProjectSettingsFormDefaultState) => void;
     settings?: ITriggerResponse;
     loading?: IProjectLoadingState;
+    currentProject?: IProject;
     router?: any;
 }
 
-export const SettingsBase: FunctionComponent<SettingsBaseProps & { currentProject?: IProject }> = ({ currentProject, loading }) => {
+export const SettingsBase: FunctionComponent<SettingsBaseProps> = ({ currentProject, loading, saveProjectSettings }) => {
     if (!currentProject) {
         return null;
     }
@@ -25,7 +26,7 @@ export const SettingsBase: FunctionComponent<SettingsBaseProps & { currentProjec
     };
     return (
         <div className="project-settings">
-            <ProjectSettingsForm onSubmit={(values) => console.log(values)} initialValues={initialValues} />
+            <ProjectSettingsForm onSubmit={saveProjectSettings} initialValues={initialValues} />
         </div>
     );
 };
@@ -37,5 +38,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const Settings = connect(
     mapStateToProps,
-    { getSettings }
+    { saveProjectSettings }
 )(SettingsBase);

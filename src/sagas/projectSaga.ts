@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-import { getRequest } from '../utils/dataHelper';
+import { getRequest, putRequest } from '../utils/dataHelper';
 import {
     getProjectsSuccess,
     getProjectsFailure,
@@ -17,8 +17,13 @@ import {
     getDeviceActivitiesFailure,
     getDeviceTokensSuccess,
     getDeviceTokensFailure,
+    saveProjectSettingsSuccess,
+    saveProjectSettingsFailure,
+    getProjects,
 } from '../store/project/actions';
 import { ProjectState, IDevice } from '../store/project/types';
+import { IProjectSettingsFormDefaultState } from '../components/forms/ProjectSettingsForm/definitions';
+import { showSuccessToast } from '../components/ui';
 
 function fetchProjects() {
     return getRequest('/user/projects')
@@ -251,5 +256,42 @@ export function* requestGetDeviceTokens() {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getDeviceTokensFailure(errorSession));
+    }
+}
+
+function putProjectSettings(projectId: string, newSettings: IProjectSettingsFormDefaultState) {
+    return putRequest(`user/projects/${projectId}`, {}, newSettings)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestSaveProjectSettings(data: any) {
+    try {
+        let currentProject = yield select((state) => state.project.currentProject);
+
+        if (currentProject) {
+            const saveSettingsResponse = yield call(putProjectSettings, currentProject.id, data.payload);
+
+            if (saveSettingsResponse.data.Message === 'Update successful') {
+                const successSaveProjectSettingsResponse: ProjectState = {
+                    currentProject: { ...currentProject, projectDescription: data.payload.description, projectName: data.payload.name },
+                };
+                showSuccessToast('Project settings successfully saved');
+                yield put(saveProjectSettingsSuccess(successSaveProjectSettingsResponse));
+                yield put(getProjects());
+            } else {
+                yield put(saveProjectSettingsFailure({ error: saveSettingsResponse.data }));
+            }
+        } else {
+            const errorSession: ProjectState = { error: 'Not current project selected' };
+            yield put(saveProjectSettingsFailure(errorSession));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(saveProjectSettingsFailure(errorSession));
     }
 }

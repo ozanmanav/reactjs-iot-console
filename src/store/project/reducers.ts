@@ -29,6 +29,9 @@ import {
     GET_DEVICE_TOKENS,
     GET_DEVICE_TOKENS_SUCCESS,
     GET_DEVICE_TOKENS_FAILURE,
+    SAVE_PROJECT_SETTINGS,
+    SAVE_PROJECT_SETTINGS_SUCCESS,
+    SAVE_PROJECT_SETTINGS_FAILURE,
 } from './types';
 
 export const ProjectInitialState: ProjectState = {
@@ -41,6 +44,7 @@ export const ProjectInitialState: ProjectState = {
         activities: false,
         deviceActivities: false,
         deviceTokens: false,
+        saveProjectSettings: false,
     },
     projects: [],
     devices: [],
@@ -308,6 +312,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 loading: {
                     ...state.loading,
                     deviceTokens: false,
+                },
+            };
+        }
+        case SAVE_PROJECT_SETTINGS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    saveProjectSettings: true,
+                },
+            };
+        }
+        case SAVE_PROJECT_SETTINGS_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    saveProjectSettings: false,
+                },
+                ...action.payload,
+            };
+        }
+        case SAVE_PROJECT_SETTINGS_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    saveProjectSettings: false,
                 },
             };
         }

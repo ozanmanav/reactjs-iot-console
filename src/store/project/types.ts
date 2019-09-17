@@ -16,6 +16,7 @@ export interface IProjectLoadingState {
     activities?: boolean;
     deviceActivities?: boolean;
     deviceTokens?: boolean;
+    saveProjectSettings?: boolean;
 }
 
 export interface IDeviceToken {
@@ -103,6 +104,9 @@ export const GET_DEVICE_SETTINGS_FAILURE = 'GET_DEVICE_SETTINGS_FAILURE';
 export const GET_DEVICE_TOKENS = 'GET_DEVICE_TOKENS';
 export const GET_DEVICE_TOKENS_SUCCESS = 'GET_DEVICE_TOKENS_SUCCESS';
 export const GET_DEVICE_TOKENS_FAILURE = 'GET_DEVICE_TOKENS_FAILURE';
+export const SAVE_PROJECT_SETTINGS = 'SAVE_PROJECT_SETTINGS';
+export const SAVE_PROJECT_SETTINGS_SUCCESS = 'SAVE_PROJECT_SETTINGS_SUCCESS';
+export const SAVE_PROJECT_SETTINGS_FAILURE = 'SAVE_PROJECT_SETTINGS_FAILURE';
 
 interface GetProjectsAction {
     type: typeof GET_PROJECTS;
@@ -239,6 +243,21 @@ interface GetDeviceTokensFailureAction {
     payload: ProjectState;
 }
 
+interface SaveProjectSettingsAction {
+    type: typeof SAVE_PROJECT_SETTINGS;
+    payload: ProjectState;
+}
+
+interface SaveProjectSettingsSuccessAction {
+    type: typeof SAVE_PROJECT_SETTINGS_SUCCESS;
+    payload: ProjectState;
+}
+
+interface SaveProjectSettingsFailureAction {
+    type: typeof SAVE_PROJECT_SETTINGS_FAILURE;
+    payload: ProjectState;
+}
+
 export type ProjectActionTypes =
     | GetProjectsAction
     | GetProjectsSuccessAction
@@ -266,4 +285,7 @@ export type ProjectActionTypes =
     | GetDeviceSettingsFailureAction
     | GetDeviceTokensAction
     | GetDeviceTokensSuccessAction
-    | GetDeviceTokensFailureAction;
+    | GetDeviceTokensFailureAction
+    | SaveProjectSettingsAction
+    | SaveProjectSettingsSuccessAction
+    | SaveProjectSettingsFailureAction;
