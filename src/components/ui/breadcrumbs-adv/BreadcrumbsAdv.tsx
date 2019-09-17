@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { NavLink, Route } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import './BreadcrumbsAdv.scss';
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';

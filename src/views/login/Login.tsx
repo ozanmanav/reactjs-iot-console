@@ -18,7 +18,7 @@ const LoginBase: FunctionComponent<LoginBaseProps> = ({ userLogin, auth }) => {
             <LoginForm
                 loading={auth.loading && auth.loading.login}
                 onSubmit={({ email, password }) => userLogin({ email, password })}
-                initialValues={{ email: 'beray@feynlab.io', password: '123456' }}
+                initialValues={{ email: 'jcamel@gmail.com', password: '123456' }}
             />
             <p className="b-login__copyright _text-grey h6">{COPYRIGHT_TEXT}</p>
         </main>

@@ -1,16 +1,12 @@
 import React, { FunctionComponent } from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { COPYRIGHT_TEXT } from '../config';
-import { Dashboard } from './dashboard';
 import { Sidebar } from '../../components/sidebar';
-import { Project } from './project/Project';
 import './Application.scss';
-import { CreateProject } from './project/CreateProject';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { UIState } from '../../store/ui/types';
-import { Device } from './device/Device';
 import { ProjectMain } from './project/ProjectMain';
 
 interface ApplicationBaseProps {

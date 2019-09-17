@@ -3,7 +3,7 @@ import './DeviceSettings.scss';
 import { getDeviceSettings } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
-import { IProjectLoadingState, ITriggerResponse, IProject, IDevice } from '../../../../store/project/types';
+import { IProjectLoadingState, ITriggerResponse, IDevice } from '../../../../store/project/types';
 import { DeviceSettingsForm } from '../../../../components/forms';
 import { IDeviceSettingsFormDefaultState } from '../../../../components/forms/DeviceSettingsForm/definitions';
 

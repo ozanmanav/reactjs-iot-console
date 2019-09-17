@@ -40,16 +40,14 @@
 
             &__card {
                 margin-top: 10px;
-                margin-bottom: 10px;
                 color: #4a4a4a;
-                padding: 15px;
-                padding-top: 6px;
+                padding: 20px;
                 border-radius: 6px;
                 box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
                 border: solid 1px #d8d8d8;
                 background-color: #ffffff;
-                height: 50px;
-                max-width: 560px;
+                height: 80px;
+
                 align-items: center;
                 &-title {
                     font-size: 14px;

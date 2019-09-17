@@ -3,7 +3,7 @@ import './Device.scss';
 import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
-import { getDeviceById, getDeviceTokens } from '../../../store/project/actions';
+import { getDeviceById } from '../../../store/project/actions';
 import { ProjectState } from '../../../store/project/types';
 import { Loading } from '../../../components/ui/loading';
 import { DeviceInfo } from './DeviceInfo';

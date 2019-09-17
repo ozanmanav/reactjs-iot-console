@@ -38,7 +38,7 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
                 <Input
                     placeholder="Client Secret"
                     name="clientSecret"
-                    showCopyIcon={!isNil(values.clientSecret)}
+                    showCopyIcon={true}
                     copyText="Client Secret copied to clipboard!"
                     disabled={true}
                     onBlur={handleBlur}
@@ -52,8 +52,6 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
                     className="f-device-settings__form-input"
                     placeholder="Device Model"
                     name="model"
-                    showCopyIcon={!isNil(values.model)}
-                    copyText="Device Model copied to clipboard!"
                     disabled={true}
                     onBlur={handleBlur}
                     onChange={handleChange}

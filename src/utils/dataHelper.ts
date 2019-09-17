@@ -26,3 +26,29 @@ export function getRequest(url: any, params = {}) {
         });
     });
 }
+
+export function postRequest(url: any, params = {}, data: {}) {
+    const baseURL = BASE_URL || '';
+    return new Promise((resolve, reject) => {
+        auth.onAuthStateChanged().then((user: any) => {
+            return user
+                .getIdToken(false)
+                .then((token: string) => {
+                    console.log('post token', token);
+                    axios({
+                        method: 'POST',
+                        headers: { Authorization: `Bearer ${token}` },
+                        baseURL,
+                        url,
+                        params,
+                        data,
+                    })
+                        .then((result) => resolve(result))
+                        .catch((error) => reject(error.response.data));
+                })
+                .catch((error: any) => {
+                    reject(error);
+                });
+        });
+    });
+}

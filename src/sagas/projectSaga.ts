@@ -17,7 +17,6 @@ import {
     getDeviceActivitiesFailure,
     getDeviceTokensSuccess,
     getDeviceTokensFailure,
-    getDeviceTokens,
 } from '../store/project/actions';
 import { ProjectState, IDevice } from '../store/project/types';
 
