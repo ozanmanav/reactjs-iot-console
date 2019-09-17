@@ -85,7 +85,6 @@ const LandingHeaderBase: FunctionComponent<LandingHeaderBaseProps> = ({ auth }) 
             <nav className="flex align-center b-header__main-nav">
                 <HeaderLogo to="/app/dashboard" />
             </nav>
-            <Loading loading={auth && auth.loading && auth.loading.checkUser} />
             {auth && auth.loggedIn ? <UserNav /> : <AuthNav />}
         </header>
     );
