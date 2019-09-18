@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import DashboardIcon from '../../icons/dashboard-icon.svg';
 import DashboardIconDeactive from '../../icons/dashboard-icon-deactive.svg';
+import SupportIcon from '../../icons/support-icon.svg';
 import SidebarHeader from './SidebarHeader';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
@@ -40,18 +41,42 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
                 >
                     <LeftNavHeader text={'Documentation'} image={SupportIcon} activeItem={activeItem} />
                 </a> */}
-                {/* <NavLink to={'/support'}>
-                    <SidebarHeader text={'Forums'} image={SupportIcon} deactiveImage={SupportIcon} active={checkActiveItem('support')} />
+                <NavLink to={'/support'}>
+                    <SidebarHeader
+                        text={'Forums'}
+                        onlyText={true}
+                        image={SupportIcon}
+                        deactiveImage={SupportIcon}
+                        active={checkActiveItem('support')}
+                    />
                 </NavLink>
                 <NavLink to={'/support'}>
-                    <SidebarHeader text={'Feedback'} image={SupportIcon} deactiveImage={SupportIcon} active={checkActiveItem('feedback')} />
+                    <SidebarHeader
+                        text={'Feedback'}
+                        onlyText={true}
+                        image={SupportIcon}
+                        deactiveImage={SupportIcon}
+                        active={checkActiveItem('feedback')}
+                    />
                 </NavLink>
                 <NavLink to={'/support'}>
-                    <SidebarHeader text={'Blog'} image={SupportIcon} deactiveImage={SupportIcon} active={checkActiveItem('blog')} />
+                    <SidebarHeader
+                        text={'Blog'}
+                        onlyText={true}
+                        image={SupportIcon}
+                        deactiveImage={SupportIcon}
+                        active={checkActiveItem('blog')}
+                    />
                 </NavLink>
                 <NavLink to={'/support'}>
-                    <SidebarHeader text={'Support'} image={SupportIcon} deactiveImage={SupportIcon} active={checkActiveItem('support')} />
-                </NavLink> */}
+                    <SidebarHeader
+                        text={'Support'}
+                        onlyText={true}
+                        image={SupportIcon}
+                        deactiveImage={SupportIcon}
+                        active={checkActiveItem('support')}
+                    />
+                </NavLink>
                 {/* <div className={styles['narrow-button']}>
                     <SidebarHeader text={'Narrow'} image={NarrowIcon} activeItem={activeItem} />
                 </div> */}
