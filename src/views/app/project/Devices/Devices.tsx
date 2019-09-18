@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
 import { IDevice, IProjectLoadingState, IProject } from '../../../../store/project/types';
 import { DeviceCard } from '../../../../components/ui/cards';
-import AddDeviceIcon from '../../../../icons/plus-feynlab.png';
 import { NavLink } from 'react-router-dom';
+import { Button } from '../../../../components/ui';
 
 interface DevicesBaseProps {
     getDevices: typeof getDevices;
@@ -24,12 +24,10 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
     return (
         <div className="b-project-devices-details">
             <div className="b-project-devices-details__info">
-                <div className="b-project-devices-details__title">
-                    Showing devices under {currentProject && currentProject.projectName}{' '}
-                </div>
                 <div className="b-project-devices-details__add-device">
-                    <img src={AddDeviceIcon} alt="logo" className="b-project-devices-details__add-device_icon" />
-                    <span>Add Device</span>
+                    <NavLink to={`/app/projects/${currentProject && currentProject.id}/add-device`}>
+                        <Button text="Add Device" primary className="b-project-devices-details__add-device-action" type="submit" />
+                    </NavLink>
                 </div>
             </div>
             <div className="container b-project-devices-details__devices">

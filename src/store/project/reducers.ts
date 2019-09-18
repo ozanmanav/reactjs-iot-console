@@ -32,6 +32,15 @@ import {
     SAVE_PROJECT_SETTINGS,
     SAVE_PROJECT_SETTINGS_SUCCESS,
     SAVE_PROJECT_SETTINGS_FAILURE,
+    GET_DEVICE_BRANDS,
+    GET_DEVICE_BRANDS_SUCCESS,
+    GET_DEVICE_BRANDS_FAILURE,
+    ADD_DEVICE,
+    ADD_DEVICE_SUCCESS,
+    ADD_DEVICE_FAILURE,
+    GET_DEVICE_MODELS,
+    GET_DEVICE_MODELS_SUCCESS,
+    GET_DEVICE_MODELS_FAILURE,
 } from './types';
 
 export const ProjectInitialState: ProjectState = {
@@ -45,6 +54,7 @@ export const ProjectInitialState: ProjectState = {
         deviceActivities: false,
         deviceTokens: false,
         saveProjectSettings: false,
+        brands: false,
     },
     projects: [],
     devices: [],
@@ -343,7 +353,87 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 },
             };
         }
-
+        case GET_DEVICE_BRANDS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    brands: true,
+                },
+            };
+        }
+        case GET_DEVICE_BRANDS_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    brands: false,
+                },
+                ...action.payload,
+            };
+        }
+        case GET_DEVICE_BRANDS_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    brands: false,
+                },
+            };
+        }
+        case ADD_DEVICE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    addDevice: true,
+                },
+            };
+        }
+        case ADD_DEVICE_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    addDevice: false,
+                },
+                ...action.payload,
+            };
+        }
+        case ADD_DEVICE_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    addDevice: false,
+                },
+            };
+        }
+        case GET_DEVICE_MODELS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                },
+            };
+        }
+        case GET_DEVICE_MODELS_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                },
+                ...action.payload,
+            };
+        }
+        case GET_DEVICE_MODELS_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                },
+            };
+        }
         default:
             return state;
     }

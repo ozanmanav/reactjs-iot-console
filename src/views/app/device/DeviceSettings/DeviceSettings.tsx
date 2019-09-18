@@ -26,8 +26,8 @@ export const DeviceSettingsBase: FunctionComponent<DeviceSettingsBaseProps> = ({
         model: currentDevice.deviceModel,
         location: currentDevice.deviceLocation,
         description: currentDevice.deviceDescription,
-        deviceToken: currentDevice.deviceTokens && currentDevice.deviceTokens.apiToken,
-        clientSecret: currentDevice.deviceTokens && currentDevice.deviceTokens.clientSecret,
+        deviceToken: (currentDevice.deviceTokens && currentDevice.deviceTokens.apiToken) || '',
+        clientSecret: (currentDevice.deviceTokens && currentDevice.deviceTokens.clientSecret) || '',
     };
 
     return (

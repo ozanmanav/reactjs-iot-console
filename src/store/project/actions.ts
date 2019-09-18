@@ -1,6 +1,7 @@
 import * as types from './types';
 import { ProjectState } from './types';
 import { IProjectSettingsFormDefaultState } from '../../components/forms/ProjectSettingsForm/definitions';
+import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/definitions';
 
 export function getProjects() {
     return {
@@ -221,6 +222,68 @@ export function saveProjectSettingsSuccess(projects: ProjectState) {
 export function saveProjectSettingsFailure(projects: ProjectState) {
     return {
         type: types.SAVE_PROJECT_SETTINGS_FAILURE,
+        payload: projects,
+    };
+}
+
+export function getDeviceBrands() {
+    return {
+        type: types.GET_DEVICE_BRANDS,
+    };
+}
+
+export function getDeviceBrandsSuccess(projects: ProjectState) {
+    return {
+        type: types.GET_DEVICE_BRANDS_SUCCESS,
+        payload: projects,
+    };
+}
+
+export function getDeviceBrandsFailure(projects: ProjectState) {
+    return {
+        type: types.GET_DEVICE_BRANDS_FAILURE,
+        payload: projects,
+    };
+}
+
+export function addDevice(newDevice: IAddDeviceFormState) {
+    return {
+        type: types.ADD_DEVICE,
+        payload: newDevice,
+    };
+}
+
+export function addDeviceSuccess(projects: ProjectState) {
+    return {
+        type: types.ADD_DEVICE_SUCCESS,
+        payload: projects,
+    };
+}
+
+export function addDeviceFailure(projects: ProjectState) {
+    return {
+        type: types.ADD_DEVICE_FAILURE,
+        payload: projects,
+    };
+}
+
+export function getDeviceModels(brandId: string) {
+    return {
+        type: types.GET_DEVICE_MODELS,
+        payload: brandId,
+    };
+}
+
+export function getDeviceModelsSuccess(projects: ProjectState) {
+    return {
+        type: types.GET_DEVICE_MODELS_SUCCESS,
+        payload: projects,
+    };
+}
+
+export function getDeviceModelsFailure(projects: ProjectState) {
+    return {
+        type: types.GET_DEVICE_MODELS_FAILURE,
         payload: projects,
     };
 }

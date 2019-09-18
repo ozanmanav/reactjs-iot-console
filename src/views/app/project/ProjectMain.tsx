@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { CreateProject } from './CreateProject';
+import { AddDevice } from './AddDevice';
 import { Project } from './Project';
 import { Device } from '../device';
 
@@ -10,7 +11,9 @@ export const ProjectMain: FunctionComponent = () => {
             <Switch>
                 <Route path="/app/projects/create" component={CreateProject} />
                 <Route path="/app/projects/:projectId/devices/:deviceId" component={Device} />
+                <Route path="/app/projects/:id/add-device" component={AddDevice} />
                 <Route path="/app/projects/:id" component={Project} />
+
                 {/* <Route path="/app/object/add/simple" component={AddObjectSimple} />
                 <Route path="/app/object/add" component={AddObject} />
                 <Route path="/app/object/:objectID/organization/:organizationID" component={RemoveOrganization} />

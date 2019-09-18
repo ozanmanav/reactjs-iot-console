@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-import { getRequest, putRequest } from '../utils/dataHelper';
+import { getRequest, putRequest, postRequest } from '../utils/dataHelper';
 import {
     getProjectsSuccess,
     getProjectsFailure,
@@ -20,10 +20,19 @@ import {
     saveProjectSettingsSuccess,
     saveProjectSettingsFailure,
     getProjects,
+    getDeviceBrandsSuccess,
+    getDeviceBrandsFailure,
+    addDeviceSuccess,
+    addDeviceFailure,
+    getDevices,
+    getDeviceModelsSuccess,
+    getDeviceModelsFailure,
 } from '../store/project/actions';
-import { ProjectState, IDevice } from '../store/project/types';
+import { ProjectState, IDevice, AddDeviceAction } from '../store/project/types';
 import { IProjectSettingsFormDefaultState } from '../components/forms/ProjectSettingsForm/definitions';
 import { showSuccessToast } from '../components/ui';
+import { PROJECTS_FIRST_LOAD_KEY } from '../config';
+import { push } from 'connected-react-router';
 
 function fetchProjects() {
     return getRequest('/user/projects')
@@ -40,6 +49,15 @@ export function* requestGetProjects() {
         const projectsResponse = yield call(fetchProjects);
 
         const successProjectsResponse: ProjectState = { projects: projectsResponse.data.Projects };
+        console.log(localStorage.getItem(PROJECTS_FIRST_LOAD_KEY));
+        if (JSON.parse(localStorage.getItem(PROJECTS_FIRST_LOAD_KEY) || 'true')) {
+            console.log('first init projects');
+            localStorage.setItem(PROJECTS_FIRST_LOAD_KEY, JSON.stringify(false));
+            const firstProject = successProjectsResponse.projects && successProjectsResponse.projects[0];
+            if (firstProject) {
+                yield put(push(`/app/projects/${firstProject.id}`));
+            }
+        }
 
         yield put(getProjectsSuccess(successProjectsResponse));
     } catch (error) {
@@ -238,7 +256,7 @@ export function* requestGetDeviceTokens() {
         let currentProject = yield select((state) => state.project.currentProject);
         let currentDevice: IDevice = yield select((state) => state.project.currentDevice);
 
-        if (currentProject && currentDevice) {
+        if (currentProject && currentDevice && currentDevice.id) {
             const deviceTokensResponse = yield call(fetchDeviceTokens, currentProject.id, currentDevice.id);
 
             currentDevice.deviceTokens = {
@@ -293,5 +311,88 @@ export function* requestSaveProjectSettings(data: any) {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(saveProjectSettingsFailure(errorSession));
+    }
+}
+
+function fetchDeviceBrands() {
+    return getRequest(`brands`)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestGetDeviceBrands() {
+    try {
+        const deviceBrandsResponse = yield call(fetchDeviceBrands);
+
+        const successDeviceBrandsResponse: ProjectState = { deviceBrands: deviceBrandsResponse.data.Models };
+
+        yield put(getDeviceBrandsSuccess(successDeviceBrandsResponse));
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(getDeviceBrandsFailure(errorSession));
+    }
+}
+
+function postAddDevice(projectId: string, newDevice: any) {
+    delete newDevice.loading;
+    return postRequest(`user/projects/${projectId}/devices`, {}, newDevice)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestAddDevice(data: AddDeviceAction) {
+    try {
+        let currentProject = yield select((state) => state.project.currentProject);
+
+        if (currentProject) {
+            const addDeviceResponse = yield call(postAddDevice, currentProject.id, data.payload);
+
+            if (addDeviceResponse.data.Message === 'Added Device successful') {
+                const successAddDeviceResponse: ProjectState = {};
+                showSuccessToast('Device successfully added');
+                yield put(getDevices());
+                yield put(push(`/app/projects/${currentProject.id}`));
+                yield put(addDeviceSuccess(successAddDeviceResponse));
+            } else {
+                yield put(saveProjectSettingsFailure({ error: addDeviceResponse.data }));
+            }
+        } else {
+            const errorSession: ProjectState = { error: 'Not current project selected' };
+            yield put(addDeviceFailure(errorSession));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(addDeviceFailure(errorSession));
+    }
+}
+
+function fetchDeviceModels(brand: string) {
+    return getRequest(`deviceModels`, { brand })
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestGetDeviceModels(data: any) {
+    try {
+        const deviceModelsResponse = yield call(fetchDeviceModels, data.payload);
+
+        const successDeviceModelsResponse: ProjectState = { deviceModels: deviceModelsResponse.data.Models };
+
+        yield put(getDeviceModelsSuccess(successDeviceModelsResponse));
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(getDeviceModelsFailure(errorSession));
     }
 }

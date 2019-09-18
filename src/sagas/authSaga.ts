@@ -13,6 +13,7 @@ import {
 } from '../store/auth/actions';
 import { push } from 'react-router-redux';
 import { showErrorToast } from '../components/ui';
+import { PROJECTS_FIRST_LOAD_KEY } from '../config';
 
 export function* requestUserLogin(data: any) {
     try {
@@ -83,6 +84,7 @@ export function* checkUserAuth() {
 export function* requestUserLogout() {
     try {
         yield call(auth.doSignOut);
+        localStorage.setItem(PROJECTS_FIRST_LOAD_KEY, JSON.stringify(true));
         yield put(push('/login'));
     } catch (error) {
         yield put(push('/login'));

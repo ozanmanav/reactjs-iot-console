@@ -13,6 +13,9 @@ import {
     requestGetDeviceActivities,
     requestGetDeviceTokens,
     requestSaveProjectSettings,
+    requestGetDeviceBrands,
+    requestAddDevice,
+    requestGetDeviceModels,
 } from './projectSaga';
 import {
     GET_PROJECTS,
@@ -25,6 +28,9 @@ import {
     GET_DEVICE_TOKENS,
     GET_DEVICE_BY_ID_SUCCESS,
     SAVE_PROJECT_SETTINGS,
+    GET_DEVICE_BRANDS,
+    ADD_DEVICE,
+    GET_DEVICE_MODELS,
 } from '../store/project/types';
 import { SET_SIDEBAR_STATUS } from '../store/ui/types';
 import { requestSidebarOpen } from './uiSaga';
@@ -53,6 +59,9 @@ export const rootSaga = function* root() {
         takeLatest(GET_DEVICE_ACTIVITIES, requestGetDeviceActivities),
         takeLatest(GET_DEVICE_TOKENS, requestGetDeviceTokens),
         takeLatest(SAVE_PROJECT_SETTINGS, requestSaveProjectSettings),
+        takeLatest(GET_DEVICE_BRANDS, requestGetDeviceBrands),
+        takeLatest(ADD_DEVICE, requestAddDevice),
+        takeLatest(GET_DEVICE_MODELS, requestGetDeviceModels),
 
         // // UI
         takeLatest(SET_SIDEBAR_STATUS, requestSidebarOpen),

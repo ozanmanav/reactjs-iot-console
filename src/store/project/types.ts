@@ -17,6 +17,8 @@ export interface IProjectLoadingState {
     deviceActivities?: boolean;
     deviceTokens?: boolean;
     saveProjectSettings?: boolean;
+    brands?: boolean;
+    addDevice?: boolean;
 }
 
 export interface IDeviceToken {
@@ -25,15 +27,16 @@ export interface IDeviceToken {
 }
 
 export interface IDevice {
-    id: string;
+    id?: string;
     deviceModel: string;
+    deviceBrand?: string;
     deviceName: string;
     deviceLocation: string;
-    deviceImage: string;
+    deviceImage?: string;
     deviceDescription: string;
-    deviceStatus: string;
-    deviceLastSeen: string;
-    deviceTokens: IDeviceToken;
+    deviceStatus?: string;
+    deviceLastSeen?: string;
+    deviceTokens?: IDeviceToken;
 }
 
 interface ITriggerThresholds {
@@ -74,6 +77,8 @@ export interface ProjectState {
     deviceActivities?: IActivity[];
     currentProject?: IProject;
     currentDevice?: IDevice;
+    deviceBrands?: any;
+    deviceModels?: any;
     error?: string;
 }
 
@@ -107,6 +112,15 @@ export const GET_DEVICE_TOKENS_FAILURE = 'GET_DEVICE_TOKENS_FAILURE';
 export const SAVE_PROJECT_SETTINGS = 'SAVE_PROJECT_SETTINGS';
 export const SAVE_PROJECT_SETTINGS_SUCCESS = 'SAVE_PROJECT_SETTINGS_SUCCESS';
 export const SAVE_PROJECT_SETTINGS_FAILURE = 'SAVE_PROJECT_SETTINGS_FAILURE';
+export const GET_DEVICE_BRANDS = 'GET_DEVICE_BRANDS';
+export const GET_DEVICE_BRANDS_SUCCESS = 'GET_DEVICE_BRANDS_SUCCESS';
+export const GET_DEVICE_BRANDS_FAILURE = 'GET_DEVICE_BRANDS_FAILURE';
+export const ADD_DEVICE = 'ADD_DEVICE';
+export const ADD_DEVICE_SUCCESS = 'ADD_DEVICE_SUCCESS';
+export const ADD_DEVICE_FAILURE = 'ADD_DEVICE_FAILURE';
+export const GET_DEVICE_MODELS = 'GET_DEVICE_MODELS';
+export const GET_DEVICE_MODELS_SUCCESS = 'GET_DEVICE_MODELS_SUCCESS';
+export const GET_DEVICE_MODELS_FAILURE = 'GET_DEVICE_MODELS_FAILURE';
 
 interface GetProjectsAction {
     type: typeof GET_PROJECTS;
@@ -258,6 +272,50 @@ interface SaveProjectSettingsFailureAction {
     payload: ProjectState;
 }
 
+interface GetDeviceBrandsAction {
+    type: typeof GET_DEVICE_BRANDS;
+    payload: ProjectState;
+}
+
+interface GetDeviceBrandsSuccessAction {
+    type: typeof GET_DEVICE_BRANDS_SUCCESS;
+    payload: ProjectState;
+}
+
+interface GetDeviceBrandsFailureAction {
+    type: typeof GET_DEVICE_BRANDS_FAILURE;
+    payload: ProjectState;
+}
+export interface AddDeviceAction {
+    type: typeof ADD_DEVICE;
+    payload: ProjectState;
+}
+
+interface AddDeviceSuccessAction {
+    type: typeof ADD_DEVICE_SUCCESS;
+    payload: ProjectState;
+}
+
+interface AddDeviceFailureAction {
+    type: typeof ADD_DEVICE_FAILURE;
+    payload: ProjectState;
+}
+
+interface GetDeviceModelsAction {
+    type: typeof GET_DEVICE_MODELS;
+    payload: ProjectState;
+}
+
+interface GetDeviceModelsSuccessAction {
+    type: typeof GET_DEVICE_MODELS_SUCCESS;
+    payload: ProjectState;
+}
+
+interface GetDeviceModelsFailureAction {
+    type: typeof GET_DEVICE_MODELS_FAILURE;
+    payload: ProjectState;
+}
+
 export type ProjectActionTypes =
     | GetProjectsAction
     | GetProjectsSuccessAction
@@ -288,4 +346,13 @@ export type ProjectActionTypes =
     | GetDeviceTokensFailureAction
     | SaveProjectSettingsAction
     | SaveProjectSettingsSuccessAction
-    | SaveProjectSettingsFailureAction;
+    | SaveProjectSettingsFailureAction
+    | GetDeviceBrandsAction
+    | GetDeviceBrandsSuccessAction
+    | GetDeviceBrandsFailureAction
+    | AddDeviceAction
+    | AddDeviceSuccessAction
+    | AddDeviceFailureAction
+    | GetDeviceModelsAction
+    | GetDeviceModelsSuccessAction
+    | GetDeviceModelsFailureAction;

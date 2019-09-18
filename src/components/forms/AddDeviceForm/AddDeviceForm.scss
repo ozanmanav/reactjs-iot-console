@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
-.f-create-project__form {
+.f-add-device__form {
     @include shadow-small;
     background: $white;
     border-radius: $border-radius-normal;
