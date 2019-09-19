@@ -2,6 +2,9 @@ import { FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 import { ISelectOption } from '../../ui';
+import { ILocalAutocompleteOption } from '../../ui/inputs/autocomponents';
+import { IDropdownOption } from '../../../utils';
+import { IProjectLoadingState } from '../../../store/project/types';
 
 export const AddDeviceFormDefaultState = {
     deviceBrand: '',
@@ -22,16 +25,16 @@ export interface IAddDeviceFormState {
 }
 
 export interface IAddDeviceFormBaseProps extends FormikProps<IAddDeviceFormState> {
-    loading?: boolean;
+    loading?: IProjectLoadingState;
 }
 
 export interface IAddDeviceFormProps {
-    loading?: boolean;
+    loading?: IProjectLoadingState;
     onSubmit: (state: IAddDeviceFormState) => void;
-    brandsOptions?: ISelectOption[];
+    brandsOptions?: IDropdownOption[];
     initialValues?: IAddDeviceFormState;
     getDeviceModels?: (brand: string) => void;
-    modelsOptions?: ISelectOption[];
+    modelsOptions?: IDropdownOption[];
 }
 
 // Validation Schema

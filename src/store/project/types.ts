@@ -18,6 +18,7 @@ export interface IProjectLoadingState {
     deviceTokens?: boolean;
     saveProjectSettings?: boolean;
     brands?: boolean;
+    models?: boolean;
     addDevice?: boolean;
 }
 

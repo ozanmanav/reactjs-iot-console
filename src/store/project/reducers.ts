@@ -55,6 +55,7 @@ export const ProjectInitialState: ProjectState = {
         deviceTokens: false,
         saveProjectSettings: false,
         brands: false,
+        models: false,
     },
     projects: [],
     devices: [],
@@ -414,6 +415,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
+                    models: true,
                 },
             };
         }
@@ -422,6 +424,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
+                    models: false,
                 },
                 ...action.payload,
             };
@@ -431,6 +434,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
+                    models: false,
                 },
             };
         }

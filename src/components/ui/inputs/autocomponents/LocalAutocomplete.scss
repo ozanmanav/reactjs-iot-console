@@ -1,0 +1,57 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.b-autocomplete {
+    position: absolute;
+    top: $input-height;
+    left: 0;
+    width: 100%;
+    background-color: $white;
+    z-index: $autocomplete-dropdown-z-index;
+    border: 1px solid $light-grey;
+    border-top: 0;
+    border-bottom-left-radius: $border-radius-normal;
+    border-bottom-right-radius: $border-radius-normal;
+    padding: 6px 0;
+
+    &._top {
+        @include shadow-dropdown-options-top;
+
+        top: auto;
+        bottom: 100%;
+        overflow-y: auto;
+
+        border-top: 1px solid $light-grey;
+        border-bottom: none;
+        border-radius: $border-radius-normal $border-radius-normal 0 0;
+    }
+
+    &._small {
+        height: 200px;
+    }
+
+    &__wrapper {
+        @include input-margin-bottom;
+
+        position: relative;
+
+        &._opened {
+            .f-input {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+
+    &__item {
+        font-weight: 700;
+        font-size: $h5;
+        padding: 6px 20px;
+        display: block;
+        width: 100%;
+        text-align: left;
+        &._nothing {
+            font-weight: 400;
+        }
+    }
+}

@@ -7,10 +7,12 @@ import { AppState } from '../../../../store';
 import { connect } from 'react-redux';
 import { addDevice, getDeviceModels } from '../../../../store/project/actions';
 import { getDeviceBrandOptions, getDeviceModelOptions } from '../../../../utils';
+import { IProjectLoadingState } from '../../../../store/project/types';
 
 interface AddDeviceBaseProps {
     addDevice: typeof addDevice;
     getDeviceModels: typeof getDeviceModels;
+    projectLoading?: IProjectLoadingState;
     brands: [];
     models: [];
 }
@@ -20,6 +22,7 @@ export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBas
     models,
     addDevice,
     getDeviceModels,
+    projectLoading = undefined,
 }) => {
     return (
         <div className="b-add-device">
@@ -31,6 +34,7 @@ export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBas
                 onSubmit={addDevice}
                 brandsOptions={getDeviceBrandOptions(brands)}
                 modelsOptions={getDeviceModelOptions(models)}
+                loading={projectLoading || undefined}
                 getDeviceModels={(brand) => getDeviceModels(brand)}
             />
         </div>
@@ -40,6 +44,7 @@ export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBas
 const mapStateToProps = (state: AppState) => ({
     brands: state.project.deviceBrands,
     models: state.project.deviceModels,
+    projectLoading: state.project.loading,
 });
 
 export const AddDevice = connect(

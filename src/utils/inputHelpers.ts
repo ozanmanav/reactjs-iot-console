@@ -1,19 +1,31 @@
 import { ISelectOption } from '../components/ui/inputs';
+import { ILocalAutocompleteOption } from '../components/ui/inputs/autocomponents';
 
-export function getDeviceBrandOptions(brands: [] = []): ISelectOption[] {
+export interface IDropdownOption {
+    key: string;
+    value?: string;
+    text?: string;
+    image?: object;
+}
+
+export function getDeviceBrandOptions(brands: [] = []): IDropdownOption[] {
     return brands
-        ? brands.map(({ id, brand }: { id: string; brand: string }) => ({
+        ? brands.map(({ id, brand, image }) => ({
+              key: id,
               value: id,
-              label: brand,
+              text: brand,
+              image: { avatar: true, src: image },
           }))
         : [];
 }
 
-export function getDeviceModelOptions(models: [] = []): ISelectOption[] {
+export function getDeviceModelOptions(models: [] = []): IDropdownOption[] {
     return models
-        ? models.map(({ id, model }: { id: string; model: string }) => ({
+        ? models.map(({ id, model, image }) => ({
+              key: id,
               value: id,
-              label: model,
+              text: model,
+              image: image,
           }))
         : [];
 }

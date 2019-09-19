@@ -61,6 +61,7 @@
     "redux-saga": "^1.0.5",
     "redux-saga-firebase": "^0.15.0",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.88.1",
     "serve": "^11.1.0",
     "typescript": "3.5.3",
     "universal-cookie": "^4.0.2",
@@ -98,5 +99,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^5.5.0",
+    "@semantic-ui-react/craco-less": "^1.1.0",
+    "semantic-ui-less": "^2.4.1"
   }
 }

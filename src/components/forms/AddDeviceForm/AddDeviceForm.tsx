@@ -4,49 +4,66 @@ import { IAddDeviceFormBaseProps, AddDeviceFormDefaultState, AddDeviceFormValida
 import { Input, Select, ISelectOption } from '../../ui';
 import { Button } from '../../ui/buttons';
 import { ClipLoader } from 'react-spinners';
+import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import './AddDeviceForm.scss';
 import isEmpty from 'ramda/es/isEmpty';
 import isNil from 'ramda/es/isNil';
+import { LocalAutocomplete, ILocalAutocompleteOption } from '../../ui/inputs/autocomponents';
+import { IDropdownOption } from '../../../utils';
+import { FormCaption } from '../FormsUI';
 
 const AddDeviceFormBase: FunctionComponent<
     IAddDeviceFormBaseProps & {
-        brandsOptions?: ISelectOption[];
+        brandsOptions?: IDropdownOption[];
         getDeviceModels?: (brand: string) => void;
-        modelsOptions?: ISelectOption[];
+        modelsOptions?: IDropdownOption[];
     }
-> = ({ brandsOptions, modelsOptions, getDeviceModels, ...formikProps }) => {
+> = ({ brandsOptions = [], modelsOptions, getDeviceModels, ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading, setFieldValue } = formikProps;
 
-    const onChangeBrand = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const onChangeBrand = (e: React.SyntheticEvent<HTMLElement, Event>, data: DropdownProps) => {
+        setFieldValue('deviceModel', undefined);
+        const brand = (data.value && data.value.toString()) || '';
         if (getDeviceModels) {
-            getDeviceModels(e.target.value);
+            getDeviceModels(brand);
         }
-        setFieldValue('deviceBrand', e.target.value);
+        setFieldValue('deviceBrand', brand);
+    };
+
+    const onChangeModel = (e: React.SyntheticEvent<HTMLElement, Event>, data: DropdownProps) => {
+        const model = (data.value && data.value.toString()) || '';
+        setFieldValue('deviceModel', model);
     };
 
     return (
         <form className="f-add-device__form" onSubmit={handleSubmit}>
             <div className="f-add-device__form-content">
                 <h2 className="h1 f-add-device__form-title">Add Device</h2>
-                <Select
-                    options={brandsOptions || []}
-                    placeholder="Device Brand"
-                    value={values.deviceBrand}
+                <Dropdown
+                    placeholder="Select Brand"
+                    search
+                    selection
+                    clearable
+                    fluid
                     name="deviceBrand"
-                    onBlur={handleBlur}
+                    loading={loading && loading.brands}
+                    value={values.deviceBrand}
+                    options={brandsOptions || []}
+                    className={'f-add-device__form-dropdown'}
                     onChange={onChangeBrand}
-                    error={errors && errors.deviceBrand}
-                    touched={touched && touched.deviceBrand}
                 />
-                <Select
-                    options={modelsOptions || []}
-                    placeholder="Device Model"
-                    value={values.deviceModel}
+                <Dropdown
+                    placeholder="Select Model"
+                    search
+                    selection
+                    clearable
                     name="deviceModel"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    error={errors && errors.deviceModel}
-                    touched={touched && touched.deviceModel}
+                    disabled={loading && loading.models}
+                    loading={loading && loading.models}
+                    value={values.deviceModel}
+                    options={modelsOptions || []}
+                    className={'f-add-device__form-dropdown'}
+                    onChange={onChangeModel}
                 />
                 <Input
                     placeholder="Device Name"
@@ -76,9 +93,9 @@ const AddDeviceFormBase: FunctionComponent<
                     error={errors && errors.location}
                     touched={touched && touched.location}
                 />
-                {loading ? (
+                {loading && loading.addDevice ? (
                     <div className="f-add-device__form-loader">
-                        <ClipLoader sizeUnit={'px'} size={24} color={'#f68a4d'} loading={loading} />
+                        <ClipLoader sizeUnit={'px'} size={24} color={'#f68a4d'} />
                     </div>
                 ) : (
                     <Button text="Add Device" primary className="f-add-device__form-action" type="submit" />
