@@ -11,7 +11,9 @@ interface CreateProjectBaseProps {
     createProject: typeof createProject;
 }
 
-export const CreateProjectBase: FunctionComponent<RouteComponentProps & CreateProjectBaseProps> = ({ createProject }) => {
+export const CreateProjectBase: FunctionComponent<RouteComponentProps & CreateProjectBaseProps> = ({
+    createProject,
+}) => {
     return (
         <div className="b-create-project">
             <Breadcrumbs className="b-create-project__breadcrumbs" route={'Projects / '} present={'Create Project'} />
@@ -26,5 +28,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const CreateProject = connect(
     mapStateToProps,
-    { createProject }
+    { createProject },
 )(CreateProjectBase);

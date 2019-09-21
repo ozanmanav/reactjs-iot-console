@@ -1,4 +1,26 @@
 {
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "terminal.integrated.shell.osx": "/bin/bash",
+    "explorer.confirmDelete": false,
+    "files.autoSave": "afterDelay",
+    "git.enableSmartCommit": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.minimap.enabled": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false
+    },
     "eslint.autoFixOnSave": true,
     "eslint.validate": [
         "javascript",
@@ -13,16 +35,8 @@
         }
     ],
     "editor.formatOnSave": true,
-    "[javascript]": {
-        "editor.formatOnSave": false,
-    },
+
     "[javascriptreact]": {
-        "editor.formatOnSave": false,
-    },
-    "[typescript]": {
-        "editor.formatOnSave": false,
-    },
-    "[typescriptreact]": {
-        "editor.formatOnSave": false,
-    },
+        "editor.formatOnSave": false
+    }
 }

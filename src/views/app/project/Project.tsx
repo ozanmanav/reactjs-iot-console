@@ -35,7 +35,11 @@ const ProjectBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
 
     return project.currentProject ? (
         <div className="b-project-details">
-            <Breadcrumbs className="b-project-details__breadcrumbs" route={'Projects / '} present={project.currentProject.projectName} />
+            <Breadcrumbs
+                className="b-project-details__breadcrumbs"
+                route={'Projects / '}
+                present={project.currentProject.projectName}
+            />
             <ProjectInfo project={project.currentProject} />
             <Tabs className="b-project-details__tabs">
                 <TabList>
@@ -68,5 +72,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const Project = connect(
     mapStateToProps,
-    { getProjectById }
+    { getProjectById },
 )(ProjectBase);
