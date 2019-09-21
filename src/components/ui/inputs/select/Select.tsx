@@ -37,8 +37,8 @@ export const Select: FunctionComponent<ISelectProps> = ({ className, error, touc
                         '&:hover': { borderColor: '#f68a4d' },
                         height: '50px',
                         boxShadow: 'none',
-                        borderColor: error && touched ? 'red' : state.isFocused ? '#f68a4d' : '#dfe1eb',
-                    }),
+                        borderColor: error && touched ? 'red' : state.isFocused ? '#f68a4d' : '#dfe1eb'
+                    })
                 }}
             />
             {error && touched && <div className="f-select__error">{error}</div>}

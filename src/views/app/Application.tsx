@@ -40,7 +40,7 @@ export const ApplicationBase: FunctionComponent<ApplicationBaseProps> = ({ ui })
 };
 
 const mapStateToProps = (state: AppState) => ({
-    ui: state.ui,
+    ui: state.ui
 });
 
 export const Application = connect(

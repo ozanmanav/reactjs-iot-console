@@ -13,7 +13,7 @@ import { DeviceActivities } from './DeviceActivities';
 import { DeviceSettings } from './DeviceSettings';
 
 interface DetailsBaseProps extends RouteComponentProps {
-    getDeviceById: typeof getDeviceById;
+    getDeviceById?: typeof getDeviceById;
     project: ProjectState;
     router?: any;
 }
@@ -23,7 +23,7 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
     const deviceId = router.location.pathname.split('/')[5] || '';
 
     useEffect(() => {
-        if (projectId && deviceId) {
+        if (projectId && deviceId && getDeviceById) {
             getDeviceById(deviceId);
         }
     }, [projectId, deviceId, getDeviceById]);
@@ -61,9 +61,9 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
     ) : null;
 };
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: AppState): any => ({
     project: state.project,
-    router: state.router,
+    router: state.router
 });
 
 export const Device = connect(

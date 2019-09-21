@@ -1,10 +1,12 @@
 import { auth, googleAuth } from './firebase';
 
 // Sign Up
-export const doCreateUserWithEmailAndPassword = (email: string, password: string) => auth.createUserWithEmailAndPassword(email, password);
+export const doCreateUserWithEmailAndPassword = (email: string, password: string) =>
+    auth.createUserWithEmailAndPassword(email, password);
 
 // Sign In
-export const doSignInWithEmailAndPassword = (email: string, password: string) => auth.signInWithEmailAndPassword(email, password);
+export const doSignInWithEmailAndPassword = (email: string, password: string) =>
+    auth.signInWithEmailAndPassword(email, password);
 
 // Sign out
 export const doSignOut = () => auth.signOut();
@@ -29,7 +31,7 @@ export const getCurrentUser = () => {
 
 export function onAuthStateChanged() {
     return new Promise((resolve, reject) => {
-        auth.onAuthStateChanged((user) => {
+        auth.onAuthStateChanged(user => {
             if (user) {
                 resolve(user);
             } else {

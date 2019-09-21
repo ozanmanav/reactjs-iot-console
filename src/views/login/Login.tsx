@@ -26,7 +26,7 @@ const LoginBase: FunctionComponent<LoginBaseProps> = ({ userLogin, auth }) => {
 };
 
 const mapStateToProps = (state: AppState) => ({
-    auth: state.auth,
+    auth: state.auth
 });
 
 export const Login = connect(

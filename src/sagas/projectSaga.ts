@@ -11,7 +11,7 @@ export function* requestGetProjects() {
         const projectsResponse = yield call(getRequest, '/user/projects');
 
         const successProjectsResponse: ProjectState = {
-            projects: projectsResponse.data.Projects,
+            projects: projectsResponse.data.Projects
         };
 
         if (JSON.parse(localStorage.getItem(PROJECTS_FIRST_LOAD_KEY) || 'true')) {
@@ -37,8 +37,8 @@ export function* requestGetProjectById(data: any) {
 
         yield put(
             actions.getProjectByIdSuccess({
-                currentProject: projectResponse.data.ProjectDetail,
-            }),
+                currentProject: projectResponse.data.ProjectDetail
+            })
         );
     } catch (error) {
         yield put(actions.getProjectByIdFailure({ error }));
@@ -52,8 +52,8 @@ export function* requestGetDevices() {
         if (!currentProject || !currentProject.id) {
             return yield put(
                 actions.getDevicesFailure({
-                    error: 'Not current project selected',
-                }),
+                    error: 'Not current project selected'
+                })
             );
         }
 
@@ -61,8 +61,8 @@ export function* requestGetDevices() {
 
         yield put(
             actions.getDevicesSuccess({
-                devices: devicesResponse.data.Devices,
-            }),
+                devices: devicesResponse.data.Devices
+            })
         );
     } catch (error) {
         yield put(actions.getDevicesFailure({ error }));
@@ -74,15 +74,19 @@ export function* requestGetDeviceById(data: any) {
         let currentProject: IProject = yield select(state => state.project.currentProject);
 
         if (!currentProject || !data.payload) {
-            return yield put(actions.getDeviceByIdFailure({ error: 'Not current project or device selected' }));
+            return yield put(
+                actions.getDeviceByIdFailure({
+                    error: 'Not current project or device selected'
+                })
+            );
         }
 
         const deviceResponse = yield call(getRequest, `/user/projects/${currentProject.id}/devices/${data.payload}`);
 
         yield put(
             actions.getDeviceByIdSuccess({
-                currentDevice: deviceResponse.data.Device,
-            }),
+                currentDevice: deviceResponse.data.Device
+            })
         );
     } catch (error) {
         yield put(actions.getDeviceByIdFailure({ error }));
@@ -103,9 +107,9 @@ export function* requestGetTriggers() {
             actions.getTriggersSuccess({
                 triggers: {
                     alarm: triggersResponse.data.alarm,
-                    periodic: triggersResponse.data.periodic,
-                },
-            }),
+                    periodic: triggersResponse.data.periodic
+                }
+            })
         );
     } catch (error) {
         yield put(actions.getTriggersFailure({ error }));
@@ -119,8 +123,8 @@ export function* requestGetActivities() {
         if (!currentProject || !currentProject.id) {
             return yield put(
                 actions.getActivitiesFailure({
-                    error: 'Not current project selected',
-                }),
+                    error: 'Not current project selected'
+                })
             );
         }
 
@@ -128,8 +132,8 @@ export function* requestGetActivities() {
 
         yield put(
             actions.getActivitiesSuccess({
-                activities: activitiesResponse.data.Activities,
-            }),
+                activities: activitiesResponse.data.Activities
+            })
         );
     } catch (error) {
         yield put(actions.getActivitiesFailure({ error }));
@@ -144,18 +148,18 @@ export function* requestGetDeviceActivities() {
         if (!currentProject || !currentDevice) {
             return yield put(
                 actions.getDeviceActivitiesFailure({
-                    error: 'Not current project or device selected',
-                }),
+                    error: 'Not current project or device selected'
+                })
             );
         }
 
         const deviceActivitiesResponse = yield call(
             getRequest,
-            `user/projects/${currentProject.id}/device/${currentDevice.id}/activities`,
+            `user/projects/${currentProject.id}/device/${currentDevice.id}/activities`
         );
 
         const successDeviceActivitiesResponse: ProjectState = {
-            deviceActivities: deviceActivitiesResponse.data.Activities,
+            deviceActivities: deviceActivitiesResponse.data.Activities
         };
 
         yield put(actions.getDeviceActivitiesSuccess(successDeviceActivitiesResponse));
@@ -172,19 +176,19 @@ export function* requestGetDeviceTokens() {
         if (!currentProject || !currentDevice || !currentDevice.id) {
             return yield put(
                 actions.getDeviceTokensFailure({
-                    error: 'Not current project or device selected',
-                }),
+                    error: 'Not current project or device selected'
+                })
             );
         }
 
         const deviceTokensResponse = yield call(
             getRequest,
-            `user/projects/${currentProject.id}/devices/${currentDevice.id}/retrievetokens`,
+            `user/projects/${currentProject.id}/devices/${currentDevice.id}/retrievetokens`
         );
 
         currentDevice.deviceTokens = {
             apiToken: deviceTokensResponse.data.ApiToken,
-            clientSecret: deviceTokensResponse.data.ClientSecret,
+            clientSecret: deviceTokensResponse.data.ClientSecret
         };
 
         yield put(actions.getDeviceTokensSuccess({ currentDevice }));
@@ -200,8 +204,8 @@ export function* requestSaveProjectSettings(data: any) {
         if (!currentProject) {
             return yield put(
                 actions.saveProjectSettingsFailure({
-                    error: 'Not current project selected',
-                }),
+                    error: 'Not current project selected'
+                })
             );
         }
 
@@ -212,8 +216,8 @@ export function* requestSaveProjectSettings(data: any) {
                 currentProject: {
                     ...currentProject,
                     projectDescription: data.payload.description,
-                    projectName: data.payload.name,
-                },
+                    projectName: data.payload.name
+                }
             };
             showSuccessToast('Project settings successfully saved');
             yield put(actions.saveProjectSettingsSuccess(successSaveProjectSettingsResponse));
@@ -230,8 +234,8 @@ export function* requestGetDeviceBrands() {
 
         yield put(
             actions.getDeviceBrandsSuccess({
-                deviceBrands: deviceBrandsResponse.data.Models,
-            }),
+                deviceBrands: deviceBrandsResponse.data.Models
+            })
         );
     } catch (error) {
         yield put(actions.getDeviceBrandsFailure({ error }));
@@ -245,13 +249,18 @@ export function* requestAddDevice(data: AddDeviceAction) {
         if (!currentProject || !currentProject.id) {
             return yield put(
                 actions.addDeviceFailure({
-                    error: 'Not current project selected',
-                }),
+                    error: 'Not current project selected'
+                })
             );
         }
 
         delete data.payload.loading;
-        const addDeviceResponse = yield call(postRequest, `user/projects/${currentProject.id}/devices`, {}, data.payload);
+        const addDeviceResponse = yield call(
+            postRequest,
+            `user/projects/${currentProject.id}/devices`,
+            {},
+            data.payload
+        );
 
         if (addDeviceResponse.data.Message === 'Added Device successful') {
             const successAddDeviceResponse: ProjectState = {};
@@ -262,8 +271,8 @@ export function* requestAddDevice(data: AddDeviceAction) {
         } else {
             yield put(
                 actions.saveProjectSettingsFailure({
-                    error: addDeviceResponse.data,
-                }),
+                    error: addDeviceResponse.data
+                })
             );
         }
     } catch (error) {
@@ -274,13 +283,13 @@ export function* requestAddDevice(data: AddDeviceAction) {
 export function* requestGetDeviceModels(data: any) {
     try {
         const deviceModelsResponse = yield call(getRequest, `deviceModels`, {
-            brand: data.payload,
+            brand: data.payload
         });
 
         yield put(
             actions.getDeviceModelsSuccess({
-                deviceModels: deviceModelsResponse.data.Models,
-            }),
+                deviceModels: deviceModelsResponse.data.Models
+            })
         );
     } catch (error) {
         yield put(actions.getDeviceModelsFailure({ error }));
@@ -292,11 +301,14 @@ export function* requestCreateProject(data: CreateProjectAction) {
         delete data.payload.loading;
         const createProjectResponse = yield call(postRequest, `user/projects`, {}, data.payload);
 
-        if (!createProjectResponse.data.Message || !createProjectResponse.data.Message.includes('Project created with')) {
+        if (
+            !createProjectResponse.data.Message ||
+            !createProjectResponse.data.Message.includes('Project created with')
+        ) {
             return yield put(
                 actions.createProjectFailure({
-                    error: createProjectResponse.data,
-                }),
+                    error: createProjectResponse.data
+                })
             );
         }
 

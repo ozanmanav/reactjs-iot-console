@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { addDevice, getDeviceModels } from '../../../../store/project/actions';
 import { getDeviceBrandOptions, getDeviceModelOptions } from '../../../../utils';
 import { IProjectLoadingState } from '../../../../store/project/types';
+import { IAddDeviceFormState } from '../../../../components/forms/AddDeviceForm/definitions';
 
 interface AddDeviceBaseProps {
     addDevice: typeof addDevice;
@@ -22,8 +23,11 @@ export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBas
     models,
     addDevice,
     getDeviceModels,
-    projectLoading = undefined,
+    projectLoading = undefined
 }) => {
+    const onSubmit = (values: IAddDeviceFormState): void => {
+        addDevice(values);
+    };
     return (
         <div className="b-add-device">
             <div className="b-add-device__breadcrumb-wrapper">
@@ -31,11 +35,11 @@ export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBas
                 <BreadcrumbsAdv />
             </div>
             <AddDeviceForm
-                onSubmit={addDevice}
+                onSubmit={onSubmit}
                 brandsOptions={getDeviceBrandOptions(brands)}
                 modelsOptions={getDeviceModelOptions(models)}
                 loading={projectLoading || undefined}
-                getDeviceModels={(brand) => getDeviceModels(brand)}
+                getDeviceModels={brand => getDeviceModels(brand)}
             />
         </div>
     );
@@ -44,7 +48,7 @@ export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBas
 const mapStateToProps = (state: AppState) => ({
     brands: state.project.deviceBrands,
     models: state.project.deviceModels,
-    projectLoading: state.project.loading,
+    projectLoading: state.project.loading
 });
 
 export const AddDevice = connect(

@@ -8,5 +8,5 @@ export const VALIDATION_ERRORS = {
     zip: 'Must be a valid ZIP code',
     password: 'Password is required',
     passwordConfirmation: 'Passwords must match',
-    passwordMinLength: `Must be at least ${PASSWORD_MIN_LENGTH} characters.`,
+    passwordMinLength: `Must be at least ${PASSWORD_MIN_LENGTH} characters.`
 };

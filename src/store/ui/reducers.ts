@@ -1,7 +1,13 @@
-import { SET_SIDEBAR_STATUS, UIState, UIActionTypes, SET_SIDEBAR_STATUS_SUCCESS, SET_SIDEBAR_STATUS_FAILURE } from './types';
+import {
+    SET_SIDEBAR_STATUS,
+    UIState,
+    UIActionTypes,
+    SET_SIDEBAR_STATUS_SUCCESS,
+    SET_SIDEBAR_STATUS_FAILURE
+} from './types';
 
 export const UIInitialState: UIState = {
-    isSidebarOpen: true,
+    isSidebarOpen: true
 };
 
 export function uiReducer(state = UIInitialState, action: UIActionTypes): UIState {
@@ -9,19 +15,19 @@ export function uiReducer(state = UIInitialState, action: UIActionTypes): UIStat
         case SET_SIDEBAR_STATUS: {
             return {
                 ...state,
-                isSidebarOpen: action.payload.isSidebarOpen,
+                isSidebarOpen: action.payload.isSidebarOpen
             };
         }
         case SET_SIDEBAR_STATUS_SUCCESS: {
             return {
                 ...state,
-                isSidebarOpen: action.payload.isSidebarOpen,
+                isSidebarOpen: action.payload.isSidebarOpen
             };
         }
         case SET_SIDEBAR_STATUS_FAILURE: {
             return {
                 ...state,
-                isSidebarOpen: action.payload.isSidebarOpen,
+                isSidebarOpen: action.payload.isSidebarOpen
             };
         }
         default:

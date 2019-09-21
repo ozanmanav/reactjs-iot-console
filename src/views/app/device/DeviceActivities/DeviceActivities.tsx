@@ -13,7 +13,11 @@ interface DeviceActivitiesBaseProps {
     router?: any;
 }
 
-export const DeviceActivitiesBase: FunctionComponent<DeviceActivitiesBaseProps> = ({ deviceActivities, getDeviceActivities, loading }) => {
+export const DeviceActivitiesBase: FunctionComponent<DeviceActivitiesBaseProps> = ({
+    deviceActivities,
+    getDeviceActivities,
+    loading
+}) => {
     useEffect(() => {
         getDeviceActivities();
     }, [getDeviceActivities]);
@@ -27,7 +31,7 @@ export const DeviceActivitiesBase: FunctionComponent<DeviceActivitiesBaseProps> 
 
 const mapStateToProps = (state: AppState) => ({
     deviceActivities: state.project.deviceActivities || [],
-    loading: state.project.loading,
+    loading: state.project.loading
 });
 
 export const DeviceActivities = connect(

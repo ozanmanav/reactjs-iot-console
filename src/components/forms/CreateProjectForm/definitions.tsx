@@ -5,7 +5,7 @@ import { VALIDATION_ERRORS } from '../../../config';
 export const CreateProjectFormState = {
     name: '',
     description: '',
-    loading: false,
+    loading: false
 };
 
 export interface ICreateProjectFormState {
@@ -31,5 +31,5 @@ export const CreateProjectFormValidationSchema = Yup.object().shape({
         .required(VALIDATION_ERRORS.required),
     description: Yup.string()
         .trim()
-        .required(VALIDATION_ERRORS.required),
+        .required(VALIDATION_ERRORS.required)
 });

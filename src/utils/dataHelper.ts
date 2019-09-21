@@ -15,10 +15,10 @@ export function getRequest(url: any, params = {}) {
                         headers: { Authorization: `Bearer ${token}` },
                         baseURL,
                         url,
-                        params,
+                        params
                     })
-                        .then((result) => resolve(result))
-                        .catch((error) => reject(error.response.data));
+                        .then(result => resolve(result))
+                        .catch(error => reject(error.response.data));
                 })
                 .catch((error: any) => {
                     reject(error);
@@ -41,10 +41,10 @@ export function postRequest(url: any, params = {}, data: {}) {
                         baseURL,
                         url,
                         params,
-                        data,
+                        data
                     })
-                        .then((result) => resolve(result))
-                        .catch((error) => reject(error.response.data));
+                        .then(result => resolve(result))
+                        .catch(error => reject(error.response.data));
                 })
                 .catch((error: any) => {
                     reject(error);
@@ -67,10 +67,10 @@ export function putRequest(url: any, params = {}, data: {}) {
                         baseURL,
                         url,
                         params,
-                        data,
+                        data
                     })
-                        .then((result) => resolve(result))
-                        .catch((error) => reject(error.response.data));
+                        .then(result => resolve(result))
+                        .catch(error => reject(error.response.data));
                 })
                 .catch((error: any) => {
                     reject(error);

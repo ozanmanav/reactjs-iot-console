@@ -10,7 +10,7 @@ export const DeviceSettingsFormDefaultState = {
     location: '',
     model: '',
     id: '',
-    loading: false,
+    loading: false
 };
 
 export interface IDeviceSettingsFormDefaultState {
@@ -41,5 +41,5 @@ export const DeviceSettingsFormValidationSchema = Yup.object().shape({
         .required(VALIDATION_ERRORS.required),
     description: Yup.string()
         .trim()
-        .required(VALIDATION_ERRORS.required),
+        .required(VALIDATION_ERRORS.required)
 });

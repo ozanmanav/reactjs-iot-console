@@ -10,7 +10,7 @@ export const AddDeviceFormDefaultState = {
     deviceName: '',
     deviceDescription: '',
     location: '',
-    loading: false,
+    loading: false
 };
 
 export interface IAddDeviceFormState {
@@ -51,5 +51,5 @@ export const AddDeviceFormValidationSchema = Yup.object().shape({
         .required(VALIDATION_ERRORS.required),
     location: Yup.string()
         .trim()
-        .required(VALIDATION_ERRORS.required),
+        .required(VALIDATION_ERRORS.required)
 });

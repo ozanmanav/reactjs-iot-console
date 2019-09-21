@@ -48,7 +48,7 @@ const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = (
 const ContentWithRouter = withRouter(ContentBase);
 
 const mapStateToProps = (state: AppState) => ({
-    auth: state.auth,
+    auth: state.auth
 });
 
 export const Content = connect(

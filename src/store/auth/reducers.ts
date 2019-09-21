@@ -14,7 +14,7 @@ import {
     IAuthLoadingState,
     USER_GOOGLE_LOGIN,
     USER_GOOGLE_LOGIN_SUCCESS,
-    USER_GOOGLE_LOGIN_FAILURE,
+    USER_GOOGLE_LOGIN_FAILURE
 } from './types';
 import { CRYPT_JS_SECRET_KEY } from '../../config';
 import { AES } from 'crypto-js';
@@ -24,7 +24,7 @@ export const AuthInitialState: AuthState = {
     loggedIn: false,
     email: '',
     password: '',
-    error: undefined,
+    error: undefined
 };
 
 export function authReducer(state = AuthInitialState, action: AuthActionTypes): AuthState {
@@ -34,9 +34,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    login: true,
+                    login: true
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case USER_LOGIN_SUCCESS: {
@@ -49,9 +49,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    login: false,
+                    login: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case USER_LOGIN_FAILURE: {
@@ -59,9 +59,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    login: false,
+                    login: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case USER_REGISTER: {
@@ -69,9 +69,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    register: true,
+                    register: true
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case USER_REGISTER_SUCCESS: {
@@ -79,9 +79,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    register: false,
+                    register: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case USER_REGISTER_FAILURE: {
@@ -89,9 +89,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    register: false,
+                    register: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case CHECK_USER: {
@@ -99,9 +99,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    checkUser: true,
+                    checkUser: true
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case CHECK_USER_SUCCESS: {
@@ -109,9 +109,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    checkUser: false,
+                    checkUser: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case CHECK_USER_FAILURE: {
@@ -119,15 +119,15 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    checkUser: false,
+                    checkUser: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case USER_LOGOUT: {
             return {
                 ...state,
-                loggedIn: false,
+                loggedIn: false
             };
         }
         case USER_GOOGLE_LOGIN: {
@@ -135,9 +135,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    googleLogin: true,
+                    googleLogin: true
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case USER_GOOGLE_LOGIN_SUCCESS: {
@@ -145,9 +145,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    googleLogin: false,
+                    googleLogin: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case USER_GOOGLE_LOGIN_FAILURE: {
@@ -155,9 +155,9 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 ...state,
                 loading: {
                     ...state.loading,
-                    googleLogin: false,
+                    googleLogin: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         default:

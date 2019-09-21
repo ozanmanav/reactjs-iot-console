@@ -43,7 +43,7 @@ import {
     GET_DEVICE_MODELS_FAILURE,
     CREATE_PROJECT,
     CREATE_PROJECT_SUCCESS,
-    CREATE_PROJECT_FAILURE,
+    CREATE_PROJECT_FAILURE
 } from './types';
 
 export const ProjectInitialState: ProjectState = {
@@ -58,7 +58,7 @@ export const ProjectInitialState: ProjectState = {
         deviceTokens: false,
         saveProjectSettings: false,
         brands: false,
-        models: false,
+        models: false
     },
     projects: [],
     devices: [],
@@ -67,28 +67,27 @@ export const ProjectInitialState: ProjectState = {
     triggers: {} as ITriggerResponse,
     currentProject: undefined,
     currentDevice: undefined,
-    error: undefined,
+    error: undefined
 };
 
 export function projectReducer(state = ProjectInitialState, action: ProjectActionTypes): ProjectState {
     switch (action.type) {
         case GET_PROJECTS: {
             return {
-                ...state,
-                ...action.payload,
+                ...state
             };
         }
         case GET_PROJECTS_SUCCESS: {
             return {
                 ...state,
-                ...action.payload,
+                ...action.payload
             };
         }
         case GET_PROJECTS_FAILURE: {
             return {
                 ...state,
                 ...action.payload,
-                projects: [],
+                projects: []
             };
         }
         case GET_PROJECT_BY_ID: {
@@ -96,9 +95,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    currentProject: true,
+                    currentProject: true
                 },
-                currentProject: undefined,
+                currentProject: undefined
             };
         }
         case GET_PROJECT_BY_ID_SUCCESS: {
@@ -106,9 +105,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    currentProject: false,
+                    currentProject: false
                 },
-                currentProject: action.payload,
+                currentProject: action.payload
             };
         }
         case GET_PROJECT_BY_ID_FAILURE: {
@@ -116,9 +115,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    currentProject: false,
+                    currentProject: false
                 },
-                currentProject: undefined,
+                currentProject: undefined
             };
         }
         case GET_DEVICES: {
@@ -126,9 +125,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    devices: true,
+                    devices: true
                 },
-                devices: [],
+                devices: []
             };
         }
         case GET_DEVICES_SUCCESS: {
@@ -136,9 +135,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    devices: false,
+                    devices: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case GET_DEVICES_FAILURE: {
@@ -146,9 +145,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    devices: false,
+                    devices: false
                 },
-                devices: [],
+                devices: []
             };
         }
         case GET_DEVICE_BY_ID: {
@@ -156,9 +155,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    currentDevice: true,
+                    currentDevice: true
                 },
-                currentDevice: undefined,
+                currentDevice: undefined
             };
         }
         case GET_DEVICE_BY_ID_SUCCESS: {
@@ -166,9 +165,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    currentDevice: false,
+                    currentDevice: false
                 },
-                currentDevice: action.payload,
+                currentDevice: action.payload
             };
         }
         case GET_DEVICE_BY_ID_FAILURE: {
@@ -176,9 +175,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    currentDevice: false,
+                    currentDevice: false
                 },
-                currentDevice: undefined,
+                currentDevice: undefined
             };
         }
         case GET_TRIGGERS: {
@@ -186,9 +185,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    triggers: true,
+                    triggers: true
                 },
-                triggers: {} as ITriggerResponse,
+                triggers: {} as ITriggerResponse
             };
         }
         case GET_TRIGGERS_SUCCESS: {
@@ -196,9 +195,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    triggers: false,
+                    triggers: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case GET_TRIGGERS_FAILURE: {
@@ -206,9 +205,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    triggers: false,
+                    triggers: false
                 },
-                triggers: {} as ITriggerResponse,
+                triggers: {} as ITriggerResponse
             };
         }
         case GET_ACTIVITIES: {
@@ -216,9 +215,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    activities: true,
+                    activities: true
                 },
-                activities: [],
+                activities: []
             };
         }
         case GET_ACTIVITIES_SUCCESS: {
@@ -226,9 +225,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    activities: false,
+                    activities: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case GET_ACTIVITIES_FAILURE: {
@@ -236,9 +235,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    activities: false,
+                    activities: false
                 },
-                activities: [],
+                activities: []
             };
         }
         case GET_DEVICE_ACTIVITIES: {
@@ -246,9 +245,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceActivities: true,
+                    deviceActivities: true
                 },
-                deviceActivities: [],
+                deviceActivities: []
             };
         }
         case GET_DEVICE_ACTIVITIES_SUCCESS: {
@@ -256,9 +255,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceActivities: false,
+                    deviceActivities: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case GET_DEVICE_ACTIVITIES_FAILURE: {
@@ -266,9 +265,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceActivities: false,
+                    deviceActivities: false
                 },
-                deviceActivities: [],
+                deviceActivities: []
             };
         }
         case GET_DEVICE_SETTINGS: {
@@ -276,9 +275,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceActivities: true,
+                    deviceActivities: true
                 },
-                deviceActivities: [],
+                deviceActivities: []
             };
         }
         case GET_DEVICE_SETTINGS_SUCCESS: {
@@ -286,9 +285,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceActivities: false,
+                    deviceActivities: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case GET_DEVICE_SETTINGS_FAILURE: {
@@ -296,9 +295,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceActivities: false,
+                    deviceActivities: false
                 },
-                deviceActivities: [],
+                deviceActivities: []
             };
         }
         case GET_DEVICE_TOKENS: {
@@ -306,8 +305,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceTokens: true,
-                },
+                    deviceTokens: true
+                }
             };
         }
         case GET_DEVICE_TOKENS_SUCCESS: {
@@ -315,9 +314,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceTokens: false,
+                    deviceTokens: false
                 },
-                currentDevice: action.payload.currentDevice,
+                currentDevice: action.payload.currentDevice
             };
         }
         case GET_DEVICE_TOKENS_FAILURE: {
@@ -325,8 +324,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    deviceTokens: false,
-                },
+                    deviceTokens: false
+                }
             };
         }
         case SAVE_PROJECT_SETTINGS: {
@@ -334,8 +333,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    saveProjectSettings: true,
-                },
+                    saveProjectSettings: true
+                }
             };
         }
         case SAVE_PROJECT_SETTINGS_SUCCESS: {
@@ -343,9 +342,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    saveProjectSettings: false,
+                    saveProjectSettings: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case SAVE_PROJECT_SETTINGS_FAILURE: {
@@ -353,8 +352,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    saveProjectSettings: false,
-                },
+                    saveProjectSettings: false
+                }
             };
         }
         case GET_DEVICE_BRANDS: {
@@ -362,8 +361,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    brands: true,
-                },
+                    brands: true
+                }
             };
         }
         case GET_DEVICE_BRANDS_SUCCESS: {
@@ -371,9 +370,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    brands: false,
+                    brands: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case GET_DEVICE_BRANDS_FAILURE: {
@@ -381,8 +380,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    brands: false,
-                },
+                    brands: false
+                }
             };
         }
         case ADD_DEVICE: {
@@ -390,8 +389,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    addDevice: true,
-                },
+                    addDevice: true
+                }
             };
         }
         case ADD_DEVICE_SUCCESS: {
@@ -399,9 +398,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    addDevice: false,
+                    addDevice: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case ADD_DEVICE_FAILURE: {
@@ -409,8 +408,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    addDevice: false,
-                },
+                    addDevice: false
+                }
             };
         }
         case GET_DEVICE_MODELS: {
@@ -418,8 +417,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    models: true,
-                },
+                    models: true
+                }
             };
         }
         case GET_DEVICE_MODELS_SUCCESS: {
@@ -427,9 +426,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    models: false,
+                    models: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case GET_DEVICE_MODELS_FAILURE: {
@@ -437,8 +436,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    models: false,
-                },
+                    models: false
+                }
             };
         }
         case CREATE_PROJECT: {
@@ -446,8 +445,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    createProject: true,
-                },
+                    createProject: true
+                }
             };
         }
         case CREATE_PROJECT_SUCCESS: {
@@ -455,9 +454,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    createProject: false,
+                    createProject: false
                 },
-                ...action.payload,
+                ...action.payload
             };
         }
         case CREATE_PROJECT_FAILURE: {
@@ -465,8 +464,8 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 ...state,
                 loading: {
                     ...state.loading,
-                    createProject: false,
-                },
+                    createProject: false
+                }
             };
         }
         default:

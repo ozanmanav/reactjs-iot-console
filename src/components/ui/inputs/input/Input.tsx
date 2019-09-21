@@ -2,7 +2,7 @@ import React, { FunctionComponent, useRef } from 'react';
 import classnames from 'classnames';
 import { IInputProps } from '../config';
 import { Icon } from '../../icons';
-import { showSuccessToast } from '../../toasts';
+import { showSuccessToast, showErrorToast } from '../../toasts';
 
 export const Input: FunctionComponent<IInputProps> = ({
     type = 'name',
@@ -21,20 +21,28 @@ export const Input: FunctionComponent<IInputProps> = ({
         { [`_margin-bottom-${marginBottom}`]: marginBottom !== 'none' },
         { _squared: squared },
         { _error: error && touched },
-        className,
+        className
     ]);
 
-    const copyToClipboard = (e: any) => {
+    const copyToClipboard = (): void => {
         if (inputRef && inputRef.current) {
-            navigator.clipboard.writeText(inputRef.current.value);
-            showSuccessToast(copyText);
+            navigator.clipboard.writeText(inputRef.current.value).then(
+                () => {
+                    showSuccessToast(copyText);
+                },
+                () => {
+                    showErrorToast('Unable to write to clipboard. :-(');
+                }
+            );
         }
     };
 
     return (
         <div className="f-input__wrapper">
             <input type={type} {...props} className={inputClassname} ref={inputRef} />
-            {showCopyIcon && <Icon icon="copy" className="f-input__wrapper-copy" onClick={copyToClipboard} alt="Copy to Clipboard" />}
+            {showCopyIcon && (
+                <Icon icon="copy" className="f-input__wrapper-copy" onClick={copyToClipboard} alt="Copy to Clipboard" />
+            )}
             {error && touched && <div className="f-input__error">{error}</div>}
         </div>
     );

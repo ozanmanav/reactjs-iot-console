@@ -12,7 +12,15 @@ interface IAccordionProps {
     CustomHeader?: React.ComponentType<any>;
 }
 
-export const Accordion: FunctionComponent<IAccordionProps> = ({ index, isOpen, title, tooltip, toggle, children, CustomHeader }) => {
+export const Accordion: FunctionComponent<IAccordionProps> = ({
+    index,
+    isOpen,
+    title,
+    tooltip,
+    toggle,
+    children,
+    CustomHeader
+}) => {
     function toggleSelf() {
         toggle && index && toggle(index);
     }
@@ -21,7 +29,7 @@ export const Accordion: FunctionComponent<IAccordionProps> = ({ index, isOpen, t
         <div className={classNames('b-accordion__wrapper', { _open: isOpen })}>
             <button
                 className={classNames('b-accordion__header flex justify-between align-center', {
-                    'b-accordion__header_custom': CustomHeader,
+                    'b-accordion__header_custom': CustomHeader
                 })}
                 onClick={toggleSelf}
             >

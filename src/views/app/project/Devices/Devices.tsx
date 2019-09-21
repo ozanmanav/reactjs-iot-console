@@ -57,10 +57,10 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
 const mapStateToProps = (state: AppState) => ({
     devices: state.project.devices,
     currentProject: state.project.currentProject,
-    loading: state.project.loading,
+    loading: state.project.loading
 });
 
 export const Devices = connect(
     mapStateToProps,
-    { getDevices },
+    { getDevices }
 )(DevicesBase);

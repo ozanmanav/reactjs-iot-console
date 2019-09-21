@@ -1,6 +1,12 @@
 import { all, takeLatest } from 'redux-saga/effects';
 import { USER_LOGIN, CHECK_USER, USER_LOGOUT, USER_REGISTER, USER_GOOGLE_LOGIN } from '../store/auth/types';
-import { requestUserLogin, checkUserAuth, requestUserLogout, requestUserRegister, requestGoogleLogin } from './authSaga';
+import {
+    requestUserLogin,
+    checkUserAuth,
+    requestUserLogout,
+    requestUserRegister,
+    requestGoogleLogin
+} from './authSaga';
 import { startup } from './startupSaga';
 import { STARTUP } from '../store/startup/types';
 import {
@@ -16,7 +22,7 @@ import {
     requestGetDeviceBrands,
     requestAddDevice,
     requestGetDeviceModels,
-    requestCreateProject,
+    requestCreateProject
 } from './projectSaga';
 import {
     GET_PROJECTS,
@@ -32,7 +38,7 @@ import {
     GET_DEVICE_BRANDS,
     ADD_DEVICE,
     GET_DEVICE_MODELS,
-    CREATE_PROJECT,
+    CREATE_PROJECT
 } from '../store/project/types';
 import { SET_SIDEBAR_STATUS } from '../store/ui/types';
 import { requestSidebarOpen } from './uiSaga';
@@ -67,6 +73,6 @@ export const rootSaga = function* root() {
         takeLatest(CREATE_PROJECT, requestCreateProject),
 
         // // UI
-        takeLatest(SET_SIDEBAR_STATUS, requestSidebarOpen),
+        takeLatest(SET_SIDEBAR_STATUS, requestSidebarOpen)
     ]);
 };

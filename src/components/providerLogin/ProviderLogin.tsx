@@ -22,7 +22,7 @@ export const ProviderLoginBase: FunctionComponent<ProviderLoginBaseProps> = ({ u
             ) : (
                 <GoogleLogin
                     clientId="328512413905-kiljb85b2f6a31h5qusls5ihg48an21d.apps.googleusercontent.com"
-                    render={(renderProps) => (
+                    render={renderProps => (
                         <GoogleButton
                             text="Continue with Google"
                             type="button"
@@ -31,8 +31,8 @@ export const ProviderLoginBase: FunctionComponent<ProviderLoginBaseProps> = ({ u
                         />
                     )}
                     buttonText="Login"
-                    onSuccess={(response) => userGoogleLogin(response)}
-                    onFailure={(error) => userGoogleLoginFailure(error)}
+                    onSuccess={response => userGoogleLogin(response)}
+                    onFailure={error => userGoogleLoginFailure(error)}
                     cookiePolicy={'single_host_origin'}
                 />
             )}
@@ -43,7 +43,7 @@ export const ProviderLoginBase: FunctionComponent<ProviderLoginBaseProps> = ({ u
 };
 
 const mapStateToProps = (state: AppState) => ({
-    auth: state.auth,
+    auth: state.auth
 });
 
 export const ProviderLogin = connect(

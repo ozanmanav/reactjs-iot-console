@@ -8,7 +8,7 @@ import ProjectBreadcrumbs from './ProjectBreadcrumbs';
 
 const routes = [
     { path: '/app/projects/:id', breadcrumb: ProjectBreadcrumbs },
-    { path: '/app/projects/:projectId/devices/:id', breadcrumb: DeviceBreadcrumbs },
+    { path: '/app/projects/:projectId/devices/:id', breadcrumb: DeviceBreadcrumbs }
 ];
 
 const BreadcrumbsAdv = withBreadcrumbs(routes, { disableDefaults: true })(({ breadcrumbs }) => (

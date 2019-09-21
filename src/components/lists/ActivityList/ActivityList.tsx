@@ -14,7 +14,7 @@ interface ActivityListProps {
 export const ActivityList: FunctionComponent<ActivityListProps> = ({ activities, loading }) => {
     const sectionHeaders = uniq(
         activities &&
-            activities.map(activity => moment.unix(parseInt(activity.activityCreated)).format('dddd, MMMM Do YYYY')),
+            activities.map(activity => moment.unix(parseInt(activity.activityCreated)).format('dddd, MMMM Do YYYY'))
     );
     return (
         <div className="b-project-activities">
@@ -47,7 +47,7 @@ export const ActivityList: FunctionComponent<ActivityListProps> = ({ activities,
                                                     </div>
                                                     <div className="b-project-activities__timeline-container__card-time">
                                                         {moment(activity && parseInt(activity.activityCreated)).format(
-                                                            'HH:mm:ss',
+                                                            'HH:mm:ss'
                                                         )}
                                                     </div>
                                                 </div>

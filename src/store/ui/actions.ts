@@ -3,20 +3,20 @@ import { SET_SIDEBAR_STATUS, SET_SIDEBAR_STATUS_SUCCESS, SET_SIDEBAR_STATUS_FAIL
 export function setSidebarStatus(isSidebarOpen: boolean) {
     return {
         type: SET_SIDEBAR_STATUS,
-        payload: { isSidebarOpen },
+        payload: { isSidebarOpen }
     };
 }
 
 export function setSidebarStatusSuccess(isSidebarOpen: boolean) {
     return {
         type: SET_SIDEBAR_STATUS_SUCCESS,
-        payload: { isSidebarOpen },
+        payload: { isSidebarOpen }
     };
 }
 
 export function setSidebarStatusFailure(isSidebarOpen: boolean) {
     return {
         type: SET_SIDEBAR_STATUS_FAILURE,
-        payload: { isSidebarOpen },
+        payload: { isSidebarOpen }
     };
 }

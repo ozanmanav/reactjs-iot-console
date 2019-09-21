@@ -8,17 +8,17 @@ export const SET_SIDEBAR_STATUS = 'SET_SIDEBAR_STATUS';
 export const SET_SIDEBAR_STATUS_FAILURE = 'SET_SIDEBAR_STATUS_FAILURE';
 export const SET_SIDEBAR_STATUS_SUCCESS = 'SET_SIDEBAR_STATUS_SUCCESS';
 
-interface setSidebarStatusAction {
+interface SetSidebarStatusAction {
     type: typeof SET_SIDEBAR_STATUS;
     payload: UIState;
 }
-interface setSidebarStatusActionSuccess {
+interface SetSidebarStatusActionSuccess {
     type: typeof SET_SIDEBAR_STATUS_FAILURE;
     payload: UIState;
 }
-interface setSidebarStatusActionFailure {
+interface SetSidebarStatusActionFailure {
     type: typeof SET_SIDEBAR_STATUS_SUCCESS;
     payload: UIState;
 }
 
-export type UIActionTypes = setSidebarStatusAction | setSidebarStatusActionSuccess | setSidebarStatusActionFailure;
+export type UIActionTypes = SetSidebarStatusAction | SetSidebarStatusActionSuccess | SetSidebarStatusActionFailure;

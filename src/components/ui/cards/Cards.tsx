@@ -5,14 +5,12 @@ import { IDevice, ITrigger } from '../../../store/project/types';
 import classNames from 'classnames';
 import DeviceImageStatic from '../../../icons/raspberry.png';
 
-interface ICardBaseProps {}
-
-export interface IDeviceCardProps extends ICardBaseProps {
+export interface IDeviceCardProps {
     device: IDevice;
 }
 
 export const DeviceCard: FunctionComponent<IDeviceCardProps> = ({
-    device: { id, deviceImage, deviceName, deviceDescription, deviceModel, deviceStatus },
+    device: { id, deviceImage, deviceName, deviceDescription, deviceModel, deviceStatus }
 }) => {
     return (
         <div key={id}>
@@ -35,7 +33,9 @@ export const DeviceCard: FunctionComponent<IDeviceCardProps> = ({
                     <span className="c-card__device-card-status-text">{deviceStatus}</span>
                     <div
                         className={classNames(
-                            deviceStatus === 'Active' ? 'c-card__device-card-status-online-icon' : 'c-card__device-card-status-offline-icon'
+                            deviceStatus === 'Active'
+                                ? 'c-card__device-card-status-online-icon'
+                                : 'c-card__device-card-status-offline-icon'
                         )}
                     />
                 </div>
@@ -44,12 +44,12 @@ export const DeviceCard: FunctionComponent<IDeviceCardProps> = ({
     );
 };
 
-export interface ITriggerCardProps extends ICardBaseProps {
+export interface ITriggerCardProps {
     trigger: ITrigger;
 }
 
 export const TriggerCard: FunctionComponent<ITriggerCardProps> = ({
-    trigger: { id, name, triggerType, integrationWebhook, integration, triggerImage, thresholds },
+    trigger: { id, name, triggerType, integration, triggerImage }
 }) => {
     return (
         <div className="c-card__device-container" key={id}>

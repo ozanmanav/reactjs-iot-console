@@ -1,26 +1,55 @@
 import { useReducer } from 'react';
 
+function accordionsReducer(state: IAccordionsState, action: TAccordionsAction) {
+    switch (action.type) {
+        case 'TOGGLE': {
+            const newOpened = state.opened.includes(action.index)
+                ? state.opened.filter((accIndex: number) => accIndex !== action.index)
+                : [...state.opened, action.index];
+
+            return {
+                opened: newOpened
+            };
+        }
+        case 'OPEN':
+            if (state.opened.includes(action.index)) {
+                return state;
+            }
+
+            return {
+                opened: [...state.opened, action.index]
+            };
+        case 'CLOSE':
+            return {
+                opened: state.opened.filter(i => i !== action.index)
+            };
+        default: {
+            return state;
+        }
+    }
+}
+
 export const useAccordions = (opened: number[]) => {
     const [state, dispatch] = useReducer(accordionsReducer, { opened });
 
     function toggleAccordion(index: number): void {
         dispatch({
             type: 'TOGGLE',
-            index,
+            index
         });
     }
 
     function openAccordion(index: number) {
         dispatch({
             type: 'OPEN',
-            index,
+            index
         });
     }
 
     function closeAccordion(index: number) {
         dispatch({
             type: 'CLOSE',
-            index,
+            index
         });
     }
 
@@ -35,7 +64,13 @@ export const useAccordions = (opened: number[]) => {
         };
     }
 
-    return { isOpened, toggleAccordion, openAccordion, closeAccordion, goPrevAccordionItem };
+    return {
+        isOpened,
+        toggleAccordion,
+        openAccordion,
+        closeAccordion,
+        goPrevAccordionItem
+    };
 };
 
 interface IAccordionsState {
@@ -55,32 +90,3 @@ type TAccordionsAction =
           type: 'OPEN';
           index: number;
       };
-
-function accordionsReducer(state: IAccordionsState, action: TAccordionsAction) {
-    switch (action.type) {
-        case 'TOGGLE': {
-            const newOpened = state.opened.includes(action.index)
-                ? state.opened.filter((accIndex: number) => accIndex !== action.index)
-                : [...state.opened, action.index];
-
-            return {
-                opened: newOpened,
-            };
-        }
-        case 'OPEN':
-            if (state.opened.includes(action.index)) {
-                return state;
-            }
-
-            return {
-                opened: [...state.opened, action.index],
-            };
-        case 'CLOSE':
-            return {
-                opened: state.opened.filter((i) => i !== action.index),
-            };
-        default: {
-            return state;
-        }
-    }
-}

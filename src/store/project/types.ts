@@ -1,3 +1,6 @@
+import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/definitions';
+import { ICreateProjectFormState } from '../../components/forms/CreateProjectForm/definitions';
+
 export interface IProject {
     id: string;
     projectDescription: string;
@@ -129,7 +132,6 @@ export const CREATE_PROJECT_FAILURE = 'CREATE_PROJECT_FAILURE';
 
 interface GetProjectsAction {
     type: typeof GET_PROJECTS;
-    payload: ProjectState;
 }
 
 interface GetProjectsSuccessAction {
@@ -149,17 +151,17 @@ interface GetProjectByIdAction {
 
 interface GetProjectByIdSuccessAction {
     type: typeof GET_PROJECT_BY_ID_SUCCESS;
-    payload: IProject;
+    payload?: IProject;
 }
 
 interface GetProjectByIdFailureAction {
     type: typeof GET_PROJECT_BY_ID_FAILURE;
-    payload: IProject;
+    payload?: IProject;
 }
 
 interface GetDevicesAction {
     type: typeof GET_DEVICES;
-    payload: ProjectState;
+    payload?: ProjectState;
 }
 
 interface GetDevicesSuccessAction {
@@ -174,22 +176,21 @@ interface GetDevicesFailureAction {
 
 interface GetDeviceByIdAction {
     type: typeof GET_DEVICE_BY_ID;
-    payload: IDevice;
+    payload: string;
 }
 
 interface GetDeviceByIdSuccessAction {
     type: typeof GET_DEVICE_BY_ID_SUCCESS;
-    payload: IDevice;
+    payload?: IDevice;
 }
 
 interface GetDeviceByIdFailureAction {
     type: typeof GET_DEVICE_BY_ID_FAILURE;
-    payload: IDevice;
+    payload?: IDevice;
 }
 
 interface GetTriggersAction {
     type: typeof GET_TRIGGERS;
-    payload: ProjectState;
 }
 
 interface GetTriggersSuccessAction {
@@ -204,7 +205,6 @@ interface GetTriggersFailureAction {
 
 interface GetActivitiesAction {
     type: typeof GET_ACTIVITIES;
-    payload: ProjectState;
 }
 
 interface GetActivitiesSuccessAction {
@@ -219,7 +219,6 @@ interface GetActivitiesFailureAction {
 
 interface GetDeviceActivitiesAction {
     type: typeof GET_DEVICE_ACTIVITIES;
-    payload: ProjectState;
 }
 
 interface GetDeviceActivitiesSuccessAction {
@@ -234,7 +233,6 @@ interface GetDeviceActivitiesFailureAction {
 
 interface GetDeviceSettingsAction {
     type: typeof GET_DEVICE_SETTINGS;
-    payload: ProjectState;
 }
 
 interface GetDeviceSettingsSuccessAction {
@@ -249,7 +247,6 @@ interface GetDeviceSettingsFailureAction {
 
 interface GetDeviceTokensAction {
     type: typeof GET_DEVICE_TOKENS;
-    payload: ProjectState;
 }
 
 interface GetDeviceTokensSuccessAction {
@@ -279,7 +276,6 @@ interface SaveProjectSettingsFailureAction {
 
 interface GetDeviceBrandsAction {
     type: typeof GET_DEVICE_BRANDS;
-    payload: ProjectState;
 }
 
 interface GetDeviceBrandsSuccessAction {
@@ -293,7 +289,7 @@ interface GetDeviceBrandsFailureAction {
 }
 export interface AddDeviceAction {
     type: typeof ADD_DEVICE;
-    payload: ProjectState;
+    payload: IAddDeviceFormState;
 }
 
 interface AddDeviceSuccessAction {
@@ -308,7 +304,7 @@ interface AddDeviceFailureAction {
 
 interface GetDeviceModelsAction {
     type: typeof GET_DEVICE_MODELS;
-    payload: ProjectState;
+    payload: string;
 }
 
 interface GetDeviceModelsSuccessAction {
@@ -323,7 +319,7 @@ interface GetDeviceModelsFailureAction {
 
 export interface CreateProjectAction {
     type: typeof CREATE_PROJECT;
-    payload: ProjectState;
+    payload: ICreateProjectFormState;
 }
 
 interface CreateProjectSuccessAction {

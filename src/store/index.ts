@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     startup: startupReducer,
     auth: authReducer,
     project: projectReducer,
-    ui: uiReducer,
+    ui: uiReducer
 });
 
 const resetEnhancer: any = (rootReducer: any): any => (state: any, action: any) => {

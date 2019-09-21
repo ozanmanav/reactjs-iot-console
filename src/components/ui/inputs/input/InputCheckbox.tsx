@@ -19,7 +19,7 @@ export const InputCheckbox: FunctionComponent<IInputProps> = ({
         { [`_margin-bottom-${marginBottom}`]: marginBottom !== 'none' },
         { _squared: squared },
         { _error: error && touched },
-        className,
+        className
     ]);
 
     return (

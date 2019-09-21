@@ -8,7 +8,7 @@ const PureDeviceBreadcrumb: FunctionComponent<{ currentDevice?: IDevice }> = ({ 
 };
 
 const mapStateToProps = (state: AppState) => ({
-    currentDevice: state.project.currentDevice,
+    currentDevice: state.project.currentDevice
 });
 
 export default connect(mapStateToProps)(PureDeviceBreadcrumb);

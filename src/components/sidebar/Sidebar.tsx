@@ -13,12 +13,14 @@ import { IProject } from '../../store/project/types';
 
 interface SidebarBaseProps {
     router?: any;
-    getProjects: typeof getProjects;
+    getProjects?: () => void;
     projects?: IProject[];
 }
-export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getProjects, projects }) => {
+export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getProjects }) => {
     useEffect(() => {
-        getProjects();
+        if (getProjects) {
+            getProjects();
+        }
     }, [getProjects]);
 
     const checkActiveItem = (text: string): boolean => router.location.pathname.includes(text.toLocaleLowerCase());
@@ -85,12 +87,12 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
     );
 };
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: AppState): any => ({
     router: state.router,
-    projects: state.project.projects,
+    projects: state.project.projects
 });
 
 export const Sidebar = connect(
     mapStateToProps,
-    { getProjects },
+    { getProjects }
 )(SidebarBase);

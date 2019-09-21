@@ -1,18 +1,15 @@
-import { FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 
 export const SignUpFormDefaultState = {
     email: '',
-    password: '',
+    password: ''
 };
 
 export interface ISignUpFormDefaultState {
     email: string;
     password: string;
 }
-
-export interface ISignUpFormBaseProps extends FormikProps<ISignUpFormDefaultState> {}
 
 export interface ISignUpFormProps {
     onSubmit: (state: ISignUpFormDefaultState) => void;
@@ -28,5 +25,5 @@ export const SignUpFormValidationSchema = Yup.object().shape({
     password: Yup.string()
         .trim()
         .min(6)
-        .required(VALIDATION_ERRORS.required),
+        .required(VALIDATION_ERRORS.required)
 });

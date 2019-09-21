@@ -5,7 +5,7 @@ import { VALIDATION_ERRORS } from '../../../config';
 export const LoginFormDefaultState = {
     email: '',
     password: '',
-    loading: false,
+    loading: false
 };
 
 export interface ILoginFormDefaultState {
@@ -31,5 +31,5 @@ export const LoginFormValidationSchema = Yup.object().shape({
         .required(VALIDATION_ERRORS.required),
     password: Yup.string()
         .trim()
-        .required(VALIDATION_ERRORS.required),
+        .required(VALIDATION_ERRORS.required)
 });

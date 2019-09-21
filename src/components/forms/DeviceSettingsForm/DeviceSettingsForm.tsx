@@ -4,7 +4,7 @@ import {
     IDeviceSettingsFormBaseProps,
     DeviceSettingsFormDefaultState,
     DeviceSettingsFormValidationSchema,
-    IDeviceSettingsFormProps,
+    IDeviceSettingsFormProps
 } from './definitions';
 import { Input, Icon, useModal } from '../../ui';
 import { Button } from '../../ui/buttons';
@@ -112,13 +112,17 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
     );
 };
 
-export const DeviceSettingsForm: FunctionComponent<IDeviceSettingsFormProps> = ({ onSubmit, initialValues, loading }) => {
+export const DeviceSettingsForm: FunctionComponent<IDeviceSettingsFormProps> = ({
+    onSubmit,
+    initialValues,
+    loading
+}) => {
     return (
         <Formik
             onSubmit={onSubmit}
             initialValues={initialValues || DeviceSettingsFormDefaultState}
             validationSchema={DeviceSettingsFormValidationSchema}
-            component={(formikProps) => <DeviceSettingsFormBase {...formikProps} loading={loading} />}
+            component={formikProps => <DeviceSettingsFormBase {...formikProps} loading={loading} />}
         />
     );
 };

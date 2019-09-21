@@ -13,7 +13,7 @@ export function getDeviceBrandOptions(brands: [] = []): IBrandOption[] {
         ? brands.map(({ id, brand, image }) => ({
               value: id,
               label: brand,
-              image,
+              image
           }))
         : [];
 }
@@ -23,7 +23,7 @@ export function getDeviceModelOptions(models: [] = []): ISelectOption[] {
         ? models.map(({ id, model, image }) => ({
               value: id,
               label: model,
-              image,
+              image
           }))
         : [];
 }

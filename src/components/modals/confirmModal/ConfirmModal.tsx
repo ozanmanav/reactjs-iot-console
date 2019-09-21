@@ -9,13 +9,24 @@ interface IConfirmModalProps extends IModalProps {
     onConfirm: (e: MouseEvent) => void;
 }
 
-export const ConfirmModal: FunctionComponent<IConfirmModalProps> = ({ title = 'Are you sure?', description, onConfirm, ...modalProps }) => {
+export const ConfirmModal: FunctionComponent<IConfirmModalProps> = ({
+    title = 'Are you sure?',
+    description,
+    onConfirm,
+    ...modalProps
+}) => {
     return (
         <Modal {...modalProps}>
             <h2 className="h1 b-confirm-modal__title">{title}</h2>
             {description && <p className="b-confirm-modal__description">{description}</p>}
             <ModalFooter>
-                <Button text="Yes" primary icon="check" onClick={onConfirm} className="b-confirm-modal__actions-button" />
+                <Button
+                    text="Yes"
+                    primary
+                    icon="check"
+                    onClick={onConfirm}
+                    className="b-confirm-modal__actions-button"
+                />
             </ModalFooter>
         </Modal>
     );

@@ -67,10 +67,10 @@ const ProjectBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
 
 const mapStateToProps = (state: AppState) => ({
     project: state.project,
-    router: state.router,
+    router: state.router
 });
 
 export const Project = connect(
     mapStateToProps,
-    { getProjectById },
+    { getProjectById }
 )(ProjectBase);

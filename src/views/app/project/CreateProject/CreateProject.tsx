@@ -12,7 +12,7 @@ interface CreateProjectBaseProps {
 }
 
 export const CreateProjectBase: FunctionComponent<RouteComponentProps & CreateProjectBaseProps> = ({
-    createProject,
+    createProject
 }) => {
     return (
         <div className="b-create-project">
@@ -23,10 +23,10 @@ export const CreateProjectBase: FunctionComponent<RouteComponentProps & CreatePr
 };
 
 const mapStateToProps = (state: AppState) => ({
-    projectLoading: state.project.loading,
+    projectLoading: state.project.loading
 });
 
 export const CreateProject = connect(
     mapStateToProps,
-    { createProject },
+    { createProject }
 )(CreateProjectBase);

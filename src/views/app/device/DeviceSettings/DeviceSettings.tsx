@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import './DeviceSettings.scss';
-import { getDeviceSettings } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
 import { IProjectLoadingState, ITriggerResponse, IDevice } from '../../../../store/project/types';
@@ -8,41 +7,37 @@ import { DeviceSettingsForm } from '../../../../components/forms';
 import { IDeviceSettingsFormDefaultState } from '../../../../components/forms/DeviceSettingsForm/definitions';
 
 interface DeviceSettingsBaseProps {
-    getDeviceSettings: typeof getDeviceSettings;
     settings?: ITriggerResponse;
     loading?: IProjectLoadingState;
     router?: any;
     currentDevice?: IDevice;
 }
 
-export const DeviceSettingsBase: FunctionComponent<DeviceSettingsBaseProps> = ({ currentDevice, loading }) => {
+export const DeviceSettingsBase: FunctionComponent<DeviceSettingsBaseProps> = ({ currentDevice }) => {
     if (!currentDevice) {
         return <div>Please select a project</div>;
     }
 
-    let initialValues: IDeviceSettingsFormDefaultState = {
+    const initialValues: IDeviceSettingsFormDefaultState = {
         id: currentDevice.id,
         name: currentDevice.deviceName,
         model: currentDevice.deviceModel,
         location: currentDevice.deviceLocation,
         description: currentDevice.deviceDescription,
         deviceToken: (currentDevice.deviceTokens && currentDevice.deviceTokens.apiToken) || '',
-        clientSecret: (currentDevice.deviceTokens && currentDevice.deviceTokens.clientSecret) || '',
+        clientSecret: (currentDevice.deviceTokens && currentDevice.deviceTokens.clientSecret) || ''
     };
 
     return (
         <div className="project-settings">
-            <DeviceSettingsForm onSubmit={(values) => console.log(values)} initialValues={initialValues} />
+            <DeviceSettingsForm onSubmit={values => console.log(values)} initialValues={initialValues} />
         </div>
     );
 };
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: AppState): any => ({
     currentDevice: state.project.currentDevice,
-    loading: state.project.loading,
+    loading: state.project.loading
 });
 
-export const DeviceSettings = connect(
-    mapStateToProps,
-    { getDeviceSettings }
-)(DeviceSettingsBase);
+export const DeviceSettings = connect(mapStateToProps)(DeviceSettingsBase);

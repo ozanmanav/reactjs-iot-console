@@ -4,7 +4,7 @@ import {
     ICreateProjectFormBaseProps,
     CreateProjectFormState,
     CreateProjectFormValidationSchema,
-    ICreateProjectFormProps,
+    ICreateProjectFormProps
 } from './definitions';
 import { Input } from '../../ui';
 import { Button } from '../../ui/buttons';
@@ -57,7 +57,7 @@ export const CreateProjectForm: FunctionComponent<ICreateProjectFormProps> = ({ 
             onSubmit={onSubmit}
             initialValues={initialValues || CreateProjectFormState}
             validationSchema={CreateProjectFormValidationSchema}
-            component={(formikProps) => <CreateProjectFormBase {...formikProps} loading={loading} />}
+            component={formikProps => <CreateProjectFormBase {...formikProps} loading={loading} />}
         />
     );
 };

@@ -25,7 +25,7 @@ export const TriggersBase: FunctionComponent<TriggersBaseProps> = ({ triggers, g
                 {loading && loading.triggers ? (
                     <Loading className="b-project-triggers-loader" />
                 ) : (
-                    triggers && triggers.alarm && triggers.alarm.map((trigger) => <TriggerCard trigger={trigger} />)
+                    triggers && triggers.alarm && triggers.alarm.map(trigger => <TriggerCard trigger={trigger} />)
                 )}
             </div>
         </div>
@@ -34,7 +34,7 @@ export const TriggersBase: FunctionComponent<TriggersBaseProps> = ({ triggers, g
 
 const mapStateToProps = (state: AppState) => ({
     triggers: state.project.triggers,
-    loading: state.project.loading,
+    loading: state.project.loading
 });
 
 export const Triggers = connect(

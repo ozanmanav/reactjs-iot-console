@@ -2,18 +2,18 @@ import { STARTUP, STARTUP_SUCCESS, STARTUP_FAILURE } from './types';
 
 export function startup() {
     return {
-        type: STARTUP,
+        type: STARTUP
     };
 }
 
 export function startupSuccess() {
     return {
-        type: STARTUP_SUCCESS,
+        type: STARTUP_SUCCESS
     };
 }
 
 export function startupFailure() {
     return {
-        type: STARTUP_FAILURE,
+        type: STARTUP_FAILURE
     };
 }

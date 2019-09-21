@@ -60,7 +60,7 @@ export const LoginForm: FunctionComponent<ILoginFormProps> = ({ onSubmit, initia
             onSubmit={onSubmit}
             initialValues={initialValues || LoginFormDefaultState}
             validationSchema={LoginFormValidationSchema}
-            component={(formikProps) => <LoginFormBase {...formikProps} loading={loading} />}
+            component={formikProps => <LoginFormBase {...formikProps} loading={loading} />}
         />
     );
 };

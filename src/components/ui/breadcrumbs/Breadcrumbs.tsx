@@ -16,7 +16,12 @@ const Breadcrumbs = (props: any) => {
             {props.routes &&
                 props.routes.map((route: IRoute) => (
                     <>
-                        <NavLink to={route.link} className={classNames('b-breadcrumbs-simple link', { active: route.active })}>
+                        <NavLink
+                            to={route.link}
+                            className={classNames('b-breadcrumbs-simple link', {
+                                active: route.active
+                            })}
+                        >
                             {route.title} {!route.active && <>/</>}
                         </NavLink>
                         <Route path={`${route.link}/:path`} component={Breadcrumbs} />

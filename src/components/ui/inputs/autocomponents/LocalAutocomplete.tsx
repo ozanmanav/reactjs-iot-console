@@ -22,12 +22,12 @@ const LocalAutocompleteResults: FunctionComponent<ILocalAutocompleteResultsProps
     options,
     onItemClick,
     position,
-    resultsContainerSize,
+    resultsContainerSize
 }) => {
     const resultsClassname = classNames([
         'b-autocomplete',
         { [`_${position}`]: position },
-        { [`_${resultsContainerSize}`]: resultsContainerSize },
+        { [`_${resultsContainerSize}`]: resultsContainerSize }
     ]);
 
     const renderedData = options.slice(0, MAX_AUTOCOMPLETE_RESULTS);
@@ -75,12 +75,15 @@ export const LocalAutocomplete: FunctionComponent<ILocalAutocompleteProps> = ({
 }) => {
     const [inputValue, setInputValue] = useState<any>('');
     const [isFocused, setIsFocused] = useState<boolean>(false);
+    function onBlur() {
+        setIsFocused(false);
+    }
     const wrapperRef = useClickOutside<HTMLDivElement>(onBlur);
     const [autocompleteResults, setAutocompleteResults] = useState(options);
 
     useEffect(() => {
         if (options.length > 0) {
-            const results = options.filter((option) => {
+            const results = options.filter(option => {
                 return (
                     option.label
                         .toString()
@@ -97,10 +100,6 @@ export const LocalAutocomplete: FunctionComponent<ILocalAutocompleteProps> = ({
         setInputValue(e.target.value);
     }
 
-    function onBlur() {
-        setIsFocused(false);
-    }
-
     function onFocus() {
         setIsFocused(true);
     }
@@ -114,7 +113,13 @@ export const LocalAutocomplete: FunctionComponent<ILocalAutocompleteProps> = ({
     }
 
     return (
-        <div className={classNames('b-autocomplete__wrapper', className, { _opened: isFocused })} ref={wrapperRef} onFocus={onFocus}>
+        <div
+            className={classNames('b-autocomplete__wrapper', className, {
+                _opened: isFocused
+            })}
+            ref={wrapperRef}
+            onFocus={onFocus}
+        >
             <SearchInput {...props} value={inputValue} onChange={onChange} marginBottom="none" />
             {isFocused && (
                 <LocalAutocompleteResults

@@ -13,7 +13,7 @@ interface TimelineTooltipProps extends TooltipProps {
     tags?: string[];
 }
 
-export const TimelineTooltip: FunctionComponent<TimelineTooltipProps> = ({ children, date, title, user, tags, isOpen }) => {
+export const TimelineTooltip: FunctionComponent<TimelineTooltipProps> = ({ date, title, user, tags, isOpen }) => {
     if (!isOpen) {
         return null;
     }

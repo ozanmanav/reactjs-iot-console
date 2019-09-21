@@ -3,12 +3,18 @@ import '../Input.scss';
 import { IRadioProps } from '../config';
 import classNames from 'classnames';
 
-const RadioButton: FunctionComponent<IRadioProps> = ({ className, marginBottom = 'normal', value, selected, ...props }) => {
+const RadioButton: FunctionComponent<IRadioProps> = ({
+    className,
+    marginBottom = 'normal',
+    value,
+    selected,
+    ...props
+}) => {
     const inputClassName = classNames([
         'f-input _radio-btn',
         { [`_margin-bottom-${marginBottom}`]: marginBottom !== 'none' },
         { _selected: selected },
-        className,
+        className
     ]);
 
     return (
@@ -27,13 +33,25 @@ interface IRadioButtonsGroupProps {
     wrapperClassName?: string;
 }
 
-export const RadioButtonsGroup: FunctionComponent<IRadioButtonsGroupProps> = ({ wrapperClassName, inputs, name, selected, onChange }) => {
+export const RadioButtonsGroup: FunctionComponent<IRadioButtonsGroupProps> = ({
+    wrapperClassName,
+    inputs,
+    name,
+    selected,
+    onChange
+}) => {
     const wrapperElClassName = classNames(['flex', wrapperClassName]);
 
     return (
         <div className={wrapperElClassName}>
-            {inputs.map((input) => (
-                <RadioButton {...input} key={input.value} name={name} selected={input.value === selected} onChange={onChange} />
+            {inputs.map(input => (
+                <RadioButton
+                    {...input}
+                    key={input.value}
+                    name={name}
+                    selected={input.value === selected}
+                    onChange={onChange}
+                />
             ))}
         </div>
     );

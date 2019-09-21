@@ -66,12 +66,12 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout 
 };
 
 const mapStateToPropsUser = (state: AppState) => ({
-    user: state.auth.user,
+    user: state.auth.user
 });
 
 export const UserNav = connect(
     mapStateToPropsUser,
-    { userLogout },
+    { userLogout }
 )(UserNavBase);
 
 interface LandingHeaderBaseProps {
@@ -81,7 +81,9 @@ interface LandingHeaderBaseProps {
 const LandingHeaderBase: FunctionComponent<LandingHeaderBaseProps> = ({ auth }) => {
     return (
         <header
-            className={classNames('flex justify-between align-center b-header', { _login: auth && !auth.loggedIn })}
+            className={classNames('flex justify-between align-center b-header', {
+                _login: auth && !auth.loggedIn
+            })}
         >
             <nav className="flex align-center b-header__main-nav">
                 <HeaderLogo to="/app/dashboard" />
@@ -92,10 +94,10 @@ const LandingHeaderBase: FunctionComponent<LandingHeaderBaseProps> = ({ auth }) 
 };
 
 const mapStateToProps = (state: AppState) => ({
-    auth: state.auth,
+    auth: state.auth
 });
 
 export const LandingHeader = connect(
     mapStateToProps,
-    null,
+    null
 )(LandingHeaderBase);

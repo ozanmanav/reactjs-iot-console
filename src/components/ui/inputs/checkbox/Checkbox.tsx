@@ -10,7 +10,7 @@ interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement>, IInputBa
 export const Checkbox: FunctionComponent<ICheckboxProps> = ({ children, marginBottom = 'normal', label, ...props }) => {
     const wrapperClassName = classNames([
         'f-checkbox__wrapper flex align-center',
-        { [`_margin-bottom-${marginBottom}`]: marginBottom !== 'none' },
+        { [`_margin-bottom-${marginBottom}`]: marginBottom !== 'none' }
     ]);
 
     return (

@@ -44,7 +44,7 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
                                 <div
                                     key={item.id}
                                     className={classnames('b-sidebar-projects-list__item', {
-                                        active: projectId === item.id,
+                                        active: projectId === item.id
                                     })}
                                 >
                                     <img src={item.projectImage1x} alt="logo" className="b-sidebar-projects__image" />
@@ -55,7 +55,7 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
                     <NavLink to={'/app/projects/create'}>
                         <div
                             className={classnames('b-sidebar-projects-list__item new-project', {
-                                active: router.location.pathname.includes('create'),
+                                active: router.location.pathname.includes('create')
                             })}
                         >
                             <img src={NewProjectIcon} alt="logo" className="b-sidebar-projects__image" />
@@ -70,7 +70,7 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
 
 const mapStateToProps = (state: AppState) => ({
     projects: state.project.projects,
-    router: state.router,
+    router: state.router
 });
 
 const SidebarProjects = connect(mapStateToProps)(SidebarProjectsBase);

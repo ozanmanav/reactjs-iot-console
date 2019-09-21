@@ -23,7 +23,7 @@ export const ActivitiesBase: FunctionComponent<ActivitiesBaseProps> = ({ activit
 
 const mapStateToProps = (state: AppState) => ({
     activities: state.project.activities || [],
-    loading: state.project.loading,
+    loading: state.project.loading
 });
 
 export const Activities = connect(

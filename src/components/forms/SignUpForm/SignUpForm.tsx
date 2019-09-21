@@ -1,12 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import './SignUpForm.scss';
-import { ISignUpFormBaseProps, SignUpFormDefaultState, SignUpFormValidationSchema, ISignUpFormProps } from './definitions';
+import {
+    SignUpFormDefaultState,
+    SignUpFormValidationSchema,
+    ISignUpFormProps,
+    ISignUpFormDefaultState
+} from './definitions';
 import { Input } from '../../ui';
 import { Button } from '../../ui/buttons';
 import { ProviderLogin } from '../../providerLogin';
 
-const SignUpFormBase: FunctionComponent<ISignUpFormBaseProps> = ({ ...formikProps }) => {
+const SignUpFormBase: FunctionComponent<FormikProps<ISignUpFormDefaultState>> = ({ ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur } = formikProps;
 
     return (
@@ -53,7 +58,7 @@ export const SignUpForm: FunctionComponent<ISignUpFormProps> = ({ onSubmit, init
             onSubmit={onSubmit}
             initialValues={initialValues || SignUpFormDefaultState}
             validationSchema={SignUpFormValidationSchema}
-            component={(formikProps) => <SignUpFormBase {...formikProps} />}
+            component={formikProps => <SignUpFormBase {...formikProps} />}
         />
     );
 };

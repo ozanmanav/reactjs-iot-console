@@ -47,7 +47,7 @@ const ICONS: IIcons = {
     copy,
     logout,
     location,
-    avatar,
+    avatar
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {

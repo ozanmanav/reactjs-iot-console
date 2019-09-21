@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRemoveBodyScroll } from '../../../hooks';
 
-export function useModal(isOpenDefault: boolean = false) {
+export function useModal(isOpenDefault = false) {
     const [isOpen, setIsOpen] = useState<boolean>(isOpenDefault);
 
     useRemoveBodyScroll(isOpen);
@@ -17,6 +17,6 @@ export function useModal(isOpenDefault: boolean = false) {
     return {
         isOpen,
         open,
-        hide,
+        hide
     };
 }

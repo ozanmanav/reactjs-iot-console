@@ -5,5 +5,5 @@ export default {
     projectId: 'feynlab-dev-1',
     storageBucket: '',
     messagingSenderId: '328512413905',
-    appId: '1:328512413905:web:dc7ded53bd66590d',
+    appId: '1:328512413905:web:dc7ded53bd66590d'
 };

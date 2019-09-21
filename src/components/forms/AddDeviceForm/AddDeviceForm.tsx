@@ -1,6 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Formik } from 'formik';
-import { IAddDeviceFormBaseProps, AddDeviceFormDefaultState, AddDeviceFormValidationSchema, IAddDeviceFormProps } from './definitions';
+import {
+    IAddDeviceFormBaseProps,
+    AddDeviceFormDefaultState,
+    AddDeviceFormValidationSchema,
+    IAddDeviceFormProps
+} from './definitions';
 import { Input, Select } from '../../ui';
 import { Button } from '../../ui/buttons';
 import { ClipLoader } from 'react-spinners';
@@ -18,7 +23,7 @@ const AddDeviceFormBase: FunctionComponent<
 > = ({ brandsOptions = [], modelsOptions, getDeviceModels, ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading, setFieldValue } = formikProps;
 
-    const onChangeBrand = (option: ValueType<any>) => {
+    const onChangeBrand = (option: ValueType<any>): void => {
         setFieldValue('deviceModel', undefined);
 
         if (getDeviceModels && option) {
@@ -28,7 +33,7 @@ const AddDeviceFormBase: FunctionComponent<
         setFieldValue('deviceBrand', option.value);
     };
 
-    const onChangeModel = (option: ValueType<any>) => {
+    const onChangeModel = (option: ValueType<any>): void => {
         setFieldValue('deviceModel', option.value);
     };
 
@@ -110,14 +115,14 @@ export const AddDeviceForm: FunctionComponent<IAddDeviceFormProps> = ({
     loading,
     brandsOptions,
     getDeviceModels,
-    modelsOptions,
+    modelsOptions
 }) => {
     return (
         <Formik
             onSubmit={onSubmit}
             initialValues={initialValues || AddDeviceFormDefaultState}
             validationSchema={AddDeviceFormValidationSchema}
-            component={(formikProps) => (
+            component={formikProps => (
                 <AddDeviceFormBase
                     {...formikProps}
                     loading={loading}

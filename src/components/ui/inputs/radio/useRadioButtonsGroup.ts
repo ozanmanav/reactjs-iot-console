@@ -11,6 +11,6 @@ export const useRadioButtonsGroup = (defaultSelected: string | number) => {
 
     return {
         selected,
-        handleChange,
+        handleChange
     };
 };

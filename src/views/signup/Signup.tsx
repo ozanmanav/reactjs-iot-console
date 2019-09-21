@@ -24,7 +24,7 @@ export const SignupBase: FunctionComponent<SignupBaseProps> = ({ userRegister })
 };
 
 const mapStateToProps = (state: AppState) => ({
-    auth: state.auth,
+    auth: state.auth
 });
 
 export const Signup = connect(

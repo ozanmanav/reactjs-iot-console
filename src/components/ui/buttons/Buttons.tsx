@@ -30,7 +30,16 @@ export const ButtonLink: FunctionComponent<IButtonLinkProps> = ({ text, classNam
     );
 };
 
-export const Button: FunctionComponent<IButtonProps> = ({ text, primary, className, big, icon, remove, type = 'button', ...props }) => {
+export const Button: FunctionComponent<IButtonProps> = ({
+    text,
+    primary,
+    className,
+    big,
+    icon,
+    remove,
+    type = 'button',
+    ...props
+}) => {
     const buttonClassName = getButtonClassName({ primary, big, className, remove });
 
     return (
@@ -41,7 +50,12 @@ export const Button: FunctionComponent<IButtonProps> = ({ text, primary, classNa
     );
 };
 
-export const GithubButton: FunctionComponent<IButtonProps> = ({ className, text = 'Continue With Github', primary = true, ...props }) => {
+export const GithubButton: FunctionComponent<IButtonProps> = ({
+    className,
+    text = 'Continue With Github',
+    primary = true,
+    ...props
+}) => {
     const buttonClassName = appendClassName('_github', className);
 
     return (
@@ -53,7 +67,12 @@ export const GithubButton: FunctionComponent<IButtonProps> = ({ className, text 
     );
 };
 
-export const GoogleButton: FunctionComponent<IButtonProps> = ({ className, text = 'Continue With Google', primary = true, ...props }) => {
+export const GoogleButton: FunctionComponent<IButtonProps> = ({
+    className,
+    text = 'Continue With Google',
+    primary = true,
+    ...props
+}) => {
     const buttonClassName = appendClassName('_google', className);
 
     return (

@@ -13,8 +13,15 @@ export const DeviceInfo: FunctionComponent<{ device: IDevice }> = ({ device }) =
                 <div className="b-device-details__info-container-location">
                     <div className="b-device-details__info-container-location-model">{device.deviceModel} |</div>
                     <div className="b-device-details__info-container-location-inner">
-                        <Icon icon="location" width={12} height={12} className="b-device-details__info-container-location-inner-icon" />
-                        <div className="b-device-details__info-container-location-inner-text">{device.deviceLocation}</div>
+                        <Icon
+                            icon="location"
+                            width={12}
+                            height={12}
+                            className="b-device-details__info-container-location-inner-icon"
+                        />
+                        <div className="b-device-details__info-container-location-inner-text">
+                            {device.deviceLocation}
+                        </div>
                     </div>
                 </div>
             </div>

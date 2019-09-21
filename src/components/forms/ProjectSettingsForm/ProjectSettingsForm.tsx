@@ -4,7 +4,7 @@ import {
     IProjectSettingsFormBaseProps,
     ProjectSettingsFormDefaultState,
     ProjectSettingsFormValidationSchema,
-    IProjectSettingsFormProps,
+    IProjectSettingsFormProps
 } from './definitions';
 import { Input, Icon, useModal } from '../../ui';
 import { Button } from '../../ui/buttons';
@@ -62,13 +62,17 @@ const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> 
     );
 };
 
-export const ProjectSettingsForm: FunctionComponent<IProjectSettingsFormProps> = ({ onSubmit, initialValues, loading }) => {
+export const ProjectSettingsForm: FunctionComponent<IProjectSettingsFormProps> = ({
+    onSubmit,
+    initialValues,
+    loading
+}) => {
     return (
         <Formik
             onSubmit={onSubmit}
             initialValues={initialValues || ProjectSettingsFormDefaultState}
             validationSchema={ProjectSettingsFormValidationSchema}
-            component={(formikProps) => <ProjectSettingsFormBase {...formikProps} loading={loading} />}
+            component={formikProps => <ProjectSettingsFormBase {...formikProps} loading={loading} />}
         />
     );
 };

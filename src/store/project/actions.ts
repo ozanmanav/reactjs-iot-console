@@ -1,311 +1,310 @@
 import * as types from './types';
-import { ProjectState } from './types';
-import { IProjectSettingsFormDefaultState } from '../../components/forms/ProjectSettingsForm/definitions';
+import { ProjectState, ProjectActionTypes } from './types';
 import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/definitions';
 import { ICreateProjectFormState } from '../../components/forms/CreateProjectForm/definitions';
 
-export function getProjects() {
+export function getProjects(): ProjectActionTypes {
     return {
-        type: types.GET_PROJECTS,
+        type: types.GET_PROJECTS
     };
 }
 
-export function getProjectsSuccess(projects: ProjectState) {
+export function getProjectsSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_PROJECTS_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getProjectsFailure(projects: ProjectState) {
+export function getProjectsFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_PROJECTS_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getProjectById(id: string) {
+export function getProjectById(id: string): ProjectActionTypes {
     return {
         type: types.GET_PROJECT_BY_ID,
-        payload: id,
+        payload: id
     };
 }
 
-export function getProjectByIdSuccess(projects: ProjectState) {
+export function getProjectByIdSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_PROJECT_BY_ID_SUCCESS,
-        payload: projects.currentProject,
+        payload: projects.currentProject
     };
 }
 
-export function getProjectByIdFailure(projects: ProjectState) {
+export function getProjectByIdFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_PROJECT_BY_ID_FAILURE,
-        payload: projects.currentProject,
+        payload: projects.currentProject
     };
 }
 
-export function getDevices() {
+export function getDevices(): ProjectActionTypes {
     return {
-        type: types.GET_DEVICES,
+        type: types.GET_DEVICES
     };
 }
 
-export function getDevicesSuccess(projects: ProjectState) {
+export function getDevicesSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICES_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDevicesFailure(projects: ProjectState) {
+export function getDevicesFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICES_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceById(id: string) {
+export function getDeviceById(id: string): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_BY_ID,
-        payload: id,
+        payload: id
     };
 }
 
-export function getDeviceByIdSuccess(projects: ProjectState) {
+export function getDeviceByIdSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_BY_ID_SUCCESS,
-        payload: projects.currentDevice,
+        payload: projects.currentDevice
     };
 }
 
-export function getDeviceByIdFailure(projects: ProjectState) {
+export function getDeviceByIdFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_BY_ID_FAILURE,
-        payload: projects.currentDevice,
+        payload: projects.currentDevice
     };
 }
 
-export function getTriggers() {
+export function getTriggers(): ProjectActionTypes {
     return {
-        type: types.GET_TRIGGERS,
+        type: types.GET_TRIGGERS
     };
 }
 
-export function getTriggersSuccess(projects: ProjectState) {
+export function getTriggersSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_TRIGGERS_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getTriggersFailure(projects: ProjectState) {
+export function getTriggersFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_TRIGGERS_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getActivities() {
+export function getActivities(): ProjectActionTypes {
     return {
-        type: types.GET_ACTIVITIES,
+        type: types.GET_ACTIVITIES
     };
 }
 
-export function getActivitiesSuccess(projects: ProjectState) {
-    return {
-        type: types.GET_ACTIVITIES_SUCCESS,
-        payload: projects,
-    };
-}
-
-export function getActivitiesFailure(projects: ProjectState) {
-    return {
-        type: types.GET_ACTIVITIES_FAILURE,
-        payload: projects,
-    };
-}
-
-export function getSettings() {
-    return {
-        type: types.GET_ACTIVITIES,
-    };
-}
-
-export function getSettingsSuccess(projects: ProjectState) {
+export function getActivitiesSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_ACTIVITIES_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getSettingsFailure(projects: ProjectState) {
+export function getActivitiesFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_ACTIVITIES_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceActivities() {
+export function getSettings(): ProjectActionTypes {
     return {
-        type: types.GET_DEVICE_ACTIVITIES,
+        type: types.GET_ACTIVITIES
     };
 }
 
-export function getDeviceActivitiesSuccess(projects: ProjectState) {
+export function getSettingsSuccess(projects: ProjectState): ProjectActionTypes {
+    return {
+        type: types.GET_ACTIVITIES_SUCCESS,
+        payload: projects
+    };
+}
+
+export function getSettingsFailure(projects: ProjectState): ProjectActionTypes {
+    return {
+        type: types.GET_ACTIVITIES_FAILURE,
+        payload: projects
+    };
+}
+
+export function getDeviceActivities(): ProjectActionTypes {
+    return {
+        type: types.GET_DEVICE_ACTIVITIES
+    };
+}
+
+export function getDeviceActivitiesSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_ACTIVITIES_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceActivitiesFailure(projects: ProjectState) {
+export function getDeviceActivitiesFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_ACTIVITIES_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceSettings() {
+export function getDeviceSettings(): ProjectActionTypes {
     return {
-        type: types.GET_DEVICE_SETTINGS,
+        type: types.GET_DEVICE_SETTINGS
     };
 }
 
-export function getDeviceSettingsSuccess(projects: ProjectState) {
+export function getDeviceSettingsSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_SETTINGS_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceSettingsFailure(projects: ProjectState) {
+export function getDeviceSettingsFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_SETTINGS_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceTokens() {
+export function getDeviceTokens(): ProjectActionTypes {
     return {
-        type: types.GET_DEVICE_TOKENS,
+        type: types.GET_DEVICE_TOKENS
     };
 }
 
-export function getDeviceTokensSuccess(projects: ProjectState) {
+export function getDeviceTokensSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_TOKENS_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceTokensFailure(projects: ProjectState) {
+export function getDeviceTokensFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_TOKENS_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function saveProjectSettings(newSettings: IProjectSettingsFormDefaultState) {
+export function saveProjectSettings(newSettings: ProjectState): ProjectActionTypes {
     return {
         type: types.SAVE_PROJECT_SETTINGS,
-        payload: newSettings,
+        payload: newSettings
     };
 }
 
-export function saveProjectSettingsSuccess(projects: ProjectState) {
+export function saveProjectSettingsSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.SAVE_PROJECT_SETTINGS_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function saveProjectSettingsFailure(projects: ProjectState) {
+export function saveProjectSettingsFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.SAVE_PROJECT_SETTINGS_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceBrands() {
+export function getDeviceBrands(): ProjectActionTypes {
     return {
-        type: types.GET_DEVICE_BRANDS,
+        type: types.GET_DEVICE_BRANDS
     };
 }
 
-export function getDeviceBrandsSuccess(projects: ProjectState) {
+export function getDeviceBrandsSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_BRANDS_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceBrandsFailure(projects: ProjectState) {
+export function getDeviceBrandsFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_BRANDS_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function addDevice(newDevice: IAddDeviceFormState) {
+export function addDevice(newDevice: IAddDeviceFormState): ProjectActionTypes {
     return {
         type: types.ADD_DEVICE,
-        payload: newDevice,
+        payload: newDevice
     };
 }
 
-export function addDeviceSuccess(projects: ProjectState) {
+export function addDeviceSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.ADD_DEVICE_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function addDeviceFailure(projects: ProjectState) {
+export function addDeviceFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.ADD_DEVICE_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceModels(brandId: string) {
+export function getDeviceModels(brandId: string): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_MODELS,
-        payload: brandId,
+        payload: brandId
     };
 }
 
-export function getDeviceModelsSuccess(projects: ProjectState) {
+export function getDeviceModelsSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_MODELS_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function getDeviceModelsFailure(projects: ProjectState) {
+export function getDeviceModelsFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.GET_DEVICE_MODELS_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function createProject(newProject: ICreateProjectFormState) {
+export function createProject(newProject: ICreateProjectFormState): ProjectActionTypes {
     return {
         type: types.CREATE_PROJECT,
-        payload: newProject,
+        payload: newProject
     };
 }
 
-export function createProjectSuccess(projects: ProjectState) {
+export function createProjectSuccess(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.CREATE_PROJECT_SUCCESS,
-        payload: projects,
+        payload: projects
     };
 }
 
-export function createProjectFailure(projects: ProjectState) {
+export function createProjectFailure(projects: ProjectState): ProjectActionTypes {
     return {
         type: types.CREATE_PROJECT_FAILURE,
-        payload: projects,
+        payload: projects
     };
 }
