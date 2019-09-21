@@ -16,6 +16,7 @@ import {
     requestGetDeviceBrands,
     requestAddDevice,
     requestGetDeviceModels,
+    requestCreateProject,
 } from './projectSaga';
 import {
     GET_PROJECTS,
@@ -31,6 +32,7 @@ import {
     GET_DEVICE_BRANDS,
     ADD_DEVICE,
     GET_DEVICE_MODELS,
+    CREATE_PROJECT,
 } from '../store/project/types';
 import { SET_SIDEBAR_STATUS } from '../store/ui/types';
 import { requestSidebarOpen } from './uiSaga';
@@ -62,6 +64,7 @@ export const rootSaga = function* root() {
         takeLatest(GET_DEVICE_BRANDS, requestGetDeviceBrands),
         takeLatest(ADD_DEVICE, requestAddDevice),
         takeLatest(GET_DEVICE_MODELS, requestGetDeviceModels),
+        takeLatest(CREATE_PROJECT, requestCreateProject),
 
         // // UI
         takeLatest(SET_SIDEBAR_STATUS, requestSidebarOpen),

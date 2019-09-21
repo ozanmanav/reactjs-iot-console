@@ -41,7 +41,7 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
                                     key={item.id}
                                     className={classnames('b-sidebar-projects-list__item', { active: projectId === item.id })}
                                 >
-                                    <img src={/*item.projectImage1x ||*/ ProjectLogo} alt="logo" className="b-sidebar-projects__image" />
+                                    <img src={item.projectImage1x} alt="logo" className="b-sidebar-projects__image" />
                                     <span>{item.projectName}</span>
                                 </div>
                             </Link>

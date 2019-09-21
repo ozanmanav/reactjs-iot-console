@@ -4,6 +4,7 @@ import { Loading } from '../../ui/loading';
 import moment from 'moment';
 import { Container } from '../../ui';
 import uniq from 'lodash/uniq';
+import AddDeviceIcon from '../../../../icons/plus-feynlab.png';
 import './ActivityList.scss';
 
 interface ActivityListProps {

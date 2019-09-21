@@ -2,6 +2,7 @@ import * as types from './types';
 import { ProjectState } from './types';
 import { IProjectSettingsFormDefaultState } from '../../components/forms/ProjectSettingsForm/definitions';
 import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/definitions';
+import { ICreateProjectFormState } from '../../components/forms/CreateProjectForm/definitions';
 
 export function getProjects() {
     return {
@@ -284,6 +285,27 @@ export function getDeviceModelsSuccess(projects: ProjectState) {
 export function getDeviceModelsFailure(projects: ProjectState) {
     return {
         type: types.GET_DEVICE_MODELS_FAILURE,
+        payload: projects,
+    };
+}
+
+export function createProject(newProject: ICreateProjectFormState) {
+    return {
+        type: types.CREATE_PROJECT,
+        payload: newProject,
+    };
+}
+
+export function createProjectSuccess(projects: ProjectState) {
+    return {
+        type: types.CREATE_PROJECT_SUCCESS,
+        payload: projects,
+    };
+}
+
+export function createProjectFailure(projects: ProjectState) {
+    return {
+        type: types.CREATE_PROJECT_FAILURE,
         payload: projects,
     };
 }

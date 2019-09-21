@@ -41,6 +41,9 @@ import {
     GET_DEVICE_MODELS,
     GET_DEVICE_MODELS_SUCCESS,
     GET_DEVICE_MODELS_FAILURE,
+    CREATE_PROJECT,
+    CREATE_PROJECT_SUCCESS,
+    CREATE_PROJECT_FAILURE,
 } from './types';
 
 export const ProjectInitialState: ProjectState = {
@@ -435,6 +438,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
                 loading: {
                     ...state.loading,
                     models: false,
+                },
+            };
+        }
+        case CREATE_PROJECT: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    createProject: true,
+                },
+            };
+        }
+        case CREATE_PROJECT_SUCCESS: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    createProject: false,
+                },
+                ...action.payload,
+            };
+        }
+        case CREATE_PROJECT_FAILURE: {
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    createProject: false,
                 },
             };
         }

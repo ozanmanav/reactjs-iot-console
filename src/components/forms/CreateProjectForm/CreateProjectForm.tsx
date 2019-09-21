@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Formik } from 'formik';
 import {
     ICreateProjectFormBaseProps,
-    CreateProjectFormDefaultState,
+    CreateProjectFormState,
     CreateProjectFormValidationSchema,
     ICreateProjectFormProps,
 } from './definitions';
@@ -55,7 +55,7 @@ export const CreateProjectForm: FunctionComponent<ICreateProjectFormProps> = ({ 
     return (
         <Formik
             onSubmit={onSubmit}
-            initialValues={initialValues || CreateProjectFormDefaultState}
+            initialValues={initialValues || CreateProjectFormState}
             validationSchema={CreateProjectFormValidationSchema}
             component={(formikProps) => <CreateProjectFormBase {...formikProps} loading={loading} />}
         />

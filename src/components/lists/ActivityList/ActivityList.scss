@@ -1,7 +1,6 @@
 @import '../../../styles/variables';
 
 .b-project-activities {
-    margin-top: 20px;
     &-loader {
         position: absolute;
         top: calc(50% - 8em);
@@ -17,14 +16,14 @@
     }
 
     &__timeline {
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 60px;
         &-container {
             font-size: 80%;
             position: relative;
             &-section {
                 display: flex;
-                margin-top: 20px;
+                margin-top: 10px;
                 &__day {
                     font-size: 12px;
                     font-weight: 600;

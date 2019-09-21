@@ -2,26 +2,26 @@ import { FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 
-export const CreateProjectFormDefaultState = {
+export const CreateProjectFormState = {
     name: '',
     description: '',
     loading: false,
 };
 
-export interface ICreateProjectFormDefaultState {
+export interface ICreateProjectFormState {
     name: string;
     description: string;
     loading?: boolean;
 }
 
-export interface ICreateProjectFormBaseProps extends FormikProps<ICreateProjectFormDefaultState> {
+export interface ICreateProjectFormBaseProps extends FormikProps<ICreateProjectFormState> {
     loading?: boolean;
 }
 
 export interface ICreateProjectFormProps {
     loading?: boolean;
-    onSubmit: (state: ICreateProjectFormDefaultState) => void;
-    initialValues?: ICreateProjectFormDefaultState;
+    onSubmit: (state: ICreateProjectFormState) => void;
+    initialValues?: ICreateProjectFormState;
 }
 
 // Validation Schema

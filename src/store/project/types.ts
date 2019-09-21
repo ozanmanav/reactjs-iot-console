@@ -20,6 +20,7 @@ export interface IProjectLoadingState {
     brands?: boolean;
     models?: boolean;
     addDevice?: boolean;
+    createProject?: boolean;
 }
 
 export interface IDeviceToken {
@@ -122,6 +123,9 @@ export const ADD_DEVICE_FAILURE = 'ADD_DEVICE_FAILURE';
 export const GET_DEVICE_MODELS = 'GET_DEVICE_MODELS';
 export const GET_DEVICE_MODELS_SUCCESS = 'GET_DEVICE_MODELS_SUCCESS';
 export const GET_DEVICE_MODELS_FAILURE = 'GET_DEVICE_MODELS_FAILURE';
+export const CREATE_PROJECT = 'CREATE_PROJECT';
+export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS';
+export const CREATE_PROJECT_FAILURE = 'CREATE_PROJECT_FAILURE';
 
 interface GetProjectsAction {
     type: typeof GET_PROJECTS;
@@ -317,6 +321,21 @@ interface GetDeviceModelsFailureAction {
     payload: ProjectState;
 }
 
+export interface CreateProjectAction {
+    type: typeof CREATE_PROJECT;
+    payload: ProjectState;
+}
+
+interface CreateProjectSuccessAction {
+    type: typeof CREATE_PROJECT_SUCCESS;
+    payload: ProjectState;
+}
+
+interface CreateProjectFailureAction {
+    type: typeof CREATE_PROJECT_FAILURE;
+    payload: ProjectState;
+}
+
 export type ProjectActionTypes =
     | GetProjectsAction
     | GetProjectsSuccessAction
@@ -356,4 +375,7 @@ export type ProjectActionTypes =
     | AddDeviceFailureAction
     | GetDeviceModelsAction
     | GetDeviceModelsSuccessAction
-    | GetDeviceModelsFailureAction;
+    | GetDeviceModelsFailureAction
+    | CreateProjectAction
+    | CreateProjectSuccessAction
+    | CreateProjectFailureAction;

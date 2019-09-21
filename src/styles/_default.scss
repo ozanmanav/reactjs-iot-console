@@ -9,10 +9,11 @@
     outline: none;
 }
 
-body {
+body #root {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    font-family: 'Exo';
 }
 
 button {

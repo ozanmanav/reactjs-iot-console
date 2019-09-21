@@ -2,11 +2,12 @@ import React, { FunctionComponent, useEffect } from 'react';
 import './Devices.scss';
 import { getDevices } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
-import { AppState } from '../../../../store';
+import AddDeviceIcon from '../../../../icons/plus-feynlab.png';
 import { IDevice, IProjectLoadingState, IProject } from '../../../../store/project/types';
 import { DeviceCard } from '../../../../components/ui/cards';
 import { NavLink } from 'react-router-dom';
 import { Button } from '../../../../components/ui';
+import { AppState } from '../../../../store';
 
 interface DevicesBaseProps {
     getDevices: typeof getDevices;
@@ -26,7 +27,8 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
             <div className="b-project-devices-details__info">
                 <div className="b-project-devices-details__add-device">
                     <NavLink to={`/app/projects/${currentProject && currentProject.id}/add-device`}>
-                        <Button text="Add Device" primary className="b-project-devices-details__add-device-action" type="submit" />
+                        <img src={AddDeviceIcon} className="b-project-devices-details__add-device_icon" />
+                        <span>Add Device</span>
                     </NavLink>
                 </div>
             </div>

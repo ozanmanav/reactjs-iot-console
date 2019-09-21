@@ -87,12 +87,16 @@
                 color: #9b9b9b;
 
                 &-model {
-                    margin-top: -2px;
                 }
 
-                &-text {
-                    margin-left: 2px;
-                    margin-top: -2px;
+                &-inner {
+                    display: flex;
+                    &-icon {
+                        margin-top: 2px;
+                    }
+                    &-text {
+                        margin-left: 2px;
+                    }
                 }
             }
         }

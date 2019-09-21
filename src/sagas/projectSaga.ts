@@ -27,8 +27,10 @@ import {
     getDevices,
     getDeviceModelsSuccess,
     getDeviceModelsFailure,
+    createProjectSuccess,
+    createProjectFailure,
 } from '../store/project/actions';
-import { ProjectState, IDevice, AddDeviceAction } from '../store/project/types';
+import { ProjectState, IDevice, AddDeviceAction, CreateProjectAction } from '../store/project/types';
 import { IProjectSettingsFormDefaultState } from '../components/forms/ProjectSettingsForm/definitions';
 import { showSuccessToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
@@ -394,5 +396,35 @@ export function* requestGetDeviceModels(data: any) {
     } catch (error) {
         const errorSession: ProjectState = { error };
         yield put(getDeviceModelsFailure(errorSession));
+    }
+}
+
+function postCreateProject(newProject: any) {
+    delete newProject.loading;
+    return postRequest(`user/projects`, {}, newProject)
+        .then((response) => {
+            return response;
+        })
+        .catch((e) => {
+            return e;
+        });
+}
+
+export function* requestCreateProject(data: CreateProjectAction) {
+    try {
+        const createProjectResponse = yield call(postCreateProject, data.payload);
+        console.log(createProjectResponse);
+        if (createProjectResponse.data.Message && createProjectResponse.data.Message.includes('Project created with')) {
+            const successCreateProjectResponse: ProjectState = {};
+            showSuccessToast('Project successfully created');
+            yield put(getProjects());
+            yield put(push(`/app/projects/${createProjectResponse.data.id}`));
+            yield put(createProjectSuccess(successCreateProjectResponse));
+        } else {
+            yield put(createProjectFailure({ error: createProjectResponse.data }));
+        }
+    } catch (error) {
+        const errorSession: ProjectState = { error };
+        yield put(createProjectFailure(errorSession));
     }
 }

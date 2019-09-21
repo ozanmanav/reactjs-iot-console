@@ -1,69 +1,68 @@
-import React, { FunctionComponent, useEffect, ChangeEvent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Formik } from 'formik';
 import { IAddDeviceFormBaseProps, AddDeviceFormDefaultState, AddDeviceFormValidationSchema, IAddDeviceFormProps } from './definitions';
-import { Input, Select, ISelectOption } from '../../ui';
+import { Input, Select } from '../../ui';
 import { Button } from '../../ui/buttons';
 import { ClipLoader } from 'react-spinners';
-import { Dropdown, DropdownProps } from 'semantic-ui-react';
 import './AddDeviceForm.scss';
-import isEmpty from 'ramda/es/isEmpty';
 import isNil from 'ramda/es/isNil';
-import { LocalAutocomplete, ILocalAutocompleteOption } from '../../ui/inputs/autocomponents';
-import { IDropdownOption } from '../../../utils';
-import { FormCaption } from '../FormsUI';
+import { ValueType } from 'react-select/src/types';
+import { IBrandOption, IModelOption } from '../../../utils';
 
 const AddDeviceFormBase: FunctionComponent<
     IAddDeviceFormBaseProps & {
-        brandsOptions?: IDropdownOption[];
+        brandsOptions?: IBrandOption[];
         getDeviceModels?: (brand: string) => void;
-        modelsOptions?: IDropdownOption[];
+        modelsOptions?: IModelOption[];
     }
 > = ({ brandsOptions = [], modelsOptions, getDeviceModels, ...formikProps }) => {
     const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading, setFieldValue } = formikProps;
 
-    const onChangeBrand = (e: React.SyntheticEvent<HTMLElement, Event>, data: DropdownProps) => {
+    const onChangeBrand = (option: ValueType<any>) => {
         setFieldValue('deviceModel', undefined);
-        const brand = (data.value && data.value.toString()) || '';
-        if (getDeviceModels) {
-            getDeviceModels(brand);
+
+        if (getDeviceModels && option) {
+            getDeviceModels(option.value);
         }
-        setFieldValue('deviceBrand', brand);
+
+        setFieldValue('deviceBrand', option.value);
     };
 
-    const onChangeModel = (e: React.SyntheticEvent<HTMLElement, Event>, data: DropdownProps) => {
-        const model = (data.value && data.value.toString()) || '';
-        setFieldValue('deviceModel', model);
+    const onChangeModel = (option: ValueType<any>) => {
+        setFieldValue('deviceModel', option.value);
     };
 
     return (
         <form className="f-add-device__form" onSubmit={handleSubmit}>
             <div className="f-add-device__form-content">
                 <h2 className="h1 f-add-device__form-title">Add Device</h2>
-                <Dropdown
+                <Select
                     placeholder="Select Brand"
-                    search
-                    selection
-                    clearable
-                    fluid
                     name="deviceBrand"
-                    loading={loading && loading.brands}
-                    value={values.deviceBrand}
-                    options={brandsOptions || []}
-                    className={'f-add-device__form-dropdown'}
+                    options={brandsOptions}
+                    isSearchable={true}
                     onChange={onChangeBrand}
-                />
-                <Dropdown
-                    placeholder="Select Model"
-                    search
-                    selection
-                    clearable
-                    name="deviceModel"
-                    disabled={loading && loading.models}
-                    loading={loading && loading.models}
-                    value={values.deviceModel}
-                    options={modelsOptions || []}
+                    isClearable={true}
+                    isDisabled={loading && loading.brands}
+                    isLoading={loading && loading.brands}
+                    value={brandsOptions && brandsOptions.filter(({ value }) => value === values.deviceBrand)}
                     className={'f-add-device__form-dropdown'}
+                    error={errors && errors.deviceBrand}
+                    touched={touched && touched.deviceBrand}
+                />
+                <Select
+                    placeholder="Select Model"
+                    name="deviceModel"
+                    options={modelsOptions}
+                    isSearchable={true}
                     onChange={onChangeModel}
+                    isClearable={true}
+                    isLoading={loading && loading.models}
+                    isDisabled={isNil(values.deviceBrand)}
+                    value={modelsOptions && modelsOptions.filter(({ value }) => value === values.deviceModel)}
+                    className={'f-add-device__form-dropdown'}
+                    error={errors && errors.deviceModel}
+                    touched={touched && touched.deviceModel}
                 />
                 <Input
                     placeholder="Device Name"
