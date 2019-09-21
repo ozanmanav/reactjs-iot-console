@@ -1,16 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { auth } from '../firebase';
 import { AuthState } from '../store/auth/types';
-import {
-    userLoginSuccess,
-    userLoginFailure,
-    checkUserSuccess,
-    checkUserFailure,
-    userRegisterSuccess,
-    userRegisterFailure,
-    userGoogleLoginSuccess,
-    userGoogleLoginFailure,
-} from '../store/auth/actions';
+import * as actions from '../store/auth/actions';
 import { push } from 'react-router-redux';
 import { showErrorToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
@@ -21,13 +12,13 @@ export function* requestUserLogin(data: any) {
 
         const successSession: AuthState = { user: response.user, loggedIn: true };
 
-        yield put(userLoginSuccess(successSession));
+        yield put(actions.userLoginSuccess(successSession));
         yield put(push('/app/dashboard'));
     } catch (error) {
         yield put(push('/login'));
         const errorSession: AuthState = { error, loggedIn: false };
         showErrorToast(error.message);
-        yield put(userLoginFailure(errorSession));
+        yield put(actions.userLoginFailure(errorSession));
     }
 }
 
@@ -35,16 +26,15 @@ export function* requestGoogleLogin(data: any) {
     try {
         const response = yield call(auth.doSignInWithGoogle, data.payload.tokenId, data.payload.accessToken);
 
-        console.log(response);
         const successSession: AuthState = { user: response.user, loggedIn: true };
 
-        yield put(userGoogleLoginSuccess(successSession));
+        yield put(actions.userGoogleLoginSuccess(successSession));
         yield put(push('/app/dashboard'));
     } catch (error) {
         yield put(push('/login'));
         const errorSession: AuthState = { error, loggedIn: false };
         showErrorToast(error.message);
-        yield put(userGoogleLoginFailure(errorSession));
+        yield put(actions.userGoogleLoginFailure(errorSession));
     }
 }
 
@@ -54,13 +44,13 @@ export function* requestUserRegister(data: any) {
 
         const successSession: AuthState = { user: response.user, loggedIn: true };
 
-        yield put(userRegisterSuccess(successSession));
+        yield put(actions.userRegisterSuccess(successSession));
         yield put(push('/app/dashboard'));
     } catch (error) {
         yield put(push('/signup'));
         const errorSession: AuthState = { error, loggedIn: false };
         showErrorToast(error.message);
-        yield put(userRegisterFailure(errorSession));
+        yield put(actions.userRegisterFailure(errorSession));
     }
 }
 
@@ -70,14 +60,13 @@ export function* checkUserAuth() {
 
         const successCheckSession: AuthState = { user: currentUser, loggedIn: true };
 
-        yield put(checkUserSuccess(successCheckSession));
+        yield put(actions.checkUserSuccess(successCheckSession));
         yield put(push('/app'));
     } catch (error) {
-        console.log(error);
         yield put(push('/login'));
         const errorSession: AuthState = { error, loggedIn: false };
         showErrorToast(error);
-        yield put(checkUserFailure(errorSession));
+        yield put(actions.checkUserFailure(errorSession));
     }
 }
 
@@ -90,6 +79,6 @@ export function* requestUserLogout() {
         yield put(push('/login'));
         const errorSession: AuthState = { error, loggedIn: false };
         showErrorToast(error);
-        yield put(checkUserFailure(errorSession));
+        yield put(actions.checkUserFailure(errorSession));
     }
 }
