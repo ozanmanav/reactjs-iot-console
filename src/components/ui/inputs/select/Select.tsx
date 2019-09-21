@@ -21,7 +21,7 @@ export const Select: FunctionComponent<ISelectProps> = ({ className, error, touc
 
     const IconOption = (props: any) => (
         <Option {...props}>
-            {props.data.image && <img src={props.data.image} className="f-select__icon" />}
+            {props.data.image && <img src={props.data.image} className="f-select__icon" alt={props.data.label} />}
             {props.data.label}
         </Option>
     );

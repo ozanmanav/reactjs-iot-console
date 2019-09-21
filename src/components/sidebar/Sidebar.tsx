@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import DashboardIcon from '../../icons/dashboard-icon.svg';
 import DashboardIconDeactive from '../../icons/dashboard-icon-deactive.svg';
 import SupportIcon from '../../icons/support-icon.svg';
@@ -92,5 +92,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const Sidebar = connect(
     mapStateToProps,
-    { getProjects }
+    { getProjects },
 )(SidebarBase);

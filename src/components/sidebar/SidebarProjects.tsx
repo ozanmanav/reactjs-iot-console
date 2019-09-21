@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import NewProjectIcon from '../../icons/plus-feynlab.png';
 import ProjectIcon from '../../icons/project-icon.svg';
 import ProjectIconDeactive from '../../icons/project-icon-deactive.svg';
-import ProjectLogo from '../../icons/ProjectLogo.png';
 import SidebarHeader from './SidebarHeader';
 import './Sidebar.scss';
 import { AppState } from '../../store';
@@ -30,16 +29,23 @@ const SidebarProjectsBase: FunctionComponent<ISidebarProjectsBaseProps> = ({ pro
                 toggle={toggleAccordion}
                 index={1}
                 CustomHeader={() => (
-                    <SidebarHeader text={'Projects'} image={ProjectIcon} deactiveImage={ProjectIconDeactive} active={active} />
+                    <SidebarHeader
+                        text={'Projects'}
+                        image={ProjectIcon}
+                        deactiveImage={ProjectIconDeactive}
+                        active={active}
+                    />
                 )}
             >
                 <div className="b-sidebar-projects-list">
                     {projects &&
-                        projects.map((item) => (
+                        projects.map(item => (
                             <Link to={`/app/projects/${item.id}`} key={item.id}>
                                 <div
                                     key={item.id}
-                                    className={classnames('b-sidebar-projects-list__item', { active: projectId === item.id })}
+                                    className={classnames('b-sidebar-projects-list__item', {
+                                        active: projectId === item.id,
+                                    })}
                                 >
                                     <img src={item.projectImage1x} alt="logo" className="b-sidebar-projects__image" />
                                     <span>{item.projectName}</span>

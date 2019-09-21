@@ -4,7 +4,6 @@ import { Logo, CustomNavLink, useModal, Icon } from '../ui';
 import classNames from 'classnames';
 import { NavLinkProps, NavLink } from 'react-router-dom';
 import { AuthState } from '../../store/auth/types';
-import { Loading } from '../ui/loading';
 import { userLogout } from '../../store/auth/actions';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
@@ -72,7 +71,7 @@ const mapStateToPropsUser = (state: AppState) => ({
 
 export const UserNav = connect(
     mapStateToPropsUser,
-    { userLogout }
+    { userLogout },
 )(UserNavBase);
 
 interface LandingHeaderBaseProps {
@@ -81,7 +80,9 @@ interface LandingHeaderBaseProps {
 
 const LandingHeaderBase: FunctionComponent<LandingHeaderBaseProps> = ({ auth }) => {
     return (
-        <header className={classNames('flex justify-between align-center b-header', { _login: auth && !auth.loggedIn })}>
+        <header
+            className={classNames('flex justify-between align-center b-header', { _login: auth && !auth.loggedIn })}
+        >
             <nav className="flex align-center b-header__main-nav">
                 <HeaderLogo to="/app/dashboard" />
             </nav>
@@ -96,5 +97,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const LandingHeader = connect(
     mapStateToProps,
-    null
+    null,
 )(LandingHeaderBase);

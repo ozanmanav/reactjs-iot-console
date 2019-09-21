@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './styles/index.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-tabs/style/react-tabs.css';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

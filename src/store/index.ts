@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import { authReducer } from './auth/reducers';
@@ -34,7 +33,7 @@ export type AppState = ReturnType<typeof rootReducer>;
 
 export default function configureStore() {
     const sagaMiddleware = createSagaMiddleware();
-    const middlewares = [thunkMiddleware, sagaMiddleware, logger, routerMiddleware(history)];
+    const middlewares = [sagaMiddleware, logger, routerMiddleware(history)];
     const middleWareEnhancer = applyMiddleware(...middlewares);
 
     const store = createStore(resetEnhancer(rootReducer), composeWithDevTools(middleWareEnhancer));

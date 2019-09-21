@@ -1,5 +1,4 @@
 import { ISelectOption } from '../components/ui/inputs';
-import { ILocalAutocompleteOption } from '../components/ui/inputs/autocomponents';
 
 export interface IBrandOption extends ISelectOption {
     image?: object;

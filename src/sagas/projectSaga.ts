@@ -36,24 +36,13 @@ import { showSuccessToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
 import { push } from 'connected-react-router';
 
-function fetchProjects() {
-    return getRequest('/user/projects')
-        .then((response) => {
-            return response;
-        })
-        .catch((e) => {
-            throw e;
-        });
-}
-
 export function* requestGetProjects() {
     try {
-        const projectsResponse = yield call(fetchProjects);
+        const projectsResponse = yield call(getRequest, '/user/projects');
 
         const successProjectsResponse: ProjectState = { projects: projectsResponse.data.Projects };
-        console.log(localStorage.getItem(PROJECTS_FIRST_LOAD_KEY));
+
         if (JSON.parse(localStorage.getItem(PROJECTS_FIRST_LOAD_KEY) || 'true')) {
-            console.log('first init projects');
             localStorage.setItem(PROJECTS_FIRST_LOAD_KEY, JSON.stringify(false));
             const firstProject = successProjectsResponse.projects && successProjectsResponse.projects[0];
             if (firstProject) {
@@ -68,19 +57,9 @@ export function* requestGetProjects() {
     }
 }
 
-function fetchProjectById(projectId: string) {
-    return getRequest(`/user/projects/${projectId}`)
-        .then((response) => {
-            return response;
-        })
-        .catch((e) => {
-            return e;
-        });
-}
-
 export function* requestGetProjectById(data: any) {
     try {
-        const projectResponse = yield call(fetchProjectById, data.payload);
+        const projectResponse = yield call(getRequest, `/user/projects/${data.payload}`);
         const successProjectResponse: ProjectState = { currentProject: projectResponse.data.ProjectDetail };
 
         yield put(getProjectByIdSuccess(successProjectResponse));
@@ -90,22 +69,12 @@ export function* requestGetProjectById(data: any) {
     }
 }
 
-function fetchDevices(projectId: string) {
-    return getRequest(`/user/projects/${projectId}/devices`)
-        .then((response) => {
-            return response;
-        })
-        .catch((e) => {
-            return e;
-        });
-}
-
 export function* requestGetDevices() {
     try {
-        let currentProject = yield select((state) => state.project.currentProject);
+        let currentProject = yield select(state => state.project.currentProject);
 
         if (currentProject && currentProject.id) {
-            const devicesResponse = yield call(fetchDevices, currentProject.id);
+            const devicesResponse = yield call(getRequest, `/user/projects/${currentProject.id}/devices`);
 
             const successDevicesResponse: ProjectState = { devices: devicesResponse.data.Devices };
 
@@ -120,22 +89,12 @@ export function* requestGetDevices() {
     }
 }
 
-function fetchDeviceById(projectId: string, deviceId: string) {
-    return getRequest(`/user/projects/${projectId}/devices/${deviceId}`)
-        .then((response) => {
-            return response;
-        })
-        .catch((e) => {
-            return e;
-        });
-}
-
 export function* requestGetDeviceById(data: any) {
     try {
-        let currentProject = yield select((state) => state.project.currentProject);
+        let currentProject = yield select(state => state.project.currentProject);
 
         if (currentProject && data.payload) {
-            let deviceResponse = yield call(fetchDeviceById, currentProject.id, data.payload);
+            let deviceResponse = yield call(getRequest, `/user/projects/${currentProject.id}/devices/${data.payload}`);
 
             const successDeviceResponse: ProjectState = { currentDevice: deviceResponse.data.Device };
 
@@ -150,22 +109,12 @@ export function* requestGetDeviceById(data: any) {
     }
 }
 
-function fetchTriggers(projectId: string) {
-    return getRequest(`/project/${projectId}/triggers`)
-        .then((response) => {
-            return response;
-        })
-        .catch((e) => {
-            return e;
-        });
-}
-
 export function* requestGetTriggers() {
     try {
-        let currentProject = yield select((state) => state.project.currentProject);
+        let currentProject = yield select(state => state.project.currentProject);
 
         if (currentProject && currentProject.id) {
-            const triggersResponse = yield call(fetchTriggers, currentProject.id);
+            const triggersResponse = yield call(getRequest, `/project/${currentProject.id}/triggers`);
             console.log(triggersResponse);
             const successTriggersResponse: ProjectState = {
                 triggers: { alarm: triggersResponse.data.alarm, periodic: triggersResponse.data.periodic },
@@ -182,22 +131,12 @@ export function* requestGetTriggers() {
     }
 }
 
-function fetchActivities(projectId: string) {
-    return getRequest(`user/projects/${projectId}/activities`)
-        .then((response) => {
-            return response;
-        })
-        .catch((e) => {
-            return e;
-        });
-}
-
 export function* requestGetActivities() {
     try {
-        let currentProject = yield select((state) => state.project.currentProject);
+        let currentProject = yield select(state => state.project.currentProject);
 
         if (currentProject && currentProject.id) {
-            const activitiesResponse = yield call(fetchActivities, currentProject.id);
+            const activitiesResponse = yield call(getRequest, `user/projects/${currentProject.id}/activities`);
 
             const successActivitiesResponse: ProjectState = { activities: activitiesResponse.data.Activities };
 
@@ -214,23 +153,28 @@ export function* requestGetActivities() {
 
 function fetchDeviceActivities(projectId: string, deviceId: string) {
     return getRequest(`user/projects/${projectId}/device/${deviceId}/activities`)
-        .then((response) => {
+        .then(response => {
             return response;
         })
-        .catch((e) => {
+        .catch(e => {
             return e;
         });
 }
 
 export function* requestGetDeviceActivities() {
     try {
-        let currentProject = yield select((state) => state.project.currentProject);
-        let currentDevice = yield select((state) => state.project.currentDevice);
+        let currentProject = yield select(state => state.project.currentProject);
+        let currentDevice = yield select(state => state.project.currentDevice);
 
         if (currentProject && currentDevice) {
-            const deviceActivitiesResponse = yield call(fetchDeviceActivities, currentProject.id, currentDevice.id);
+            const deviceActivitiesResponse = yield call(
+                getRequest,
+                `user/projects/${currentProject.id}/device/${currentDevice.id}/activities`,
+            );
 
-            const successDeviceActivitiesResponse: ProjectState = { deviceActivities: deviceActivitiesResponse.data.Activities };
+            const successDeviceActivitiesResponse: ProjectState = {
+                deviceActivities: deviceActivitiesResponse.data.Activities,
+            };
 
             yield put(getDeviceActivitiesSuccess(successDeviceActivitiesResponse));
         } else {
@@ -245,18 +189,18 @@ export function* requestGetDeviceActivities() {
 
 function fetchDeviceTokens(projectId: string, deviceId: string) {
     return getRequest(`user/projects/${projectId}/devices/${deviceId}/retrievetokens`)
-        .then((response) => {
+        .then(response => {
             return response;
         })
-        .catch((e) => {
+        .catch(e => {
             return e;
         });
 }
 
 export function* requestGetDeviceTokens() {
     try {
-        let currentProject = yield select((state) => state.project.currentProject);
-        let currentDevice: IDevice = yield select((state) => state.project.currentDevice);
+        let currentProject = yield select(state => state.project.currentProject);
+        let currentDevice: IDevice = yield select(state => state.project.currentDevice);
 
         if (currentProject && currentDevice && currentDevice.id) {
             const deviceTokensResponse = yield call(fetchDeviceTokens, currentProject.id, currentDevice.id);
@@ -281,24 +225,28 @@ export function* requestGetDeviceTokens() {
 
 function putProjectSettings(projectId: string, newSettings: IProjectSettingsFormDefaultState) {
     return putRequest(`user/projects/${projectId}`, {}, newSettings)
-        .then((response) => {
+        .then(response => {
             return response;
         })
-        .catch((e) => {
+        .catch(e => {
             return e;
         });
 }
 
 export function* requestSaveProjectSettings(data: any) {
     try {
-        let currentProject = yield select((state) => state.project.currentProject);
+        let currentProject = yield select(state => state.project.currentProject);
 
         if (currentProject) {
             const saveSettingsResponse = yield call(putProjectSettings, currentProject.id, data.payload);
 
             if (saveSettingsResponse.data.Message === 'Update successful') {
                 const successSaveProjectSettingsResponse: ProjectState = {
-                    currentProject: { ...currentProject, projectDescription: data.payload.description, projectName: data.payload.name },
+                    currentProject: {
+                        ...currentProject,
+                        projectDescription: data.payload.description,
+                        projectName: data.payload.name,
+                    },
                 };
                 showSuccessToast('Project settings successfully saved');
                 yield put(saveProjectSettingsSuccess(successSaveProjectSettingsResponse));
@@ -318,10 +266,10 @@ export function* requestSaveProjectSettings(data: any) {
 
 function fetchDeviceBrands() {
     return getRequest(`brands`)
-        .then((response) => {
+        .then(response => {
             return response;
         })
-        .catch((e) => {
+        .catch(e => {
             return e;
         });
 }
@@ -342,17 +290,17 @@ export function* requestGetDeviceBrands() {
 function postAddDevice(projectId: string, newDevice: any) {
     delete newDevice.loading;
     return postRequest(`user/projects/${projectId}/devices`, {}, newDevice)
-        .then((response) => {
+        .then(response => {
             return response;
         })
-        .catch((e) => {
+        .catch(e => {
             return e;
         });
 }
 
 export function* requestAddDevice(data: AddDeviceAction) {
     try {
-        let currentProject = yield select((state) => state.project.currentProject);
+        let currentProject = yield select(state => state.project.currentProject);
 
         if (currentProject) {
             const addDeviceResponse = yield call(postAddDevice, currentProject.id, data.payload);
@@ -378,10 +326,10 @@ export function* requestAddDevice(data: AddDeviceAction) {
 
 function fetchDeviceModels(brand: string) {
     return getRequest(`deviceModels`, { brand })
-        .then((response) => {
+        .then(response => {
             return response;
         })
-        .catch((e) => {
+        .catch(e => {
             return e;
         });
 }
@@ -402,10 +350,10 @@ export function* requestGetDeviceModels(data: any) {
 function postCreateProject(newProject: any) {
     delete newProject.loading;
     return postRequest(`user/projects`, {}, newProject)
-        .then((response) => {
+        .then(response => {
             return response;
         })
-        .catch((e) => {
+        .catch(e => {
             return e;
         });
 }
@@ -413,7 +361,7 @@ function postCreateProject(newProject: any) {
 export function* requestCreateProject(data: CreateProjectAction) {
     try {
         const createProjectResponse = yield call(postCreateProject, data.payload);
-        console.log(createProjectResponse);
+
         if (createProjectResponse.data.Message && createProjectResponse.data.Message.includes('Project created with')) {
             const successCreateProjectResponse: ProjectState = {};
             showSuccessToast('Project successfully created');
