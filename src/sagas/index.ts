@@ -7,6 +7,8 @@ import * as projectSaga from './projectSaga';
 import * as projectTypes from '../store/project/types';
 import * as uiTypes from '../store/ui/types';
 import * as uiSaga from './uiSaga';
+import * as userTypes from '../store/user/types';
+import * as userSaga from './userSaga';
 
 // Register all your watchers
 export const rootSaga = function* root() {
@@ -21,6 +23,7 @@ export const rootSaga = function* root() {
     takeLatest(authTypes.CHECK_USER_AUTH_FIREBASE, authSaga.requestCheckUserAuthFirebase),
     takeLatest(authTypes.USER_LOGOUT, authSaga.requestUserLogout),
     takeLatest(authTypes.CHECK_USER_FEYNLAB, authSaga.requestCheckUserFeynlab),
+    takeLatest(authTypes.REGISTER_USER_FEYNLAB, authSaga.requestUserRegisterFeynlab),
 
     // Project
     takeLatest(projectTypes.GET_PROJECTS, projectSaga.requestGetProjects),
@@ -37,6 +40,10 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.ADD_DEVICE, projectSaga.requestAddDevice),
     takeLatest(projectTypes.GET_DEVICE_MODELS, projectSaga.requestGetDeviceModels),
     takeLatest(projectTypes.CREATE_PROJECT, projectSaga.requestCreateProject),
+    takeLatest(projectTypes.DELETE_PROJECT, projectSaga.requestDeleteProject),
+
+    // User
+    takeLatest(userTypes.GET_USER_PROFILE, userSaga.requestGetUserProfile),
 
     // // UI
     takeLatest(uiTypes.SET_SIDEBAR_STATUS, uiSaga.requestSidebarOpen)

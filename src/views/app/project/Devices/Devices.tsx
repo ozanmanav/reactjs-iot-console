@@ -42,6 +42,7 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
             devices &&
             devices.map(device => (
               <NavLink
+                key={device.id}
                 to={`/app/projects/${currentProject && currentProject.id}/devices/${device.id}`}
                 className="col-md-6 col-sm-12 col-xs-12 b-project-devices-details__devices-card"
               >

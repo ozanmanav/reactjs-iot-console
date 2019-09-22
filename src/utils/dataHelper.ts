@@ -92,3 +92,33 @@ export function putRequest(url: any, params = {}, data: {}) {
       });
   });
 }
+
+export function deleteRequest(url: any, params = {}, data: {}) {
+  const baseURL = BASE_URL || '';
+  return new Promise((resolve, reject) => {
+    auth
+      .onAuthStateChanged()
+      .then((user: any) => {
+        return user
+          .getIdToken(false)
+          .then((token: string) => {
+            axios({
+              method: 'DELETE',
+              headers: { Authorization: `Bearer ${token}` },
+              baseURL,
+              url,
+              params,
+              data
+            })
+              .then(result => resolve(result))
+              .catch(error => reject(error.response.data));
+          })
+          .catch((error: any) => {
+            reject(error);
+          });
+      })
+      .catch((error: any) => {
+        reject(error);
+      });
+  });
+}

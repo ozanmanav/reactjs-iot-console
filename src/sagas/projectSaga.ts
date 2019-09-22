@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-import { getRequest, putRequest, postRequest } from '../utils/dataHelper';
+import { getRequest, putRequest, postRequest, deleteRequest } from '../utils/dataHelper';
 import * as actions from '../store/project/actions';
 import { ProjectState, IDevice, AddDeviceAction, CreateProjectAction, IProject } from '../store/project/types';
 import { showSuccessToast } from '../components/ui';
@@ -314,5 +314,43 @@ export function* requestCreateProject(data: CreateProjectAction) {
     yield put(actions.createProjectSuccess({}));
   } catch (error) {
     yield put(actions.createProjectFailure({ error }));
+  }
+}
+
+export function* requestDeleteProject() {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+
+    if (!currentProject || !currentProject.id) {
+      return yield put(
+        actions.deleteProjectFailure({
+          error: 'Not current project selected'
+        })
+      );
+    }
+
+    const deleteProjectResponse = yield call(deleteRequest, `user/projects/${currentProject.id}`, {}, {});
+
+    if (!deleteProjectResponse.data.Message || !deleteProjectResponse.data.Message.includes('Project deleted')) {
+      return yield put(
+        actions.deleteProjectFailure({
+          error: deleteProjectResponse.data
+        })
+      );
+    }
+
+    yield put(actions.getProjects());
+
+    const projects: IProject[] = yield select(state => state.project.projects);
+
+    const firstProject = yield projects && projects.length > 1 && projects[0];
+    if (firstProject) {
+      yield put(push(`/app/projects/${firstProject.id}`));
+    }
+
+    showSuccessToast('Project successfully deleted');
+    yield put(actions.deleteProjectSuccess({}));
+  } catch (error) {
+    yield put(actions.deleteProjectFailure({ error }));
   }
 }

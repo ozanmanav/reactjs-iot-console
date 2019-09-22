@@ -17,7 +17,10 @@ import {
   USER_GOOGLE_LOGIN_FAILURE,
   CHECK_USER_FEYNLAB,
   CHECK_USER_FEYNLAB_SUCCESS,
-  CHECK_USER_FEYNLAB_FAILURE
+  CHECK_USER_FEYNLAB_FAILURE,
+  REGISTER_USER_FEYNLAB,
+  REGISTER_USER_FEYNLAB_SUCCESS,
+  REGISTER_USER_FEYNLAB_FAILURE
 } from './types';
 import { CRYPT_JS_SECRET_KEY } from '../../config';
 import { AES } from 'crypto-js';
@@ -187,6 +190,35 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
         loading: {
           ...state.loading,
           checkUserFeynlab: false
+        },
+        ...action.payload
+      };
+    }
+    case REGISTER_USER_FEYNLAB: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          registerUserFeynlab: true
+        }
+      };
+    }
+    case REGISTER_USER_FEYNLAB_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          registerUserFeynlab: false
+        },
+        ...action.payload
+      };
+    }
+    case REGISTER_USER_FEYNLAB_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          registerUserFeynlab: false
         },
         ...action.payload
       };

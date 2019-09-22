@@ -13,7 +13,10 @@ import './ProjectSettingsForm.scss';
 import { FormCaption } from '../FormsUI';
 import { ConfirmModal } from '../../modals';
 
-const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> = ({ ...formikProps }) => {
+const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> = ({
+  onClickProjectDelete,
+  ...formikProps
+}) => {
   const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
   const { open, hide, isOpen } = useModal();
 
@@ -50,8 +53,8 @@ const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> 
             <Button text="Save" primary className="f-project-settings__form-action" type="submit" />
             <Icon icon="trash" className="_cursor-pointer" onClick={open} />
             <ConfirmModal
-              title="Are you sure log out?"
-              onConfirm={() => console.log('delete project')}
+              title="Are you sure delete project?"
+              onConfirm={onClickProjectDelete}
               hide={hide}
               isOpen={isOpen}
             />
@@ -65,14 +68,17 @@ const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> 
 export const ProjectSettingsForm: FunctionComponent<IProjectSettingsFormProps> = ({
   onSubmit,
   initialValues,
-  loading
+  loading,
+  onClickProjectDelete
 }) => {
   return (
     <Formik
       onSubmit={onSubmit}
       initialValues={initialValues || ProjectSettingsFormDefaultState}
       validationSchema={ProjectSettingsFormValidationSchema}
-      component={formikProps => <ProjectSettingsFormBase {...formikProps} loading={loading} />}
+      component={formikProps => (
+        <ProjectSettingsFormBase {...formikProps} loading={loading} onClickProjectDelete={onClickProjectDelete} />
+      )}
     />
   );
 };

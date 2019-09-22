@@ -423,6 +423,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
+    case types.DELETE_PROJECT: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deleteProject: true
+        }
+      };
+    }
+    case types.DELETE_PROJECT_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deleteProject: false
+        },
+        ...action.payload
+      };
+    }
+    case types.DELETE_PROJECT_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deleteProject: false
+        }
+      };
+    }
     default:
       return state;
   }

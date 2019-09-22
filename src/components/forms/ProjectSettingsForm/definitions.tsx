@@ -18,9 +18,11 @@ export interface IProjectSettingsFormDefaultState {
 
 export interface IProjectSettingsFormBaseProps extends FormikProps<IProjectSettingsFormDefaultState> {
   loading?: boolean;
+  onClickProjectDelete: () => void;
 }
 
 export interface IProjectSettingsFormProps {
+  onClickProjectDelete: () => void;
   loading?: boolean;
   onSubmit: (state: IProjectSettingsFormDefaultState) => void;
   initialValues?: IProjectSettingsFormDefaultState;

@@ -1,9 +1,8 @@
 import { GET_USER_PROFILE, GET_USER_PROFILE_SUCCESS, GET_USER_PROFILE_FAILURE, UserState } from './types';
 
-export function getUserProfile(userId: string) {
+export function getUserProfile() {
   return {
-    type: GET_USER_PROFILE,
-    payload: userId
+    type: GET_USER_PROFILE
   };
 }
 

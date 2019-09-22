@@ -2,7 +2,8 @@ export interface IUser {
   id: string;
 }
 export interface UserState {
-  profile: IUser;
+  profile?: IUser;
+  error?: string;
 }
 
 // Describing the different ACTION NAMES available

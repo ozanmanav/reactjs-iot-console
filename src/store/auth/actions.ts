@@ -110,3 +110,24 @@ export function checkUserFeynlabFailure(newSession: AuthState): AuthActionTypes 
     payload: newSession
   };
 }
+
+export function registerUserFeynlab(email: string): AuthActionTypes {
+  return {
+    type: types.REGISTER_USER_FEYNLAB,
+    payload: email
+  };
+}
+
+export function registerUserFeynlabSuccess(newSession: AuthState): AuthActionTypes {
+  return {
+    type: types.REGISTER_USER_FEYNLAB_SUCCESS,
+    payload: newSession
+  };
+}
+
+export function registerUserFeynlabFailure(newSession: AuthState): AuthActionTypes {
+  return {
+    type: types.REGISTER_USER_FEYNLAB_FAILURE,
+    payload: newSession
+  };
+}

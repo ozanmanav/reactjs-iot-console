@@ -24,6 +24,7 @@ export interface IProjectLoadingState {
   models?: boolean;
   addDevice?: boolean;
   createProject?: boolean;
+  deleteProject?: boolean;
 }
 
 export interface IDeviceToken {
@@ -129,6 +130,9 @@ export const GET_DEVICE_MODELS_FAILURE = '@@project/GET_DEVICE_MODELS_FAILURE';
 export const CREATE_PROJECT = '@@project/CREATE_PROJECT';
 export const CREATE_PROJECT_SUCCESS = '@@project/CREATE_PROJECT_SUCCESS';
 export const CREATE_PROJECT_FAILURE = '@@project/CREATE_PROJECT_FAILURE';
+export const DELETE_PROJECT = '@@project/DELETE_PROJECT';
+export const DELETE_PROJECT_SUCCESS = '@@project/DELETE_PROJECT_SUCCESS';
+export const DELETE_PROJECT_FAILURE = '@@project/DELETE_PROJECT_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -332,6 +336,20 @@ interface CreateProjectFailureAction {
   payload: ProjectState;
 }
 
+export interface DeleteProjectAction {
+  type: typeof DELETE_PROJECT;
+}
+
+interface DeleteProjectSuccessAction {
+  type: typeof DELETE_PROJECT_SUCCESS;
+  payload: ProjectState;
+}
+
+interface DeleteProjectFailureAction {
+  type: typeof DELETE_PROJECT_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -374,4 +392,7 @@ export type ProjectActionTypes =
   | GetDeviceModelsFailureAction
   | CreateProjectAction
   | CreateProjectSuccessAction
-  | CreateProjectFailureAction;
+  | CreateProjectFailureAction
+  | DeleteProjectAction
+  | DeleteProjectFailureAction
+  | DeleteProjectSuccessAction;

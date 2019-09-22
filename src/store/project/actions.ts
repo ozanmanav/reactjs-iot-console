@@ -308,3 +308,23 @@ export function createProjectFailure(projects: ProjectState): ProjectActionTypes
     payload: projects
   };
 }
+
+export function deleteProject(): ProjectActionTypes {
+  return {
+    type: types.DELETE_PROJECT
+  };
+}
+
+export function deleteProjectSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.DELETE_PROJECT_SUCCESS,
+    payload: projects
+  };
+}
+
+export function deleteProjectFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.DELETE_PROJECT_FAILURE,
+    payload: projects
+  };
+}
