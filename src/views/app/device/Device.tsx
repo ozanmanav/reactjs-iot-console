@@ -13,60 +13,60 @@ import { DeviceActivities } from './DeviceActivities';
 import { DeviceSettings } from './DeviceSettings';
 
 interface DetailsBaseProps extends RouteComponentProps {
-    getDeviceById?: typeof getDeviceById;
-    project: ProjectState;
-    router?: any;
+  getDeviceById?: typeof getDeviceById;
+  project: ProjectState;
+  router?: any;
 }
 
 const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById, project }) => {
-    const projectId = router.location.pathname.split('/')[3] || '';
-    const deviceId = router.location.pathname.split('/')[5] || '';
+  const projectId = router.location.pathname.split('/')[3] || '';
+  const deviceId = router.location.pathname.split('/')[5] || '';
 
-    useEffect(() => {
-        if (projectId && deviceId && getDeviceById) {
-            getDeviceById(deviceId);
-        }
-    }, [projectId, deviceId, getDeviceById]);
-
-    if (project.loading && project.loading.currentDevice) {
-        return <Loading loading={project.loading.currentDevice} />;
+  useEffect(() => {
+    if (projectId && deviceId && getDeviceById) {
+      getDeviceById(deviceId);
     }
+  }, [projectId, deviceId, getDeviceById]);
 
-    return project.currentProject && project.currentDevice ? (
-        <div className="b-device-details">
-            <div className="b-device-details__breadcrumb-wrapper">
-                <div className="b-device-details__breadcrumb-wrapper__present">Projects /</div>
-                <BreadcrumbsAdv />
-            </div>
-            <DeviceInfo device={project.currentDevice} />
-            <Tabs className="b-device-details__tabs">
-                <TabList>
-                    <Tab>Charts</Tab>
-                    <Tab>Triggers</Tab>
-                    <Tab>Activity</Tab>
-                    <Tab>Archive</Tab>
-                    <Tab>Settings</Tab>
-                </TabList>
-                <TabPanel>Charts</TabPanel>
-                <TabPanel>Triggers</TabPanel>
-                <TabPanel>
-                    <DeviceActivities />
-                </TabPanel>
-                <TabPanel>Archive</TabPanel>
-                <TabPanel>
-                    <DeviceSettings />
-                </TabPanel>
-            </Tabs>
-        </div>
-    ) : null;
+  if (project.loading && project.loading.currentDevice) {
+    return <Loading loading={project.loading.currentDevice} />;
+  }
+
+  return project.currentProject && project.currentDevice ? (
+    <div className="b-device-details">
+      <div className="b-device-details__breadcrumb-wrapper">
+        <div className="b-device-details__breadcrumb-wrapper__present">Projects /</div>
+        <BreadcrumbsAdv />
+      </div>
+      <DeviceInfo device={project.currentDevice} />
+      <Tabs className="b-device-details__tabs">
+        <TabList>
+          <Tab>Charts</Tab>
+          <Tab>Triggers</Tab>
+          <Tab>Activity</Tab>
+          <Tab>Archive</Tab>
+          <Tab>Settings</Tab>
+        </TabList>
+        <TabPanel>Charts</TabPanel>
+        <TabPanel>Triggers</TabPanel>
+        <TabPanel>
+          <DeviceActivities />
+        </TabPanel>
+        <TabPanel>Archive</TabPanel>
+        <TabPanel>
+          <DeviceSettings />
+        </TabPanel>
+      </Tabs>
+    </div>
+  ) : null;
 };
 
 const mapStateToProps = (state: AppState): any => ({
-    project: state.project,
-    router: state.router
+  project: state.project,
+  router: state.router
 });
 
 export const Device = connect(
-    mapStateToProps,
-    { getDeviceById }
+  mapStateToProps,
+  { getDeviceById }
 )(DeviceBase);

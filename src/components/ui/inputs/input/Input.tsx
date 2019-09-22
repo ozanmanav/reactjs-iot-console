@@ -5,45 +5,45 @@ import { Icon } from '../../icons';
 import { showSuccessToast, showErrorToast } from '../../toasts';
 
 export const Input: FunctionComponent<IInputProps> = ({
-    type = 'name',
-    error,
-    touched,
-    className,
-    marginBottom = 'normal',
-    squared,
-    showCopyIcon,
-    copyText = 'Copied!',
-    ...props
+  type = 'name',
+  error,
+  touched,
+  className,
+  marginBottom = 'normal',
+  squared,
+  showCopyIcon,
+  copyText = 'Copied!',
+  ...props
 }) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const inputClassname = classnames([
-        'f-input',
-        { [`_margin-bottom-${marginBottom}`]: marginBottom !== 'none' },
-        { _squared: squared },
-        { _error: error && touched },
-        className
-    ]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const inputClassname = classnames([
+    'f-input',
+    { [`_margin-bottom-${marginBottom}`]: marginBottom !== 'none' },
+    { _squared: squared },
+    { _error: error && touched },
+    className
+  ]);
 
-    const copyToClipboard = (): void => {
-        if (inputRef && inputRef.current) {
-            navigator.clipboard.writeText(inputRef.current.value).then(
-                () => {
-                    showSuccessToast(copyText);
-                },
-                () => {
-                    showErrorToast('Unable to write to clipboard. :-(');
-                }
-            );
+  const copyToClipboard = (): void => {
+    if (inputRef && inputRef.current) {
+      navigator.clipboard.writeText(inputRef.current.value).then(
+        () => {
+          showSuccessToast(copyText);
+        },
+        () => {
+          showErrorToast('Unable to write to clipboard. :-(');
         }
-    };
+      );
+    }
+  };
 
-    return (
-        <div className="f-input__wrapper">
-            <input type={type} {...props} className={inputClassname} ref={inputRef} />
-            {showCopyIcon && (
-                <Icon icon="copy" className="f-input__wrapper-copy" onClick={copyToClipboard} alt="Copy to Clipboard" />
-            )}
-            {error && touched && <div className="f-input__error">{error}</div>}
-        </div>
-    );
+  return (
+    <div className="f-input__wrapper">
+      <input type={type} {...props} className={inputClassname} ref={inputRef} />
+      {showCopyIcon && (
+        <Icon icon="copy" className="f-input__wrapper-copy" onClick={copyToClipboard} alt="Copy to Clipboard" />
+      )}
+      {error && touched && <div className="f-input__error">{error}</div>}
+    </div>
+  );
 };

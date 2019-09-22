@@ -6,15 +6,15 @@ export const STARTUP_SUCCESS = 'STARTUP_SUCCESS';
 export const STARTUP_FAILURE = 'STARTUP_FAILURE';
 
 interface StartupAction {
-    type: typeof STARTUP;
+  type: typeof STARTUP;
 }
 
 interface StartupSuccessAction {
-    type: typeof STARTUP_SUCCESS;
+  type: typeof STARTUP_SUCCESS;
 }
 
 interface StartupFailureAction {
-    type: typeof STARTUP_FAILURE;
+  type: typeof STARTUP_FAILURE;
 }
 
 export type StartupActionTypes = StartupAction | StartupSuccessAction | StartupFailureAction;

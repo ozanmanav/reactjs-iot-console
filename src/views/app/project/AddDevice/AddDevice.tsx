@@ -11,47 +11,47 @@ import { IProjectLoadingState } from '../../../../store/project/types';
 import { IAddDeviceFormState } from '../../../../components/forms/AddDeviceForm/definitions';
 
 interface AddDeviceBaseProps {
-    addDevice: typeof addDevice;
-    getDeviceModels: typeof getDeviceModels;
-    projectLoading?: IProjectLoadingState;
-    brands: [];
-    models: [];
+  addDevice: typeof addDevice;
+  getDeviceModels: typeof getDeviceModels;
+  projectLoading?: IProjectLoadingState;
+  brands: [];
+  models: [];
 }
 
 export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBaseProps> = ({
-    brands,
-    models,
-    addDevice,
-    getDeviceModels,
-    projectLoading = undefined
+  brands,
+  models,
+  addDevice,
+  getDeviceModels,
+  projectLoading = undefined
 }) => {
-    const onSubmit = (values: IAddDeviceFormState): void => {
-        addDevice(values);
-    };
-    return (
-        <div className="b-add-device">
-            <div className="b-add-device__breadcrumb-wrapper">
-                <div className="b-add-device__breadcrumb-wrapper__present">Projects /</div>
-                <BreadcrumbsAdv />
-            </div>
-            <AddDeviceForm
-                onSubmit={onSubmit}
-                brandsOptions={getDeviceBrandOptions(brands)}
-                modelsOptions={getDeviceModelOptions(models)}
-                loading={projectLoading || undefined}
-                getDeviceModels={brand => getDeviceModels(brand)}
-            />
-        </div>
-    );
+  const onSubmit = (values: IAddDeviceFormState): void => {
+    addDevice(values);
+  };
+  return (
+    <div className="b-add-device">
+      <div className="b-add-device__breadcrumb-wrapper">
+        <div className="b-add-device__breadcrumb-wrapper__present">Projects /</div>
+        <BreadcrumbsAdv />
+      </div>
+      <AddDeviceForm
+        onSubmit={onSubmit}
+        brandsOptions={getDeviceBrandOptions(brands)}
+        modelsOptions={getDeviceModelOptions(models)}
+        loading={projectLoading || undefined}
+        getDeviceModels={brand => getDeviceModels(brand)}
+      />
+    </div>
+  );
 };
 
 const mapStateToProps = (state: AppState) => ({
-    brands: state.project.deviceBrands,
-    models: state.project.deviceModels,
-    projectLoading: state.project.loading
+  brands: state.project.deviceBrands,
+  models: state.project.deviceModels,
+  projectLoading: state.project.loading
 });
 
 export const AddDevice = connect(
-    mapStateToProps,
-    { addDevice, getDeviceModels }
+  mapStateToProps,
+  { addDevice, getDeviceModels }
 )(AddDeviceBase);

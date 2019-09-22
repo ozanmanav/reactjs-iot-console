@@ -7,26 +7,26 @@ import { IProjectLoadingState, IActivity } from '../../../../store/project/types
 import { ActivityList } from '../../../../components/lists/ActivityList';
 
 interface ActivitiesBaseProps {
-    getActivities: typeof getActivities;
-    activities: IActivity[];
-    loading?: IProjectLoadingState;
-    router?: any;
+  getActivities: typeof getActivities;
+  activities: IActivity[];
+  loading?: IProjectLoadingState;
+  router?: any;
 }
 
 export const ActivitiesBase: FunctionComponent<ActivitiesBaseProps> = ({ activities, getActivities, loading }) => {
-    useEffect(() => {
-        getActivities();
-    }, [getActivities]);
+  useEffect(() => {
+    getActivities();
+  }, [getActivities]);
 
-    return <ActivityList activities={activities} loading={loading && loading.activities} />;
+  return <ActivityList activities={activities} loading={loading && loading.activities} />;
 };
 
 const mapStateToProps = (state: AppState) => ({
-    activities: state.project.activities || [],
-    loading: state.project.loading
+  activities: state.project.activities || [],
+  loading: state.project.loading
 });
 
 export const Activities = connect(
-    mapStateToProps,
-    { getActivities }
+  mapStateToProps,
+  { getActivities }
 )(ActivitiesBase);

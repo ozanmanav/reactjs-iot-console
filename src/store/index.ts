@@ -14,31 +14,31 @@ import { USER_LOGOUT } from './auth/types';
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-    router: connectRouter(history),
-    startup: startupReducer,
-    auth: authReducer,
-    project: projectReducer,
-    ui: uiReducer
+  router: connectRouter(history),
+  startup: startupReducer,
+  auth: authReducer,
+  project: projectReducer,
+  ui: uiReducer
 });
 
 const resetEnhancer: any = (rootReducer: any): any => (state: any, action: any) => {
-    if (action.type !== USER_LOGOUT) return rootReducer(state, action);
+  if (action.type !== USER_LOGOUT) return rootReducer(state, action);
 
-    const newState = rootReducer(undefined, {});
-    newState.router = state.router;
-    return newState;
+  const newState = rootReducer(undefined, {});
+  newState.router = state.router;
+  return newState;
 };
 
 export type AppState = ReturnType<typeof rootReducer>;
 
 export default function configureStore() {
-    const sagaMiddleware = createSagaMiddleware();
-    const middlewares = [sagaMiddleware, logger, routerMiddleware(history)];
-    const middleWareEnhancer = applyMiddleware(...middlewares);
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [sagaMiddleware, logger, routerMiddleware(history)];
+  const middleWareEnhancer = applyMiddleware(...middlewares);
 
-    const store = createStore(resetEnhancer(rootReducer), composeWithDevTools(middleWareEnhancer));
+  const store = createStore(resetEnhancer(rootReducer), composeWithDevTools(middleWareEnhancer));
 
-    sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga);
 
-    return store;
+  return store;
 }

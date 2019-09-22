@@ -4,7 +4,7 @@ import 'firebase/database';
 import firebaseConfig from './firebaseConfig';
 
 if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 }
 
 export const auth = firebase.auth() || undefined;

@@ -14,44 +14,44 @@ import { AuthState } from '../store/auth/types';
 import { Loading } from '../components/ui/loading';
 
 interface ContentBaseProps {
-    startup: typeof startup;
-    auth: AuthState;
+  startup: typeof startup;
+  auth: AuthState;
 }
 
 const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = ({ startup, location, auth }) => {
-    useEffect(() => {
-        restoreScroll(true);
-    }, [location.pathname]);
+  useEffect(() => {
+    restoreScroll(true);
+  }, [location.pathname]);
 
-    useEffect(() => {
-        startup();
-    }, [startup]);
+  useEffect(() => {
+    startup();
+  }, [startup]);
 
-    if (auth && auth.loading && auth.loading.checkUser) {
-        return <Loading />;
-    }
+  if (auth && auth.loading && auth.loading.checkUser) {
+    return <Loading />;
+  }
 
-    return (
-        <>
-            <LandingHeader />
-            <Switch>
-                <Route path="/app" component={Application} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/" component={Landing} />
-                {/* <Route component={Application} /> */}
-            </Switch>
-        </>
-    );
+  return (
+    <>
+      <LandingHeader />
+      <Switch>
+        <Route path="/app" component={Application} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/" component={Landing} />
+        {/* <Route component={Application} /> */}
+      </Switch>
+    </>
+  );
 };
 
 const ContentWithRouter = withRouter(ContentBase);
 
 const mapStateToProps = (state: AppState) => ({
-    auth: state.auth
+  auth: state.auth
 });
 
 export const Content = connect(
-    mapStateToProps,
-    { startup }
+  mapStateToProps,
+  { startup }
 )(ContentWithRouter);

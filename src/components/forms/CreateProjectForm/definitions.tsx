@@ -3,33 +3,33 @@ import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 
 export const CreateProjectFormState = {
-    name: '',
-    description: '',
-    loading: false
+  name: '',
+  description: '',
+  loading: false
 };
 
 export interface ICreateProjectFormState {
-    name: string;
-    description: string;
-    loading?: boolean;
+  name: string;
+  description: string;
+  loading?: boolean;
 }
 
 export interface ICreateProjectFormBaseProps extends FormikProps<ICreateProjectFormState> {
-    loading?: boolean;
+  loading?: boolean;
 }
 
 export interface ICreateProjectFormProps {
-    loading?: boolean;
-    onSubmit: (state: ICreateProjectFormState) => void;
-    initialValues?: ICreateProjectFormState;
+  loading?: boolean;
+  onSubmit: (state: ICreateProjectFormState) => void;
+  initialValues?: ICreateProjectFormState;
 }
 
 // Validation Schema
 export const CreateProjectFormValidationSchema = Yup.object().shape({
-    name: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required),
-    description: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required)
+  name: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required),
+  description: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required)
 });

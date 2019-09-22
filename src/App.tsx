@@ -8,14 +8,14 @@ import { ConnectedRouter } from 'connected-react-router';
 const store = configureStore();
 
 export const App: FunctionComponent = () => {
-    return (
-        <Provider store={store}>
-            <ConnectedRouter history={history}>
-                <Content />
-                <ToastContainer />
-            </ConnectedRouter>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Content />
+        <ToastContainer />
+      </ConnectedRouter>
+    </Provider>
+  );
 };
 
 export default App;

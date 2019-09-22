@@ -7,33 +7,33 @@ import { IProjectLoadingState, IActivity } from '../../../../store/project/types
 import { ActivityList } from '../../../../components/lists/ActivityList';
 
 interface DeviceActivitiesBaseProps {
-    getDeviceActivities: typeof getDeviceActivities;
-    deviceActivities: IActivity[];
-    loading?: IProjectLoadingState;
-    router?: any;
+  getDeviceActivities: typeof getDeviceActivities;
+  deviceActivities: IActivity[];
+  loading?: IProjectLoadingState;
+  router?: any;
 }
 
 export const DeviceActivitiesBase: FunctionComponent<DeviceActivitiesBaseProps> = ({
-    deviceActivities,
-    getDeviceActivities,
-    loading
+  deviceActivities,
+  getDeviceActivities,
+  loading
 }) => {
-    useEffect(() => {
-        getDeviceActivities();
-    }, [getDeviceActivities]);
+  useEffect(() => {
+    getDeviceActivities();
+  }, [getDeviceActivities]);
 
-    if (deviceActivities && deviceActivities.length < 1) {
-        return <div>Device activity not found</div>;
-    }
-    return <ActivityList activities={deviceActivities} loading={loading && loading.deviceActivities} />;
+  if (deviceActivities && deviceActivities.length < 1) {
+    return <div>Device activity not found</div>;
+  }
+  return <ActivityList activities={deviceActivities} loading={loading && loading.deviceActivities} />;
 };
 
 const mapStateToProps = (state: AppState) => ({
-    deviceActivities: state.project.deviceActivities || [],
-    loading: state.project.loading
+  deviceActivities: state.project.deviceActivities || [],
+  loading: state.project.loading
 });
 
 export const DeviceActivities = connect(
-    mapStateToProps,
-    { getDeviceActivities }
+  mapStateToProps,
+  { getDeviceActivities }
 )(DeviceActivitiesBase);

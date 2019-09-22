@@ -2,21 +2,21 @@ import { User } from 'firebase';
 
 // Describing the shape of the system's slice of state
 export interface IAuthLoadingState {
-    login?: boolean;
-    register?: boolean;
-    logout?: boolean;
-    checkUser?: boolean;
-    googleLogin?: boolean;
+  login?: boolean;
+  register?: boolean;
+  logout?: boolean;
+  checkUser?: boolean;
+  googleLogin?: boolean;
 }
 
 export interface AuthState {
-    loading?: IAuthLoadingState;
-    loggedIn?: boolean;
-    email?: string;
-    password?: string;
-    error?: string;
-    user?: User;
-    registerUser?: User;
+  loading?: IAuthLoadingState;
+  loggedIn?: boolean;
+  email?: string;
+  password?: string;
+  error?: string;
+  user?: User;
+  registerUser?: User;
 }
 
 // Describing the different ACTION NAMES available
@@ -35,77 +35,77 @@ export const USER_GOOGLE_LOGIN_SUCCESS = 'USER_GOOGLE_LOGIN_SUCCESS';
 export const USER_GOOGLE_LOGIN_FAILURE = 'USER_GOOGLE_LOGIN_FAILURE';
 
 interface UserLoginAction {
-    type: typeof USER_LOGIN;
-    payload: AuthState;
+  type: typeof USER_LOGIN;
+  payload: AuthState;
 }
 
 export interface UserLoginSuccessAction {
-    type: typeof USER_LOGIN_SUCCESS;
-    payload: AuthState;
+  type: typeof USER_LOGIN_SUCCESS;
+  payload: AuthState;
 }
 
 export interface UserLoginFailureAction {
-    type: typeof USER_LOGIN_FAILURE;
-    payload: AuthState;
+  type: typeof USER_LOGIN_FAILURE;
+  payload: AuthState;
 }
 
 interface UserRegisterAction {
-    type: typeof USER_REGISTER;
-    payload: AuthState;
+  type: typeof USER_REGISTER;
+  payload: AuthState;
 }
 
 interface UserRegisterFailureAction {
-    type: typeof USER_REGISTER_FAILURE;
-    payload: AuthState;
+  type: typeof USER_REGISTER_FAILURE;
+  payload: AuthState;
 }
 interface UserRegisterSuccessAction {
-    type: typeof USER_REGISTER_SUCCESS;
-    payload: AuthState;
+  type: typeof USER_REGISTER_SUCCESS;
+  payload: AuthState;
 }
 
 interface CheckUserAction {
-    type: typeof CHECK_USER;
+  type: typeof CHECK_USER;
 }
 
 interface CheckUserFailureAction {
-    type: typeof CHECK_USER_FAILURE;
-    payload: AuthState;
+  type: typeof CHECK_USER_FAILURE;
+  payload: AuthState;
 }
 interface CheckUserSuccessAction {
-    type: typeof CHECK_USER_SUCCESS;
-    payload: AuthState;
+  type: typeof CHECK_USER_SUCCESS;
+  payload: AuthState;
 }
 
 interface UserLogoutAction {
-    type: typeof USER_LOGOUT;
+  type: typeof USER_LOGOUT;
 }
 
 interface UserGoogleLoginAction {
-    type: typeof USER_GOOGLE_LOGIN;
-    payload: AuthState;
+  type: typeof USER_GOOGLE_LOGIN;
+  payload: AuthState;
 }
 
 export interface UserGoogleLoginSuccessAction {
-    type: typeof USER_GOOGLE_LOGIN_SUCCESS;
-    payload: AuthState;
+  type: typeof USER_GOOGLE_LOGIN_SUCCESS;
+  payload: AuthState;
 }
 
 export interface UserGoogleLoginFailureAction {
-    type: typeof USER_GOOGLE_LOGIN_FAILURE;
-    payload: AuthState;
+  type: typeof USER_GOOGLE_LOGIN_FAILURE;
+  payload: AuthState;
 }
 
 export type AuthActionTypes =
-    | UserLoginAction
-    | UserRegisterAction
-    | UserLoginSuccessAction
-    | UserLoginFailureAction
-    | UserRegisterFailureAction
-    | UserRegisterSuccessAction
-    | CheckUserAction
-    | CheckUserFailureAction
-    | CheckUserSuccessAction
-    | UserLogoutAction
-    | UserGoogleLoginAction
-    | UserGoogleLoginSuccessAction
-    | UserGoogleLoginFailureAction;
+  | UserLoginAction
+  | UserRegisterAction
+  | UserLoginSuccessAction
+  | UserLoginFailureAction
+  | UserRegisterFailureAction
+  | UserRegisterSuccessAction
+  | CheckUserAction
+  | CheckUserFailureAction
+  | CheckUserSuccessAction
+  | UserLogoutAction
+  | UserGoogleLoginAction
+  | UserGoogleLoginSuccessAction
+  | UserGoogleLoginFailureAction;

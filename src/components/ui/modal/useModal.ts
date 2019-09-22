@@ -2,21 +2,21 @@ import { useState } from 'react';
 import { useRemoveBodyScroll } from '../../../hooks';
 
 export function useModal(isOpenDefault = false) {
-    const [isOpen, setIsOpen] = useState<boolean>(isOpenDefault);
+  const [isOpen, setIsOpen] = useState<boolean>(isOpenDefault);
 
-    useRemoveBodyScroll(isOpen);
+  useRemoveBodyScroll(isOpen);
 
-    function open() {
-        setIsOpen(true);
-    }
+  function open() {
+    setIsOpen(true);
+  }
 
-    function hide() {
-        setIsOpen(false);
-    }
+  function hide() {
+    setIsOpen(false);
+  }
 
-    return {
-        isOpen,
-        open,
-        hide
-    };
+  return {
+    isOpen,
+    open,
+    hide
+  };
 }

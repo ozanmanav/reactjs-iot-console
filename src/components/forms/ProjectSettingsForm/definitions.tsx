@@ -3,35 +3,35 @@ import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 
 export const ProjectSettingsFormDefaultState = {
-    name: '',
-    description: '',
-    id: '',
-    loading: false
+  name: '',
+  description: '',
+  id: '',
+  loading: false
 };
 
 export interface IProjectSettingsFormDefaultState {
-    name: string;
-    description: string;
-    id?: string;
-    loading?: boolean;
+  name: string;
+  description: string;
+  id?: string;
+  loading?: boolean;
 }
 
 export interface IProjectSettingsFormBaseProps extends FormikProps<IProjectSettingsFormDefaultState> {
-    loading?: boolean;
+  loading?: boolean;
 }
 
 export interface IProjectSettingsFormProps {
-    loading?: boolean;
-    onSubmit: (state: IProjectSettingsFormDefaultState) => void;
-    initialValues?: IProjectSettingsFormDefaultState;
+  loading?: boolean;
+  onSubmit: (state: IProjectSettingsFormDefaultState) => void;
+  initialValues?: IProjectSettingsFormDefaultState;
 }
 
 // Validation Schema
 export const ProjectSettingsFormValidationSchema = Yup.object().shape({
-    name: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required),
-    description: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required)
+  name: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required),
+  description: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required)
 });

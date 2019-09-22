@@ -15,62 +15,62 @@ import { Activities } from './Activities';
 import { Settings } from './Settings';
 
 interface DetailsBaseProps extends RouteComponentProps {
-    getProjectById: typeof getProjectById;
-    project: ProjectState;
-    router?: any;
+  getProjectById: typeof getProjectById;
+  project: ProjectState;
+  router?: any;
 }
 
 const ProjectBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectById, project }) => {
-    const projectId = router.location.pathname.split('/')[3] || '';
+  const projectId = router.location.pathname.split('/')[3] || '';
 
-    useEffect(() => {
-        if (projectId) {
-            getProjectById(projectId);
-        }
-    }, [projectId, getProjectById]);
-
-    if (project.loading && project.loading.currentProject) {
-        return <Loading loading={project.loading.currentProject} />;
+  useEffect(() => {
+    if (projectId) {
+      getProjectById(projectId);
     }
+  }, [projectId, getProjectById]);
 
-    return project.currentProject ? (
-        <div className="b-project-details">
-            <Breadcrumbs
-                className="b-project-details__breadcrumbs"
-                route={'Projects / '}
-                present={project.currentProject.projectName}
-            />
-            <ProjectInfo project={project.currentProject} />
-            <Tabs className="b-project-details__tabs">
-                <TabList>
-                    <Tab>Devices</Tab>
-                    <Tab>Triggers</Tab>
-                    <Tab>Activity</Tab>
-                    <Tab>Settings</Tab>
-                </TabList>
-                <TabPanel>
-                    <Devices />
-                </TabPanel>
-                <TabPanel>
-                    <Triggers />
-                </TabPanel>
-                <TabPanel>
-                    <Activities />
-                </TabPanel>
-                <TabPanel>
-                    <Settings />
-                </TabPanel>
-            </Tabs>
-        </div>
-    ) : null;
+  if (project.loading && project.loading.currentProject) {
+    return <Loading loading={project.loading.currentProject} />;
+  }
+
+  return project.currentProject ? (
+    <div className="b-project-details">
+      <Breadcrumbs
+        className="b-project-details__breadcrumbs"
+        route={'Projects / '}
+        present={project.currentProject.projectName}
+      />
+      <ProjectInfo project={project.currentProject} />
+      <Tabs className="b-project-details__tabs">
+        <TabList>
+          <Tab>Devices</Tab>
+          <Tab>Triggers</Tab>
+          <Tab>Activity</Tab>
+          <Tab>Settings</Tab>
+        </TabList>
+        <TabPanel>
+          <Devices />
+        </TabPanel>
+        <TabPanel>
+          <Triggers />
+        </TabPanel>
+        <TabPanel>
+          <Activities />
+        </TabPanel>
+        <TabPanel>
+          <Settings />
+        </TabPanel>
+      </Tabs>
+    </div>
+  ) : null;
 };
 
 const mapStateToProps = (state: AppState) => ({
-    project: state.project,
-    router: state.router
+  project: state.project,
+  router: state.router
 });
 
 export const Project = connect(
-    mapStateToProps,
-    { getProjectById }
+  mapStateToProps,
+  { getProjectById }
 )(ProjectBase);

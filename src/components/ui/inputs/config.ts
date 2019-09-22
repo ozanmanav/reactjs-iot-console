@@ -5,18 +5,18 @@ export const AUTOCOMPLETE_DEBOUNCE_TIME_MS = 1000;
 export const MAX_AUTOCOMPLETE_RESULTS = 10;
 
 export interface IInputBaseProps {
-    marginBottom?: 'normal' | 'sm' | 'none';
-    squared?: boolean;
-    error?: string | FormikErrors<any>;
-    touched?: boolean | FormikTouched<any>;
-    showCopyIcon?: boolean;
-    copyText?: string;
+  marginBottom?: 'normal' | 'sm' | 'none';
+  squared?: boolean;
+  error?: string | FormikErrors<any>;
+  touched?: boolean | FormikTouched<any>;
+  showCopyIcon?: boolean;
+  copyText?: string;
 }
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement>, IInputBaseProps {}
 
 export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement>, IInputBaseProps {
-    value: string | number;
-    selected?: boolean;
-    label?: string;
+  value: string | number;
+  selected?: boolean;
+  label?: string;
 }

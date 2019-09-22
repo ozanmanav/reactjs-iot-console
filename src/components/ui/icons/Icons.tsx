@@ -17,63 +17,63 @@ import avatar from '../../../icons/avatar.svg';
 
 // TODO: is string type necessary?
 export type TIconType =
-    | 'building'
-    | 'selectArrows'
-    | 'downArrow'
-    | 'accordionArrow'
-    | 'narrowIcon'
-    | 'narrowIconDeactive'
-    | 'history'
-    | 'trash'
-    | 'copy'
-    | 'logout'
-    | 'location'
-    | 'avatar'
-    | string;
+  | 'building'
+  | 'selectArrows'
+  | 'downArrow'
+  | 'accordionArrow'
+  | 'narrowIcon'
+  | 'narrowIconDeactive'
+  | 'history'
+  | 'trash'
+  | 'copy'
+  | 'logout'
+  | 'location'
+  | 'avatar'
+  | string;
 
 interface IIcons {
-    [key: string]: string;
+  [key: string]: string;
 }
 
 const ICONS: IIcons = {
-    building,
-    selectArrows,
-    downArrow,
-    accordionArrow,
-    narrowIcon,
-    narrowIconDeactive,
-    history,
-    trash,
-    copy,
-    logout,
-    location,
-    avatar
+  building,
+  selectArrows,
+  downArrow,
+  accordionArrow,
+  narrowIcon,
+  narrowIconDeactive,
+  history,
+  trash,
+  copy,
+  logout,
+  location,
+  avatar
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {
-    icon: TIconType;
+  icon: TIconType;
 }
 
 export const Icon: FunctionComponent<IIconProps<HTMLImageElement>> = ({ icon, className, ...props }) => {
-    if (!ICONS[icon]) {
-        console.error(`Icon ${icon} does not exist`);
+  if (!ICONS[icon]) {
+    console.error(`Icon ${icon} does not exist`);
 
-        return null;
-    }
+    return null;
+  }
 
-    const imgClassName = appendClassName(`icon_${icon}`, className);
+  const imgClassName = appendClassName(`icon_${icon}`, className);
 
-    return <img src={ICONS[icon]} alt={icon} className={imgClassName} {...props} />;
+  return <img src={ICONS[icon]} alt={icon} className={imgClassName} {...props} />;
 };
 
 export const NarrowIcon: FunctionComponent<IIconProps<HTMLImageElement>> = ({ icon, className, ...props }) => {
-    if (!ICONS[icon]) {
-        console.error(`Icon ${icon} does not exist`);
+  if (!ICONS[icon]) {
+    console.error(`Icon ${icon} does not exist`);
 
-        return null;
-    }
+    return null;
+  }
 
-    const imgClassName = appendClassName(`icon_${icon}`, className);
+  const imgClassName = appendClassName(`icon_${icon}`, className);
 
-    return <img src={ICONS[icon]} alt={icon} className={imgClassName} {...props} />;
+  return <img src={ICONS[icon]} alt={icon} className={imgClassName} {...props} />;
 };

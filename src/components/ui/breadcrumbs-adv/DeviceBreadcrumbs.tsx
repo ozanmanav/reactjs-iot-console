@@ -4,11 +4,11 @@ import { AppState } from '../../../store';
 import { IDevice } from '../../../store/project/types';
 
 const PureDeviceBreadcrumb: FunctionComponent<{ currentDevice?: IDevice }> = ({ currentDevice }) => {
-    return <span>{currentDevice && currentDevice.deviceName}</span>;
+  return <span>{currentDevice && currentDevice.deviceName}</span>;
 };
 
 const mapStateToProps = (state: AppState) => ({
-    currentDevice: state.project.currentDevice
+  currentDevice: state.project.currentDevice
 });
 
 export default connect(mapStateToProps)(PureDeviceBreadcrumb);

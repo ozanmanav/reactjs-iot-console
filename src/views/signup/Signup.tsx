@@ -8,26 +8,26 @@ import { connect } from 'react-redux';
 import { AuthState } from '../../store/auth/types';
 
 interface SignupBaseProps {
-    userRegister: typeof userRegister;
-    auth: AuthState;
+  userRegister: typeof userRegister;
+  auth: AuthState;
 }
 
 export const SignupBase: FunctionComponent<SignupBaseProps> = ({ userRegister }) => {
-    return (
-        <>
-            <main className="b-login flex flex-column align-center justify-center">
-                <SignUpForm onSubmit={({ email, password }) => userRegister({ email, password })} />
-                <p className="b-login__copyright _text-grey h6">{COPYRIGHT_TEXT}</p>
-            </main>
-        </>
-    );
+  return (
+    <>
+      <main className="b-login flex flex-column align-center justify-center">
+        <SignUpForm onSubmit={({ email, password }) => userRegister({ email, password })} />
+        <p className="b-login__copyright _text-grey h6">{COPYRIGHT_TEXT}</p>
+      </main>
+    </>
+  );
 };
 
 const mapStateToProps = (state: AppState) => ({
-    auth: state.auth
+  auth: state.auth
 });
 
 export const Signup = connect(
-    mapStateToProps,
-    { userRegister }
+  mapStateToProps,
+  { userRegister }
 )(SignupBase);

@@ -8,25 +8,25 @@ import { createProject } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
 
 interface CreateProjectBaseProps {
-    createProject: typeof createProject;
+  createProject: typeof createProject;
 }
 
 export const CreateProjectBase: FunctionComponent<RouteComponentProps & CreateProjectBaseProps> = ({
-    createProject
+  createProject
 }) => {
-    return (
-        <div className="b-create-project">
-            <Breadcrumbs className="b-create-project__breadcrumbs" route={'Projects / '} present={'Create Project'} />
-            <CreateProjectForm onSubmit={createProject} />
-        </div>
-    );
+  return (
+    <div className="b-create-project">
+      <Breadcrumbs className="b-create-project__breadcrumbs" route={'Projects / '} present={'Create Project'} />
+      <CreateProjectForm onSubmit={createProject} />
+    </div>
+  );
 };
 
 const mapStateToProps = (state: AppState) => ({
-    projectLoading: state.project.loading
+  projectLoading: state.project.loading
 });
 
 export const CreateProject = connect(
-    mapStateToProps,
-    { createProject }
+  mapStateToProps,
+  { createProject }
 )(CreateProjectBase);

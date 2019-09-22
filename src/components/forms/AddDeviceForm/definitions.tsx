@@ -5,51 +5,51 @@ import { IProjectLoadingState } from '../../../store/project/types';
 import { IBrandOption, IModelOption } from '../../../utils';
 
 export const AddDeviceFormDefaultState = {
-    deviceBrand: undefined,
-    deviceModel: undefined,
-    deviceName: '',
-    deviceDescription: '',
-    location: '',
-    loading: false
+  deviceBrand: undefined,
+  deviceModel: undefined,
+  deviceName: '',
+  deviceDescription: '',
+  location: '',
+  loading: false
 };
 
 export interface IAddDeviceFormState {
-    deviceBrand?: string;
-    deviceModel?: string;
-    deviceName: string;
-    deviceDescription: string;
-    location: string;
-    loading?: boolean;
+  deviceBrand?: string;
+  deviceModel?: string;
+  deviceName: string;
+  deviceDescription: string;
+  location: string;
+  loading?: boolean;
 }
 
 export interface IAddDeviceFormBaseProps extends FormikProps<IAddDeviceFormState> {
-    loading?: IProjectLoadingState;
+  loading?: IProjectLoadingState;
 }
 
 export interface IAddDeviceFormProps {
-    loading?: IProjectLoadingState;
-    onSubmit: (state: IAddDeviceFormState) => void;
-    brandsOptions?: IBrandOption[];
-    initialValues?: IAddDeviceFormState;
-    getDeviceModels?: (brand: string) => void;
-    modelsOptions?: IModelOption[];
+  loading?: IProjectLoadingState;
+  onSubmit: (state: IAddDeviceFormState) => void;
+  brandsOptions?: IBrandOption[];
+  initialValues?: IAddDeviceFormState;
+  getDeviceModels?: (brand: string) => void;
+  modelsOptions?: IModelOption[];
 }
 
 // Validation Schema
 export const AddDeviceFormValidationSchema = Yup.object().shape({
-    deviceBrand: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required),
-    deviceModel: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required),
-    deviceName: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required),
-    deviceDescription: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required),
-    location: Yup.string()
-        .trim()
-        .required(VALIDATION_ERRORS.required)
+  deviceBrand: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required),
+  deviceModel: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required),
+  deviceName: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required),
+  deviceDescription: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required),
+  location: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required)
 });
