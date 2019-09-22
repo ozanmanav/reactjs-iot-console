@@ -100,7 +100,7 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
             <Button text="Save" primary className="f-device-settings__form-action" type="submit" />
             <Icon icon="trash" className="_cursor-pointer" onClick={open} />
             <ConfirmModal
-              title="Are you sure log out?"
+              title="Are you sure delete project?"
               onConfirm={() => console.log('delete project')}
               hide={hide}
               isOpen={isOpen}

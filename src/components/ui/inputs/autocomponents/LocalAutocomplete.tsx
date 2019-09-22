@@ -106,7 +106,6 @@ export const LocalAutocomplete: FunctionComponent<ILocalAutocompleteProps> = ({
 
   function handleItemClick(option: ILocalAutocompleteOption) {
     const selectedOption = options.find(({ value }) => value === option.value);
-    console.log(selectedOption);
     props.onChange(selectedOption);
     onBlur();
     setInputValue(selectedOption && selectedOption.label);
