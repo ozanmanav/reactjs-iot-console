@@ -34,7 +34,6 @@ export function postRequest(url: any, params = {}, data: {}) {
       return user
         .getIdToken(false)
         .then((token: string) => {
-          console.log('post token', token);
           axios({
             method: 'POST',
             headers: { Authorization: `Bearer ${token}` },
@@ -60,7 +59,6 @@ export function putRequest(url: any, params = {}, data: {}) {
       return user
         .getIdToken(false)
         .then((token: string) => {
-          console.log('post token', token);
           axios({
             method: 'PUT',
             headers: { Authorization: `Bearer ${token}` },

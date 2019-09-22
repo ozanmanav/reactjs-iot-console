@@ -18,6 +18,7 @@ module.exports = {
      * Modified Airbnb JS Style Guide rules extending eslint:recommended
      * ========================================================================
      */
+    'no-console': ['error'],
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     // require the use of === and !==
