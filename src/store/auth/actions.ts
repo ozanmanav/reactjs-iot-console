@@ -1,104 +1,91 @@
-import {
-    AuthState,
-    USER_LOGIN,
-    USER_REGISTER,
-    USER_LOGIN_SUCCESS,
-    CHECK_USER,
-    CHECK_USER_SUCCESS,
-    CHECK_USER_FAILURE,
-    USER_LOGOUT,
-    USER_REGISTER_SUCCESS,
-    USER_REGISTER_FAILURE,
-    USER_GOOGLE_LOGIN,
-    USER_GOOGLE_LOGIN_SUCCESS,
-    USER_GOOGLE_LOGIN_FAILURE
-} from './types';
+import * as types from './types';
+import { AuthState, AuthActionTypes } from './types';
 
-export function userLogin(newSession: AuthState) {
+export function userLogin(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_LOGIN,
+        type: types.USER_LOGIN,
         payload: newSession
     };
 }
 
-export function userLoginSuccess(newSession: AuthState) {
+export function userLoginSuccess(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_LOGIN_SUCCESS,
+        type: types.USER_LOGIN_SUCCESS,
         payload: newSession
     };
 }
 
-export function userLoginFailure(newSession: AuthState) {
+export function userLoginFailure(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_LOGIN_SUCCESS,
+        type: types.USER_LOGIN_SUCCESS,
         payload: newSession
     };
 }
 
-export function userGoogleLogin(newSession: AuthState) {
+export function userGoogleLogin(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_GOOGLE_LOGIN,
+        type: types.USER_GOOGLE_LOGIN,
         payload: newSession
     };
 }
 
-export function userGoogleLoginSuccess(newSession: AuthState) {
+export function userGoogleLoginSuccess(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_GOOGLE_LOGIN_SUCCESS,
+        type: types.USER_GOOGLE_LOGIN_SUCCESS,
         payload: newSession
     };
 }
 
-export function userGoogleLoginFailure(newSession: AuthState) {
+export function userGoogleLoginFailure(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_GOOGLE_LOGIN_FAILURE,
+        type: types.USER_GOOGLE_LOGIN_FAILURE,
         payload: newSession
     };
 }
 
-export function checkUser() {
+export function checkUser(): AuthActionTypes {
     return {
-        type: CHECK_USER
+        type: types.CHECK_USER
     };
 }
 
-export function checkUserSuccess(newSession: AuthState) {
+export function checkUserSuccess(newSession: AuthState): AuthActionTypes {
     return {
-        type: CHECK_USER_SUCCESS,
+        type: types.CHECK_USER_SUCCESS,
         payload: newSession
     };
 }
 
-export function checkUserFailure(newSession: AuthState) {
+export function checkUserFailure(newSession: AuthState): AuthActionTypes {
     return {
-        type: CHECK_USER_FAILURE,
+        type: types.CHECK_USER_FAILURE,
         payload: newSession
     };
 }
 
-export function userLogout() {
+export function userLogout(): AuthActionTypes {
     return {
-        type: USER_LOGOUT
+        type: types.USER_LOGOUT
     };
 }
 
-export function userRegister(newSession: AuthState) {
+export function userRegister(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_REGISTER,
+        type: types.USER_REGISTER,
         payload: newSession
     };
 }
 
-export function userRegisterSuccess(newSession: AuthState) {
+export function userRegisterSuccess(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_REGISTER_SUCCESS,
+        type: types.USER_REGISTER_SUCCESS,
         payload: newSession
     };
 }
 
-export function userRegisterFailure(newSession: AuthState) {
+export function userRegisterFailure(newSession: AuthState): AuthActionTypes {
     return {
-        type: USER_REGISTER_FAILURE,
+        type: types.USER_REGISTER_FAILURE,
         payload: newSession
     };
 }

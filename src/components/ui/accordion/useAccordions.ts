@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-function accordionsReducer(state: IAccordionsState, action: TAccordionsAction) {
+function accordionsReducer(state: IAccordionsState, action: TAccordionsAction): any {
     switch (action.type) {
         case 'TOGGLE': {
             const newOpened = state.opened.includes(action.index)
@@ -29,7 +29,7 @@ function accordionsReducer(state: IAccordionsState, action: TAccordionsAction) {
     }
 }
 
-export const useAccordions = (opened: number[]) => {
+export const useAccordions = (opened: number[]): any => {
     const [state, dispatch] = useReducer(accordionsReducer, { opened });
 
     function toggleAccordion(index: number): void {
@@ -39,21 +39,21 @@ export const useAccordions = (opened: number[]) => {
         });
     }
 
-    function openAccordion(index: number) {
+    function openAccordion(index: number): void {
         dispatch({
             type: 'OPEN',
             index
         });
     }
 
-    function closeAccordion(index: number) {
+    function closeAccordion(index: number): void {
         dispatch({
             type: 'CLOSE',
             index
         });
     }
 
-    function isOpened(index: number) {
+    function isOpened(index: number): boolean {
         return state.opened.includes(index);
     }
 

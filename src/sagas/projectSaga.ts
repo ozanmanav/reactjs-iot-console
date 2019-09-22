@@ -47,7 +47,7 @@ export function* requestGetProjectById(data: any) {
 
 export function* requestGetDevices() {
     try {
-        let currentProject: IProject = yield select(state => state.project.currentProject);
+        const currentProject: IProject = yield select(state => state.project.currentProject);
 
         if (!currentProject || !currentProject.id) {
             return yield put(
@@ -71,7 +71,7 @@ export function* requestGetDevices() {
 
 export function* requestGetDeviceById(data: any) {
     try {
-        let currentProject: IProject = yield select(state => state.project.currentProject);
+        const currentProject: IProject = yield select(state => state.project.currentProject);
 
         if (!currentProject || !data.payload) {
             return yield put(
@@ -95,7 +95,7 @@ export function* requestGetDeviceById(data: any) {
 
 export function* requestGetTriggers() {
     try {
-        let currentProject: IProject = yield select(state => state.project.currentProject);
+        const currentProject: IProject = yield select(state => state.project.currentProject);
 
         if (!currentProject || !currentProject.id) {
             return yield put(actions.getTriggersFailure({ error: 'Not current project selected' }));
@@ -118,7 +118,7 @@ export function* requestGetTriggers() {
 
 export function* requestGetActivities() {
     try {
-        let currentProject: IProject = yield select(state => state.project.currentProject);
+        const currentProject: IProject = yield select(state => state.project.currentProject);
 
         if (!currentProject || !currentProject.id) {
             return yield put(
@@ -142,8 +142,8 @@ export function* requestGetActivities() {
 
 export function* requestGetDeviceActivities() {
     try {
-        let currentProject: IProject = yield select(state => state.project.currentProject);
-        let currentDevice: IDevice = yield select(state => state.project.currentDevice);
+        const currentProject: IProject = yield select(state => state.project.currentProject);
+        const currentDevice: IDevice = yield select(state => state.project.currentDevice);
 
         if (!currentProject || !currentDevice) {
             return yield put(
@@ -170,8 +170,8 @@ export function* requestGetDeviceActivities() {
 
 export function* requestGetDeviceTokens() {
     try {
-        let currentProject: IProject = yield select(state => state.project.currentProject);
-        let currentDevice: IDevice = yield select(state => state.project.currentDevice);
+        const currentProject: IProject = yield select(state => state.project.currentProject);
+        const currentDevice: IDevice = yield select(state => state.project.currentDevice);
 
         if (!currentProject || !currentDevice || !currentDevice.id) {
             return yield put(
@@ -199,7 +199,7 @@ export function* requestGetDeviceTokens() {
 
 export function* requestSaveProjectSettings(data: any) {
     try {
-        let currentProject: IProject = yield select(state => state.project.currentProject);
+        const currentProject: IProject = yield select(state => state.project.currentProject);
 
         if (!currentProject) {
             return yield put(
@@ -244,7 +244,7 @@ export function* requestGetDeviceBrands() {
 
 export function* requestAddDevice(data: AddDeviceAction) {
     try {
-        let currentProject: IProject = yield select(state => state.project.currentProject);
+        const currentProject: IProject = yield select(state => state.project.currentProject);
 
         if (!currentProject || !currentProject.id) {
             return yield put(

@@ -16,7 +16,7 @@ function calcScrollWidth() {
     return scrollbarWidth;
 }
 
-const body = document.body;
+const { body } = document;
 const headerUserCollection = document.getElementsByClassName('b-header-user') as HTMLCollectionOf<HTMLElement>;
 const modals = document.getElementsByClassName('b-modal__window') as HTMLCollectionOf<HTMLElement>;
 const scollbarWidth = calcScrollWidth();

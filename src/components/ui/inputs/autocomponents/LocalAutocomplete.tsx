@@ -48,7 +48,7 @@ interface ILocalAutocompleteResultsItemProps {
 }
 
 const LocalAutocompleteResultsItem: FunctionComponent<ILocalAutocompleteResultsItemProps> = ({ option, onClick }) => {
-    function onSelfClick() {
+    function onSelfClick(): void {
         onClick(option);
     }
 
@@ -75,7 +75,7 @@ export const LocalAutocomplete: FunctionComponent<ILocalAutocompleteProps> = ({
 }) => {
     const [inputValue, setInputValue] = useState<any>('');
     const [isFocused, setIsFocused] = useState<boolean>(false);
-    function onBlur() {
+    function onBlur(): void {
         setIsFocused(false);
     }
     const wrapperRef = useClickOutside<HTMLDivElement>(onBlur);

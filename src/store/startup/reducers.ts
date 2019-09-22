@@ -6,20 +6,17 @@ export function startupReducer(state = StartupInitialState, action: StartupActio
     switch (action.type) {
         case STARTUP: {
             return {
-                ...state,
-                ...action.payload
+                ...state
             };
         }
         case STARTUP_SUCCESS: {
             return {
-                ...state,
-                ...action.payload
+                ...state
             };
         }
         case STARTUP_FAILURE: {
             return {
-                ...state,
-                ...action.payload
+                ...state
             };
         }
         default:

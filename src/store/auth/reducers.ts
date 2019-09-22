@@ -41,7 +41,7 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
         }
         case USER_LOGIN_SUCCESS: {
             if (typeof state.password === 'string') {
-                var passwordHash = AES.encrypt(state.password, CRYPT_JS_SECRET_KEY || '');
+                const passwordHash = AES.encrypt(state.password, CRYPT_JS_SECRET_KEY || '');
                 action.payload.password = passwordHash.toString();
             }
 
@@ -100,8 +100,7 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
                 loading: {
                     ...state.loading,
                     checkUser: true
-                },
-                ...action.payload
+                }
             };
         }
         case CHECK_USER_SUCCESS: {

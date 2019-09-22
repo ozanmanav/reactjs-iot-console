@@ -24,9 +24,8 @@ export const DeviceActivitiesBase: FunctionComponent<DeviceActivitiesBaseProps> 
 
     if (deviceActivities && deviceActivities.length < 1) {
         return <div>Device activity not found</div>;
-    } else {
-        return <ActivityList activities={deviceActivities} loading={loading && loading.deviceActivities} />;
     }
+    return <ActivityList activities={deviceActivities} loading={loading && loading.deviceActivities} />;
 };
 
 const mapStateToProps = (state: AppState) => ({

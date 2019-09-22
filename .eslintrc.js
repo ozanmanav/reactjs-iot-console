@@ -19,6 +19,7 @@ module.exports = {
          */
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/interface-name-prefix': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
         // require the use of === and !==
         eqeqeq: ['warn', 'always', { null: 'ignore' }],
         // disallow else after a return in an if
@@ -45,7 +46,7 @@ module.exports = {
         ],
         // suggest using arrow functions as callbacks
         'prefer-arrow-callback': [
-            'warn',
+            'error',
             {
                 allowNamedFunctions: false,
                 allowUnboundThis: true

@@ -65,7 +65,6 @@ interface UserRegisterSuccessAction {
 
 interface CheckUserAction {
     type: typeof CHECK_USER;
-    payload: AuthState;
 }
 
 interface CheckUserFailureAction {
@@ -79,7 +78,6 @@ interface CheckUserSuccessAction {
 
 interface UserLogoutAction {
     type: typeof USER_LOGOUT;
-    payload: AuthState;
 }
 
 interface UserGoogleLoginAction {
