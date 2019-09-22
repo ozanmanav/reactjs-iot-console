@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { UIState } from '../../store/ui/types';
 import { ProjectMain } from './project/ProjectMain';
+import { Dashboard } from './dashboard';
 
 interface ApplicationBaseProps {
   ui?: UIState;
@@ -24,7 +25,6 @@ export const ApplicationBase: FunctionComponent<ApplicationBaseProps> = ({ ui })
           })}
         >
           <Switch>
-            {/* <Route exact path="/app/dashboard" component={Dashboard} /> */}
             <Route path="/app/projects" component={ProjectMain} />
             {/* <Route path="/app/projects/:id" component={Project} />
                         <Route path="/app/projects/:projectId/devices/:deviceId" component={Device} /> */}
@@ -35,6 +35,7 @@ export const ApplicationBase: FunctionComponent<ApplicationBaseProps> = ({ ui })
                     <Route path={"/app/admin"} component={AdminPanel} />
                     <Route path="/app/export" component={Export} /> */}
             {/* <Route component={Dashboard} /> */}
+            <Route exact path="/app/dashboard" component={Dashboard} />
           </Switch>
         </div>
         <p className="_text-grey h6 _text-center app__copyright">{COPYRIGHT_TEXT}</p>
