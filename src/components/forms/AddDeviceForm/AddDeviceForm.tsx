@@ -26,15 +26,20 @@ const AddDeviceFormBase: FunctionComponent<
   const onChangeBrand = (option: ValueType<any>): void => {
     setFieldValue('deviceModel', undefined);
 
-    if (getDeviceModels && option) {
-      getDeviceModels(option.value);
+    if (!getDeviceModels || !option) {
+      return setFieldValue('deviceBrand', undefined);
     }
 
     setFieldValue('deviceBrand', option.value);
+    getDeviceModels(option.value);
   };
 
   const onChangeModel = (option: ValueType<any>): void => {
-    setFieldValue('deviceModel', option.value);
+    if (option) {
+      setFieldValue('deviceModel', option.value);
+    } else {
+      setFieldValue('deviceModel', undefined);
+    }
   };
 
   return (
