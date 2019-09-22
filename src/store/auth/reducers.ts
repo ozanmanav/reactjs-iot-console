@@ -7,14 +7,17 @@ import {
   USER_LOGIN_FAILURE,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAILURE,
-  CHECK_USER,
-  CHECK_USER_SUCCESS,
-  CHECK_USER_FAILURE,
+  CHECK_USER_AUTH_FIREBASE,
+  CHECK_USER_AUTH_FIREBASE_SUCCESS,
+  CHECK_USER_AUTH_FIREBASE_FAILURE,
   USER_LOGOUT,
   IAuthLoadingState,
   USER_GOOGLE_LOGIN,
   USER_GOOGLE_LOGIN_SUCCESS,
-  USER_GOOGLE_LOGIN_FAILURE
+  USER_GOOGLE_LOGIN_FAILURE,
+  CHECK_USER_FEYNLAB,
+  CHECK_USER_FEYNLAB_SUCCESS,
+  CHECK_USER_FEYNLAB_FAILURE
 } from './types';
 import { CRYPT_JS_SECRET_KEY } from '../../config';
 import { AES } from 'crypto-js';
@@ -94,31 +97,31 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
         ...action.payload
       };
     }
-    case CHECK_USER: {
+    case CHECK_USER_AUTH_FIREBASE: {
       return {
         ...state,
         loading: {
           ...state.loading,
-          checkUser: true
+          checkUserAuthFirebase: true
         }
       };
     }
-    case CHECK_USER_SUCCESS: {
+    case CHECK_USER_AUTH_FIREBASE_SUCCESS: {
       return {
         ...state,
         loading: {
           ...state.loading,
-          checkUser: false
+          checkUserAuthFirebase: false
         },
         ...action.payload
       };
     }
-    case CHECK_USER_FAILURE: {
+    case CHECK_USER_AUTH_FIREBASE_FAILURE: {
       return {
         ...state,
         loading: {
           ...state.loading,
-          checkUser: false
+          checkUserAuthFirebase: false
         },
         ...action.payload
       };
@@ -155,6 +158,35 @@ export function authReducer(state = AuthInitialState, action: AuthActionTypes): 
         loading: {
           ...state.loading,
           googleLogin: false
+        },
+        ...action.payload
+      };
+    }
+    case CHECK_USER_FEYNLAB: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          checkUserFeynlab: true
+        }
+      };
+    }
+    case CHECK_USER_FEYNLAB_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          checkUserFeynlab: false
+        },
+        ...action.payload
+      };
+    }
+    case CHECK_USER_FEYNLAB_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          checkUserFeynlab: false
         },
         ...action.payload
       };

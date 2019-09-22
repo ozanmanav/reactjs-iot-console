@@ -43,22 +43,22 @@ export function userGoogleLoginFailure(newSession: AuthState): AuthActionTypes {
   };
 }
 
-export function checkUser(): AuthActionTypes {
+export function checkUserAuthFirebase(): AuthActionTypes {
   return {
-    type: types.CHECK_USER
+    type: types.CHECK_USER_AUTH_FIREBASE
   };
 }
 
-export function checkUserSuccess(newSession: AuthState): AuthActionTypes {
+export function checkUserAuthFirebaseSuccess(newSession: AuthState): AuthActionTypes {
   return {
-    type: types.CHECK_USER_SUCCESS,
+    type: types.CHECK_USER_AUTH_FIREBASE_SUCCESS,
     payload: newSession
   };
 }
 
-export function checkUserFailure(newSession: AuthState): AuthActionTypes {
+export function checkUserAuthFirebaseFailure(newSession: AuthState): AuthActionTypes {
   return {
-    type: types.CHECK_USER_FAILURE,
+    type: types.CHECK_USER_AUTH_FIREBASE_FAILURE,
     payload: newSession
   };
 }
@@ -86,6 +86,27 @@ export function userRegisterSuccess(newSession: AuthState): AuthActionTypes {
 export function userRegisterFailure(newSession: AuthState): AuthActionTypes {
   return {
     type: types.USER_REGISTER_FAILURE,
+    payload: newSession
+  };
+}
+
+export function checkUserFeynlab(email: string): AuthActionTypes {
+  return {
+    type: types.CHECK_USER_FEYNLAB,
+    payload: email
+  };
+}
+
+export function checkUserFeynlabSuccess(newSession: AuthState): AuthActionTypes {
+  return {
+    type: types.CHECK_USER_FEYNLAB_SUCCESS,
+    payload: newSession
+  };
+}
+
+export function checkUserFeynlabFailure(newSession: AuthState): AuthActionTypes {
+  return {
+    type: types.CHECK_USER_FEYNLAB_FAILURE,
     payload: newSession
   };
 }

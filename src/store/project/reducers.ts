@@ -1,50 +1,5 @@
-import {
-  ProjectActionTypes,
-  GET_PROJECTS,
-  GET_PROJECTS_SUCCESS,
-  GET_PROJECTS_FAILURE,
-  ProjectState,
-  GET_PROJECT_BY_ID,
-  GET_PROJECT_BY_ID_SUCCESS,
-  GET_PROJECT_BY_ID_FAILURE,
-  GET_DEVICES,
-  GET_DEVICES_SUCCESS,
-  GET_DEVICES_FAILURE,
-  GET_TRIGGERS,
-  GET_TRIGGERS_SUCCESS,
-  GET_TRIGGERS_FAILURE,
-  GET_ACTIVITIES,
-  GET_ACTIVITIES_SUCCESS,
-  GET_ACTIVITIES_FAILURE,
-  ITriggerResponse,
-  GET_DEVICE_BY_ID,
-  GET_DEVICE_BY_ID_SUCCESS,
-  GET_DEVICE_BY_ID_FAILURE,
-  GET_DEVICE_ACTIVITIES,
-  GET_DEVICE_ACTIVITIES_SUCCESS,
-  GET_DEVICE_ACTIVITIES_FAILURE,
-  GET_DEVICE_SETTINGS,
-  GET_DEVICE_SETTINGS_SUCCESS,
-  GET_DEVICE_SETTINGS_FAILURE,
-  GET_DEVICE_TOKENS,
-  GET_DEVICE_TOKENS_SUCCESS,
-  GET_DEVICE_TOKENS_FAILURE,
-  SAVE_PROJECT_SETTINGS,
-  SAVE_PROJECT_SETTINGS_SUCCESS,
-  SAVE_PROJECT_SETTINGS_FAILURE,
-  GET_DEVICE_BRANDS,
-  GET_DEVICE_BRANDS_SUCCESS,
-  GET_DEVICE_BRANDS_FAILURE,
-  ADD_DEVICE,
-  ADD_DEVICE_SUCCESS,
-  ADD_DEVICE_FAILURE,
-  GET_DEVICE_MODELS,
-  GET_DEVICE_MODELS_SUCCESS,
-  GET_DEVICE_MODELS_FAILURE,
-  CREATE_PROJECT,
-  CREATE_PROJECT_SUCCESS,
-  CREATE_PROJECT_FAILURE
-} from './types';
+import * as types from './types';
+import { ProjectState, ITriggerResponse, ProjectActionTypes } from './types';
 
 export const ProjectInitialState: ProjectState = {
   loading: {
@@ -72,25 +27,25 @@ export const ProjectInitialState: ProjectState = {
 
 export function projectReducer(state = ProjectInitialState, action: ProjectActionTypes): ProjectState {
   switch (action.type) {
-    case GET_PROJECTS: {
+    case types.GET_PROJECTS: {
       return {
         ...state
       };
     }
-    case GET_PROJECTS_SUCCESS: {
+    case types.GET_PROJECTS_SUCCESS: {
       return {
         ...state,
         ...action.payload
       };
     }
-    case GET_PROJECTS_FAILURE: {
+    case types.GET_PROJECTS_FAILURE: {
       return {
         ...state,
         ...action.payload,
         projects: []
       };
     }
-    case GET_PROJECT_BY_ID: {
+    case types.GET_PROJECT_BY_ID: {
       return {
         ...state,
         loading: {
@@ -100,7 +55,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         currentProject: undefined
       };
     }
-    case GET_PROJECT_BY_ID_SUCCESS: {
+    case types.GET_PROJECT_BY_ID_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -110,7 +65,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         currentProject: action.payload
       };
     }
-    case GET_PROJECT_BY_ID_FAILURE: {
+    case types.GET_PROJECT_BY_ID_FAILURE: {
       return {
         ...state,
         loading: {
@@ -120,7 +75,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         currentProject: undefined
       };
     }
-    case GET_DEVICES: {
+    case types.GET_DEVICES: {
       return {
         ...state,
         loading: {
@@ -130,7 +85,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         devices: []
       };
     }
-    case GET_DEVICES_SUCCESS: {
+    case types.GET_DEVICES_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -140,7 +95,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case GET_DEVICES_FAILURE: {
+    case types.GET_DEVICES_FAILURE: {
       return {
         ...state,
         loading: {
@@ -150,7 +105,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         devices: []
       };
     }
-    case GET_DEVICE_BY_ID: {
+    case types.GET_DEVICE_BY_ID: {
       return {
         ...state,
         loading: {
@@ -160,7 +115,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         currentDevice: undefined
       };
     }
-    case GET_DEVICE_BY_ID_SUCCESS: {
+    case types.GET_DEVICE_BY_ID_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -170,7 +125,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         currentDevice: action.payload
       };
     }
-    case GET_DEVICE_BY_ID_FAILURE: {
+    case types.GET_DEVICE_BY_ID_FAILURE: {
       return {
         ...state,
         loading: {
@@ -180,7 +135,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         currentDevice: undefined
       };
     }
-    case GET_TRIGGERS: {
+    case types.GET_TRIGGERS: {
       return {
         ...state,
         loading: {
@@ -190,7 +145,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         triggers: {} as ITriggerResponse
       };
     }
-    case GET_TRIGGERS_SUCCESS: {
+    case types.GET_TRIGGERS_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -200,7 +155,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case GET_TRIGGERS_FAILURE: {
+    case types.GET_TRIGGERS_FAILURE: {
       return {
         ...state,
         loading: {
@@ -210,7 +165,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         triggers: {} as ITriggerResponse
       };
     }
-    case GET_ACTIVITIES: {
+    case types.GET_ACTIVITIES: {
       return {
         ...state,
         loading: {
@@ -220,7 +175,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         activities: []
       };
     }
-    case GET_ACTIVITIES_SUCCESS: {
+    case types.GET_ACTIVITIES_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -230,7 +185,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case GET_ACTIVITIES_FAILURE: {
+    case types.GET_ACTIVITIES_FAILURE: {
       return {
         ...state,
         loading: {
@@ -240,7 +195,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         activities: []
       };
     }
-    case GET_DEVICE_ACTIVITIES: {
+    case types.GET_DEVICE_ACTIVITIES: {
       return {
         ...state,
         loading: {
@@ -250,7 +205,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         deviceActivities: []
       };
     }
-    case GET_DEVICE_ACTIVITIES_SUCCESS: {
+    case types.GET_DEVICE_ACTIVITIES_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -260,7 +215,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case GET_DEVICE_ACTIVITIES_FAILURE: {
+    case types.GET_DEVICE_ACTIVITIES_FAILURE: {
       return {
         ...state,
         loading: {
@@ -270,7 +225,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         deviceActivities: []
       };
     }
-    case GET_DEVICE_SETTINGS: {
+    case types.GET_DEVICE_SETTINGS: {
       return {
         ...state,
         loading: {
@@ -280,7 +235,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         deviceActivities: []
       };
     }
-    case GET_DEVICE_SETTINGS_SUCCESS: {
+    case types.GET_DEVICE_SETTINGS_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -290,7 +245,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case GET_DEVICE_SETTINGS_FAILURE: {
+    case types.GET_DEVICE_SETTINGS_FAILURE: {
       return {
         ...state,
         loading: {
@@ -300,7 +255,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         deviceActivities: []
       };
     }
-    case GET_DEVICE_TOKENS: {
+    case types.GET_DEVICE_TOKENS: {
       return {
         ...state,
         loading: {
@@ -309,7 +264,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case GET_DEVICE_TOKENS_SUCCESS: {
+    case types.GET_DEVICE_TOKENS_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -319,7 +274,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         currentDevice: action.payload.currentDevice
       };
     }
-    case GET_DEVICE_TOKENS_FAILURE: {
+    case types.GET_DEVICE_TOKENS_FAILURE: {
       return {
         ...state,
         loading: {
@@ -328,7 +283,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case SAVE_PROJECT_SETTINGS: {
+    case types.SAVE_PROJECT_SETTINGS: {
       return {
         ...state,
         loading: {
@@ -337,7 +292,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case SAVE_PROJECT_SETTINGS_SUCCESS: {
+    case types.SAVE_PROJECT_SETTINGS_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -347,7 +302,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case SAVE_PROJECT_SETTINGS_FAILURE: {
+    case types.SAVE_PROJECT_SETTINGS_FAILURE: {
       return {
         ...state,
         loading: {
@@ -356,7 +311,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case GET_DEVICE_BRANDS: {
+    case types.GET_DEVICE_BRANDS: {
       return {
         ...state,
         loading: {
@@ -365,7 +320,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case GET_DEVICE_BRANDS_SUCCESS: {
+    case types.GET_DEVICE_BRANDS_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -375,7 +330,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case GET_DEVICE_BRANDS_FAILURE: {
+    case types.GET_DEVICE_BRANDS_FAILURE: {
       return {
         ...state,
         loading: {
@@ -384,7 +339,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case ADD_DEVICE: {
+    case types.ADD_DEVICE: {
       return {
         ...state,
         loading: {
@@ -393,7 +348,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case ADD_DEVICE_SUCCESS: {
+    case types.ADD_DEVICE_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -403,7 +358,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case ADD_DEVICE_FAILURE: {
+    case types.ADD_DEVICE_FAILURE: {
       return {
         ...state,
         loading: {
@@ -412,7 +367,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case GET_DEVICE_MODELS: {
+    case types.GET_DEVICE_MODELS: {
       return {
         ...state,
         loading: {
@@ -421,7 +376,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case GET_DEVICE_MODELS_SUCCESS: {
+    case types.GET_DEVICE_MODELS_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -431,7 +386,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case GET_DEVICE_MODELS_FAILURE: {
+    case types.GET_DEVICE_MODELS_FAILURE: {
       return {
         ...state,
         loading: {
@@ -440,7 +395,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case CREATE_PROJECT: {
+    case types.CREATE_PROJECT: {
       return {
         ...state,
         loading: {
@@ -449,7 +404,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
-    case CREATE_PROJECT_SUCCESS: {
+    case types.CREATE_PROJECT_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -459,7 +414,7 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         ...action.payload
       };
     }
-    case CREATE_PROJECT_FAILURE: {
+    case types.CREATE_PROJECT_FAILURE: {
       return {
         ...state,
         loading: {

@@ -27,7 +27,7 @@ const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = (
     startup();
   }, [startup]);
 
-  if (auth && auth.loading && auth.loading.checkUser) {
+  if (auth && auth.loading && auth.loading.checkUserAuthFirebase) {
     return <Loading />;
   }
 

@@ -1,27 +1,26 @@
 import { call, put } from 'redux-saga/effects';
 import { auth } from '../firebase';
-import { AuthState } from '../store/auth/types';
 import * as actions from '../store/auth/actions';
 import { push } from 'react-router-redux';
 import { showErrorToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
+import { getRequest } from '../utils/dataHelper';
 
 export function* requestUserLogin(data: any) {
   try {
     const response = yield call(auth.doSignInWithEmailAndPassword, data.payload.email, data.payload.password);
 
-    const successSession: AuthState = {
-      user: response.user,
-      loggedIn: true
-    };
+    yield put(
+      actions.userLoginSuccess({
+        user: response.user
+      })
+    );
 
-    yield put(actions.userLoginSuccess(successSession));
-    yield put(push('/app/dashboard'));
+    yield put(actions.checkUserFeynlab(response.user && response.user.email));
   } catch (error) {
-    yield put(push('/login'));
-    const errorSession: AuthState = { error, loggedIn: false };
+    yield put(actions.userLoginFailure({ error, loggedIn: false }));
     showErrorToast(error.message);
-    yield put(actions.userLoginFailure(errorSession));
+    yield put(push('/login'));
   }
 }
 
@@ -29,18 +28,17 @@ export function* requestGoogleLogin(data: any) {
   try {
     const response = yield call(auth.doSignInWithGoogle, data.payload.tokenId, data.payload.accessToken);
 
-    const successSession: AuthState = {
-      user: response.user,
-      loggedIn: true
-    };
+    yield put(
+      actions.userGoogleLoginSuccess({
+        user: response.user
+      })
+    );
 
-    yield put(actions.userGoogleLoginSuccess(successSession));
-    yield put(push('/app/dashboard'));
+    yield put(actions.checkUserFeynlab(response.user && response.user.email));
   } catch (error) {
-    yield put(push('/login'));
-    const errorSession: AuthState = { error, loggedIn: false };
+    yield put(actions.userGoogleLoginFailure({ error, loggedIn: false }));
     showErrorToast(error.message);
-    yield put(actions.userGoogleLoginFailure(errorSession));
+    yield put(push('/login'));
   }
 }
 
@@ -48,37 +46,35 @@ export function* requestUserRegister(data: any) {
   try {
     const response = yield call(auth.doCreateUserWithEmailAndPassword, data.payload.email, data.payload.password);
 
-    const successSession: AuthState = {
-      user: response.user,
-      loggedIn: true
-    };
+    yield put(
+      actions.userRegisterSuccess({
+        user: response.user
+      })
+    );
 
-    yield put(actions.userRegisterSuccess(successSession));
-    yield put(push('/app/dashboard'));
+    yield put(actions.checkUserFeynlab(response.user && response.user.email));
   } catch (error) {
     yield put(push('/signup'));
-    const errorSession: AuthState = { error, loggedIn: false };
     showErrorToast(error.message);
-    yield put(actions.userRegisterFailure(errorSession));
+    yield put(actions.userRegisterFailure({ error, loggedIn: false }));
   }
 }
 
-export function* checkUserAuth() {
+export function* requestCheckUserAuthFirebase() {
   try {
     const currentUser = yield call(auth.onAuthStateChanged);
 
-    const successCheckSession: AuthState = {
-      user: currentUser,
-      loggedIn: true
-    };
+    yield put(actions.checkUserFeynlab(currentUser && currentUser.email));
 
-    yield put(actions.checkUserSuccess(successCheckSession));
-    yield put(push('/app'));
+    yield put(
+      actions.checkUserAuthFirebaseSuccess({
+        user: currentUser
+      })
+    );
   } catch (error) {
     yield put(push('/login'));
-    const errorSession: AuthState = { error, loggedIn: false };
     showErrorToast(error);
-    yield put(actions.checkUserFailure(errorSession));
+    yield put(actions.checkUserAuthFirebaseFailure({ error, loggedIn: false }));
   }
 }
 
@@ -89,8 +85,22 @@ export function* requestUserLogout() {
     yield put(push('/login'));
   } catch (error) {
     yield put(push('/login'));
-    const errorSession: AuthState = { error, loggedIn: false };
     showErrorToast(error);
-    yield put(actions.checkUserFailure(errorSession));
+    yield put(actions.checkUserAuthFirebaseFailure({ error, loggedIn: false }));
+  }
+}
+
+export function* requestCheckUserFeynlab(data: any) {
+  try {
+    yield call(getRequest, `/checkUser?mail=${data.payload}`);
+
+    yield put(actions.checkUserFeynlabSuccess({ loggedIn: true }));
+    yield put(push('/app/dashboard'));
+  } catch (error) {
+    showErrorToast(error.Message === 'Mail does not exist' ? error.Message : error);
+
+    yield put(push('/login'));
+    yield put(actions.userLogout());
+    yield put(actions.checkUserFeynlabFailure({ error, loggedIn: false }));
   }
 }

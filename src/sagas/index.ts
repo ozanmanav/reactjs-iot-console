@@ -1,78 +1,44 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { USER_LOGIN, CHECK_USER, USER_LOGOUT, USER_REGISTER, USER_GOOGLE_LOGIN } from '../store/auth/types';
-import {
-  requestUserLogin,
-  checkUserAuth,
-  requestUserLogout,
-  requestUserRegister,
-  requestGoogleLogin
-} from './authSaga';
-import { startup } from './startupSaga';
-import { STARTUP } from '../store/startup/types';
-import {
-  requestGetProjects,
-  requestGetProjectById,
-  requestGetDevices,
-  requestGetTriggers,
-  requestGetActivities,
-  requestGetDeviceById,
-  requestGetDeviceActivities,
-  requestGetDeviceTokens,
-  requestSaveProjectSettings,
-  requestGetDeviceBrands,
-  requestAddDevice,
-  requestGetDeviceModels,
-  requestCreateProject
-} from './projectSaga';
-import {
-  GET_PROJECTS,
-  GET_PROJECT_BY_ID,
-  GET_DEVICES,
-  GET_TRIGGERS,
-  GET_ACTIVITIES,
-  GET_DEVICE_BY_ID,
-  GET_DEVICE_ACTIVITIES,
-  GET_DEVICE_TOKENS,
-  GET_DEVICE_BY_ID_SUCCESS,
-  SAVE_PROJECT_SETTINGS,
-  GET_DEVICE_BRANDS,
-  ADD_DEVICE,
-  GET_DEVICE_MODELS,
-  CREATE_PROJECT
-} from '../store/project/types';
-import { SET_SIDEBAR_STATUS } from '../store/ui/types';
-import { requestSidebarOpen } from './uiSaga';
+import * as authTypes from '../store/auth/types';
+import * as authSaga from './authSaga';
+import * as startupSaga from './startupSaga';
+import * as startupTypes from '../store/startup/types';
+import * as projectSaga from './projectSaga';
+import * as projectTypes from '../store/project/types';
+import * as uiTypes from '../store/ui/types';
+import * as uiSaga from './uiSaga';
 
 // Register all your watchers
 export const rootSaga = function* root() {
   yield all([
     // Startup
-    takeLatest(STARTUP, startup),
+    takeLatest(startupTypes.STARTUP, startupSaga.startup),
 
     // Auth
-    takeLatest(USER_LOGIN, requestUserLogin),
-    takeLatest(USER_GOOGLE_LOGIN, requestGoogleLogin),
-    takeLatest(USER_REGISTER, requestUserRegister),
-    takeLatest(CHECK_USER, checkUserAuth),
-    takeLatest(USER_LOGOUT, requestUserLogout),
+    takeLatest(authTypes.USER_LOGIN, authSaga.requestUserLogin),
+    takeLatest(authTypes.USER_GOOGLE_LOGIN, authSaga.requestGoogleLogin),
+    takeLatest(authTypes.USER_REGISTER, authSaga.requestUserRegister),
+    takeLatest(authTypes.CHECK_USER_AUTH_FIREBASE, authSaga.requestCheckUserAuthFirebase),
+    takeLatest(authTypes.USER_LOGOUT, authSaga.requestUserLogout),
+    takeLatest(authTypes.CHECK_USER_FEYNLAB, authSaga.requestCheckUserFeynlab),
 
     // Project
-    takeLatest(GET_PROJECTS, requestGetProjects),
-    takeLatest(GET_PROJECT_BY_ID, requestGetProjectById),
-    takeLatest(GET_DEVICES, requestGetDevices),
-    takeLatest(GET_DEVICE_BY_ID, requestGetDeviceById),
-    takeLatest(GET_DEVICE_BY_ID_SUCCESS, requestGetDeviceTokens),
-    takeLatest(GET_TRIGGERS, requestGetTriggers),
-    takeLatest(GET_ACTIVITIES, requestGetActivities),
-    takeLatest(GET_DEVICE_ACTIVITIES, requestGetDeviceActivities),
-    takeLatest(GET_DEVICE_TOKENS, requestGetDeviceTokens),
-    takeLatest(SAVE_PROJECT_SETTINGS, requestSaveProjectSettings),
-    takeLatest(GET_DEVICE_BRANDS, requestGetDeviceBrands),
-    takeLatest(ADD_DEVICE, requestAddDevice),
-    takeLatest(GET_DEVICE_MODELS, requestGetDeviceModels),
-    takeLatest(CREATE_PROJECT, requestCreateProject),
+    takeLatest(projectTypes.GET_PROJECTS, projectSaga.requestGetProjects),
+    takeLatest(projectTypes.GET_PROJECT_BY_ID, projectSaga.requestGetProjectById),
+    takeLatest(projectTypes.GET_DEVICES, projectSaga.requestGetDevices),
+    takeLatest(projectTypes.GET_DEVICE_BY_ID, projectSaga.requestGetDeviceById),
+    takeLatest(projectTypes.GET_DEVICE_BY_ID_SUCCESS, projectSaga.requestGetDeviceTokens),
+    takeLatest(projectTypes.GET_TRIGGERS, projectSaga.requestGetTriggers),
+    takeLatest(projectTypes.GET_ACTIVITIES, projectSaga.requestGetActivities),
+    takeLatest(projectTypes.GET_DEVICE_ACTIVITIES, projectSaga.requestGetDeviceActivities),
+    takeLatest(projectTypes.GET_DEVICE_TOKENS, projectSaga.requestGetDeviceTokens),
+    takeLatest(projectTypes.SAVE_PROJECT_SETTINGS, projectSaga.requestSaveProjectSettings),
+    takeLatest(projectTypes.GET_DEVICE_BRANDS, projectSaga.requestGetDeviceBrands),
+    takeLatest(projectTypes.ADD_DEVICE, projectSaga.requestAddDevice),
+    takeLatest(projectTypes.GET_DEVICE_MODELS, projectSaga.requestGetDeviceModels),
+    takeLatest(projectTypes.CREATE_PROJECT, projectSaga.requestCreateProject),
 
     // // UI
-    takeLatest(SET_SIDEBAR_STATUS, requestSidebarOpen)
+    takeLatest(uiTypes.SET_SIDEBAR_STATUS, uiSaga.requestSidebarOpen)
   ]);
 };

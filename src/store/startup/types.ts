@@ -1,9 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface StartupState {}
 
-export const STARTUP = 'STARTUP';
-export const STARTUP_SUCCESS = 'STARTUP_SUCCESS';
-export const STARTUP_FAILURE = 'STARTUP_FAILURE';
+export const STARTUP = '@@startup/STARTUP';
+export const STARTUP_SUCCESS = '@@startup/STARTUP_SUCCESS';
+export const STARTUP_FAILURE = '@@startup/STARTUP_FAILURE';
 
 interface StartupAction {
   type: typeof STARTUP;

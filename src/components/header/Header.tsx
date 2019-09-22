@@ -24,7 +24,7 @@ export const AuthNav: FunctionComponent = () => {
     <nav className="b-header">
       <NavLink to={'/signup'}>
         <div className="b-header__signup">
-          <div className="b-header-user__signup-text">Sign Up</div>
+          <div className="b-header__signup-text">Sign Up</div>
         </div>
       </NavLink>
       <NavLink to={'/login'}>
