@@ -7,5 +7,5 @@ RUN npm run build
 FROM nginx:1.15.2-alpine
 COPY --from=build-stage /app/build/ /var/www
 COPY --from=build-stage /app/nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
+EXPOSE 443
 ENTRYPOINT ["nginx","-g","daemon off;"]
