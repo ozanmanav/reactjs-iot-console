@@ -111,10 +111,10 @@ export function checkUserFeynlabFailure(newSession: AuthState): AuthActionTypes 
   };
 }
 
-export function registerUserFeynlab(email: string): AuthActionTypes {
+export function registerUserFeynlab(newUser: AuthState): AuthActionTypes {
   return {
     type: types.REGISTER_USER_FEYNLAB,
-    payload: email
+    payload: newUser
   };
 }
 

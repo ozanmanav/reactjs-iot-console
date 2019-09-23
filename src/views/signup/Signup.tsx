@@ -16,7 +16,7 @@ export const SignupBase: FunctionComponent<SignupBaseProps> = ({ userRegister })
   return (
     <>
       <main className="b-login flex flex-column align-center justify-center">
-        <SignUpForm onSubmit={({ email, password }) => userRegister({ email, password })} />
+        <SignUpForm onSubmit={data => userRegister(data)} />
         <p className="b-login__copyright _text-grey h6">{COPYRIGHT_TEXT}</p>
       </main>
     </>

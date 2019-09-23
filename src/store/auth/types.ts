@@ -1,5 +1,3 @@
-import { User } from 'firebase';
-
 export interface IAuthLoadingState {
   login?: boolean;
   register?: boolean;
@@ -10,14 +8,24 @@ export interface IAuthLoadingState {
   registerUserFeynlab?: boolean;
 }
 
+export interface IUser {
+  id?: string;
+  firstname?: string;
+  lastname?: string;
+  profilePhoto?: string;
+  accountProperties?: object;
+  accountTypeImage?: object;
+  timezone?: object;
+  email?: string;
+}
+
 export interface AuthState {
   loading?: IAuthLoadingState;
   loggedIn?: boolean;
   email?: string;
   password?: string;
   error?: string;
-  user?: User;
-  registerUser?: User;
+  currentUser?: IUser;
 }
 
 export const USER_LOGIN = '@@auth/USER_LOGIN';
@@ -117,7 +125,7 @@ interface CheckUserFeynlabSuccessAction {
 
 interface RegisterUserFeynlabAction {
   type: typeof REGISTER_USER_FEYNLAB;
-  payload: string;
+  payload: AuthState;
 }
 
 interface RegisterUserFeynlabFailureAction {

@@ -63,6 +63,20 @@ export function postRequest(url: any, params = {}, data: {}) {
   });
 }
 
+export function postRequestNoAuth(url: any, params = {}, data: {}) {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'POST',
+      baseURL: BASE_URL || '',
+      url,
+      params,
+      data
+    })
+      .then(result => resolve(result))
+      .catch(error => reject(error.response.data));
+  });
+}
+
 export function putRequest(url: any, params = {}, data: {}) {
   const baseURL = BASE_URL || '';
   return new Promise((resolve, reject) => {

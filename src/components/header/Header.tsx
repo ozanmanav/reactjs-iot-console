@@ -3,11 +3,11 @@ import './Header.scss';
 import { Logo, CustomNavLink, useModal, Icon } from '../ui';
 import classNames from 'classnames';
 import { NavLinkProps, NavLink } from 'react-router-dom';
-import { AuthState } from '../../store/auth/types';
+import { AuthState, IUser } from '../../store/auth/types';
 import { userLogout } from '../../store/auth/actions';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
-import { User } from 'firebase';
+
 import { ConfirmModal } from '../modals';
 import Avatar from 'react-avatar';
 
@@ -37,10 +37,10 @@ export const AuthNav: FunctionComponent = () => {
 };
 
 interface UserNavProps {
-  user?: User;
+  currentUser?: IUser;
   userLogout: () => void;
 }
-export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout }) => {
+export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, currentUser }) => {
   const { open, hide, isOpen } = useModal();
   return (
     <nav className="b-header-user">
@@ -48,15 +48,20 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout 
         <button className="flex align-center b-header-user__container-button">
           <div className="b-header-user__container flex align-center justify-center _font-bold _text-primary">
             {' '}
-            {user && user.photoURL ? (
-              <Avatar round={true} src={(user && user.photoURL) || ''} size="40" />
+            {currentUser && currentUser.profilePhoto ? (
+              <Avatar round={true} src={currentUser.profilePhoto} size="40" />
             ) : (
               <Icon icon="avatar" />
             )}{' '}
           </div>
-          <div className="flex flex-column b-header-user__info">
-            <div className=" _text-left _font-bold">{user && user.email}</div>
-          </div>
+
+          {currentUser && (
+            <div className="flex flex-column b-header-user__info">
+              <div className=" _text-left _font-bold">
+                {currentUser.firstname ? `${currentUser.firstname} ${currentUser.lastname}` : ``}
+              </div>
+            </div>
+          )}
         </button>
       </div>
       <Icon icon="logout" width={20} height={20} onClick={open} className="_cursor-pointer" />
@@ -66,7 +71,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ user, userLogout 
 };
 
 const mapStateToPropsUser = (state: AppState) => ({
-  user: state.auth.user
+  currentUser: state.auth.currentUser
 });
 
 export const UserNav = connect(

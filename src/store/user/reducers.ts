@@ -1,14 +1,13 @@
 import {
   UserActionTypes,
   UserState,
-  IUser,
   GET_USER_PROFILE,
   GET_USER_PROFILE_SUCCESS,
   GET_USER_PROFILE_FAILURE
 } from './types';
 
 export const UserInitialState: UserState = {
-  profile: {} as IUser
+  profile: undefined
 };
 
 export function uiReducer(state = UserInitialState, action: UserActionTypes): UserState {

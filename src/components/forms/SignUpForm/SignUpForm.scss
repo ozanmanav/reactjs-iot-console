@@ -3,66 +3,65 @@
 @import '../../../styles/media';
 
 .f-signup__form {
-    @include shadow-small;
-    background: $white;
-    border-radius: $border-radius-normal;
-    width: 585px;
-    @include desktop-xs {
-        width: 100%;
-    }
-    margin-top: -100px;
+  @include shadow-small;
+  background: $white;
+  border-radius: $border-radius-normal;
+  width: 585px;
+  @include desktop-xs {
+    width: 100%;
+  }
 
-    &-content {
-        padding: 35px 20px 0;
+  &-content {
+    padding: 35px 20px 0;
+  }
+
+  &-title {
+    color: #4a4a4a;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+
+  &-footer {
+    padding: 20px;
+    border-top: 1px solid $light-grey;
+    text-align: center;
+  }
+
+  &-action {
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 10px 0 rgba(246, 138, 77, 0.4);
+    background-image: #f68a4d;
+  }
+
+  &-input {
+    padding-right: 160px;
+
+    &-wrapper {
+      position: relative;
     }
 
-    &-title {
-        color: #4a4a4a;
-        font-size: 24px;
+    &-link {
+      position: absolute;
+      right: 15px;
+      top: 14px;
+      &-forgot {
+        text-decoration: underline;
+        height: 16px;
+        font-family: Exo;
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 0.6px;
         text-align: center;
-        font-weight: 400;
-        margin-bottom: 30px;
+        color: #9b9b9b;
+        margin-top: 20px;
+      }
     }
-
-    &-footer {
-        padding: 20px;
-        border-top: 1px solid $light-grey;
-        text-align: center;
-    }
-
-    &-action {
-        margin-bottom: 10px;
-        width: 100%;
-        border-radius: 10px;
-        box-shadow: 0 8px 10px 0 rgba(246, 138, 77, 0.4);
-        background-image: #f68a4d;
-    }
-
-    &-input {
-        padding-right: 160px;
-
-        &-wrapper {
-            position: relative;
-        }
-
-        &-link {
-            position: absolute;
-            right: 15px;
-            top: 14px;
-            &-forgot {
-                text-decoration: underline;
-                height: 16px;
-                font-family: Exo;
-                font-size: 12px;
-                font-weight: normal;
-                font-style: normal;
-                font-stretch: normal;
-                line-height: normal;
-                letter-spacing: 0.6px;
-                text-align: center;
-                color: #9b9b9b;
-                margin-top: 20px;
-            }
-        }
-    }
+  }
 }

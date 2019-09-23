@@ -23,7 +23,6 @@ export const rootSaga = function* root() {
     takeLatest(authTypes.CHECK_USER_AUTH_FIREBASE, authSaga.requestCheckUserAuthFirebase),
     takeLatest(authTypes.USER_LOGOUT, authSaga.requestUserLogout),
     takeLatest(authTypes.CHECK_USER_FEYNLAB, authSaga.requestCheckUserFeynlab),
-    takeLatest(authTypes.REGISTER_USER_FEYNLAB, authSaga.requestUserRegisterFeynlab),
 
     // Project
     takeLatest(projectTypes.GET_PROJECTS, projectSaga.requestGetProjects),

@@ -1,6 +1,5 @@
-export interface IUser {
-  id: string;
-}
+import { IUser } from '../auth/types';
+
 export interface UserState {
   profile?: IUser;
   error?: string;

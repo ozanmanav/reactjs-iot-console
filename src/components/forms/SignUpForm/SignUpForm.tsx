@@ -19,6 +19,24 @@ const SignUpFormBase: FunctionComponent<FormikProps<ISignUpFormDefaultState>> = 
       <div className="f-signup__form-content">
         <h2 className="h1 f-signup__form-title">Sign Up</h2>
         <Input
+          placeholder="First Name"
+          name="firstname"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={values.firstname}
+          error={errors && errors.firstname}
+          touched={touched && touched.firstname}
+        />
+        <Input
+          placeholder="Last Name"
+          name="lastname"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={values.lastname}
+          error={errors && errors.lastname}
+          touched={touched && touched.lastname}
+        />
+        <Input
           placeholder="E-mail Address"
           name="email"
           onBlur={handleBlur}
@@ -27,19 +45,26 @@ const SignUpFormBase: FunctionComponent<FormikProps<ISignUpFormDefaultState>> = 
           error={errors && errors.email}
           touched={touched && touched.email}
         />
-        <div className="f-signup__form-input-wrapper">
-          <Input
-            className="f-signup__form-input"
-            placeholder="Password"
-            name="password"
-            type="password"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.password}
-            error={errors && errors.password}
-            touched={touched && touched.password}
-          />
-        </div>
+        <Input
+          placeholder="Password"
+          name="password"
+          type="password"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={values.password}
+          error={errors && errors.password}
+          touched={touched && touched.password}
+        />
+        <Input
+          placeholder="Confirm Password"
+          name="confirmPassword"
+          type="confirmPassword"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={values.confirmPassword}
+          error={errors && errors.confirmPassword}
+          touched={touched && touched.confirmPassword}
+        />
         <Button text="Sign Up" primary className="f-signup__form-action" type="submit" />
       </div>
       <div className="f-signup__form-footer">
