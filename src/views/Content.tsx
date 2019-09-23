@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { Login } from './login';
-import { Landing } from './landing';
 import { LandingHeader } from '../components/header';
 import { Signup } from './signup';
 import { Application } from './app';
@@ -38,8 +37,6 @@ const ContentBase: FunctionComponent<RouteComponentProps & ContentBaseProps> = (
         <Route path="/app" component={Application} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/" component={Landing} />
-        {/* <Route component={Application} /> */}
       </Switch>
     </>
   );

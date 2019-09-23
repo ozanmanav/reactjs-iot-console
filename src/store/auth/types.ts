@@ -7,6 +7,7 @@ export interface IAuthLoadingState {
   checkUserAuthFirebase?: boolean;
   googleLogin?: boolean;
   checkUserFeynlab?: boolean;
+  registerUserFeynlab?: boolean;
 }
 
 export interface AuthState {
@@ -35,6 +36,9 @@ export const USER_GOOGLE_LOGIN_FAILURE = '@@auth/USER_GOOGLE_LOGIN_FAILURE';
 export const CHECK_USER_FEYNLAB = '@@auth/CHECK_USER_FEYNLAB';
 export const CHECK_USER_FEYNLAB_SUCCESS = '@@auth/CHECK_USER_FEYNLAB_SUCCESS ';
 export const CHECK_USER_FEYNLAB_FAILURE = '@@auth/CHECK_USER_FEYNLAB_FAILURE ';
+export const REGISTER_USER_FEYNLAB = '@@auth/REGISTER_USER_FEYNLAB';
+export const REGISTER_USER_FEYNLAB_SUCCESS = '@@auth/REGISTER_USER_FEYNLAB_SUCCESS ';
+export const REGISTER_USER_FEYNLAB_FAILURE = '@@auth/REGISTER_USER_FEYNLAB_FAILURE ';
 
 interface UserLoginAction {
   type: typeof USER_LOGIN;
@@ -111,6 +115,20 @@ interface CheckUserFeynlabSuccessAction {
   payload: AuthState;
 }
 
+interface RegisterUserFeynlabAction {
+  type: typeof REGISTER_USER_FEYNLAB;
+  payload: string;
+}
+
+interface RegisterUserFeynlabFailureAction {
+  type: typeof REGISTER_USER_FEYNLAB_FAILURE;
+  payload: AuthState;
+}
+interface RegisterUserFeynlabSuccessAction {
+  type: typeof REGISTER_USER_FEYNLAB_SUCCESS;
+  payload: AuthState;
+}
+
 export type AuthActionTypes =
   | UserLoginAction
   | UserRegisterAction
@@ -127,4 +145,7 @@ export type AuthActionTypes =
   | UserGoogleLoginFailureAction
   | CheckUserFeynlabAction
   | CheckUserFeynlabSuccessAction
-  | CheckUserFeynlabFailureAction;
+  | CheckUserFeynlabFailureAction
+  | RegisterUserFeynlabAction
+  | RegisterUserFeynlabSuccessAction
+  | RegisterUserFeynlabFailureAction;
