@@ -111,6 +111,7 @@ export function* requestCheckUserAuthFirebase() {
     yield call(auth.onAuthStateChanged);
 
     yield put(actions.checkUserAuthFirebaseSuccess({}));
+    yield put(push('/app/dashboard'));
   } catch (error) {
     yield put(push('/login'));
     showErrorToast(error);
