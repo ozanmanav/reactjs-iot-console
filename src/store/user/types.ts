@@ -1,6 +1,11 @@
 import { IUser } from '../auth/types';
 
+export interface IUserLoadingState {
+  currentUser?: boolean;
+}
+
 export interface UserState {
+  loading?: IUserLoadingState;
   currentUser?: IUser;
   error?: string;
 }

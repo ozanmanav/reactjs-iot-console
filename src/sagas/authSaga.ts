@@ -110,10 +110,10 @@ export function* requestUserLogout() {
   try {
     yield call(auth.doSignOut);
     localStorage.setItem(PROJECTS_FIRST_LOAD_KEY, JSON.stringify(true));
-    yield put(push('/login'));
   } catch (error) {
-    yield put(push('/login'));
     showErrorToast(error);
+  } finally {
+    yield put(push('/login'));
   }
 }
 

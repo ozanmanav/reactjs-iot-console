@@ -7,9 +7,9 @@ import { AuthState, IUser } from '../../store/auth/types';
 import { userLogout } from '../../store/auth/actions';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
-
 import { ConfirmModal } from '../modals';
 import Avatar from 'react-avatar';
+import { Loading } from '../ui/loading';
 
 export const HeaderLogo: FunctionComponent<HTMLAttributes<HTMLAnchorElement> & NavLinkProps> = ({ className, to }) => {
   return (
@@ -38,11 +38,15 @@ export const AuthNav: FunctionComponent = () => {
 
 interface UserNavProps {
   currentUser?: IUser;
+  loading?: boolean;
   userLogout: () => void;
 }
-export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, currentUser }) => {
+export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, currentUser, loading }) => {
   const { open, hide, isOpen } = useModal();
-  return (
+  console.log(loading);
+  return loading ? (
+    <Loading loading={loading} />
+  ) : (
     <nav className="b-header-user">
       <div className="b-header-user__info-wrapper">
         <button className="flex align-center b-header-user__container-button">
@@ -57,7 +61,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, curre
 
           {currentUser && (
             <div className="flex flex-column b-header-user__info">
-              <div className=" _text-left _font-bold">{currentUser.firstname ? `${currentUser.firstname}` : ``}</div>
+              <div className=" _text-left _font-bold">{currentUser.firstname || ``}</div>
             </div>
           )}
         </button>
@@ -69,7 +73,8 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, curre
 };
 
 const mapStateToPropsUser = (state: AppState) => ({
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser || {},
+  loading: state.user.loading && state.user.loading.currentUser
 });
 
 export const UserNav = connect(
@@ -91,7 +96,7 @@ const LandingHeaderBase: FunctionComponent<LandingHeaderBaseProps> = ({ auth }) 
       <nav className="flex align-center b-header__main-nav">
         <HeaderLogo to="/app/dashboard" />
       </nav>
-      {auth && auth.loggedIn ? <UserNav /> : <AuthNav />}
+      {auth && auth.loggedIn && auth.loading && !auth.loading.login ? <UserNav /> : <AuthNav />}
     </header>
   );
 };
