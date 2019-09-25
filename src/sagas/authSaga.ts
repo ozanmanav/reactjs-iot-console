@@ -9,22 +9,14 @@ import moment from 'moment-timezone';
 
 export function* requestUserLogin(data: any) {
   try {
-    const responseFirebase = yield call(auth.doSignInWithEmailAndPassword, data.payload.email, data.payload.password);
-    const responseUserProfile = yield call(getRequest, `/user/${responseFirebase.user.uid}`);
+    yield call(auth.doSignInWithEmailAndPassword, data.payload.email, data.payload.password);
 
     yield put(
       actions.userLoginSuccess({
-        currentUser: {
-          email: responseFirebase.user.email,
-          firstname: responseUserProfile.data.User.name,
-          lastname: '',
-          accountProperties: responseUserProfile.data.User.accountProperties,
-          accountTypeImage: responseUserProfile.data.User.accountTypeImage,
-          profilePhoto: responseUserProfile.data.User.image
-        },
         loggedIn: true
       })
     );
+
     yield put(push('/app/dashboard'));
   } catch (error) {
     yield put(actions.userLoginFailure({ error, loggedIn: false }));
@@ -35,20 +27,7 @@ export function* requestUserLogin(data: any) {
 
 export function* requestGoogleLogin(data: any) {
   try {
-    const responseGoogle = yield call(auth.doSignInWithGoogle, data.payload.tokenId, data.payload.accessToken);
-    // const responseUserProfile = yield call(getRequest, `/user/${responseGoogle.user.uid}`);
-
-    yield put(
-      actions.userGoogleLoginSuccess({
-        currentUser: {
-          firstname: responseGoogle.additionalUserInfo.profile.given_name,
-          lastname: responseGoogle.additionalUserInfo.profile.family_name,
-          email: responseGoogle.user.email,
-          profilePhoto: responseGoogle.user.photoURL
-        },
-        loggedIn: true
-      })
-    );
+    yield call(auth.doSignInWithGoogle, data.payload.tokenId, data.payload.accessToken);
 
     // const responseUserRegister = yield call(
     //   postRequestNoAuth,
@@ -64,6 +43,13 @@ export function* requestGoogleLogin(data: any) {
     //     type: 0
     //   }
     // );
+
+    yield put(
+      actions.userGoogleLoginSuccess({
+        loggedIn: true
+      })
+    );
+
     yield put(push('/app/dashboard'));
   } catch (error) {
     yield put(actions.userGoogleLoginFailure({ error, loggedIn: false }));
@@ -74,7 +60,7 @@ export function* requestGoogleLogin(data: any) {
 
 export function* requestUserRegister(data: any) {
   try {
-    const responseUserRegister = yield call(
+    yield call(
       postRequestNoAuth,
       `/register`,
       {},
@@ -89,14 +75,11 @@ export function* requestUserRegister(data: any) {
       }
     );
 
+    yield call(auth.doSignInWithEmailAndPassword, data.payload.email, data.payload.password);
+
     yield put(
       actions.userRegisterSuccess({
-        currentUser: {
-          firstname: responseUserRegister.data.User.firstname,
-          lastname: responseUserRegister.data.User.lastname,
-          email: responseUserRegister.data.User.email,
-          profilePhoto: responseUserRegister.data.User.profilePhoto
-        }
+        loggedIn: true
       })
     );
   } catch (error) {
@@ -110,7 +93,11 @@ export function* requestCheckUserAuthFirebase() {
   try {
     yield call(auth.onAuthStateChanged);
 
-    yield put(actions.checkUserAuthFirebaseSuccess({}));
+    yield put(
+      actions.checkUserAuthFirebaseSuccess({
+        loggedIn: true
+      })
+    );
     yield put(push('/app/dashboard'));
   } catch (error) {
     yield put(push('/login'));

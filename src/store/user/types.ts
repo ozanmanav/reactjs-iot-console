@@ -1,7 +1,7 @@
 import { IUser } from '../auth/types';
 
 export interface UserState {
-  profile?: IUser;
+  currentUser?: IUser;
   error?: string;
 }
 

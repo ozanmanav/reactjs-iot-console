@@ -7,10 +7,10 @@ import {
 } from './types';
 
 export const UserInitialState: UserState = {
-  profile: undefined
+  currentUser: undefined
 };
 
-export function uiReducer(state = UserInitialState, action: UserActionTypes): UserState {
+export function userReducer(state = UserInitialState, action: UserActionTypes): UserState {
   switch (action.type) {
     case GET_USER_PROFILE: {
       return {

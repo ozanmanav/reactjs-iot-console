@@ -57,9 +57,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, curre
 
           {currentUser && (
             <div className="flex flex-column b-header-user__info">
-              <div className=" _text-left _font-bold">
-                {currentUser.firstname ? `${currentUser.firstname} ${currentUser.lastname}` : ``}
-              </div>
+              <div className=" _text-left _font-bold">{currentUser.firstname ? `${currentUser.firstname}` : ``}</div>
             </div>
           )}
         </button>
@@ -71,7 +69,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, curre
 };
 
 const mapStateToPropsUser = (state: AppState) => ({
-  currentUser: state.auth.currentUser
+  currentUser: state.user.currentUser
 });
 
 export const UserNav = connect(

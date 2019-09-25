@@ -10,6 +10,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { projectReducer } from './project/reducers';
 import { uiReducer } from './ui/reducers';
 import { USER_LOGOUT } from './auth/types';
+import { userReducer } from './user/reducers';
 
 export const history = createBrowserHistory();
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   startup: startupReducer,
   auth: authReducer,
   project: projectReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  user: userReducer
 });
 
 const resetEnhancer: any = (rootReducer: any): any => (state: any, action: any) => {

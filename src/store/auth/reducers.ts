@@ -30,7 +30,6 @@ export const AuthInitialState: AuthState = {
   loggedIn: false,
   email: '',
   password: '',
-  currentUser: undefined,
   error: undefined
 };
 

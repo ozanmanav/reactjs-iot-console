@@ -18,6 +18,10 @@ export const rootSaga = function* root() {
 
     // Auth
     takeLatest(authTypes.USER_LOGIN, authSaga.requestUserLogin),
+    takeLatest(
+      [authTypes.USER_LOGIN_SUCCESS, authTypes.USER_REGISTER_SUCCESS, authTypes.CHECK_USER_AUTH_FIREBASE_SUCCESS],
+      userSaga.requestGetUserProfile
+    ),
     takeLatest(authTypes.USER_GOOGLE_LOGIN, authSaga.requestGoogleLogin),
     takeLatest(authTypes.USER_REGISTER, authSaga.requestUserRegister),
     takeLatest(authTypes.CHECK_USER_AUTH_FIREBASE, authSaga.requestCheckUserAuthFirebase),

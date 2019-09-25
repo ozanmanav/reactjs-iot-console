@@ -6,15 +6,23 @@ import { auth } from '../firebase';
 
 export function* requestGetUserProfile() {
   try {
-    const currentUser = yield call(auth.onAuthStateChanged);
-    console.log(currentUser);
-    const responseUserProfile = yield call(getRequest, `/user/${currentUser && currentUser.uid}`);
-    console.log(responseUserProfile);
-    // yield put(
-    //   actions.getUserProfileSuccess({
-    //     profile: responseUserProfile
-    //   })
-    // );
+    const currentAuthenticatedUser = yield call(auth.onAuthStateChanged);
+    const responseUserProfile = yield call(
+      getRequest,
+      `/user/${currentAuthenticatedUser && currentAuthenticatedUser.uid}`
+    );
+
+    yield put(
+      actions.getUserProfileSuccess({
+        currentUser: {
+          email: currentAuthenticatedUser.email,
+          firstname: responseUserProfile.data.User.name,
+          accountProperties: responseUserProfile.data.User.accountProperties,
+          accountTypeImage: responseUserProfile.data.User.accountTypeImage,
+          profilePhoto: responseUserProfile.data.User.image
+        }
+      })
+    );
   } catch (error) {
     yield put(actions.getUserProfileFailure({ error }));
     showErrorToast(error.message);

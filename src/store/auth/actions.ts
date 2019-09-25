@@ -17,7 +17,7 @@ export function userLoginSuccess(newSession: AuthState): AuthActionTypes {
 
 export function userLoginFailure(newSession: AuthState): AuthActionTypes {
   return {
-    type: types.USER_LOGIN_SUCCESS,
+    type: types.USER_LOGIN_FAILURE,
     payload: newSession
   };
 }
