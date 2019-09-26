@@ -11,6 +11,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BreadcrumbsAdv from '../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 import { DeviceActivities } from './DeviceActivities';
 import { DeviceSettings } from './DeviceSettings';
+import { DeviceCharts } from './DeviceCharts';
 
 interface DetailsBaseProps extends RouteComponentProps {
   getDeviceById?: typeof getDeviceById;
@@ -47,7 +48,9 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
           <Tab>Archive</Tab>
           <Tab>Settings</Tab>
         </TabList>
-        <TabPanel>Charts</TabPanel>
+        <TabPanel>
+          <DeviceCharts />
+        </TabPanel>
         <TabPanel>Triggers</TabPanel>
         <TabPanel>
           <DeviceActivities />

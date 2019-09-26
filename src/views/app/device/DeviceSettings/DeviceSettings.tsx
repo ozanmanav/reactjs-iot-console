@@ -29,7 +29,7 @@ export const DeviceSettingsBase: FunctionComponent<DeviceSettingsBaseProps> = ({
   };
 
   return (
-    <div className="project-settings">
+    <div className="b-evice-settings">
       <DeviceSettingsForm onSubmit={() => null} initialValues={initialValues} />
     </div>
   );

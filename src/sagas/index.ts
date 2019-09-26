@@ -43,6 +43,7 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.GET_DEVICE_MODELS, projectSaga.requestGetDeviceModels),
     takeLatest(projectTypes.CREATE_PROJECT, projectSaga.requestCreateProject),
     takeLatest(projectTypes.DELETE_PROJECT, projectSaga.requestDeleteProject),
+    takeLatest(projectTypes.GET_DEVICE_ENTITIES, projectSaga.requestGetDeviceEntities),
 
     // // UI
     takeLatest(uiTypes.SET_SIDEBAR_STATUS, uiSaga.requestSidebarOpen)

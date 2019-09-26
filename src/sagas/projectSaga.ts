@@ -88,6 +88,8 @@ export function* requestGetDeviceById(data: any) {
         currentDevice: deviceResponse.data.Device
       })
     );
+
+    yield put(actions.getDeviceEntities());
   } catch (error) {
     yield put(actions.getDeviceByIdFailure({ error }));
   }
@@ -352,5 +354,33 @@ export function* requestDeleteProject() {
     yield put(actions.deleteProjectSuccess({}));
   } catch (error) {
     yield put(actions.deleteProjectFailure({ error }));
+  }
+}
+
+export function* requestGetDeviceEntities() {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice) {
+      return yield put(
+        actions.getDeviceBrandsFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const deviceEntitiesResponse = yield call(
+      getRequest,
+      `/user/projects/${currentProject.id}/devices/${currentDevice.id}/entities`
+    );
+
+    yield put(
+      actions.getDeviceEntitiesSuccess({
+        deviceEntities: deviceEntitiesResponse.data
+      })
+    );
+  } catch (error) {
+    yield put(actions.getDeviceEntitiesFailure({ error }));
   }
 }

@@ -328,3 +328,23 @@ export function deleteProjectFailure(projects: ProjectState): ProjectActionTypes
     payload: projects
   };
 }
+
+export function getDeviceEntities(): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_ENTITIES
+  };
+}
+
+export function getDeviceEntitiesSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_ENTITIES_SUCCESS,
+    payload: projects
+  };
+}
+
+export function getDeviceEntitiesFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_ENTITIES_FAILURE,
+    payload: projects
+  };
+}

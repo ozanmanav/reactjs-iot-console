@@ -4,12 +4,14 @@ import { CreateProject } from './CreateProject';
 import { AddDevice } from './AddDevice';
 import { Project } from './Project';
 import { Device } from '../device';
+import { AddChart } from '../device/AddChart';
 
 export const ProjectMain: FunctionComponent = () => {
   return (
     <>
       <Switch>
         <Route path="/app/projects/create" component={CreateProject} />
+        <Route path="/app/projects/:projectId/devices/:deviceId/add-chart" component={AddChart} />
         <Route path="/app/projects/:projectId/devices/:deviceId" component={Device} />
         <Route path="/app/projects/:id/add-device" component={AddDevice} />
         <Route path="/app/projects/:id" component={Project} />

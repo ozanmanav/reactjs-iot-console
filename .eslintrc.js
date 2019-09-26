@@ -8,7 +8,8 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json'
+    project: './tsconfig.json',
+    extraFileExtensions: ['.tsx']
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {

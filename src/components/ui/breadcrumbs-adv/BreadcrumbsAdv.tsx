@@ -3,14 +3,18 @@ import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import './BreadcrumbsAdv.scss';
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
-import DeviceBreadcrumbs from './DeviceBreadcrumbs';
+import { DeviceBreadcrumb, DeviceBreadcrumbAddChart } from './DeviceBreadcrumbs';
 import ProjectBreadcrumbs from './ProjectBreadcrumbs';
 
 const routes = [
   { path: '/app/projects/:id', breadcrumb: ProjectBreadcrumbs },
   {
     path: '/app/projects/:projectId/devices/:id',
-    breadcrumb: DeviceBreadcrumbs
+    breadcrumb: DeviceBreadcrumb
+  },
+  {
+    path: '/app/projects/:projectId/devices/:id/add-chart',
+    breadcrumb: DeviceBreadcrumbAddChart
   }
 ];
 

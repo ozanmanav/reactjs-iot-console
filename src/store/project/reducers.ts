@@ -13,12 +13,14 @@ export const ProjectInitialState: ProjectState = {
     deviceTokens: false,
     saveProjectSettings: false,
     brands: false,
-    models: false
+    models: false,
+    entities: false
   },
   projects: [],
   devices: [],
   activities: [],
   deviceActivities: [],
+  deviceEntities: [],
   triggers: {} as ITriggerResponse,
   currentProject: undefined,
   currentDevice: undefined,
@@ -448,6 +450,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         loading: {
           ...state.loading,
           deleteProject: false
+        }
+      };
+    }
+    case types.GET_DEVICE_ENTITIES: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          entities: true
+        }
+      };
+    }
+    case types.GET_DEVICE_ENTITIES_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          entities: false
+        },
+        ...action.payload
+      };
+    }
+    case types.GET_DEVICE_ENTITIES_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          entities: false
         }
       };
     }

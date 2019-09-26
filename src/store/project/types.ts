@@ -22,9 +22,11 @@ export interface IProjectLoadingState {
   saveProjectSettings?: boolean;
   brands?: boolean;
   models?: boolean;
+  entities?: boolean;
   addDevice?: boolean;
   createProject?: boolean;
   deleteProject?: boolean;
+  addChart?: boolean;
 }
 
 export interface IDeviceToken {
@@ -85,6 +87,7 @@ export interface ProjectState {
   currentDevice?: IDevice;
   deviceBrands?: any;
   deviceModels?: any;
+  deviceEntities?: any;
   error?: string;
 }
 
@@ -133,6 +136,9 @@ export const CREATE_PROJECT_FAILURE = '@@project/CREATE_PROJECT_FAILURE';
 export const DELETE_PROJECT = '@@project/DELETE_PROJECT';
 export const DELETE_PROJECT_SUCCESS = '@@project/DELETE_PROJECT_SUCCESS';
 export const DELETE_PROJECT_FAILURE = '@@project/DELETE_PROJECT_FAILURE';
+export const GET_DEVICE_ENTITIES = '@@project/GET_DEVICE_ENTITIES';
+export const GET_DEVICE_ENTITIES_SUCCESS = '@@project/GET_DEVICE_ENTITIES_SUCCESS';
+export const GET_DEVICE_ENTITIES_FAILURE = '@@project/GET_DEVICE_ENTITIES_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -350,6 +356,20 @@ interface DeleteProjectFailureAction {
   payload: ProjectState;
 }
 
+export interface GetDeviceEntitiesAction {
+  type: typeof GET_DEVICE_ENTITIES;
+}
+
+interface GetDeviceEntitiesSuccessAction {
+  type: typeof GET_DEVICE_ENTITIES_SUCCESS;
+  payload: ProjectState;
+}
+
+interface GetDeviceEntitiesFailureAction {
+  type: typeof GET_DEVICE_ENTITIES_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -395,4 +415,7 @@ export type ProjectActionTypes =
   | CreateProjectFailureAction
   | DeleteProjectAction
   | DeleteProjectFailureAction
-  | DeleteProjectSuccessAction;
+  | DeleteProjectSuccessAction
+  | GetDeviceEntitiesAction
+  | GetDeviceEntitiesSuccessAction
+  | GetDeviceEntitiesFailureAction;
