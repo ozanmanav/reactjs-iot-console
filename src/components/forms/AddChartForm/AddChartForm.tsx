@@ -8,37 +8,61 @@ import {
 } from './definitions';
 import { Input } from '../../ui';
 import { Button } from '../../ui/buttons';
-import { ClipLoader } from 'react-spinners';
 import './AddChartForm.scss';
+import { FormCaption } from '../FormsUI';
+import { EntityCard, ISelectEntity } from '../../ui/cards';
 
 const AddChartFormBase: FunctionComponent<
   IAddChartFormBaseProps & {
     deviceEntities?: any;
   }
 > = ({ deviceEntities, ...formikProps }) => {
-  const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
+  const { values, handleSubmit, handleChange, errors, touched, handleBlur, setFieldValue, loading } = formikProps;
+
+  const addEntity = (selectedEntity: ISelectEntity) => {
+    if (!values.elements.find((item: ISelectEntity) => item.key === selectedEntity.key)) {
+      setFieldValue('elements', [...values.elements, selectedEntity]);
+    } else {
+      setFieldValue('elements', [
+        ...values.elements.filter((item: ISelectEntity) => item.key !== selectedEntity.key),
+        selectedEntity
+      ]);
+    }
+  };
+
+  const removeEntity = (key: string) => {
+    setFieldValue('elements', values.elements.filter((item: ISelectEntity) => item.key !== key));
+  };
+
   return (
     <form className="f-add-chart__form" onSubmit={handleSubmit}>
       <div className="f-add-chart__form-content">
         <h2 className="h1 f-add-chart__form-title">Add Chart</h2>
+        <div className="f-add-chart__form-desc">Choose the data to visualize or analyze.</div>
         <Input
           placeholder="Chart Name"
-          name="chartName"
+          name="name"
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.deviceName}
-          error={errors && errors.deviceName}
-          touched={touched && touched.deviceName}
+          value={values.name}
+          error={errors && errors.name}
+          touched={touched && touched.name}
         />
-        {JSON.stringify(deviceEntities)}
+        <FormCaption>SELECT ENTITY / ENTITIES</FormCaption>
+
+        {deviceEntities &&
+          deviceEntities.Entities.map((entityName: string) => (
+            <EntityCard entityName={entityName} addEntity={addEntity} removeEntity={removeEntity} />
+          ))}
         <br />
-        {loading && loading.addChart ? (
-          <div className="f-add-chart__form-loader">
-            <ClipLoader sizeUnit={'px'} size={24} color={'#f68a4d'} />
-          </div>
-        ) : (
-          <Button text="Add Chart" primary className="f-add-chart__form-action" type="submit" />
-        )}
+
+        <Button
+          text="Add Chart"
+          primary
+          className="f-add-chart__form-action"
+          loading={loading && loading.addChart}
+          type="submit"
+        />
       </div>
     </form>
   );

@@ -4,6 +4,7 @@ import { Icon, TIconType } from '../';
 import { Link, LinkProps } from 'react-router-dom';
 import { getButtonClassName } from './utils';
 import { appendClassName } from '../../../utils';
+import { ClipLoader } from 'react-spinners';
 
 interface IButtonBaseProps {
   text: string;
@@ -15,7 +16,9 @@ interface IButtonBaseProps {
 
 interface IButtonAttributes extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export interface IButtonProps extends IButtonAttributes, IButtonBaseProps {}
+export interface IButtonProps extends IButtonAttributes, IButtonBaseProps {
+  loading?: boolean;
+}
 
 interface IButtonLinkProps extends LinkProps, IButtonBaseProps {}
 
@@ -37,6 +40,7 @@ export const Button: FunctionComponent<IButtonProps> = ({
   big,
   icon,
   remove,
+  loading,
   type = 'button',
   ...props
 }) => {
@@ -47,7 +51,9 @@ export const Button: FunctionComponent<IButtonProps> = ({
     remove
   });
 
-  return (
+  return loading ? (
+    <ClipLoader sizeUnit={'px'} size={24} color={'#f68a4d'} />
+  ) : (
     <button {...props} type={type} className={buttonClassName}>
       {icon && <Icon icon={icon} className="button__icon" />}
       {text}

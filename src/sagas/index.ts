@@ -8,6 +8,7 @@ import * as projectTypes from '../store/project/types';
 import * as uiTypes from '../store/ui/types';
 import * as uiSaga from './uiSaga';
 import * as userSaga from './userSaga';
+import { REHYDRATE } from 'redux-persist';
 
 // Register all your watchers
 export const rootSaga = function* root() {
@@ -44,6 +45,9 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.CREATE_PROJECT, projectSaga.requestCreateProject),
     takeLatest(projectTypes.DELETE_PROJECT, projectSaga.requestDeleteProject),
     takeLatest(projectTypes.GET_DEVICE_ENTITIES, projectSaga.requestGetDeviceEntities),
+    takeLatest(projectTypes.ADD_DEVICE_CHART, projectSaga.requestAddDeviceChart),
+
+    takeLatest(REHYDRATE, authSaga.requestCheckPersistError),
 
     // // UI
     takeLatest(uiTypes.SET_SIDEBAR_STATUS, uiSaga.requestSidebarOpen)

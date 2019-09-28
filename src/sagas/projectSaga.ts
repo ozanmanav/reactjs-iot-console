@@ -1,7 +1,14 @@
 import { call, put, select } from 'redux-saga/effects';
 import { getRequest, putRequest, postRequest, deleteRequest } from '../utils/dataHelper';
 import * as actions from '../store/project/actions';
-import { ProjectState, IDevice, AddDeviceAction, CreateProjectAction, IProject } from '../store/project/types';
+import {
+  ProjectState,
+  IDevice,
+  AddDeviceAction,
+  CreateProjectAction,
+  IProject,
+  AddDeviceChartAction
+} from '../store/project/types';
 import { showSuccessToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
 import { push } from 'connected-react-router';
@@ -364,7 +371,7 @@ export function* requestGetDeviceEntities() {
 
     if (!currentProject || !currentDevice) {
       return yield put(
-        actions.getDeviceBrandsFailure({
+        actions.getDeviceEntitiesFailure({
           error: 'Not current project or device selected'
         })
       );
@@ -382,5 +389,48 @@ export function* requestGetDeviceEntities() {
     );
   } catch (error) {
     yield put(actions.getDeviceEntitiesFailure({ error }));
+  }
+}
+
+export function* requestAddDeviceChart(data: AddDeviceChartAction) {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice) {
+      return yield put(
+        actions.addDeviceChartFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const addChartResponse = yield call(
+      postRequest,
+      `charts`,
+      {},
+      {
+        ...data.payload,
+        deviceId: currentDevice.id,
+        projectId: currentProject.id,
+        type: 'Composed'
+      }
+    );
+
+    if (addChartResponse.data.Message === 'Added Chart successful') {
+      const successAddDeviceResponse: ProjectState = {};
+      showSuccessToast('Device successfully added');
+      yield put(actions.getDevices());
+      yield put(push(`/app/projects/${currentProject.id}`));
+      yield put(actions.addDeviceChartSuccess(successAddDeviceResponse));
+    } else {
+      yield put(
+        actions.addDeviceChartFailure({
+          error: addChartResponse.data
+        })
+      );
+    }
+  } catch (error) {
+    yield put(actions.addDeviceChartFailure({ error }));
   }
 }

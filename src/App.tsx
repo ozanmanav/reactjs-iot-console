@@ -1,19 +1,19 @@
 import React, { FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import configureStore, { history } from './store';
+import configureStore from './store';
 import { Content } from './views/Content';
-import { ConnectedRouter } from 'connected-react-router';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const store = configureStore();
+export const { store, persistor } = configureStore();
 
 export const App: FunctionComponent = () => {
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history}>
+      <PersistGate loading={null} persistor={persistor}>
         <Content />
         <ToastContainer />
-      </ConnectedRouter>
+      </PersistGate>
     </Provider>
   );
 };

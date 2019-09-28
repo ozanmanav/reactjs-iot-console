@@ -3,92 +3,97 @@
 @import '../../styles/media';
 
 .b-header {
-    @include shadow-small;
-    background-color: $white;
-    padding: 10px 20px 10px 20px;
-    position: relative;
+  @include shadow-small;
+  background-color: $white;
+  padding: 10px 20px 10px 20px;
+  position: relative;
 
-    &__signup {
-        width: 70px;
-        height: 80px;
-        position: absolute;
-        right: 70px;
-        justify-content: center;
-        align-items: center;
-        &-text {
-            font-size: 14px;
-            font-weight: 500;
-        }
-        &:hover {
-            color: #9b9b9b;
-        }
+  &__logo {
+    width: 40%;
+    height: 40%;
+  }
+
+  &__signup {
+    width: 70px;
+    height: 80px;
+    position: absolute;
+    right: 70px;
+    justify-content: center;
+    align-items: center;
+    &-text {
+      font-size: 14px;
+      font-weight: 500;
     }
-    &__login {
-        width: 60px;
-        height: 80px;
-        position: absolute;
-        right: 10px;
-        justify-content: center;
-        align-items: center;
-        &-text {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        &:hover {
-            color: #9b9b9b;
-        }
+    &:hover {
+      color: #9b9b9b;
     }
-
-    &-user {
-        display: flex;
-        align-items: center;
-        &__info {
-            font-family: Exo;
-            font-size: 14px;
-            font-weight: 500;
-            color: #4a4a4a;
-            overflow: hidden;
-
-            &-wrapper {
-                margin-right: 20px;
-                position: relative;
-            }
-        }
-
-        &__container {
-            $size: 41px;
-            width: $size;
-            height: $size;
-            flex: 0 0 $size;
-            border-radius: 50%;
-            margin-right: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #4a4a4a;
-
-            &-button {
-                cursor: pointer;
-                padding: 14px 10px 15px 30px;
-                width: 100%;
-
-                &:disabled {
-                    cursor: not-allowed;
-                }
-
-                &._active {
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: $ghost-white;
-                    }
-                }
-            }
-        }
+  }
+  &__login {
+    width: 60px;
+    height: 80px;
+    position: absolute;
+    right: 10px;
+    justify-content: center;
+    align-items: center;
+    &-text {
+      font-size: 14px;
+      font-weight: 500;
     }
 
-    &._login {
-        padding: 20px;
-        min-height: 80px;
+    &:hover {
+      color: #9b9b9b;
     }
+  }
+
+  &-user {
+    display: flex;
+    align-items: center;
+    &__info {
+      font-family: Exo;
+      font-size: 14px;
+      font-weight: 500;
+      color: #4a4a4a;
+      overflow: hidden;
+
+      &-wrapper {
+        margin-right: 20px;
+        position: relative;
+      }
+    }
+
+    &__container {
+      $size: 41px;
+      width: $size;
+      height: $size;
+      flex: 0 0 $size;
+      border-radius: 50%;
+      margin-right: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #4a4a4a;
+
+      &-button {
+        cursor: pointer;
+        padding: 14px 10px 15px 30px;
+        width: 100%;
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+
+        &._active {
+          cursor: pointer;
+
+          &:hover {
+            background-color: $ghost-white;
+          }
+        }
+      }
+    }
+  }
+
+  &._login {
+    padding: 20px;
+    min-height: 80px;
+  }
 }

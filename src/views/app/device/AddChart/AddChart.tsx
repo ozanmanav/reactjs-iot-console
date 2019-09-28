@@ -1,40 +1,42 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import './AddChart.scss';
 import { RouteComponentProps } from 'react-router';
 import { AddChartForm } from '../../../../components/forms/AddChartForm';
 import BreadcrumbsAdv from '../../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 import { AppState } from '../../../../store';
 import { connect } from 'react-redux';
-import { addDevice, getDeviceModels } from '../../../../store/project/actions';
+import { getDeviceEntities, addDeviceChart } from '../../../../store/project/actions';
 import { IProjectLoadingState } from '../../../../store/project/types';
+import { IAddChartFormState } from '../../../../components/forms/AddChartForm/definitions';
 
 interface AddChartBaseProps {
-  addDevice: typeof addDevice;
-  getDeviceModels: typeof getDeviceModels;
+  getDeviceEntities: typeof getDeviceEntities;
+  addDeviceChart: typeof addDeviceChart;
   projectLoading?: IProjectLoadingState;
-  brands: [];
-  models: [];
   deviceEntities: {};
 }
 
 export const AddChartBase: FunctionComponent<RouteComponentProps & AddChartBaseProps> = ({
   projectLoading = undefined,
-  deviceEntities
+  deviceEntities,
+  getDeviceEntities,
+  addDeviceChart
 }) => {
-  // const onSubmit = (values: IAddChartFormState): void => {
-  //   // addDevice(values);
-  // };
+  useEffect(() => {
+    getDeviceEntities();
+  }, [getDeviceEntities]);
+
+  const onSubmit = (values: IAddChartFormState): void => {
+    addDeviceChart(values);
+  };
+
   return (
     <div className="b-add-chart">
       <div className="b-add-chart__breadcrumb-wrapper">
         <div className="b-add-chart__breadcrumb-wrapper__present">Projects /</div>
         <BreadcrumbsAdv />
       </div>
-      <AddChartForm
-        onSubmit={values => console.log(values)}
-        loading={projectLoading || undefined}
-        deviceEntities={deviceEntities}
-      />
+      <AddChartForm onSubmit={onSubmit} loading={projectLoading || undefined} deviceEntities={deviceEntities} />
     </div>
   );
 };
@@ -46,5 +48,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const AddChart = connect(
   mapStateToProps,
-  { addDevice, getDeviceModels }
+  { getDeviceEntities, addDeviceChart }
 )(AddChartBase);

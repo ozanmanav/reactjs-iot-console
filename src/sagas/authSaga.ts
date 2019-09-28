@@ -6,6 +6,7 @@ import { showErrorToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
 import { getRequest, postRequestNoAuth } from '../utils/dataHelper';
 import moment from 'moment-timezone';
+import { persistor } from '../App';
 
 export function* requestUserLogin(data: any) {
   try {
@@ -98,7 +99,6 @@ export function* requestCheckUserAuthFirebase() {
         loggedIn: true
       })
     );
-    yield put(push('/app/dashboard'));
   } catch (error) {
     yield put(push('/login'));
     showErrorToast(error);
@@ -109,7 +109,20 @@ export function* requestCheckUserAuthFirebase() {
 export function* requestUserLogout() {
   try {
     yield call(auth.doSignOut);
+    yield call(persistor.purge);
     localStorage.setItem(PROJECTS_FIRST_LOAD_KEY, JSON.stringify(true));
+  } catch (error) {
+    showErrorToast(error);
+  } finally {
+    yield put(push('/login'));
+  }
+}
+
+export function* requestCheckPersistError(data: any) {
+  try {
+    if (data.err) {
+      yield put(actions.userLogout());
+    }
   } catch (error) {
     showErrorToast(error);
   } finally {

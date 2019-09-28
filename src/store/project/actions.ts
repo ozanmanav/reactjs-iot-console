@@ -2,6 +2,7 @@ import * as types from './types';
 import { ProjectState, ProjectActionTypes } from './types';
 import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/definitions';
 import { ICreateProjectFormState } from '../../components/forms/CreateProjectForm/definitions';
+import { IAddChartFormState } from '../../components/forms/AddChartForm/definitions';
 
 export function getProjects(): ProjectActionTypes {
   return {
@@ -345,6 +346,27 @@ export function getDeviceEntitiesSuccess(projects: ProjectState): ProjectActionT
 export function getDeviceEntitiesFailure(projects: ProjectState): ProjectActionTypes {
   return {
     type: types.GET_DEVICE_ENTITIES_FAILURE,
+    payload: projects
+  };
+}
+
+export function addDeviceChart(newChart: IAddChartFormState): ProjectActionTypes {
+  return {
+    type: types.ADD_DEVICE_CHART,
+    payload: newChart
+  };
+}
+
+export function addDeviceChartSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.ADD_DEVICE_CHART_SUCCESS,
+    payload: projects
+  };
+}
+
+export function addDeviceChartFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.ADD_DEVICE_CHART_FAILURE,
     payload: projects
   };
 }

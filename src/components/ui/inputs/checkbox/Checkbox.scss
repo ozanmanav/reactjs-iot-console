@@ -2,32 +2,36 @@
 @import '../../../../styles/mixins';
 
 .f-checkbox {
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    margin-right: 10px;
-    border: 1px solid $light-grey;
-    border-radius: $border-radius-small;
-    background-color: $white;
-    background-repeat: no-repeat;
-    background-position: center;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  border: 1px solid $light-grey;
+  border-radius: $border-radius-small;
+  background-color: #d8d8d8;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 14px;
+  cursor: pointer;
+
+  &__wrapper {
+    @include input-margin-bottom;
+  }
+
+  &:checked {
+    background-image: url('../../../../icons/checkboxCheck.svg');
+    background-color: #4a4a4a;
+  }
+
+  &__label {
     cursor: pointer;
+    min-width: 135px;
 
-    &__wrapper {
-        @include input-margin-bottom;
+    &-text {
+      vertical-align: top;
+      font-family: Exo;
+
+      font-weight: 500;
     }
-
-    &:checked {
-        background-image: url('../../../../icons/checkboxCheck.svg');
-        border-color: $primary;
-    }
-
-    &__label {
-        cursor: pointer;
-        min-width: 135px;
-
-        &-text {
-            vertical-align: top;
-        }
-    }
+  }
 }

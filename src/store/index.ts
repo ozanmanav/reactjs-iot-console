@@ -3,6 +3,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import { authReducer } from './auth/reducers';
 import createSagaMiddleware from '@redux-saga/core';
+import { persistStore, persistReducer } from 'redux-persist';
+import localforage from 'localforage';
 import { rootSaga } from '../sagas';
 import { createBrowserHistory } from 'history';
 import { startupReducer } from './startup/reducers';
@@ -13,6 +15,11 @@ import { USER_LOGOUT } from './auth/types';
 import { userReducer } from './user/reducers';
 
 export const history = createBrowserHistory();
+
+const persistConfig = {
+  key: 'root',
+  storage: localforage
+};
 
 const rootReducer = combineReducers({
   router: connectRouter(history),
@@ -31,6 +38,8 @@ const resetEnhancer: any = (rootReducer: any): any => (state: any, action: any) 
   return newState;
 };
 
+const persistedReducer = persistReducer(persistConfig, resetEnhancer(rootReducer));
+
 export type AppState = ReturnType<typeof rootReducer>;
 
 export default function configureStore() {
@@ -38,9 +47,11 @@ export default function configureStore() {
   const middlewares = [sagaMiddleware, logger, routerMiddleware(history)];
   const middleWareEnhancer = applyMiddleware(...middlewares);
 
-  const store = createStore(resetEnhancer(rootReducer), composeWithDevTools(middleWareEnhancer));
+  const store = createStore(persistedReducer, composeWithDevTools(middleWareEnhancer));
 
   sagaMiddleware.run(rootSaga);
 
-  return store;
+  const persistor = persistStore(store);
+
+  return { store, persistor };
 }

@@ -2,13 +2,16 @@ import { FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 import { IProjectLoadingState } from '../../../store/project/types';
+import { ISelectEntity } from '../../ui/cards';
 
 export const AddChartFormDefaultState = {
-  deviceName: ''
+  name: '',
+  elements: []
 };
 
 export interface IAddChartFormState {
-  deviceName: string;
+  name: string;
+  elements: ISelectEntity[];
 }
 
 export interface IAddChartFormBaseProps extends FormikProps<IAddChartFormState> {
@@ -24,7 +27,7 @@ export interface IAddChartFormProps {
 
 // Validation Schema
 export const AddChartFormValidationSchema = Yup.object().shape({
-  deviceName: Yup.string()
+  name: Yup.string()
     .trim()
     .required(VALIDATION_ERRORS.required)
 });

@@ -1,9 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import './Cards.scss';
+import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { IDevice, ITrigger } from '../../../store/project/types';
 import classNames from 'classnames';
 import DeviceImageStatic from '../../../icons/raspberry.png';
+import { TwitterPicker, ColorChangeHandler, ColorResult } from 'react-color';
+import { Checkbox, Select } from '../inputs';
+import { ValueType } from 'react-select/src/types';
 
 export interface IDeviceCardProps {
   device: IDevice;
@@ -71,6 +75,94 @@ export const TriggerCard: FunctionComponent<ITriggerCardProps> = ({
           </div>
         </div>
       </Link>
+    </div>
+  );
+};
+
+const chartTypes = [
+  {
+    label: 'Line',
+    value: 'Line'
+  },
+  {
+    label: 'Bar',
+    value: 'Bar'
+  },
+  {
+    label: 'Scatter',
+    value: 'Scatter'
+  },
+  {
+    label: 'Area',
+    value: 'Area'
+  }
+];
+
+interface IEntityCardProps {
+  entityName: string;
+  addEntity: (selectedEntity: ISelectEntity) => void;
+  removeEntity: (key: string) => void;
+}
+
+export interface ISelectEntity {
+  type: string;
+  key: string;
+  color: string;
+}
+
+export const EntityCard: FunctionComponent<IEntityCardProps> = ({ entityName, addEntity, removeEntity }) => {
+  const [selectedType, setSelectedType] = useState<string>('');
+  const [selectedPickerColor, setSelectedPickerColor] = useState<string>('#000');
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
+
+  const togglePicker = () => {
+    setIsPickerOpen(prevState => !prevState);
+  };
+
+  const handlePickerSelect: ColorChangeHandler = (color: ColorResult) => {
+    setSelectedPickerColor(color.hex);
+    togglePicker();
+    addEntity({ key: entityName, color: color.hex, type: selectedType });
+  };
+
+  const IndicatorButton = styled.button`
+    border-radius: 20px;
+    height: 24px;
+    width: 24px;
+    background-color: ${selectedPickerColor};
+  `;
+
+  const onChangeActive = (event: React.FormEvent<HTMLInputElement>) => {
+    if (event.currentTarget.checked) {
+      addEntity({ key: entityName, color: selectedPickerColor, type: selectedType });
+    } else {
+      removeEntity(entityName);
+    }
+  };
+
+  const onChangeChartType = (option: ValueType<any>): void => {
+    if (option) {
+      setSelectedType(option.value);
+      addEntity({ key: entityName, color: selectedPickerColor, type: option.value });
+    } else {
+      setSelectedType('');
+    }
+  };
+
+  return (
+    <div className="c-card__entity-card">
+      <div className="c-card__entity-card__header">
+        <Checkbox label={entityName} onChangeCapture={onChangeActive} />
+        <IndicatorButton onClick={togglePicker} />
+        {isPickerOpen && (
+          <TwitterPicker
+            // color={this.state.entitiesColors[e] || this.state.baseColor}
+            onChangeComplete={handlePickerSelect}
+          />
+        )}
+      </div>
+
+      <Select options={chartTypes} onChange={onChangeChartType} />
     </div>
   );
 };

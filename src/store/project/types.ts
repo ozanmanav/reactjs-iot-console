@@ -1,5 +1,6 @@
 import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/definitions';
 import { ICreateProjectFormState } from '../../components/forms/CreateProjectForm/definitions';
+import { IAddChartFormState } from '../../components/forms/AddChartForm/definitions';
 
 export interface IProject {
   id: string;
@@ -139,6 +140,9 @@ export const DELETE_PROJECT_FAILURE = '@@project/DELETE_PROJECT_FAILURE';
 export const GET_DEVICE_ENTITIES = '@@project/GET_DEVICE_ENTITIES';
 export const GET_DEVICE_ENTITIES_SUCCESS = '@@project/GET_DEVICE_ENTITIES_SUCCESS';
 export const GET_DEVICE_ENTITIES_FAILURE = '@@project/GET_DEVICE_ENTITIES_FAILURE';
+export const ADD_DEVICE_CHART = '@@project/ADD_DEVICE_CHART';
+export const ADD_DEVICE_CHART_SUCCESS = '@@project/ADD_DEVICE_CHART_SUCCESS';
+export const ADD_DEVICE_CHART_FAILURE = '@@project/ADD_DEVICE_CHART_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -370,6 +374,21 @@ interface GetDeviceEntitiesFailureAction {
   payload: ProjectState;
 }
 
+export interface AddDeviceChartAction {
+  type: typeof ADD_DEVICE_CHART;
+  payload: IAddChartFormState;
+}
+
+interface AddDeviceChartSuccessAction {
+  type: typeof ADD_DEVICE_CHART_SUCCESS;
+  payload: ProjectState;
+}
+
+interface AddDeviceChartFailureAction {
+  type: typeof ADD_DEVICE_CHART_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -418,4 +437,7 @@ export type ProjectActionTypes =
   | DeleteProjectSuccessAction
   | GetDeviceEntitiesAction
   | GetDeviceEntitiesSuccessAction
-  | GetDeviceEntitiesFailureAction;
+  | GetDeviceEntitiesFailureAction
+  | AddDeviceChartAction
+  | AddDeviceChartSuccessAction
+  | AddDeviceChartFailureAction;
