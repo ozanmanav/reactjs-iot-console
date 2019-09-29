@@ -9,7 +9,7 @@ import {
   IProject,
   AddDeviceChartAction
 } from '../store/project/types';
-import { showSuccessToast } from '../components/ui';
+import { showSuccessToast, showErrorToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
 import { push } from 'connected-react-router';
 
@@ -434,6 +434,7 @@ export function* requestAddDeviceChart(data: AddDeviceChartAction) {
       );
     }
   } catch (error) {
+    showErrorToast(error);
     yield put(actions.addDeviceChartFailure({ error }));
   }
 }
