@@ -14,7 +14,7 @@ export const Application: FunctionComponent = () => {
         <div className={'content'}>
           <Switch>
             <Route path="/app/projects" component={ProjectMain} />
-            <Route exact path="/app/dashboard" component={Dashboard} />
+            <Route path="/app/dashboard" component={Dashboard} />
           </Switch>
         </div>
         <p className="_text-grey h6 _text-center app__copyright">{COPYRIGHT_TEXT}</p>

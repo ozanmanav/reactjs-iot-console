@@ -55,7 +55,9 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
           ...state.loading,
           currentProject: true
         },
-        currentProject: undefined
+        currentProject: undefined,
+        currentDevice: undefined,
+        devices: []
       };
     }
     case types.GET_PROJECT_BY_ID_SUCCESS: {

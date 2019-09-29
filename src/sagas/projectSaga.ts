@@ -98,6 +98,8 @@ export function* requestGetDeviceById(data: any) {
 
     yield put(actions.getDeviceEntities());
     yield put(actions.getDeviceCharts());
+    yield put(actions.getDeviceActivities());
+    yield put(actions.getDeviceTokens());
   } catch (error) {
     yield put(actions.getDeviceByIdFailure({ error }));
   }
