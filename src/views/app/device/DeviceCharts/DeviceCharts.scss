@@ -1,6 +1,8 @@
 @import '../../../../styles/variables';
 
 .b-device-charts {
+  overflow: auto;
+  height: 65vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
