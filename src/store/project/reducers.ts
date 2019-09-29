@@ -540,6 +540,62 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
+    case types.DELETE_DEVICE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deleteDevice: true
+        }
+      };
+    }
+    case types.DELETE_DEVICE_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deleteDevice: false
+        },
+        ...action.payload
+      };
+    }
+    case types.DELETE_DEVICE_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deleteDevice: false
+        }
+      };
+    }
+    case types.GET_DEVICE_CHARTS_DATA: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceChartsData: false
+        }
+      };
+    }
+    case types.GET_DEVICE_CHARTS_DATA_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceChartsData: false
+        },
+        ...action.payload
+      };
+    }
+    case types.GET_DEVICE_CHARTS_DATA_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceChartsData: false
+        }
+      };
+    }
     default:
       return state;
   }

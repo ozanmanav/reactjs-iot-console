@@ -96,8 +96,9 @@ export function* requestGetDeviceById(data: any) {
       })
     );
 
-    yield put(actions.getDeviceEntities());
     yield put(actions.getDeviceCharts());
+    yield put(actions.getDeviceChartsData());
+    yield put(actions.getDeviceEntities());
     yield put(actions.getDeviceActivities());
     yield put(actions.getDeviceTokens());
   } catch (error) {
@@ -458,10 +459,79 @@ export function* requestGetDeviceCharts() {
 
     yield put(
       actions.getDeviceChartsSuccess({
-        deviceCharts: deviceChartsResponse.data
+        deviceCharts: deviceChartsResponse.data.Charts
       })
     );
   } catch (error) {
     yield put(actions.getDeviceChartsFailure({ error }));
+  }
+}
+
+export function* requestGetDeviceChartsData() {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice) {
+      return yield put(
+        actions.getDeviceChartsDataFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const deviceChartsDataResponse = yield call(
+      getRequest,
+      `/user/projects/${currentProject.id}/devices/${currentDevice.id}/data`,
+      {
+        page: 1,
+        dataInPage: 6
+      }
+    );
+
+    yield put(
+      actions.getDeviceChartsDataSuccess({
+        deviceChartsData: deviceChartsDataResponse.data.Data
+      })
+    );
+  } catch (error) {
+    yield put(actions.getDeviceChartsDataFailure({ error }));
+  }
+}
+
+export function* requestDeleteDevice() {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice) {
+      return yield put(
+        actions.deleteDeviceFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const deleteDeviceResponse = yield call(
+      deleteRequest,
+      `user/projects/${currentProject.id}/devices/${currentDevice.id}`,
+      {},
+      {}
+    );
+
+    if (!deleteDeviceResponse.data.Message || !deleteDeviceResponse.data.Message.includes('Device deleted')) {
+      return yield put(
+        actions.deleteDeviceFailure({
+          error: deleteDeviceResponse.data
+        })
+      );
+    }
+
+    yield put(actions.getDevices());
+    yield put(push(`/app/projects/${currentProject.id}`));
+    showSuccessToast('Device successfully deleted');
+    yield put(actions.deleteDeviceSuccess({}));
+  } catch (error) {
+    yield put(actions.deleteDeviceFailure({ error }));
   }
 }

@@ -390,3 +390,43 @@ export function getDeviceChartsFailure(projects: ProjectState): ProjectActionTyp
     payload: projects
   };
 }
+
+export function deleteDevice(): ProjectActionTypes {
+  return {
+    type: types.DELETE_DEVICE
+  };
+}
+
+export function deleteDeviceSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.DELETE_DEVICE_SUCCESS,
+    payload: projects
+  };
+}
+
+export function deleteDeviceFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.DELETE_DEVICE_FAILURE,
+    payload: projects
+  };
+}
+
+export function getDeviceChartsData(): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHARTS_DATA
+  };
+}
+
+export function getDeviceChartsDataSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHARTS_DATA_SUCCESS,
+    payload: projects
+  };
+}
+
+export function getDeviceChartsDataFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHARTS_DATA_FAILURE,
+    payload: projects
+  };
+}

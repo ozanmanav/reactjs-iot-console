@@ -5,44 +5,26 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
-  &-details {
+  &__add-chart-button {
+    margin-top: 10px;
+    display: flex;
+    color: $primary;
+    a,
+    a:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+    &_icon {
+      height: 20px;
+      width: 20px;
+      margin-left: 10px;
+      margin-right: 6px;
+    }
+  }
+
+  &__charts {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-
-    &__devices {
-      margin-top: 2px;
-      &-card {
-        margin-top: 20px;
-      }
-    }
-
-    &__info {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-    }
-    &__title {
-      font-family: Exo;
-      font-size: 12px;
-      font-weight: 500;
-      color: #4a4a4a;
-      text-transform: capitalize;
-    }
-    &__add-chart {
-      display: flex;
-      color: $primary;
-      a,
-      a:hover {
-        text-decoration: none;
-        color: inherit;
-      }
-      &_icon {
-        height: 20px;
-        width: 20px;
-        margin-left: 10px;
-        margin-right: 6px;
-      }
-    }
   }
 }

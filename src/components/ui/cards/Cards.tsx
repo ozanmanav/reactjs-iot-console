@@ -2,12 +2,13 @@ import React, { FunctionComponent, useState } from 'react';
 import './Cards.scss';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { IDevice, ITrigger } from '../../../store/project/types';
+import { IDevice, ITrigger, IChart } from '../../../store/project/types';
 import classNames from 'classnames';
 import DeviceImageStatic from '../../../icons/raspberry.png';
 import { TwitterPicker, ColorChangeHandler, ColorResult } from 'react-color';
 import { Checkbox, Select } from '../inputs';
 import { ValueType } from 'react-select/src/types';
+import { ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 export interface IDeviceCardProps {
   device: IDevice;
@@ -163,6 +164,81 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({ entityName, ad
       </div>
 
       <Select options={chartTypes} onChange={onChangeChartType} />
+    </div>
+  );
+};
+
+export interface IDeviceChartCardProps {
+  chart: IChart;
+  deviceChartsData: any;
+}
+
+export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
+  chart: { _id, name, elements },
+  deviceChartsData
+}) => {
+  return (
+    <div className="c-card__graph-card" key={_id}>
+      <div className="c-card__graph-card__info">
+        <div className="c-card__graph-card__info-title">{name}</div>
+        <button className="c-card__graph-card__info-details-button" onClick={() => console.log('clicked detail')}>
+          View Details
+        </button>
+      </div>
+      <div className="c-card__graph-card__graph">
+        {' '}
+        <ComposedChart
+          width={350}
+          height={200}
+          data={deviceChartsData}
+          margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
+        >
+          <CartesianGrid stroke="#f5f5f5" />
+          <XAxis />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+
+          {elements.map(element => {
+            switch (element.type) {
+              case 'Line':
+                return (
+                  <Line
+                    key={`cg-line-${_id}-${element.type}-${element.key}-${element.color}`}
+                    type="monotone"
+                    dataKey={element.key}
+                    stroke={element.color}
+                    activeDot={false}
+                    dot={false}
+                  />
+                );
+              case 'Bar':
+                return (
+                  <Bar
+                    key={`cg-bar-${_id}-${element.type}-${element.key}-${element.color}`}
+                    dataKey={element.key}
+                    fill={element.color}
+                    barSize={45}
+                  />
+                );
+              case 'Area':
+                return (
+                  <Area
+                    key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
+                    dataKey={element.key}
+                    fill={`url(#${element.key}-def)`}
+                    stroke={element.color}
+                    activeDot={false}
+                    dot={false}
+                    type="monotone"
+                  />
+                );
+              default:
+                return <div />;
+            }
+          })}
+        </ComposedChart>
+      </div>
     </div>
   );
 };

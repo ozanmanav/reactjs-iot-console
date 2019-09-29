@@ -1,6 +1,7 @@
 import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/definitions';
 import { ICreateProjectFormState } from '../../components/forms/CreateProjectForm/definitions';
 import { IAddChartFormState } from '../../components/forms/AddChartForm/definitions';
+import { ISelectEntity } from '../../components/ui/cards';
 
 export interface IProject {
   id: string;
@@ -27,8 +28,10 @@ export interface IProjectLoadingState {
   addDevice?: boolean;
   createProject?: boolean;
   deleteProject?: boolean;
+  deleteDevice?: boolean;
   addChart?: boolean;
   deviceCharts?: boolean;
+  deviceChartsData?: boolean;
 }
 
 export interface IDeviceToken {
@@ -78,6 +81,16 @@ export interface IActivity {
   activityCreated: string;
 }
 
+export interface IChart {
+  _id: string;
+  name: string;
+  userId: string;
+  deviceId: string;
+  projectId: string;
+  type: string;
+  elements: ISelectEntity[];
+}
+
 export interface ProjectState {
   loading?: IProjectLoadingState;
   projects?: IProject[];
@@ -90,7 +103,8 @@ export interface ProjectState {
   deviceBrands?: any;
   deviceModels?: any;
   deviceEntities?: any;
-  deviceCharts?: any;
+  deviceCharts?: IChart[];
+  deviceChartsData?: any;
   error?: string;
 }
 
@@ -148,6 +162,12 @@ export const ADD_DEVICE_CHART_FAILURE = '@@project/ADD_DEVICE_CHART_FAILURE';
 export const GET_DEVICE_CHARTS = '@@project/GET_DEVICE_CHARTS';
 export const GET_DEVICE_CHARTS_SUCCESS = '@@project/GET_DEVICE_CHARTS_SUCCESS';
 export const GET_DEVICE_CHARTS_FAILURE = '@@project/GET_DEVICE_CHARTS_FAILURE';
+export const DELETE_DEVICE = '@@project/DELETE_DEVICE';
+export const DELETE_DEVICE_SUCCESS = '@@project/DELETE_DEVICE_SUCCESS';
+export const DELETE_DEVICE_FAILURE = '@@project/DELETE_DEVICE_FAILURE';
+export const GET_DEVICE_CHARTS_DATA = '@@project/GET_DEVICE_CHARTS_DATA';
+export const GET_DEVICE_CHARTS_DATA_SUCCESS = '@@project/GET_DEVICE_CHARTS_DATA_SUCCESS';
+export const GET_DEVICE_CHARTS_DATA_FAILURE = '@@project/GET_DEVICE_CHARTS_DATA_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -408,6 +428,34 @@ interface GetDeviceChartsFailureAction {
   payload: ProjectState;
 }
 
+export interface DeleteDeviceAction {
+  type: typeof DELETE_DEVICE;
+}
+
+interface DeleteDeviceSuccessAction {
+  type: typeof DELETE_DEVICE_SUCCESS;
+  payload: ProjectState;
+}
+
+interface DeleteDeviceFailureAction {
+  type: typeof DELETE_DEVICE_FAILURE;
+  payload: ProjectState;
+}
+
+export interface GetDeviceChartsDataAction {
+  type: typeof GET_DEVICE_CHARTS_DATA;
+}
+
+interface GetDeviceChartsDataSuccessAction {
+  type: typeof GET_DEVICE_CHARTS_DATA_SUCCESS;
+  payload: ProjectState;
+}
+
+interface GetDeviceChartsDataFailureAction {
+  type: typeof GET_DEVICE_CHARTS_DATA_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -462,4 +510,10 @@ export type ProjectActionTypes =
   | AddDeviceChartFailureAction
   | GetDeviceChartsAction
   | GetDeviceChartsSuccessAction
-  | GetDeviceChartsFailureAction;
+  | GetDeviceChartsFailureAction
+  | DeleteDeviceAction
+  | DeleteDeviceSuccessAction
+  | DeleteDeviceFailureAction
+  | GetDeviceChartsDataAction
+  | GetDeviceChartsDataSuccessAction
+  | GetDeviceChartsDataFailureAction;

@@ -14,7 +14,10 @@ import { ConfirmModal } from '../../modals';
 import './DeviceSettingsForm.scss';
 import isNil from 'ramda/es/isNil';
 
-const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = ({ ...formikProps }) => {
+const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = ({
+  onClickDeviceDelete,
+  ...formikProps
+}) => {
   const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
   const { open, hide, isOpen } = useModal();
 
@@ -100,8 +103,8 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
             <Button text="Save" primary className="f-device-settings__form-action" type="submit" />
             <Icon icon="trash" className="_cursor-pointer" onClick={open} />
             <ConfirmModal
-              title="Are you sure delete project?"
-              onConfirm={() => console.log('delete project')}
+              title={`Are you sure delete device?`}
+              onConfirm={onClickDeviceDelete}
               hide={hide}
               isOpen={isOpen}
             />
@@ -115,14 +118,17 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
 export const DeviceSettingsForm: FunctionComponent<IDeviceSettingsFormProps> = ({
   onSubmit,
   initialValues,
-  loading
+  loading,
+  onClickDeviceDelete
 }) => {
   return (
     <Formik
       onSubmit={onSubmit}
       initialValues={initialValues || DeviceSettingsFormDefaultState}
       validationSchema={DeviceSettingsFormValidationSchema}
-      component={formikProps => <DeviceSettingsFormBase {...formikProps} loading={loading} />}
+      component={formikProps => (
+        <DeviceSettingsFormBase {...formikProps} loading={loading} onClickDeviceDelete={onClickDeviceDelete} />
+      )}
     />
   );
 };

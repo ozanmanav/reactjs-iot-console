@@ -46,10 +46,13 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.GET_DEVICE_ENTITIES, projectSaga.requestGetDeviceEntities),
     takeLatest(projectTypes.ADD_DEVICE_CHART, projectSaga.requestAddDeviceChart),
     takeLatest(projectTypes.GET_DEVICE_CHARTS, projectSaga.requestGetDeviceCharts),
+    takeLatest(projectTypes.GET_DEVICE_CHARTS_DATA, projectSaga.requestGetDeviceChartsData),
+    takeLatest(projectTypes.DELETE_DEVICE, projectSaga.requestDeleteDevice),
 
+    // Redux-Persist Watcher
     takeLatest(REHYDRATE, authSaga.requestCheckPersistError),
 
-    // // UI
+    // UI
     takeLatest(uiTypes.SET_SIDEBAR_STATUS, uiSaga.requestSidebarOpen)
   ]);
 };

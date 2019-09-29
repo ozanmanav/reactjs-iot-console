@@ -26,10 +26,12 @@ export interface IDeviceSettingsFormDefaultState {
 
 export interface IDeviceSettingsFormBaseProps extends FormikProps<IDeviceSettingsFormDefaultState> {
   loading?: boolean;
+  onClickDeviceDelete: () => void;
 }
 
 export interface IDeviceSettingsFormProps {
   loading?: boolean;
+  onClickDeviceDelete: () => void;
   onSubmit: (state: IDeviceSettingsFormDefaultState) => void;
   initialValues?: IDeviceSettingsFormDefaultState;
 }
