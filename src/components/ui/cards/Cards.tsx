@@ -8,7 +8,7 @@ import DeviceImageStatic from '../../../icons/raspberry.png';
 import { TwitterPicker, ColorChangeHandler, ColorResult } from 'react-color';
 import { Checkbox, Select } from '../inputs';
 import { ValueType } from 'react-select/src/types';
-import { ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Scatter } from 'recharts';
 
 export interface IDeviceCardProps {
   device: IDevice;
@@ -181,9 +181,6 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
     <div className="c-card__graph-card" key={_id}>
       <div className="c-card__graph-card__info">
         <div className="c-card__graph-card__info-title">{name}</div>
-        <button className="c-card__graph-card__info-details-button" onClick={() => console.log('clicked detail')}>
-          View Details
-        </button>
       </div>
       <div className="c-card__graph-card__graph">
         {' '}
@@ -198,7 +195,19 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
           <YAxis />
           <Tooltip />
           <Legend />
-
+          <defs>
+            {elements.map(el => {
+              if (el.type === 'Area') {
+                return (
+                  <linearGradient key={`${el.key}-def-key`} id={`${el.key}-def`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor={el.color} stopOpacity={0.8} />
+                    <stop offset="95%" stopColor={el.color} stopOpacity={0} />
+                  </linearGradient>
+                );
+              }
+              return null;
+            })}
+          </defs>
           {elements.map(element => {
             switch (element.type) {
               case 'Line':
@@ -231,6 +240,14 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
                     activeDot={false}
                     dot={false}
                     type="monotone"
+                  />
+                );
+              case 'Scatter':
+                return (
+                  <Scatter
+                    key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
+                    fill={`url(#${element.key}-def)`}
+                    stroke={element.color}
                   />
                 );
               default:
