@@ -421,12 +421,11 @@ export function* requestAddDeviceChart(data: AddDeviceChartAction) {
       }
     );
 
-    if (addChartResponse.data.Message === 'Added Chart successful') {
-      const successAddDeviceResponse: ProjectState = {};
-      showSuccessToast('Device successfully added');
-      yield put(actions.getDevices());
-      yield put(push(`/app/projects/${currentProject.id}`));
-      yield put(actions.addDeviceChartSuccess(successAddDeviceResponse));
+    if (addChartResponse.data.Message === 'Chart added succesfully') {
+      showSuccessToast('Chart successfully added');
+      yield put(actions.getDeviceCharts());
+      yield put(push(`/app/projects/${currentProject.id}/devices/${currentDevice.id}`));
+      yield put(actions.addDeviceChartSuccess({}));
     } else {
       yield put(
         actions.addDeviceChartFailure({
