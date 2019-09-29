@@ -370,3 +370,23 @@ export function addDeviceChartFailure(projects: ProjectState): ProjectActionType
     payload: projects
   };
 }
+
+export function getDeviceCharts(): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHARTS
+  };
+}
+
+export function getDeviceChartsSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHARTS_SUCCESS,
+    payload: projects
+  };
+}
+
+export function getDeviceChartsFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHARTS_FAILURE,
+    payload: projects
+  };
+}

@@ -33,7 +33,6 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.GET_PROJECT_BY_ID, projectSaga.requestGetProjectById),
     takeLatest(projectTypes.GET_DEVICES, projectSaga.requestGetDevices),
     takeLatest(projectTypes.GET_DEVICE_BY_ID, projectSaga.requestGetDeviceById),
-    takeLatest(projectTypes.GET_DEVICE_BY_ID_SUCCESS, projectSaga.requestGetDeviceTokens),
     takeLatest(projectTypes.GET_TRIGGERS, projectSaga.requestGetTriggers),
     takeLatest(projectTypes.GET_ACTIVITIES, projectSaga.requestGetActivities),
     takeLatest(projectTypes.GET_DEVICE_ACTIVITIES, projectSaga.requestGetDeviceActivities),
@@ -46,6 +45,7 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.DELETE_PROJECT, projectSaga.requestDeleteProject),
     takeLatest(projectTypes.GET_DEVICE_ENTITIES, projectSaga.requestGetDeviceEntities),
     takeLatest(projectTypes.ADD_DEVICE_CHART, projectSaga.requestAddDeviceChart),
+    takeLatest(projectTypes.GET_DEVICE_CHARTS, projectSaga.requestGetDeviceCharts),
 
     takeLatest(REHYDRATE, authSaga.requestCheckPersistError),
 

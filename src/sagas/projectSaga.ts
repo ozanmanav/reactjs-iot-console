@@ -97,6 +97,7 @@ export function* requestGetDeviceById(data: any) {
     );
 
     yield put(actions.getDeviceEntities());
+    yield put(actions.getDeviceCharts());
   } catch (error) {
     yield put(actions.getDeviceByIdFailure({ error }));
   }
@@ -432,5 +433,33 @@ export function* requestAddDeviceChart(data: AddDeviceChartAction) {
     }
   } catch (error) {
     yield put(actions.addDeviceChartFailure({ error }));
+  }
+}
+
+export function* requestGetDeviceCharts() {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice) {
+      return yield put(
+        actions.getDeviceChartsFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const deviceChartsResponse = yield call(
+      getRequest,
+      `/project/${currentProject.id}/device/${currentDevice.id}/charts`
+    );
+
+    yield put(
+      actions.getDeviceChartsSuccess({
+        deviceCharts: deviceChartsResponse.data
+      })
+    );
+  } catch (error) {
+    yield put(actions.getDeviceChartsFailure({ error }));
   }
 }

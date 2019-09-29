@@ -510,6 +510,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
+    case types.GET_DEVICE_CHARTS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceCharts: false
+        }
+      };
+    }
+    case types.GET_DEVICE_CHARTS_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceCharts: false
+        },
+        ...action.payload
+      };
+    }
+    case types.GET_DEVICE_CHARTS_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceCharts: false
+        }
+      };
+    }
     default:
       return state;
   }

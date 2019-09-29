@@ -12,6 +12,7 @@ interface DevicesBaseProps {
   getDevices: typeof getDevices;
   currentProject?: IProject;
   currentDevice?: IDevice;
+  deviceCharts?: any;
   loading?: IProjectLoadingState;
   router?: any;
 }
@@ -19,7 +20,9 @@ interface DevicesBaseProps {
 export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
   getDevices,
   currentProject,
-  currentDevice
+  currentDevice,
+  loading,
+  deviceCharts
 }) => {
   useEffect(() => {
     getDevices();
@@ -43,20 +46,7 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
         </div>
       </div>
       <div className="container b-device-charts-details__devices">
-        <div className="row">
-          {/* {loading &&
-            !loading.devices &&
-            devices &&
-            devices.map(device => (
-              <NavLink
-                key={device.id}
-                to={`/app/projects/${currentProject && currentProject.id}/devices/${device.id}`}
-                className="col-md-6 col-sm-12 col-xs-12 b-device-charts-details__devices-card"
-              >
-                <DeviceCard device={device} />{' '}
-              </NavLink>
-            ))} */}
-        </div>
+        <div className="row">{loading && !loading.devices && JSON.stringify(deviceCharts)}</div>
       </div>
     </div>
   );
@@ -65,6 +55,7 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
 const mapStateToProps = (state: AppState) => ({
   currentProject: state.project.currentProject,
   currentDevice: state.project.currentDevice,
+  deviceCharts: state.project.deviceCharts,
   loading: state.project.loading
 });
 

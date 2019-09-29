@@ -28,6 +28,7 @@ export interface IProjectLoadingState {
   createProject?: boolean;
   deleteProject?: boolean;
   addChart?: boolean;
+  deviceCharts?: boolean;
 }
 
 export interface IDeviceToken {
@@ -89,6 +90,7 @@ export interface ProjectState {
   deviceBrands?: any;
   deviceModels?: any;
   deviceEntities?: any;
+  deviceCharts?: any;
   error?: string;
 }
 
@@ -143,6 +145,9 @@ export const GET_DEVICE_ENTITIES_FAILURE = '@@project/GET_DEVICE_ENTITIES_FAILUR
 export const ADD_DEVICE_CHART = '@@project/ADD_DEVICE_CHART';
 export const ADD_DEVICE_CHART_SUCCESS = '@@project/ADD_DEVICE_CHART_SUCCESS';
 export const ADD_DEVICE_CHART_FAILURE = '@@project/ADD_DEVICE_CHART_FAILURE';
+export const GET_DEVICE_CHARTS = '@@project/GET_DEVICE_CHARTS';
+export const GET_DEVICE_CHARTS_SUCCESS = '@@project/GET_DEVICE_CHARTS_SUCCESS';
+export const GET_DEVICE_CHARTS_FAILURE = '@@project/GET_DEVICE_CHARTS_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -389,6 +394,20 @@ interface AddDeviceChartFailureAction {
   payload: ProjectState;
 }
 
+export interface GetDeviceChartsAction {
+  type: typeof GET_DEVICE_CHARTS;
+}
+
+interface GetDeviceChartsSuccessAction {
+  type: typeof GET_DEVICE_CHARTS_SUCCESS;
+  payload: ProjectState;
+}
+
+interface GetDeviceChartsFailureAction {
+  type: typeof GET_DEVICE_CHARTS_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -440,4 +459,7 @@ export type ProjectActionTypes =
   | GetDeviceEntitiesFailureAction
   | AddDeviceChartAction
   | AddDeviceChartSuccessAction
-  | AddDeviceChartFailureAction;
+  | AddDeviceChartFailureAction
+  | GetDeviceChartsAction
+  | GetDeviceChartsSuccessAction
+  | GetDeviceChartsFailureAction;
