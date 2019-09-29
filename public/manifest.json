@@ -1,6 +1,6 @@
 {
-  "short_name": "Feynlab Console",
-  "name": "Feynlab Console",
+  "short_name": "Qubitro Console",
+  "name": "Qubitro Console",
   "icons": [
     {
       "src": "favicon.ico",
@@ -16,7 +16,7 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
-    }	 
+    }
   ],
   "start_url": ".",
   "display": "standalone",
