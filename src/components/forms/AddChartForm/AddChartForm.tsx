@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Formik } from 'formik';
 import {
   IAddChartFormBaseProps,
@@ -6,7 +6,7 @@ import {
   AddChartFormValidationSchema,
   IAddChartFormProps
 } from './definitions';
-import { Input } from '../../ui';
+import { Input, Checkbox } from '../../ui';
 import { Button } from '../../ui/buttons';
 import './AddChartForm.scss';
 import { FormCaption } from '../FormsUI';
@@ -17,21 +17,31 @@ const AddChartFormBase: FunctionComponent<
     deviceEntities?: any;
   }
 > = ({ deviceEntities, ...formikProps }) => {
+  const [onlyScatter, setOnlyScatter] = useState(false);
   const { values, handleSubmit, handleChange, errors, touched, handleBlur, setFieldValue, loading } = formikProps;
 
   const addEntity = (selectedEntity: ISelectEntity) => {
+    let updatedElements = values.elements;
     if (!values.elements.find((item: ISelectEntity) => item.key === selectedEntity.key)) {
-      setFieldValue('elements', [...values.elements, selectedEntity]);
+      // Add New Element
+      updatedElements = [...values.elements, selectedEntity];
     } else {
-      setFieldValue('elements', [
+      // Update Element
+      updatedElements = [
         ...values.elements.filter((item: ISelectEntity) => item.key !== selectedEntity.key),
         selectedEntity
-      ]);
+      ];
     }
+
+    setFieldValue('elements', updatedElements);
   };
 
   const removeEntity = (key: string) => {
     setFieldValue('elements', values.elements.filter((item: ISelectEntity) => item.key !== key));
+  };
+
+  const onChangeOnlyScatter = (event: React.FormEvent<HTMLInputElement>) => {
+    setOnlyScatter(event.currentTarget.checked);
   };
 
   return (
@@ -49,10 +59,19 @@ const AddChartFormBase: FunctionComponent<
           touched={touched && touched.name}
         />
         <FormCaption>SELECT ENTITY / ENTITIES</FormCaption>
+        <Checkbox
+          label={'Use Scatter Charts (It can only be used as one type.)'}
+          onChangeCapture={onChangeOnlyScatter}
+        />
 
         {deviceEntities &&
           deviceEntities.Entities.map((entityName: string) => (
-            <EntityCard entityName={entityName} addEntity={addEntity} removeEntity={removeEntity} />
+            <EntityCard
+              entityName={entityName}
+              addEntity={addEntity}
+              removeEntity={removeEntity}
+              onlyScatter={onlyScatter}
+            />
           ))}
         <br />
 

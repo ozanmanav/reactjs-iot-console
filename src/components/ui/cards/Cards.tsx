@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import './Cards.scss';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
@@ -6,9 +6,22 @@ import { IDevice, ITrigger, IChart } from '../../../store/project/types';
 import classNames from 'classnames';
 import DeviceImageStatic from '../../../icons/raspberry.png';
 import { TwitterPicker, ColorChangeHandler, ColorResult } from 'react-color';
-import { Checkbox, Select } from '../inputs';
+import { Checkbox, Select, ISelectOption } from '../inputs';
 import { ValueType } from 'react-select/src/types';
-import { ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Scatter } from 'recharts';
+import {
+  ComposedChart,
+  Line,
+  Area,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  Scatter,
+  ScatterChart,
+  ZAxis
+} from 'recharts';
 
 export interface IDeviceCardProps {
   device: IDevice;
@@ -90,10 +103,6 @@ const chartTypes = [
     value: 'Bar'
   },
   {
-    label: 'Scatter',
-    value: 'Scatter'
-  },
-  {
     label: 'Area',
     value: 'Area'
   }
@@ -101,6 +110,8 @@ const chartTypes = [
 
 interface IEntityCardProps {
   entityName: string;
+
+  onlyScatter: boolean;
   addEntity: (selectedEntity: ISelectEntity) => void;
   removeEntity: (key: string) => void;
 }
@@ -111,10 +122,28 @@ export interface ISelectEntity {
   color: string;
 }
 
-export const EntityCard: FunctionComponent<IEntityCardProps> = ({ entityName, addEntity, removeEntity }) => {
-  const [selectedType, setSelectedType] = useState<string>('');
+export const EntityCard: FunctionComponent<IEntityCardProps> = ({
+  entityName,
+  addEntity,
+  removeEntity,
+  onlyScatter
+}) => {
+  const [selectedType, setSelectedType] = useState<ISelectOption>({
+    label: '',
+    value: ''
+  });
+
   const [selectedPickerColor, setSelectedPickerColor] = useState<string>('#000');
   const [isPickerOpen, setIsPickerOpen] = useState(false);
+
+  useEffect(() => {
+    if (onlyScatter) {
+      setSelectedType({
+        label: 'Scatter',
+        value: 'Scatter'
+      });
+    }
+  }, [onlyScatter]);
 
   const togglePicker = () => {
     setIsPickerOpen(prevState => !prevState);
@@ -123,7 +152,7 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({ entityName, ad
   const handlePickerSelect: ColorChangeHandler = (color: ColorResult) => {
     setSelectedPickerColor(color.hex);
     togglePicker();
-    addEntity({ key: entityName, color: color.hex, type: selectedType });
+    addEntity({ key: entityName, color: color.hex, type: `${selectedType.value}` });
   };
 
   const IndicatorButton = styled.button`
@@ -135,7 +164,7 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({ entityName, ad
 
   const onChangeActive = (event: React.FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.checked) {
-      addEntity({ key: entityName, color: selectedPickerColor, type: selectedType });
+      addEntity({ key: entityName, color: selectedPickerColor, type: `${selectedType.value}` });
     } else {
       removeEntity(entityName);
     }
@@ -146,7 +175,10 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({ entityName, ad
       setSelectedType(option.value);
       addEntity({ key: entityName, color: selectedPickerColor, type: option.value });
     } else {
-      setSelectedType('');
+      setSelectedType({
+        label: '',
+        value: ''
+      });
     }
   };
 
@@ -163,7 +195,12 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({ entityName, ad
         )}
       </div>
 
-      <Select options={chartTypes} onChange={onChangeChartType} />
+      <Select
+        options={chartTypes}
+        onChange={onChangeChartType}
+        isDisabled={onlyScatter}
+        value={onlyScatter ? selectedType : ''}
+      />
     </div>
   );
 };
@@ -177,84 +214,97 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   chart: { _id, name, elements },
   deviceChartsData
 }) => {
+  console.log(deviceChartsData);
   return (
     <div className="c-card__graph-card" key={_id}>
       <div className="c-card__graph-card__info">
         <div className="c-card__graph-card__info-title">{name}</div>
       </div>
       <div className="c-card__graph-card__graph">
-        {' '}
-        <ComposedChart
-          width={350}
-          height={200}
-          data={deviceChartsData}
-          margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
-        >
-          <CartesianGrid stroke="#f5f5f5" />
-          <XAxis />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <defs>
-            {elements.map(el => {
-              if (el.type === 'Area') {
-                return (
-                  <linearGradient key={`${el.key}-def-key`} id={`${el.key}-def`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={el.color} stopOpacity={0.8} />
-                    <stop offset="95%" stopColor={el.color} stopOpacity={0} />
-                  </linearGradient>
-                );
+        {elements && elements.some(element => element.type === 'Scatter') ? (
+          <ScatterChart
+            width={350}
+            height={200}
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 20,
+              left: 20
+            }}
+          >
+            <CartesianGrid />
+            {elements.length > 0 && <XAxis type="number" dataKey={elements[0].key} name={elements[0].key} />}
+            {elements.length > 1 && <YAxis type="number" dataKey={elements[1].key} name={elements[1].key} />}
+            {elements.length > 2 && <ZAxis type="number" dataKey={elements[2].key} name={elements[2].key} />}
+
+            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+            <Scatter name="A school" data={deviceChartsData} fill="#8884d8" />
+          </ScatterChart>
+        ) : (
+          <ComposedChart
+            width={350}
+            height={200}
+            data={deviceChartsData}
+            margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
+          >
+            <CartesianGrid stroke="#f5f5f5" />
+            <XAxis />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <defs>
+              {elements.map(el => {
+                if (el.type === 'Area') {
+                  return (
+                    <linearGradient key={`${el.key}-def-key`} id={`${el.key}-def`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor={el.color} stopOpacity={0.8} />
+                      <stop offset="95%" stopColor={el.color} stopOpacity={0} />
+                    </linearGradient>
+                  );
+                }
+                return null;
+              })}
+            </defs>
+            {elements.map(element => {
+              switch (element.type) {
+                case 'Line':
+                  return (
+                    <Line
+                      key={`cg-line-${_id}-${element.type}-${element.key}-${element.color}`}
+                      type="monotone"
+                      dataKey={element.key}
+                      stroke={element.color}
+                      activeDot={false}
+                      dot={false}
+                    />
+                  );
+                case 'Bar':
+                  return (
+                    <Bar
+                      key={`cg-bar-${_id}-${element.type}-${element.key}-${element.color}`}
+                      dataKey={element.key}
+                      fill={element.color}
+                      barSize={45}
+                    />
+                  );
+                case 'Area':
+                  return (
+                    <Area
+                      key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
+                      dataKey={element.key}
+                      fill={`url(#${element.key}-def)`}
+                      stroke={element.color}
+                      activeDot={false}
+                      dot={false}
+                      type="monotone"
+                    />
+                  );
+                default:
+                  return <div />;
               }
-              return null;
             })}
-          </defs>
-          {elements.map(element => {
-            switch (element.type) {
-              case 'Line':
-                return (
-                  <Line
-                    key={`cg-line-${_id}-${element.type}-${element.key}-${element.color}`}
-                    type="monotone"
-                    dataKey={element.key}
-                    stroke={element.color}
-                    activeDot={false}
-                    dot={false}
-                  />
-                );
-              case 'Bar':
-                return (
-                  <Bar
-                    key={`cg-bar-${_id}-${element.type}-${element.key}-${element.color}`}
-                    dataKey={element.key}
-                    fill={element.color}
-                    barSize={45}
-                  />
-                );
-              case 'Area':
-                return (
-                  <Area
-                    key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
-                    dataKey={element.key}
-                    fill={`url(#${element.key}-def)`}
-                    stroke={element.color}
-                    activeDot={false}
-                    dot={false}
-                    type="monotone"
-                  />
-                );
-              case 'Scatter':
-                return (
-                  <Scatter
-                    key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
-                    fill={`url(#${element.key}-def)`}
-                    stroke={element.color}
-                  />
-                );
-              default:
-                return <div />;
-            }
-          })}
-        </ComposedChart>
+          </ComposedChart>
+        )}
       </div>
     </div>
   );

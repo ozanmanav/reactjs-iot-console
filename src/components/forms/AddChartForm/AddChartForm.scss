@@ -7,6 +7,12 @@
   border-radius: $border-radius-normal;
   width: 585px;
 
+  .f-checkbox__label-text {
+    vertical-align: top;
+    font-family: Exo;
+    font-weight: 400;
+  }
+
   &-loader {
     margin: 0px 5px 10px;
   }
