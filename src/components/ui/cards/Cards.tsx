@@ -214,7 +214,6 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   chart: { _id, name, elements },
   deviceChartsData
 }) => {
-  console.log(deviceChartsData);
   return (
     <div className="c-card__graph-card" key={_id}>
       <div className="c-card__graph-card__info">
@@ -238,7 +237,8 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
             {elements.length > 2 && <ZAxis type="number" dataKey={elements[2].key} name={elements[2].key} />}
 
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter name="A school" data={deviceChartsData} fill="#8884d8" />
+            <Legend />
+            <Scatter name={elements && elements.map(x => x.key).join('-')} data={deviceChartsData} fill="#8884d8" />
           </ScatterChart>
         ) : (
           <ComposedChart
