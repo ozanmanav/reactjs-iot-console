@@ -7,6 +7,7 @@ import { IDevice, IProjectLoadingState, IProject } from '../../../../store/proje
 import { DeviceCard } from '../../../../components/ui/cards';
 import { NavLink } from 'react-router-dom';
 import { AppState } from '../../../../store';
+import groupBy from 'lodash.groupby';
 
 interface DevicesBaseProps {
   getDevices: typeof getDevices;
@@ -21,6 +22,8 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
     getDevices();
   }, [getDevices]);
 
+  const dataToShowGrouped = groupBy(devices, 'deviceBrand');
+  console.log(dataToShowGrouped);
   return (
     <div className="b-project-devices-details">
       <div className="b-project-devices-details__info">

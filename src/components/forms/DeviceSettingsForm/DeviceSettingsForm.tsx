@@ -46,7 +46,7 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
           disabled={true}
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.clientSecret || 'Client Secret not found'}
+          value={values.id || 'Client Secret not found'}
           error={errors && errors.clientSecret}
           touched={touched && touched.clientSecret}
         />
@@ -54,34 +54,34 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
         <Input
           className="f-device-settings__form-input"
           placeholder="Device Model"
-          name="model"
+          name="deviceModel"
           disabled={true}
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.model}
-          error={errors && errors.model}
-          touched={touched && touched.model}
+          value={values.deviceModel}
+          error={errors && errors.deviceModel}
+          touched={touched && touched.deviceModel}
         />
         <FormCaption>Device Name</FormCaption>
         <Input
           placeholder="Device Name"
-          name="name"
+          name="deviceName"
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.name}
-          error={errors && errors.name}
-          touched={touched && touched.name}
+          value={values.deviceName}
+          error={errors && errors.deviceName}
+          touched={touched && touched.deviceName}
         />
         <FormCaption>Device Description</FormCaption>
         <Input
           className="f-device-settings__form-input"
           placeholder="Device Description"
-          name="description"
+          name="deviceDescription"
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.description}
-          error={errors && errors.description}
-          touched={touched && touched.description}
+          value={values.deviceDescription}
+          error={errors && errors.deviceDescription}
+          touched={touched && touched.deviceDescription}
         />
         <FormCaption>Device Location</FormCaption>
         <Input

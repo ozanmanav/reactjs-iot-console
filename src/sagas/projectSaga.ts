@@ -385,7 +385,7 @@ export function* requestGetDeviceEntities() {
       getRequest,
       `/user/projects/${currentProject.id}/devices/${currentDevice.id}/entities`
     );
-
+    console.log(deviceEntitiesResponse);
     yield put(
       actions.getDeviceEntitiesSuccess({
         deviceEntities: deviceEntitiesResponse.data
@@ -533,5 +533,44 @@ export function* requestDeleteDevice() {
     yield put(actions.deleteDeviceSuccess({}));
   } catch (error) {
     yield put(actions.deleteDeviceFailure({ error }));
+  }
+}
+
+export function* requestSaveDeviceSettings(data: any) {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice || !currentDevice.id) {
+      return yield put(
+        actions.saveDeviceSettingsFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+    console.log(data);
+    const saveDeviceSettingsResponse = yield call(
+      putRequest,
+      `user/projects/${currentProject.id}/devices/${currentDevice.id}`,
+      {},
+      data.payload
+    );
+    console.log(saveDeviceSettingsResponse);
+    if (saveDeviceSettingsResponse.data.Message === 'Device update successful') {
+      showSuccessToast('Device settings successfully saved');
+      yield put(
+        actions.saveDeviceSettingsSuccess({
+          currentDevice: {
+            ...currentDevice,
+            deviceName: data.payload.name,
+            deviceDescription: data.payload.deviceDescription,
+            deviceLocation: data.payload.deviceLocation
+          }
+        })
+      );
+      yield put(actions.getDeviceById(currentDevice.id));
+    }
+  } catch (error) {
+    yield put(actions.saveDeviceSettingsFailure({ error }));
   }
 }

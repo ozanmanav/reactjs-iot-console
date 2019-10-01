@@ -1,8 +1,6 @@
 @import '../../../../styles/variables';
 
 .b-device-charts {
-  overflow: auto;
-  height: 65vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -10,6 +8,8 @@
   &__add-chart-button {
     margin-top: 10px;
     display: flex;
+    width: 100%;
+    justify-content: flex-end;
     color: $primary;
     a,
     a:hover {
@@ -26,7 +26,9 @@
 
   &__charts {
     margin-top: 20px;
+    overflow: auto;
     display: flex;
+    height: 53vh;
     flex-direction: column;
   }
 }

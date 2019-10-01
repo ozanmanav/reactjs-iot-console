@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import './DeviceSettings.scss';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
-import { deleteDevice } from '../../../../store/project/actions';
+import { deleteDevice, saveDeviceSettings } from '../../../../store/project/actions';
 import { IProjectLoadingState, ITriggerResponse, IDevice } from '../../../../store/project/types';
 import { DeviceSettingsForm } from '../../../../components/forms';
 import { IDeviceSettingsFormDefaultState } from '../../../../components/forms/DeviceSettingsForm/definitions';
@@ -16,24 +16,30 @@ interface DeviceSettingsBaseProps {
   currentDevice?: IDevice;
 }
 
-export const DeviceSettingsBase: FunctionComponent<DeviceSettingsBaseProps> = ({ currentDevice, deleteDevice }) => {
+export const DeviceSettingsBase: FunctionComponent<DeviceSettingsBaseProps> = ({
+  currentDevice,
+  deleteDevice,
+  saveDeviceSettings
+}) => {
   if (!currentDevice) {
     return <div>Please select a project</div>;
   }
 
   const initialValues: IDeviceSettingsFormDefaultState = {
-    id: currentDevice.id,
-    name: currentDevice.deviceName,
-    model: currentDevice.deviceModel,
+    ...currentDevice,
     location: currentDevice.deviceLocation,
-    description: currentDevice.deviceDescription,
     deviceToken: (currentDevice.deviceTokens && currentDevice.deviceTokens.apiToken) || '',
     clientSecret: (currentDevice.deviceTokens && currentDevice.deviceTokens.clientSecret) || ''
   };
 
+  const onSubmit = (values: IDeviceSettingsFormDefaultState): void => {
+    if (saveDeviceSettings) {
+      saveDeviceSettings(values);
+    }
+  };
+
   const onClickProjectDelete = (): void => {
     if (deleteDevice) {
-      console.log('deletede');
       deleteDevice();
     }
   };
@@ -41,7 +47,7 @@ export const DeviceSettingsBase: FunctionComponent<DeviceSettingsBaseProps> = ({
   return (
     <div className="b-evice-settings">
       <DeviceSettingsForm
-        onSubmit={() => null}
+        onSubmit={onSubmit}
         initialValues={initialValues}
         onClickDeviceDelete={onClickProjectDelete}
       />
@@ -56,5 +62,5 @@ const mapStateToProps = (state: AppState): any => ({
 
 export const DeviceSettings = connect(
   mapStateToProps,
-  { deleteDevice }
+  { saveDeviceSettings, deleteDevice }
 )(DeviceSettingsBase);

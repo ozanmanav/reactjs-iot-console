@@ -5,10 +5,10 @@ import { VALIDATION_ERRORS } from '../../../config';
 export const DeviceSettingsFormDefaultState = {
   deviceToken: '',
   clientSecret: '',
-  name: '',
-  description: '',
+  deviceName: '',
+  deviceDescription: '',
   location: '',
-  model: '',
+  deviceModel: '',
   id: '',
   loading: false
 };
@@ -16,10 +16,10 @@ export const DeviceSettingsFormDefaultState = {
 export interface IDeviceSettingsFormDefaultState {
   deviceToken: string;
   clientSecret: string;
-  name: string;
-  description: string;
+  deviceName: string;
+  deviceDescription: string;
   location: string;
-  model: string;
+  deviceModel: string;
   id?: string;
   loading?: boolean;
 }
@@ -38,10 +38,13 @@ export interface IDeviceSettingsFormProps {
 
 // Validation Schema
 export const DeviceSettingsFormValidationSchema = Yup.object().shape({
-  name: Yup.string()
+  deviceName: Yup.string()
     .trim()
     .required(VALIDATION_ERRORS.required),
-  description: Yup.string()
+  deviceDescription: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required),
+  location: Yup.string()
     .trim()
     .required(VALIDATION_ERRORS.required)
 });

@@ -129,8 +129,8 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({
   onlyScatter
 }) => {
   const [selectedType, setSelectedType] = useState<ISelectOption>({
-    label: '',
-    value: ''
+    label: 'Line',
+    value: 'Line'
   });
 
   const [selectedPickerColor, setSelectedPickerColor] = useState<string>('#000');
@@ -172,7 +172,10 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({
 
   const onChangeChartType = (option: ValueType<any>): void => {
     if (option) {
-      setSelectedType(option.value);
+      setSelectedType({
+        label: option.value,
+        value: option.value
+      });
       addEntity({ key: entityName, color: selectedPickerColor, type: option.value });
     } else {
       setSelectedType({
@@ -195,12 +198,7 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({
         )}
       </div>
 
-      <Select
-        options={chartTypes}
-        onChange={onChangeChartType}
-        isDisabled={onlyScatter}
-        value={onlyScatter ? selectedType : ''}
-      />
+      <Select options={chartTypes} onChange={onChangeChartType} isDisabled={onlyScatter} value={selectedType} />
     </div>
   );
 };

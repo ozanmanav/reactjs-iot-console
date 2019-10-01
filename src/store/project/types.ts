@@ -32,6 +32,7 @@ export interface IProjectLoadingState {
   addChart?: boolean;
   deviceCharts?: boolean;
   deviceChartsData?: boolean;
+  saveDeviceSettings?: boolean;
 }
 
 export interface IDeviceToken {
@@ -168,6 +169,9 @@ export const DELETE_DEVICE_FAILURE = '@@project/DELETE_DEVICE_FAILURE';
 export const GET_DEVICE_CHARTS_DATA = '@@project/GET_DEVICE_CHARTS_DATA';
 export const GET_DEVICE_CHARTS_DATA_SUCCESS = '@@project/GET_DEVICE_CHARTS_DATA_SUCCESS';
 export const GET_DEVICE_CHARTS_DATA_FAILURE = '@@project/GET_DEVICE_CHARTS_DATA_FAILURE';
+export const SAVE_DEVICE_SETTINGS = '@@project/SAVE_DEVICE_SETTINGS';
+export const SAVE_DEVICE_SETTINGS_SUCCESS = '@@project/SAVE_DEVICE_SETTINGS_SUCCESS';
+export const SAVE_DEVICE_SETTINGS_FAILURE = '@@project/SAVE_DEVICE_SETTINGS_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -456,6 +460,21 @@ interface GetDeviceChartsDataFailureAction {
   payload: ProjectState;
 }
 
+interface SaveDeviceSettingsAction {
+  type: typeof SAVE_DEVICE_SETTINGS;
+  payload: ProjectState;
+}
+
+interface SaveDeviceSettingsSuccessAction {
+  type: typeof SAVE_DEVICE_SETTINGS_SUCCESS;
+  payload: ProjectState;
+}
+
+interface SaveDeviceSettingsFailureAction {
+  type: typeof SAVE_DEVICE_SETTINGS_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -516,4 +535,7 @@ export type ProjectActionTypes =
   | DeleteDeviceFailureAction
   | GetDeviceChartsDataAction
   | GetDeviceChartsDataSuccessAction
-  | GetDeviceChartsDataFailureAction;
+  | GetDeviceChartsDataFailureAction
+  | SaveDeviceSettingsAction
+  | SaveDeviceSettingsSuccessAction
+  | SaveDeviceSettingsFailureAction;

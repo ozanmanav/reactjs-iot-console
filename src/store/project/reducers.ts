@@ -15,7 +15,8 @@ export const ProjectInitialState: ProjectState = {
     brands: false,
     models: false,
     entities: false,
-    addChart: false
+    addChart: false,
+    saveDeviceSettings: false
   },
   projects: [],
   devices: [],
@@ -593,6 +594,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         loading: {
           ...state.loading,
           deviceChartsData: false
+        }
+      };
+    }
+    case types.SAVE_DEVICE_SETTINGS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveDeviceSettings: true
+        }
+      };
+    }
+    case types.SAVE_DEVICE_SETTINGS_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveDeviceSettings: false
+        },
+        ...action.payload
+      };
+    }
+    case types.SAVE_DEVICE_SETTINGS_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveDeviceSettings: false
         }
       };
     }

@@ -430,3 +430,25 @@ export function getDeviceChartsDataFailure(projects: ProjectState): ProjectActio
     payload: projects
   };
 }
+
+export function saveDeviceSettings(newSettings: ProjectState): ProjectActionTypes {
+  console.log(newSettings);
+  return {
+    type: types.SAVE_DEVICE_SETTINGS,
+    payload: newSettings
+  };
+}
+
+export function saveDeviceSettingsSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.SAVE_DEVICE_SETTINGS_SUCCESS,
+    payload: projects
+  };
+}
+
+export function saveDeviceSettingsFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.SAVE_DEVICE_SETTINGS_FAILURE,
+    payload: projects
+  };
+}
