@@ -65,6 +65,7 @@ const AddChartFormBase: FunctionComponent<
         />
 
         {deviceEntities &&
+          deviceEntities.Entities &&
           deviceEntities.Entities.map((entityName: string) => (
             <EntityCard
               entityName={entityName}
