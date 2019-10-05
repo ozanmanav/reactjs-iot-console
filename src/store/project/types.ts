@@ -33,6 +33,7 @@ export interface IProjectLoadingState {
   deviceCharts?: boolean;
   deviceChartsData?: boolean;
   saveDeviceSettings?: boolean;
+  currentChart?: boolean;
 }
 
 export interface IDeviceToken {
@@ -106,6 +107,7 @@ export interface ProjectState {
   deviceEntities?: any;
   deviceCharts?: IChart[];
   deviceChartsData?: any;
+  currentChart?: IChart;
   error?: string;
 }
 
@@ -172,6 +174,9 @@ export const GET_DEVICE_CHARTS_DATA_FAILURE = '@@project/GET_DEVICE_CHARTS_DATA_
 export const SAVE_DEVICE_SETTINGS = '@@project/SAVE_DEVICE_SETTINGS';
 export const SAVE_DEVICE_SETTINGS_SUCCESS = '@@project/SAVE_DEVICE_SETTINGS_SUCCESS';
 export const SAVE_DEVICE_SETTINGS_FAILURE = '@@project/SAVE_DEVICE_SETTINGS_FAILURE';
+export const GET_DEVICE_CHART_BY_ID = '@@project/GET_DEVICE_CHART_BY_ID';
+export const GET_DEVICE_CHART_BY_ID_SUCCESS = '@@project/GET_DEVICE_CHART_BY_ID_SUCCESS';
+export const GET_DEVICE_CHART_BY_ID_FAILURE = '@@project/GET_DEVICE_CHART_BY_ID_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -475,6 +480,21 @@ interface SaveDeviceSettingsFailureAction {
   payload: ProjectState;
 }
 
+interface GetChartByIdAction {
+  type: typeof GET_DEVICE_CHART_BY_ID;
+  payload: string;
+}
+
+interface GetChartByIdSuccessAction {
+  type: typeof GET_DEVICE_CHART_BY_ID_SUCCESS;
+  payload?: IChart;
+}
+
+interface GetChartByIdFailureAction {
+  type: typeof GET_DEVICE_CHART_BY_ID_FAILURE;
+  payload?: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -538,4 +558,7 @@ export type ProjectActionTypes =
   | GetDeviceChartsDataFailureAction
   | SaveDeviceSettingsAction
   | SaveDeviceSettingsSuccessAction
-  | SaveDeviceSettingsFailureAction;
+  | SaveDeviceSettingsFailureAction
+  | GetChartByIdAction
+  | GetChartByIdSuccessAction
+  | GetChartByIdFailureAction;

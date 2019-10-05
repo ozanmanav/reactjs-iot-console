@@ -8,6 +8,7 @@ import { IDevice, IProjectLoadingState, IProject, IChart } from '../../../../sto
 import { NavLink } from 'react-router-dom';
 import { AppState } from '../../../../store';
 import { DeviceChartCard } from '../../../../components/ui/cards';
+import { Loading } from '../../../../components/ui/loading';
 
 interface DevicesBaseProps {
   getDevices: typeof getDevices;
@@ -49,15 +50,21 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
 
       <div className="container b-device-charts__charts">
         <div className="row">
-          {loading &&
-            !loading.devices &&
+          {loading && loading.devices ? (
+            <Loading />
+          ) : (
+            currentProject &&
+            currentDevice &&
             deviceCharts &&
             deviceCharts.map((deviceChart: IChart) => (
-              <div className="col-md-6 col-sm-12 col-xs-12 b-device-charts-details__devices-card">
-                {' '}
-                <DeviceChartCard chart={deviceChart} deviceChartsData={deviceChartsData} />{' '}
-              </div>
-            ))}
+              <NavLink
+                className="col-md-4 col-sm-12 col-xs-12 b-device-chart-detail__devices-card _cursor-pointer"
+                to={`/app/projects/${currentProject.id}/devices/${currentDevice.id}/charts/${deviceChart._id}`}
+              >
+                <DeviceChartCard chart={deviceChart} deviceChartsData={deviceChartsData.Data} />{' '}
+              </NavLink>
+            ))
+          )}
         </div>
       </div>
     </div>
@@ -65,6 +72,7 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
 };
 
 const mapStateToProps = (state: AppState) => ({
+  router: state.router,
   currentProject: state.project.currentProject,
   currentDevice: state.project.currentDevice,
   deviceCharts: state.project.deviceCharts,

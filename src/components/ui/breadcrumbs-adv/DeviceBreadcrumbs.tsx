@@ -8,7 +8,8 @@ const DeviceBreadcrumbBase: FunctionComponent<{ currentDevice?: IDevice }> = ({ 
 };
 
 const mapStateToProps = (state: AppState) => ({
-  currentDevice: state.project.currentDevice
+  currentDevice: state.project.currentDevice,
+  currentChart: state.project.currentChart
 });
 
 const DeviceBreadcrumbAddChartBase: FunctionComponent = () => {

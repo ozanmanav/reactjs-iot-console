@@ -114,7 +114,8 @@
       border: solid 1px #d8d8d8;
       background-color: #ffffff;
 
-      max-width: 560px;
+      max-width: 366px;
+      height: 283px;
 
       &__info {
         display: flex;
@@ -167,6 +168,49 @@
               border-radius: 20px !important;
             }
           }
+        }
+      }
+    }
+  }
+
+  &__summary-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 366px;
+    color: #9b9b9b;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
+    font-weight: bold;
+    height: 118px;
+    width: 100%;
+    border-radius: 6px;
+    border: solid 1px #d8d8d8;
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    &__header {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    &__values {
+      display: flex;
+      justify-content: space-between;
+      &-value {
+        display: flex;
+        flex-direction: column;
+
+        &__data {
+          height: 40px;
+          font-size: 32px;
+          font-weight: bold;
+          color: #4a4a4a;
+        }
+
+        &__label {
+          font-size: 12px;
+          font-weight: 500;
+          color: #9b9b9b;
         }
       }
     }

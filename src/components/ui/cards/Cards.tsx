@@ -16,7 +16,6 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
   Legend,
   Scatter,
   ScatterChart,
@@ -190,12 +189,7 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({
       <div className="c-card__entity-card__header">
         <Checkbox label={entityName} onChangeCapture={onChangeActive} />
         <IndicatorButton onClick={togglePicker} />
-        {isPickerOpen && (
-          <TwitterPicker
-            // color={this.state.entitiesColors[e] || this.state.baseColor}
-            onChangeComplete={handlePickerSelect}
-          />
-        )}
+        {isPickerOpen && <TwitterPicker onChangeComplete={handlePickerSelect} />}
       </div>
 
       <Select options={chartTypes} onChange={onChangeChartType} isDisabled={onlyScatter} value={selectedType} />
@@ -206,49 +200,56 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({
 export interface IDeviceChartCardProps {
   chart: IChart;
   deviceChartsData: any;
+  chartWidth?: number;
+  chartHeight?: number;
 }
 
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   chart: { _id, name, elements },
-  deviceChartsData
+  deviceChartsData,
+  chartWidth = 325,
+  chartHeight = 200
 }) => {
   return (
-    <div className="c-card__graph-card" key={_id}>
+    <div className="c-card__graph-card _cursor-pointer" key={_id}>
       <div className="c-card__graph-card__info">
         <div className="c-card__graph-card__info-title">{name}</div>
       </div>
-      <div className="c-card__graph-card__graph">
+      <div className="c-card__graph-card__graph _cursor-pointer">
         {elements && elements.some(element => element.type === 'Scatter') ? (
           <ScatterChart
-            width={350}
-            height={200}
+            width={chartWidth - 5}
+            height={chartHeight}
             margin={{
-              top: 20,
-              right: 20,
-              bottom: 20,
-              left: 20
+              top: 0,
+              right: 10,
+              bottom: 0,
+              left: -35
             }}
           >
             <CartesianGrid />
-            {elements.length > 0 && <XAxis type="number" dataKey={elements[0].key} name={elements[0].key} />}
-            {elements.length > 1 && <YAxis type="number" dataKey={elements[1].key} name={elements[1].key} />}
+            {elements.length > 0 && (
+              <XAxis type="number" dataKey={elements[0].key} name={elements[0].key} tick={{ fill: '#9b9b9b' }} />
+            )}
+            {elements.length > 1 && (
+              <YAxis type="number" dataKey={elements[1].key} name={elements[1].key} tick={{ fill: '#9b9b9b' }} />
+            )}
             {elements.length > 2 && <ZAxis type="number" dataKey={elements[2].key} name={elements[2].key} />}
 
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
             <Legend />
             <Scatter name={elements && elements.map(x => x.key).join('-')} data={deviceChartsData} fill="#8884d8" />
           </ScatterChart>
         ) : (
           <ComposedChart
-            width={350}
-            height={200}
+            width={chartWidth}
+            height={chartHeight}
             data={deviceChartsData}
-            margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
+            margin={{ top: 0, right: 10, left: -35, bottom: 0 }}
           >
             <CartesianGrid stroke="#f5f5f5" />
-            <XAxis />
-            <YAxis />
-            <Tooltip />
+            <XAxis tick={{ fill: '#9b9b9b' }} />
+            <YAxis tick={{ fill: '#9b9b9b' }} />
+
             <Legend />
             <defs>
               {elements.map(el => {
@@ -303,6 +304,48 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
             })}
           </ComposedChart>
         )}
+      </div>
+    </div>
+  );
+};
+
+export interface IDeviceChartSummaryCardProps {
+  entityName: string;
+  entityColor?: string;
+}
+
+export const DeviceChartSummaryCard: FunctionComponent<IDeviceChartSummaryCardProps> = ({
+  entityName,
+  entityColor = 'black'
+}) => {
+  const OvalIndicator = styled.div`
+    border-radius: 20px;
+    background-color: ${props => props.color};
+    height: 18px;
+    width: 18px;
+    margin-right: 5px;
+  `;
+
+  return (
+    <div className="c-card__summary-card">
+      <div className="c-card__summary-card__header">
+        <OvalIndicator color={entityColor} />
+        {entityName}
+      </div>
+
+      <div className="c-card__summary-card__values">
+        <div className="c-card__summary-card__values-value">
+          <div className="c-card__summary-card__values-value__data">31</div>
+          <div className="c-card__summary-card__values-value__label">Max Value</div>
+        </div>
+        <div className="c-card__summary-card__values-value">
+          <div className="c-card__summary-card__values-value__data">25</div>
+          <div className="c-card__summary-card__values-value__label">Min Value</div>
+        </div>
+        <div className="c-card__summary-card__values-value">
+          <div className="c-card__summary-card__values-value__data">28</div>
+          <div className="c-card__summary-card__values-value__label">Average</div>
+        </div>
       </div>
     </div>
   );

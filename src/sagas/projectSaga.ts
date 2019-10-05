@@ -491,7 +491,7 @@ export function* requestGetDeviceChartsData() {
 
     yield put(
       actions.getDeviceChartsDataSuccess({
-        deviceChartsData: deviceChartsDataResponse.data.Data
+        deviceChartsData: deviceChartsDataResponse.data
       })
     );
   } catch (error) {
@@ -548,14 +548,14 @@ export function* requestSaveDeviceSettings(data: any) {
         })
       );
     }
-    console.log(data);
+
     const saveDeviceSettingsResponse = yield call(
       putRequest,
       `user/projects/${currentProject.id}/devices/${currentDevice.id}`,
       {},
       data.payload
     );
-    console.log(saveDeviceSettingsResponse);
+
     if (saveDeviceSettingsResponse.data.Message === 'Device update successful') {
       showSuccessToast('Device settings successfully saved');
       yield put(
@@ -572,5 +572,35 @@ export function* requestSaveDeviceSettings(data: any) {
     }
   } catch (error) {
     yield put(actions.saveDeviceSettingsFailure({ error }));
+  }
+}
+
+export function* requestGetDeviceChartById(data: any) {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice || !currentDevice.id) {
+      return yield put(
+        actions.getDeviceChartByIdFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const deviceChartResponse = yield call(
+      getRequest,
+      `/project/${currentProject.id}/device/${currentDevice.id}/chart/${data.payload}`
+    );
+
+    yield put(
+      actions.getDeviceChartByIdSuccess({
+        currentChart: deviceChartResponse.data.Charts
+      })
+    );
+
+    yield put(actions.getDeviceChartsData());
+  } catch (error) {
+    yield put(actions.getDeviceChartByIdFailure({ error }));
   }
 }

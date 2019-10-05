@@ -5,6 +5,13 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
+  &__devices {
+    &-card {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
   &__add-chart-button {
     margin-top: 10px;
     display: flex;

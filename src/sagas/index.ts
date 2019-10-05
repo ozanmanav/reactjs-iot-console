@@ -49,6 +49,7 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.GET_DEVICE_CHARTS_DATA, projectSaga.requestGetDeviceChartsData),
     takeLatest(projectTypes.DELETE_DEVICE, projectSaga.requestDeleteDevice),
     takeLatest(projectTypes.SAVE_DEVICE_SETTINGS, projectSaga.requestSaveDeviceSettings),
+    takeLatest(projectTypes.GET_DEVICE_CHART_BY_ID, projectSaga.requestGetDeviceChartById),
 
     // Redux-Persist Watcher
     takeLatest(REHYDRATE, authSaga.requestCheckPersistError),

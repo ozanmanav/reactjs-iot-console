@@ -432,7 +432,6 @@ export function getDeviceChartsDataFailure(projects: ProjectState): ProjectActio
 }
 
 export function saveDeviceSettings(newSettings: ProjectState): ProjectActionTypes {
-  console.log(newSettings);
   return {
     type: types.SAVE_DEVICE_SETTINGS,
     payload: newSettings
@@ -449,6 +448,27 @@ export function saveDeviceSettingsSuccess(projects: ProjectState): ProjectAction
 export function saveDeviceSettingsFailure(projects: ProjectState): ProjectActionTypes {
   return {
     type: types.SAVE_DEVICE_SETTINGS_FAILURE,
+    payload: projects
+  };
+}
+
+export function getDeviceChartById(id: string): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHART_BY_ID,
+    payload: id
+  };
+}
+
+export function getDeviceChartByIdSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHART_BY_ID_SUCCESS,
+    payload: projects.currentChart
+  };
+}
+
+export function getDeviceChartByIdFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_CHART_BY_ID_FAILURE,
     payload: projects
   };
 }

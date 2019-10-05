@@ -89,3 +89,15 @@ main {
     padding-top: $header-app-height;
   }
 }
+
+.recharts-cartesian-axis-tick {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: Exo;
+}
+.recharts-legend-wrapper {
+  margin-left: 20px;
+}
+.recharts-wrapper {
+  cursor: pointer !important;
+}
