@@ -8,8 +8,7 @@ import { DeviceChartCard, DeviceChartSummaryCard } from '../../../../components/
 import { Loading } from '../../../../components/ui/loading';
 import BreadcrumbsAdv from '../../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 import { MDBDataTable } from 'mdbreact';
-
-import { normalizaDataForTable } from './utils';
+import { normalizeDataForTable, normalizeSummaryData } from './utils';
 
 interface DeviceChartDetailBaseProps {
   getDeviceChartById: typeof getDeviceChartById;
@@ -57,16 +56,12 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 chartHeight={350}
               />
             </div>
-            <div className="flex">
-              <div className="col">
-                <DeviceChartSummaryCard entityName={currentChart.name} />
-              </div>
-              <div className="col">
-                <DeviceChartSummaryCard entityName={currentChart.name} />
-              </div>
-              <div className="col">
-                <DeviceChartSummaryCard entityName={currentChart.name} />
-              </div>
+            <div className="row">
+              {normalizeSummaryData(deviceChartsData).map(summaryData => (
+                <div className="col-4">
+                  <DeviceChartSummaryCard summaryData={summaryData} />
+                </div>
+              ))}
             </div>
             <div className="b-device-chart-detail-table">
               <MDBDataTable
@@ -76,7 +71,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 info={false}
                 searching={false}
                 displayEntries={false}
-                data={normalizaDataForTable(deviceChartsData.Data)}
+                data={normalizeDataForTable(deviceChartsData.Data)}
               />{' '}
             </div>
           </div>

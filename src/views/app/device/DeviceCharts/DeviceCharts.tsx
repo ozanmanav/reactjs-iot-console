@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { AppState } from '../../../../store';
 import { DeviceChartCard } from '../../../../components/ui/cards';
 import { Loading } from '../../../../components/ui/loading';
+import { getSlicedArray } from '../DeviceChartDetail/utils';
 
 interface DevicesBaseProps {
   getDevices: typeof getDevices;
@@ -61,7 +62,7 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
                 className="col-md-4 col-sm-12 col-xs-12 b-device-chart-detail__devices-card _cursor-pointer"
                 to={`/app/projects/${currentProject.id}/devices/${currentDevice.id}/charts/${deviceChart._id}`}
               >
-                <DeviceChartCard chart={deviceChart} deviceChartsData={deviceChartsData.Data} />{' '}
+                <DeviceChartCard chart={deviceChart} deviceChartsData={getSlicedArray(deviceChartsData.Data, 6)} />{' '}
               </NavLink>
             ))
           )}

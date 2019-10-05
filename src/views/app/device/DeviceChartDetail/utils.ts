@@ -7,7 +7,7 @@ interface Column {
   [rest: string]: any;
 }
 
-export const normalizaDataForTable = (deviceChartsData: any) => {
+export const normalizeDataForTable = (deviceChartsData: any) => {
   if (!deviceChartsData || deviceChartsData.length < 1) {
     return undefined;
   }
@@ -22,4 +22,33 @@ export const normalizaDataForTable = (deviceChartsData: any) => {
   });
 
   return { columns, rows: deviceChartsData };
+};
+
+export interface SummaryData {
+  entityName: string;
+  average?: string;
+  minValue?: string;
+  maxValue?: string;
+}
+
+export const normalizeSummaryData = (deviceChartsData: any): SummaryData[] => {
+  if (deviceChartsData) {
+    const keys = Object.keys(deviceChartsData.entities);
+    const { averages, maxValues, minValues } = deviceChartsData;
+    const summaryArray: SummaryData[] = keys.map(key => {
+      return {
+        entityName: key,
+        average: averages[key],
+        maxValue: maxValues[key],
+        minValue: minValues[key]
+      };
+    });
+    return summaryArray;
+  }
+
+  return [];
+};
+
+export const getSlicedArray = (data: any, size: number) => {
+  return data ? data.slice(0, size) : [];
 };

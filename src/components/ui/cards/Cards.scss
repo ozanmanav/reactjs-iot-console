@@ -126,6 +126,15 @@
           font-weight: bold;
           color: #4a4a4a;
         }
+        &-button {
+          height: 40px;
+          color: #fff;
+          background-color: #9b9b9b;
+          &:hover {
+            color: #fff;
+            background-color: $primary;
+          }
+        }
         &-details-button {
           cursor: pointer;
           font-size: 14px;

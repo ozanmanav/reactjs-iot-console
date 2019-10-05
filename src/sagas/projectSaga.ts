@@ -485,7 +485,7 @@ export function* requestGetDeviceChartsData() {
       `/user/projects/${currentProject.id}/devices/${currentDevice.id}/data`,
       {
         page: 1,
-        dataInPage: 6
+        dataInPage: 200
       }
     );
 

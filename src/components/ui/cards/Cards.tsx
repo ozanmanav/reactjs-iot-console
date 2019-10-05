@@ -21,6 +21,8 @@ import {
   ScatterChart,
   ZAxis
 } from 'recharts';
+import { Button } from '../buttons';
+import { SummaryData } from '../../../views/app/device/DeviceChartDetail/utils';
 
 export interface IDeviceCardProps {
   device: IDevice;
@@ -202,18 +204,21 @@ export interface IDeviceChartCardProps {
   deviceChartsData: any;
   chartWidth?: number;
   chartHeight?: number;
+  showEditButton?: boolean;
 }
 
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   chart: { _id, name, elements },
   deviceChartsData,
   chartWidth = 325,
-  chartHeight = 200
+  chartHeight = 200,
+  showEditButton = false
 }) => {
   return (
     <div className="c-card__graph-card _cursor-pointer" key={_id}>
       <div className="c-card__graph-card__info">
         <div className="c-card__graph-card__info-title">{name}</div>
+        {showEditButton && <Button text="Edit Chart" className="c-card__graph-card__info-button" />}
       </div>
       <div className="c-card__graph-card__graph _cursor-pointer">
         {elements && elements.some(element => element.type === 'Scatter') ? (
@@ -310,12 +315,12 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
 };
 
 export interface IDeviceChartSummaryCardProps {
-  entityName: string;
+  summaryData: SummaryData;
   entityColor?: string;
 }
 
 export const DeviceChartSummaryCard: FunctionComponent<IDeviceChartSummaryCardProps> = ({
-  entityName,
+  summaryData,
   entityColor = 'black'
 }) => {
   const OvalIndicator = styled.div`
@@ -330,20 +335,20 @@ export const DeviceChartSummaryCard: FunctionComponent<IDeviceChartSummaryCardPr
     <div className="c-card__summary-card">
       <div className="c-card__summary-card__header">
         <OvalIndicator color={entityColor} />
-        {entityName}
+        {summaryData.entityName}
       </div>
 
       <div className="c-card__summary-card__values">
         <div className="c-card__summary-card__values-value">
-          <div className="c-card__summary-card__values-value__data">31</div>
+          <div className="c-card__summary-card__values-value__data">{summaryData.maxValue}</div>
           <div className="c-card__summary-card__values-value__label">Max Value</div>
         </div>
         <div className="c-card__summary-card__values-value">
-          <div className="c-card__summary-card__values-value__data">25</div>
+          <div className="c-card__summary-card__values-value__data">{summaryData.minValue}</div>
           <div className="c-card__summary-card__values-value__label">Min Value</div>
         </div>
         <div className="c-card__summary-card__values-value">
-          <div className="c-card__summary-card__values-value__data">28</div>
+          <div className="c-card__summary-card__values-value__data">{summaryData.average}</div>
           <div className="c-card__summary-card__values-value__label">Average</div>
         </div>
       </div>
