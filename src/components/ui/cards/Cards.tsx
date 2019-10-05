@@ -316,13 +316,9 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
 
 export interface IDeviceChartSummaryCardProps {
   summaryData: SummaryData;
-  entityColor?: string;
 }
 
-export const DeviceChartSummaryCard: FunctionComponent<IDeviceChartSummaryCardProps> = ({
-  summaryData,
-  entityColor = 'black'
-}) => {
+export const DeviceChartSummaryCard: FunctionComponent<IDeviceChartSummaryCardProps> = ({ summaryData }) => {
   const OvalIndicator = styled.div`
     border-radius: 20px;
     background-color: ${props => props.color};
@@ -334,7 +330,7 @@ export const DeviceChartSummaryCard: FunctionComponent<IDeviceChartSummaryCardPr
   return (
     <div className="c-card__summary-card">
       <div className="c-card__summary-card__header">
-        <OvalIndicator color={entityColor} />
+        <OvalIndicator color={summaryData.color} />
         {summaryData.entityName}
       </div>
 

@@ -1,3 +1,5 @@
+import { IChart } from '../../../../store/project/types';
+
 interface Column {
   label?: string;
   field?: string;
@@ -29,24 +31,36 @@ export interface SummaryData {
   average?: string;
   minValue?: string;
   maxValue?: string;
+  color?: string;
 }
 
-export const normalizeSummaryData = (deviceChartsData: any): SummaryData[] => {
-  if (deviceChartsData) {
-    const keys = Object.keys(deviceChartsData.entities);
-    const { averages, maxValues, minValues } = deviceChartsData;
-    const summaryArray: SummaryData[] = keys.map(key => {
-      return {
-        entityName: key,
-        average: averages[key],
-        maxValue: maxValues[key],
-        minValue: minValues[key]
-      };
-    });
-    return summaryArray;
-  }
+export const normalizeSummaryData = (deviceChartsData: any, currentChart: IChart): SummaryData[] => {
+  try {
+    if (deviceChartsData && currentChart) {
+      const { elements } = currentChart;
 
-  return [];
+      const keys = Object.keys(deviceChartsData.entities);
+      const { averages, maxValues, minValues } = deviceChartsData;
+      const summaryArray: SummaryData[] = keys.map((key: any) => {
+        const element = elements.find(item => item.key === key);
+
+        return {
+          entityName: key,
+          average: averages[key],
+          maxValue: maxValues[key],
+          minValue: minValues[key],
+          color: element && element.color
+        };
+      });
+
+      const elementKeys = elements.map(element => element.key);
+
+      return summaryArray.filter(item => elementKeys.includes(item.entityName));
+    }
+    return [];
+  } catch (error) {
+    return [];
+  }
 };
 
 export const getSlicedArray = (data: any, size: number) => {

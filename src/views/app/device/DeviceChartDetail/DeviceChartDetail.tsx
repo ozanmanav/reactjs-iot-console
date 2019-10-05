@@ -27,7 +27,6 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
   deviceChartsData,
   router
 }) => {
-  console.log(deviceChartsData);
   const deviceId = router.location.pathname.split('/')[7] || '';
 
   useEffect(() => {
@@ -57,7 +56,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
               />
             </div>
             <div className="row">
-              {normalizeSummaryData(deviceChartsData).map(summaryData => (
+              {normalizeSummaryData(deviceChartsData, currentChart).map(summaryData => (
                 <div className="col-4">
                   <DeviceChartSummaryCard summaryData={summaryData} />
                 </div>
@@ -65,11 +64,11 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
             </div>
             <div className="b-device-chart-detail-table">
               <MDBDataTable
-                exportToCSV={true}
                 hover
                 responsive
                 info={false}
                 searching={false}
+                sortable
                 displayEntries={false}
                 data={normalizeDataForTable(deviceChartsData.Data)}
               />{' '}
