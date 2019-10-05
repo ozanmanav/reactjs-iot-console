@@ -25,7 +25,7 @@ export function* requestGetProjects() {
       localStorage.setItem(PROJECTS_FIRST_LOAD_KEY, JSON.stringify(false));
       const firstProject =
         successProjectsResponse.projects &&
-        successProjectsResponse.projects.length > 1 &&
+        successProjectsResponse.projects.length > 0 &&
         successProjectsResponse.projects[0];
       if (firstProject) {
         yield put(push(`/app/projects/${firstProject.id}`));
