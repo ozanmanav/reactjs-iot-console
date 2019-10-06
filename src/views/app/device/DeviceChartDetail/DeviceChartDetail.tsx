@@ -46,9 +46,10 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
         <Loading />
       ) : (
         currentChart && (
-          <div className="container b-device-chart-detail__charts">
+          <div className="container-fluid b-device-chart-detail__charts">
             <div className="row">
               <DeviceChartCard
+                showEditButton
                 chart={currentChart}
                 deviceChartsData={deviceChartsData.Data}
                 chartWidth={1160}
@@ -56,7 +57,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 showTooltip
               />
             </div>
-            <div className="row">
+            <div className="row justify-center">
               {normalizeSummaryData(deviceChartsData, currentChart).map(summaryData => (
                 <div className="col-4">
                   <DeviceChartSummaryCard summaryData={summaryData} />

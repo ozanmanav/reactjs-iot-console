@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { IActivity } from '../../../store/project/types';
 import { Loading } from '../../ui/loading';
 import moment from 'moment';
-import { Container } from '../../ui';
 
 import './ActivityList.scss';
 import groupBy from 'lodash.groupby';
@@ -16,13 +15,13 @@ export const ActivityList: FunctionComponent<ActivityListProps> = ({ activities,
   const dataToShowGrouped = groupBy(activities, result =>
     moment.unix(parseInt(result.activityCreated)).format('dddd, MMMM Do YYYY')
   );
-  console.log(dataToShowGrouped);
+
   return (
     <div className="b-project-activities">
       {loading ? (
         <Loading className="b-project-activities-loader" />
       ) : (
-        <Container className="b-project-activities__timeline">
+        <div className="container-fluid b-project-activities__timeline">
           {Object.keys(dataToShowGrouped).map(group => {
             return (
               <div className="b-project-activities__timeline-container">
@@ -43,7 +42,7 @@ export const ActivityList: FunctionComponent<ActivityListProps> = ({ activities,
               </div>
             );
           })}
-        </Container>
+        </div>
       )}
     </div>
   );

@@ -113,7 +113,7 @@
       box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
       border: solid 1px #d8d8d8;
       background-color: #ffffff;
-
+      justify-content: space-evenly;
       max-width: 366px;
       height: 283px;
 
@@ -190,7 +190,7 @@
     color: #9b9b9b;
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
     font-weight: bold;
-    height: 118px;
+    height: 100px;
     width: 100%;
     border-radius: 6px;
     border: solid 1px #d8d8d8;
@@ -210,8 +210,8 @@
         flex-direction: column;
 
         &__data {
-          height: 40px;
-          font-size: 32px;
+          height: 30px;
+          font-size: 26px;
           font-weight: bold;
           color: #4a4a4a;
         }

@@ -22,7 +22,7 @@ import './Dashboard.scss';
 
 export const Dashboard: FunctionComponent = () => {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row mt-3">
         <div className="col-6">
           {' '}

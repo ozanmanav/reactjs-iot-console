@@ -49,7 +49,7 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
         </NavLink>
       </div>
 
-      <div className="container b-device-charts__charts">
+      <div className="container-fluid b-device-charts__charts">
         <div className="row">
           {loading && loading.devices ? (
             <Loading />
@@ -59,7 +59,7 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
             deviceCharts &&
             deviceCharts.map((deviceChart: IChart) => (
               <NavLink
-                className="col-md-4 col-sm-12 col-xs-12 b-device-chart-detail__devices-card _cursor-pointer"
+                className="col-xl-4 col-md-4 col-sm-6 col-xs-12 b-device-chart-detail__devices-card _cursor-pointer"
                 to={`/app/projects/${currentProject.id}/devices/${currentDevice.id}/charts/${deviceChart._id}`}
               >
                 <DeviceChartCard chart={deviceChart} deviceChartsData={getSlicedArray(deviceChartsData.Data, 6)} />{' '}

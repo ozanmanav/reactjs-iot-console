@@ -38,7 +38,7 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
           </NavLink>
         </div>
       </div>
-      <div className="container b-project-devices-details__devices">
+      <div className="container-fluid b-project-devices-details__devices">
         {loading &&
           !loading.devices &&
           Object.keys(dataToShowGrouped).map(group => {
@@ -54,7 +54,7 @@ export const DevicesBase: FunctionComponent<DevicesBaseProps> = ({ devices, getD
                     <NavLink
                       key={device.id}
                       to={`/app/projects/${currentProject && currentProject.id}/devices/${device.id}`}
-                      className="col-md-6 col-sm-12 col-xs-12 b-project-devices-details__devices-card"
+                      className="col-xl-4 col-md-6 col-sm-12 col-xs-12 b-project-devices-details__devices-card"
                     >
                       <DeviceCard device={device} />{' '}
                     </NavLink>
