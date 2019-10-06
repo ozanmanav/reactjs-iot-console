@@ -253,7 +253,11 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
               {elements.length > 2 && <ZAxis type="number" dataKey={elements[2].key} name={elements[2].key} />}
               {showTooltip && <Tooltip />}
               <Legend />
-              <Scatter name={elements && elements.map(x => x.key).join('-')} data={deviceChartsData} fill="#8884d8" />
+              <Scatter
+                name={elements && elements.map(x => x.key).join('-')}
+                data={deviceChartsData}
+                fill={elements[0].color}
+              />
             </ScatterChart>
           ) : (
             <ComposedChart data={deviceChartsData} margin={{ top: 0, right: 10, left: -35, bottom: 0 }}>
