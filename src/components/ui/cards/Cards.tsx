@@ -19,7 +19,8 @@ import {
   Legend,
   Scatter,
   ScatterChart,
-  ZAxis
+  ZAxis,
+  Tooltip
 } from 'recharts';
 import { Button } from '../buttons';
 import { SummaryData } from '../../../views/app/device/DeviceChartDetail/utils';
@@ -205,6 +206,7 @@ export interface IDeviceChartCardProps {
   chartWidth?: number;
   chartHeight?: number;
   showEditButton?: boolean;
+  showTooltip?: boolean;
 }
 
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
@@ -212,7 +214,8 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   deviceChartsData,
   chartWidth = 325,
   chartHeight = 200,
-  showEditButton = false
+  showEditButton = false,
+  showTooltip = false
 }) => {
   return (
     <div className="c-card__graph-card _cursor-pointer" key={_id}>
@@ -240,7 +243,7 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
               <YAxis type="number" dataKey={elements[1].key} name={elements[1].key} tick={{ fill: '#9b9b9b' }} />
             )}
             {elements.length > 2 && <ZAxis type="number" dataKey={elements[2].key} name={elements[2].key} />}
-
+            {showTooltip && <Tooltip />}
             <Legend />
             <Scatter name={elements && elements.map(x => x.key).join('-')} data={deviceChartsData} fill="#8884d8" />
           </ScatterChart>
@@ -254,7 +257,7 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
             <CartesianGrid stroke="#f5f5f5" />
             <XAxis tick={{ fill: '#9b9b9b' }} />
             <YAxis tick={{ fill: '#9b9b9b' }} />
-
+            {showTooltip && <Tooltip />}
             <Legend />
             <defs>
               {elements.map(el => {

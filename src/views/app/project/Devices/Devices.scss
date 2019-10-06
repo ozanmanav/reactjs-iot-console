@@ -11,9 +11,20 @@
     flex-direction: column;
 
     &__devices {
-      margin-top: 2px;
       &-card {
-        margin-top: 20px;
+        margin-top: 10px;
+      }
+      &-section {
+        display: flex;
+
+        &__name {
+          font-size: 12px;
+          font-weight: 600;
+          color: #4a4a4a;
+        }
+      }
+      .row {
+        margin-bottom: 20px;
       }
     }
 

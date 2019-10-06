@@ -53,6 +53,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 deviceChartsData={deviceChartsData.Data}
                 chartWidth={1160}
                 chartHeight={350}
+                showTooltip
               />
             </div>
             <div className="row">

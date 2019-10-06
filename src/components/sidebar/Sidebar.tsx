@@ -43,7 +43,7 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
                 >
                     <LeftNavHeader text={'Documentation'} image={SupportIcon} activeItem={activeItem} />
                 </a> */}
-        <NavLink to={'/support'}>
+        <a href="https://forums.qubitro.com">
           <SidebarHeader
             text={'Forums'}
             onlyText={true}
@@ -51,8 +51,8 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
             deactiveImage={SupportIcon}
             active={checkActiveItem('support')}
           />
-        </NavLink>
-        <NavLink to={'/support'}>
+        </a>
+        <a href="https://blog.qubitro.com">
           <SidebarHeader
             text={'Feedback'}
             onlyText={true}
@@ -60,8 +60,8 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
             deactiveImage={SupportIcon}
             active={checkActiveItem('feedback')}
           />
-        </NavLink>
-        <NavLink to={'/support'}>
+        </a>
+        <a href="https://feedback.qubitro.com">
           <SidebarHeader
             text={'Blog'}
             onlyText={true}
@@ -69,8 +69,8 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
             deactiveImage={SupportIcon}
             active={checkActiveItem('blog')}
           />
-        </NavLink>
-        <NavLink to={'/support'}>
+        </a>
+        <a href="mailto:support@qubitro.com">
           <SidebarHeader
             text={'Support'}
             onlyText={true}
@@ -78,10 +78,7 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
             deactiveImage={SupportIcon}
             active={checkActiveItem('support')}
           />
-        </NavLink>
-        {/* <div className={styles['narrow-button']}>
-                    <SidebarHeader text={'Narrow'} image={NarrowIcon} activeItem={activeItem} />
-                </div> */}
+        </a>
       </div>
     </React.Fragment>
   );
