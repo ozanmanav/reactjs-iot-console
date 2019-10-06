@@ -20,7 +20,8 @@ import {
   Scatter,
   ScatterChart,
   ZAxis,
-  Tooltip
+  Tooltip,
+  ResponsiveContainer
 } from 'recharts';
 import { Button } from '../buttons';
 import { SummaryData } from '../../../views/app/device/DeviceChartDetail/utils';
@@ -212,7 +213,6 @@ export interface IDeviceChartCardProps {
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   chart: { _id, name, elements },
   deviceChartsData,
-  chartWidth = 325,
   chartHeight = 200,
   showEditButton = false,
   showTooltip = false
@@ -224,94 +224,89 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
         {showEditButton && <Button text="Edit Chart" className="c-card__graph-card__info-button" />}
       </div>
       <div className="c-card__graph-card__graph _cursor-pointer">
-        {elements && elements.some(element => element.type === 'Scatter') ? (
-          <ScatterChart
-            width={chartWidth - 5}
-            height={chartHeight}
-            margin={{
-              top: 0,
-              right: 10,
-              bottom: 0,
-              left: -35
-            }}
-          >
-            <CartesianGrid />
-            {elements.length > 0 && (
-              <XAxis type="number" dataKey={elements[0].key} name={elements[0].key} tick={{ fill: '#9b9b9b' }} />
-            )}
-            {elements.length > 1 && (
-              <YAxis type="number" dataKey={elements[1].key} name={elements[1].key} tick={{ fill: '#9b9b9b' }} />
-            )}
-            {elements.length > 2 && <ZAxis type="number" dataKey={elements[2].key} name={elements[2].key} />}
-            {showTooltip && <Tooltip />}
-            <Legend />
-            <Scatter name={elements && elements.map(x => x.key).join('-')} data={deviceChartsData} fill="#8884d8" />
-          </ScatterChart>
-        ) : (
-          <ComposedChart
-            width={chartWidth}
-            height={chartHeight}
-            data={deviceChartsData}
-            margin={{ top: 0, right: 10, left: -35, bottom: 0 }}
-          >
-            <CartesianGrid stroke="#f5f5f5" />
-            <XAxis tick={{ fill: '#9b9b9b' }} />
-            <YAxis tick={{ fill: '#9b9b9b' }} />
-            {showTooltip && <Tooltip />}
-            <Legend />
-            <defs>
-              {elements.map(el => {
-                if (el.type === 'Area') {
-                  return (
-                    <linearGradient key={`${el.key}-def-key`} id={`${el.key}-def`} x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor={el.color} stopOpacity={0.8} />
-                      <stop offset="95%" stopColor={el.color} stopOpacity={0} />
-                    </linearGradient>
-                  );
+        <ResponsiveContainer width={'99%'} height={chartHeight}>
+          {elements && elements.some(element => element.type === 'Scatter') ? (
+            <ScatterChart
+              margin={{
+                top: 0,
+                right: 10,
+                bottom: 0,
+                left: -35
+              }}
+            >
+              <CartesianGrid />
+              {elements.length > 0 && (
+                <XAxis type="number" dataKey={elements[0].key} name={elements[0].key} tick={{ fill: '#9b9b9b' }} />
+              )}
+              {elements.length > 1 && (
+                <YAxis type="number" dataKey={elements[1].key} name={elements[1].key} tick={{ fill: '#9b9b9b' }} />
+              )}
+              {elements.length > 2 && <ZAxis type="number" dataKey={elements[2].key} name={elements[2].key} />}
+              {showTooltip && <Tooltip />}
+              <Legend />
+              <Scatter name={elements && elements.map(x => x.key).join('-')} data={deviceChartsData} fill="#8884d8" />
+            </ScatterChart>
+          ) : (
+            <ComposedChart data={deviceChartsData} margin={{ top: 0, right: 10, left: -35, bottom: 0 }}>
+              <CartesianGrid stroke="#f5f5f5" />
+              <XAxis tick={{ fill: '#9b9b9b' }} />
+              <YAxis tick={{ fill: '#9b9b9b' }} />
+              {showTooltip && <Tooltip />}
+              <Legend />
+              <defs>
+                {elements.map(el => {
+                  if (el.type === 'Area') {
+                    return (
+                      <linearGradient key={`${el.key}-def-key`} id={`${el.key}-def`} x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor={el.color} stopOpacity={0.8} />
+                        <stop offset="95%" stopColor={el.color} stopOpacity={0} />
+                      </linearGradient>
+                    );
+                  }
+                  return null;
+                })}
+              </defs>
+              {elements.map(element => {
+                switch (element.type) {
+                  case 'Line':
+                    return (
+                      <Line
+                        key={`cg-line-${_id}-${element.type}-${element.key}-${element.color}`}
+                        type="monotone"
+                        dataKey={element.key}
+                        stroke={element.color}
+                        activeDot={false}
+                        dot={false}
+                      />
+                    );
+                  case 'Bar':
+                    return (
+                      <Bar
+                        key={`cg-bar-${_id}-${element.type}-${element.key}-${element.color}`}
+                        dataKey={element.key}
+                        fill={element.color}
+                        barSize={45}
+                      />
+                    );
+                  case 'Area':
+                    return (
+                      <Area
+                        key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
+                        dataKey={element.key}
+                        fill={`url(#${element.key}-def)`}
+                        stroke={element.color}
+                        activeDot={false}
+                        dot={false}
+                        type="monotone"
+                      />
+                    );
+                  default:
+                    return <div />;
                 }
-                return null;
               })}
-            </defs>
-            {elements.map(element => {
-              switch (element.type) {
-                case 'Line':
-                  return (
-                    <Line
-                      key={`cg-line-${_id}-${element.type}-${element.key}-${element.color}`}
-                      type="monotone"
-                      dataKey={element.key}
-                      stroke={element.color}
-                      activeDot={false}
-                      dot={false}
-                    />
-                  );
-                case 'Bar':
-                  return (
-                    <Bar
-                      key={`cg-bar-${_id}-${element.type}-${element.key}-${element.color}`}
-                      dataKey={element.key}
-                      fill={element.color}
-                      barSize={45}
-                    />
-                  );
-                case 'Area':
-                  return (
-                    <Area
-                      key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
-                      dataKey={element.key}
-                      fill={`url(#${element.key}-def)`}
-                      stroke={element.color}
-                      activeDot={false}
-                      dot={false}
-                      type="monotone"
-                    />
-                  );
-                default:
-                  return <div />;
-              }
-            })}
-          </ComposedChart>
-        )}
+            </ComposedChart>
+          )}
+        </ResponsiveContainer>
       </div>
     </div>
   );

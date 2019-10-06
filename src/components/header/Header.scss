@@ -45,9 +45,13 @@
     }
   }
 
+  .sb-avatar__image {
+    object-fit: cover !important;
+  }
   &-user {
     display: flex;
     align-items: center;
+
     &__info {
       font-family: Exo;
       font-size: 14px;

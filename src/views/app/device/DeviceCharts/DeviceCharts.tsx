@@ -59,7 +59,7 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
             deviceCharts &&
             deviceCharts.map((deviceChart: IChart) => (
               <NavLink
-                className="col-xl-4 col-md-4 col-sm-6 col-xs-12 b-device-chart-detail__devices-card _cursor-pointer"
+                className="col-xl-3 col-md-6 col-sm-12 col-xs-12 b-device-chart-detail__devices-card _cursor-pointer"
                 to={`/app/projects/${currentProject.id}/devices/${currentDevice.id}/charts/${deviceChart._id}`}
               >
                 <DeviceChartCard chart={deviceChart} deviceChartsData={getSlicedArray(deviceChartsData.Data, 6)} />{' '}

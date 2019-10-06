@@ -52,7 +52,6 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 showEditButton
                 chart={currentChart}
                 deviceChartsData={deviceChartsData.Data}
-                chartWidth={1160}
                 chartHeight={350}
                 showTooltip
               />
@@ -64,17 +63,16 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 </div>
               ))}
             </div>
-            <div className="b-device-chart-detail-table">
-              <MDBDataTable
-                hover
-                responsive
-                info={false}
-                searching={false}
-                sortable
-                displayEntries={false}
-                data={normalizeDataForTable(deviceChartsData.Data)}
-              />{' '}
-            </div>
+            <MDBDataTable
+              hover
+              fixed
+              className="b-device-chart-detail-table"
+              info={false}
+              searching={false}
+              sortable
+              displayEntries={false}
+              data={normalizeDataForTable(deviceChartsData.Data)}
+            />{' '}
           </div>
         )
       )}

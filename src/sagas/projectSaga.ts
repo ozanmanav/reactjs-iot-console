@@ -385,7 +385,7 @@ export function* requestGetDeviceEntities() {
       getRequest,
       `/user/projects/${currentProject.id}/devices/${currentDevice.id}/entities`
     );
-    console.log(deviceEntitiesResponse);
+
     yield put(
       actions.getDeviceEntitiesSuccess({
         deviceEntities: deviceEntitiesResponse.data
@@ -485,7 +485,7 @@ export function* requestGetDeviceChartsData() {
       `/user/projects/${currentProject.id}/devices/${currentDevice.id}/data`,
       {
         page: 1,
-        dataInPage: 200
+        dataInPage: 100
       }
     );
 

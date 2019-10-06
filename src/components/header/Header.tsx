@@ -43,7 +43,7 @@ interface UserNavProps {
 }
 export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, currentUser, loading }) => {
   const { open, hide, isOpen } = useModal();
-  console.log(loading);
+
   return loading ? (
     <Loading loading={loading} />
   ) : (
@@ -53,7 +53,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, curre
           <div className="b-header-user__container flex align-center justify-center _font-bold _text-primary">
             {' '}
             {currentUser && currentUser.profilePhoto ? (
-              <Avatar round={true} src={currentUser.profilePhoto} size="40" />
+              <Avatar round={true} src={currentUser.profilePhoto} size="45px" />
             ) : (
               <Icon icon="avatar" />
             )}{' '}
