@@ -177,6 +177,9 @@ export const SAVE_DEVICE_SETTINGS_FAILURE = '@@project/SAVE_DEVICE_SETTINGS_FAIL
 export const GET_DEVICE_CHART_BY_ID = '@@project/GET_DEVICE_CHART_BY_ID';
 export const GET_DEVICE_CHART_BY_ID_SUCCESS = '@@project/GET_DEVICE_CHART_BY_ID_SUCCESS';
 export const GET_DEVICE_CHART_BY_ID_FAILURE = '@@project/GET_DEVICE_CHART_BY_ID_FAILURE';
+export const DELETE_DEVICE_CHART_BY_ID = '@@project/DELETE_DEVICE_CHART_BY_ID';
+export const DELETE_DEVICE_CHART_BY_ID_SUCCESS = '@@project/DELETE_DEVICE_CHART_BY_ID_SUCCESS';
+export const DELETE_DEVICE_CHART_BY_ID_FAILURE = '@@project/DELETE_DEVICE_CHART_BY_ID_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -495,6 +498,21 @@ interface GetChartByIdFailureAction {
   payload?: ProjectState;
 }
 
+interface DeleteChartByIdAction {
+  type: typeof DELETE_DEVICE_CHART_BY_ID;
+  payload: string;
+}
+
+interface DeleteChartByIdSuccessAction {
+  type: typeof DELETE_DEVICE_CHART_BY_ID_SUCCESS;
+  payload?: ProjectState;
+}
+
+interface DeleteChartByIdFailureAction {
+  type: typeof DELETE_DEVICE_CHART_BY_ID_FAILURE;
+  payload?: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -561,4 +579,7 @@ export type ProjectActionTypes =
   | SaveDeviceSettingsFailureAction
   | GetChartByIdAction
   | GetChartByIdSuccessAction
-  | GetChartByIdFailureAction;
+  | GetChartByIdFailureAction
+  | DeleteChartByIdAction
+  | DeleteChartByIdFailureAction
+  | DeleteChartByIdSuccessAction;

@@ -472,3 +472,24 @@ export function getDeviceChartByIdFailure(projects: ProjectState): ProjectAction
     payload: projects
   };
 }
+
+export function deleteDeviceChartById(id: string): ProjectActionTypes {
+  return {
+    type: types.DELETE_DEVICE_CHART_BY_ID,
+    payload: id
+  };
+}
+
+export function deleteDeviceChartByIdSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.DELETE_DEVICE_CHART_BY_ID_SUCCESS,
+    payload: projects
+  };
+}
+
+export function deleteDeviceChartByIdFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.DELETE_DEVICE_CHART_BY_ID_FAILURE,
+    payload: projects
+  };
+}

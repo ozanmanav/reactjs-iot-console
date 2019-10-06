@@ -604,3 +604,31 @@ export function* requestGetDeviceChartById(data: any) {
     yield put(actions.getDeviceChartByIdFailure({ error }));
   }
 }
+
+export function* requestDeleteDeviceChartById(data: any) {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice || !currentDevice.id) {
+      return yield put(
+        actions.deleteDeviceChartByIdFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const deleteDeviceChartResponse = yield call(
+      deleteRequest,
+      `/project/${currentProject.id}/device/${currentDevice.id}/chart/${data.payload}`,
+      {},
+      {}
+    );
+    console.log(deleteDeviceChartResponse);
+
+    yield put(actions.deleteDeviceChartByIdSuccess({}));
+    yield put(push(`/app/projects/${currentProject.id}/devices/${currentDevice.id}`));
+  } catch (error) {
+    yield put(actions.deleteDeviceChartByIdFailure({ error }));
+  }
+}

@@ -655,6 +655,36 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         currentChart: undefined
       };
     }
+    case types.DELETE_DEVICE_CHART_BY_ID: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          currentChart: true
+        },
+        currentChart: undefined
+      };
+    }
+    case types.DELETE_DEVICE_CHART_BY_ID_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          currentChart: false
+        },
+        currentChart: undefined
+      };
+    }
+    case types.DELETE_DEVICE_CHART_BY_ID_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          currentChart: false
+        },
+        currentChart: undefined
+      };
+    }
     default:
       return state;
   }

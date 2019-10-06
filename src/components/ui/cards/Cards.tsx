@@ -207,7 +207,9 @@ export interface IDeviceChartCardProps {
   chartWidth?: number;
   chartHeight?: number;
   showEditButton?: boolean;
+  showDeleteButton?: boolean;
   showTooltip?: boolean;
+  onClickDelete?: () => void;
 }
 
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
@@ -215,13 +217,20 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   deviceChartsData,
   chartHeight = 200,
   showEditButton = false,
-  showTooltip = false
+  showDeleteButton = false,
+  showTooltip = false,
+  onClickDelete
 }) => {
   return (
     <div className="c-card__graph-card _cursor-pointer" key={_id}>
       <div className="c-card__graph-card__info">
         <div className="c-card__graph-card__info-title">{name}</div>
-        {showEditButton && <Button text="Edit Chart" className="c-card__graph-card__info-button" />}
+        <div>
+          {showDeleteButton && (
+            <Button text="Delete Chart" className="c-card__graph-card__info-delete-button" onClick={onClickDelete} />
+          )}
+          {showEditButton && <Button text="Edit Chart" className="c-card__graph-card__info-edit-button" />}
+        </div>
       </div>
       <div className="c-card__graph-card__graph _cursor-pointer">
         <ResponsiveContainer width={'99%'} height={chartHeight}>

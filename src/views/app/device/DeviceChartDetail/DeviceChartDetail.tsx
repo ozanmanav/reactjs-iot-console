@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import './DeviceChartDetail.scss';
-import { getDeviceChartById } from '../../../../store/project/actions';
+import { getDeviceChartById, deleteDeviceChartById } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
 import { IDevice, IProjectLoadingState, IProject, IChart } from '../../../../store/project/types';
 import { AppState } from '../../../../store';
@@ -9,9 +9,12 @@ import { Loading } from '../../../../components/ui/loading';
 import BreadcrumbsAdv from '../../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 import { MDBDataTable } from 'mdbreact';
 import { normalizeDataForTable, normalizeSummaryData } from './utils';
+import { ConfirmModal } from '../../../../components/modals';
+import { useModal } from '../../../../components/ui';
 
 interface DeviceChartDetailBaseProps {
   getDeviceChartById: typeof getDeviceChartById;
+  deleteDeviceChartById: typeof deleteDeviceChartById;
   currentProject?: IProject;
   currentDevice?: IDevice;
   currentChart?: IChart;
@@ -22,11 +25,14 @@ interface DeviceChartDetailBaseProps {
 
 export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps> = ({
   getDeviceChartById,
+  deleteDeviceChartById,
   currentChart,
   loading,
   deviceChartsData,
   router
 }) => {
+  const { open: openDeleteChartModal, hide: hideDeleteChartModal, isOpen: isOpenDeleteChartModal } = useModal();
+
   const deviceId = router.location.pathname.split('/')[7] || '';
 
   useEffect(() => {
@@ -34,6 +40,13 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
       getDeviceChartById(deviceId);
     }
   }, [getDeviceChartById, deviceId]);
+
+  const onDeleteChart = () => {
+    if (currentChart) {
+      deleteDeviceChartById(currentChart._id);
+      hideDeleteChartModal();
+    }
+  };
 
   return (
     <div className="b-device-chart-detail">
@@ -53,7 +66,15 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 chart={currentChart}
                 deviceChartsData={deviceChartsData.Data}
                 chartHeight={350}
+                showDeleteButton
                 showTooltip
+                onClickDelete={openDeleteChartModal}
+              />
+              <ConfirmModal
+                title={`Are you sure delete ${currentChart.name} chart?`}
+                onConfirm={onDeleteChart}
+                hide={hideDeleteChartModal}
+                isOpen={isOpenDeleteChartModal}
               />
             </div>
             <div className="row justify-center">
@@ -91,5 +112,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const DeviceChartDetail = connect(
   mapStateToProps,
-  { getDeviceChartById }
+  { getDeviceChartById, deleteDeviceChartById }
 )(DeviceChartDetailBase);

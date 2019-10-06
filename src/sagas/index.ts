@@ -50,6 +50,7 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.DELETE_DEVICE, projectSaga.requestDeleteDevice),
     takeLatest(projectTypes.SAVE_DEVICE_SETTINGS, projectSaga.requestSaveDeviceSettings),
     takeLatest(projectTypes.GET_DEVICE_CHART_BY_ID, projectSaga.requestGetDeviceChartById),
+    takeLatest(projectTypes.DELETE_DEVICE_CHART_BY_ID, projectSaga.requestDeleteDeviceChartById),
 
     // Redux-Persist Watcher
     takeLatest(REHYDRATE, authSaga.requestCheckPersistError),

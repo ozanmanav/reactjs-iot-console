@@ -126,13 +126,23 @@
           font-weight: bold;
           color: #4a4a4a;
         }
-        &-button {
+        &-edit-button {
           height: 40px;
           color: #fff;
           background-color: #9b9b9b;
           &:hover {
             color: #fff;
-            background-color: $primary;
+            background-color: #585858;
+          }
+        }
+
+        &-delete-button {
+          height: 40px;
+          color: #fff;
+          background-color: #ff8c97;
+          &:hover {
+            color: #fff;
+            background-color: red;
           }
         }
         &-details-button {
