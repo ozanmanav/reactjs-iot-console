@@ -262,7 +262,7 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
           ) : (
             <ComposedChart data={deviceChartsData} margin={{ top: 0, right: 10, left: -35, bottom: 0 }}>
               <CartesianGrid stroke="#f5f5f5" />
-              <XAxis tick={{ fill: '#9b9b9b' }} />
+              <XAxis tick={{ fill: '#9b9b9b' }} dataKey="Timestamp" />
               <YAxis tick={{ fill: '#9b9b9b' }} />
               {showTooltip && <Tooltip />}
               <Legend />
@@ -285,10 +285,9 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
                     return (
                       <Line
                         key={`cg-line-${_id}-${element.type}-${element.key}-${element.color}`}
-                        type="monotone"
                         dataKey={element.key}
                         stroke={element.color}
-                        activeDot={false}
+                        activeDot={true}
                         dot={false}
                       />
                     );

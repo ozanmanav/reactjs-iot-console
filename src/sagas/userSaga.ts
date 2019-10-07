@@ -6,8 +6,6 @@ import { auth } from '../firebase';
 
 export function* requestGetUserProfile() {
   try {
-    yield put(actions.getUserProfile());
-
     const currentAuthenticatedUser = yield call(auth.onAuthStateChanged);
     const responseUserProfile = yield call(getRequest, `/user/${currentAuthenticatedUser.uid}`);
 

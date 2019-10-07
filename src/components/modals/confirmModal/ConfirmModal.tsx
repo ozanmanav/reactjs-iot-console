@@ -19,8 +19,10 @@ export const ConfirmModal: FunctionComponent<IConfirmModalProps> = ({
     <Modal {...modalProps}>
       <h2 className="h1 b-confirm-modal__title">{title}</h2>
       {description && <p className="b-confirm-modal__description">{description}</p>}
+
       <ModalFooter>
-        <Button text="Yes" primary icon="check" onClick={onConfirm} className="b-confirm-modal__actions-button" />
+        <Button text="Cancel" onClick={modalProps.hide} className="b-confirm-modal__actions-cancel" />
+        <Button text="Yes" primary icon="check" onClick={onConfirm} className="b-confirm-modal__actions-confirm" />
       </ModalFooter>
     </Modal>
   );

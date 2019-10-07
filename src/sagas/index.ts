@@ -8,6 +8,7 @@ import * as projectTypes from '../store/project/types';
 import * as uiTypes from '../store/ui/types';
 import * as uiSaga from './uiSaga';
 import * as userSaga from './userSaga';
+import * as userTypes from '../store/user/types';
 import { REHYDRATE } from 'redux-persist';
 
 // Register all your watchers
@@ -56,6 +57,9 @@ export const rootSaga = function* root() {
     takeLatest(REHYDRATE, authSaga.requestCheckPersistError),
 
     // UI
-    takeLatest(uiTypes.SET_SIDEBAR_STATUS, uiSaga.requestSidebarOpen)
+    takeLatest(uiTypes.SET_SIDEBAR_STATUS, uiSaga.requestSidebarOpen),
+
+    // User
+    takeLatest(userTypes.GET_USER_PROFILE, userSaga.requestGetUserProfile)
   ]);
 };

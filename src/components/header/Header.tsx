@@ -49,7 +49,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, curre
   ) : (
     <nav className="b-header-user">
       <div className="b-header-user__info-wrapper">
-        <button className="flex align-center b-header-user__container-button">
+        <NavLink className="flex align-center b-header-user__container-button" to={'/app/account'}>
           <div className="b-header-user__container flex align-center justify-center _font-bold _text-primary">
             {' '}
             {currentUser && currentUser.profilePhoto ? (
@@ -64,7 +64,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, curre
               <div className=" _text-left _font-bold">{currentUser.firstname || ``}</div>
             </div>
           )}
-        </button>
+        </NavLink>
       </div>
       <Icon icon="logout" width={20} height={20} onClick={open} className="_cursor-pointer" />
       <ConfirmModal title="Are you sure log out?" onConfirm={userLogout} hide={hide} isOpen={isOpen} />

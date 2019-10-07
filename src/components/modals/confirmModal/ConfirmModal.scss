@@ -15,7 +15,13 @@
   &__actions {
     margin-top: 20px;
 
-    &-button {
+    &-confirm {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+
+    &-cancel {
       &:not(:last-child) {
         margin-right: 20px;
       }

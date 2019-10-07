@@ -33,7 +33,7 @@ export const Modal: FunctionComponent<IModalProps> = ({ isOpen, hide, className,
 };
 
 export const ModalFooter: FunctionComponent<HTMLAttributes<HTMLDivElement>> = ({ className, children }) => {
-  const footerClassName = appendClassName('b-modal__footer flex flex-column', className);
+  const footerClassName = appendClassName('b-modal__footer flex', className);
 
   return <footer className={footerClassName}>{children}</footer>;
 };

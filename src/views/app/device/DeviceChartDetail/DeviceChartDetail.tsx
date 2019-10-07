@@ -58,13 +58,14 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
       {loading && loading.currentChart ? (
         <Loading />
       ) : (
-        currentChart && (
+        currentChart &&
+        deviceChartsData && (
           <div className="container-fluid b-device-chart-detail__charts">
             <div className="row">
               <DeviceChartCard
                 showEditButton
                 chart={currentChart}
-                deviceChartsData={deviceChartsData.Data}
+                deviceChartsData={deviceChartsData.Data.reverse()}
                 chartHeight={350}
                 showDeleteButton
                 showTooltip
