@@ -35,10 +35,10 @@ export interface IUserProfileFormProps {
 
 // Validation Schema
 export const UserProfileFormValidationSchema = Yup.object().shape({
-  firstname: Yup.string()
+  email: Yup.string()
     .trim()
     .required(VALIDATION_ERRORS.required),
-  lastname: Yup.string()
+  location: Yup.string()
     .trim()
     .required(VALIDATION_ERRORS.required)
 });

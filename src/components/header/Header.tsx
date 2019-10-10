@@ -73,7 +73,7 @@ export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, curre
 };
 
 const mapStateToPropsUser = (state: AppState) => ({
-  currentUser: state.user.currentUser || {},
+  currentUser: state.user.currentUser,
   loading: state.user.loading && state.user.loading.currentUser
 });
 

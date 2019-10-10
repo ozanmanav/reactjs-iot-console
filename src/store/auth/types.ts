@@ -13,7 +13,10 @@ export interface IUser {
   firstname?: string;
   lastname?: string;
   profilePhoto?: string;
-  accountProperties?: object;
+  accountProperties: {
+    deviceLimit?: string;
+    accountType?: string;
+  };
   accountTypeImage?: object;
   timezone?: object;
   email?: string;

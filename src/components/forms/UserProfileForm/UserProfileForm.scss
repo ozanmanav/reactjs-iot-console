@@ -5,13 +5,27 @@
   @include shadow-small;
   background: $white;
   border-radius: $border-radius-normal;
-  width: 585px;
+  height: 300px;
   margin-top: 20px;
 
+  &-caption {
+    font-family: Exo;
+    font-size: 10px;
+    color: #9b9b9b;
+  }
+
+  &-bottom-text {
+    margin-top: 10px;
+  }
+
   &-content {
+    height: 150px;
     display: flex;
     &__avatar {
       margin-right: 30px;
+      .sb-avatar__image {
+        object-fit: cover !important;
+      }
     }
   }
 
@@ -19,20 +33,91 @@
     margin: 0px 5px 10px;
   }
 
-  &-title {
-    color: #4a4a4a;
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 30px;
+  &-value {
+    font-family: Exo;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 20px;
+    color: #9b9b9b;
+    &.location {
+      margin-left: 70px;
+    }
+    &.timezone {
+      margin-left: 100px;
+    }
+    &.bottom-value {
+      margin-top: 40px;
+    }
   }
 
-  &-action {
-    margin-top: 10px;
+  &-dropdown-container {
+    margin-left: 85px;
+    margin-top: 20px;
+  }
+
+  &-dropdown {
+    width: 100%;
+    height: 50px;
     margin-bottom: 10px;
-    width: 72px;
-    min-width: 72px;
-    border-radius: 10px;
-    background-image: $primary;
+    i {
+      padding-top: 16px !important;
+    }
+  }
+  &-title {
+    font-family: Exo;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #4a4a4a;
+  }
+
+  .f-input__error {
+    margin-top: 10px;
+  }
+
+  &-action-container {
+    position: absolute;
+    right: 15px;
+    &-action {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 90px;
+      height: 40px;
+      min-width: 72px;
+      border-radius: 10px;
+    }
+
+    &-cancel {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      width: 90px;
+      height: 40px;
+      min-width: 72px;
+      border-radius: 10px;
+      background-color: red;
+      color: #fff;
+      &:hover {
+        background-color: red;
+      }
+    }
+
+    &-edit-mode {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 90px;
+      height: 40px;
+      min-width: 72px;
+      border-radius: 10px;
+      color: #fff;
+      background-color: #9b9b9b;
+      &:hover {
+        background-color: #9b9b9b;
+      }
+    }
   }
 
   &-input {
