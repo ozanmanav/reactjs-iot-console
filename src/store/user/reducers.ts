@@ -1,20 +1,13 @@
-import {
-  UserActionTypes,
-  UserState,
-  GET_USER_PROFILE,
-  GET_USER_PROFILE_SUCCESS,
-  GET_USER_PROFILE_FAILURE,
-  IUserLoadingState
-} from './types';
+import * as types from './types';
 
-export const UserInitialState: UserState = {
-  loading: {} as IUserLoadingState,
+export const UserInitialState: types.UserState = {
+  loading: {} as types.IUserLoadingState,
   currentUser: undefined
 };
 
-export function userReducer(state = UserInitialState, action: UserActionTypes): UserState {
+export function userReducer(state = UserInitialState, action: types.UserActionTypes): types.UserState {
   switch (action.type) {
-    case GET_USER_PROFILE: {
+    case types.GET_USER_PROFILE: {
       return {
         ...state,
         loading: {
@@ -23,7 +16,7 @@ export function userReducer(state = UserInitialState, action: UserActionTypes): 
         }
       };
     }
-    case GET_USER_PROFILE_SUCCESS: {
+    case types.GET_USER_PROFILE_SUCCESS: {
       return {
         ...state,
         loading: {
@@ -33,7 +26,7 @@ export function userReducer(state = UserInitialState, action: UserActionTypes): 
         ...action.payload
       };
     }
-    case GET_USER_PROFILE_FAILURE: {
+    case types.GET_USER_PROFILE_FAILURE: {
       return {
         ...state,
         loading: {
@@ -41,6 +34,34 @@ export function userReducer(state = UserInitialState, action: UserActionTypes): 
           currentUser: false
         },
         ...action.payload
+      };
+    }
+    case types.SAVE_USER_PROFILE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveUserProfile: true
+        }
+      };
+    }
+    case types.SAVE_USER_PROFILE_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveUserProfile: false
+        },
+        ...action.payload
+      };
+    }
+    case types.SAVE_USER_PROFILE_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveUserProfile: false
+        }
       };
     }
     default:

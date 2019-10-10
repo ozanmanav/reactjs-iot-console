@@ -2,65 +2,47 @@ import React, { FunctionComponent } from 'react';
 import './Profile.scss';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
-import { deleteDevice, saveDeviceSettings } from '../../../../store/project/actions';
-import { IProjectLoadingState, ITriggerResponse, IDevice } from '../../../../store/project/types';
-import { DeviceSettingsForm } from '../../../../components/forms';
-import { IDeviceSettingsFormDefaultState } from '../../../../components/forms/DeviceSettingsForm/definitions';
+import { saveUserProfile } from '../../../../store/user/actions';
+import { IUser } from '../../../../store/auth/types';
+import { IUserLoadingState } from '../../../../store/user/types';
+import { UserProfileForm } from '../../../../components/forms/UserProfileForm';
+import { IUserProfileFormDefaultState } from '../../../../components/forms/UserProfileForm/definitions';
 
 interface ProfileBaseProps {
-  saveDeviceSettings?: (values: IDeviceSettingsFormDefaultState) => void;
-  deleteDevice?: () => void;
-  settings?: ITriggerResponse;
-  loading?: IProjectLoadingState;
+  saveUserProfile?: (values: IUserProfileFormDefaultState) => void;
+  loading?: IUserLoadingState;
   router?: any;
-  currentDevice?: IDevice;
+  currentUser?: IUser;
 }
 
-export const ProfileBase: FunctionComponent<ProfileBaseProps> = ({
-  currentDevice,
-  deleteDevice,
-  saveDeviceSettings
-}) => {
-  if (!currentDevice) {
+export const ProfileBase: FunctionComponent<ProfileBaseProps> = ({ currentUser, saveUserProfile }) => {
+  if (!currentUser) {
     return <div>Account Profile</div>;
   }
 
-  const initialValues: IDeviceSettingsFormDefaultState = {
-    ...currentDevice,
-    location: currentDevice.deviceLocation,
-    deviceToken: (currentDevice.deviceTokens && currentDevice.deviceTokens.apiToken) || '',
-    clientSecret: (currentDevice.deviceTokens && currentDevice.deviceTokens.clientSecret) || ''
+  const initialValues: IUserProfileFormDefaultState = {
+    ...currentUser
   };
 
-  const onSubmit = (values: IDeviceSettingsFormDefaultState): void => {
-    if (saveDeviceSettings) {
-      saveDeviceSettings(values);
-    }
-  };
-
-  const onClickProjectDelete = (): void => {
-    if (deleteDevice) {
-      deleteDevice();
+  const onSubmit = (values: IUserProfileFormDefaultState): void => {
+    if (saveUserProfile) {
+      saveUserProfile(values);
     }
   };
 
   return (
     <div className="b-account-profile">
-      <DeviceSettingsForm
-        onSubmit={onSubmit}
-        initialValues={initialValues}
-        onClickDeviceDelete={onClickProjectDelete}
-      />
+      <UserProfileForm onSubmit={onSubmit} initialValues={initialValues} />
     </div>
   );
 };
 
 const mapStateToProps = (state: AppState): any => ({
-  currentDevice: state.project.currentDevice,
-  loading: state.project.loading
+  currentUser: state.user.currentUser,
+  loading: state.user.loading
 });
 
 export const Profile = connect(
   mapStateToProps,
-  { saveDeviceSettings, deleteDevice }
+  { saveUserProfile }
 )(ProfileBase);
