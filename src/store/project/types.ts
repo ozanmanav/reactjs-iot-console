@@ -17,7 +17,7 @@ export interface IProjectLoadingState {
   currentProject?: boolean;
   currentDevice?: boolean;
   devices?: boolean;
-  triggers?: boolean;
+
   activities?: boolean;
   deviceActivities?: boolean;
   deviceTokens?: boolean;
@@ -31,6 +31,7 @@ export interface IProjectLoadingState {
   deleteDevice?: boolean;
   addChart?: boolean;
   deviceCharts?: boolean;
+  deviceTriggers?: boolean;
   deviceChartsData?: boolean;
   saveDeviceSettings?: boolean;
   currentChart?: boolean;
@@ -73,7 +74,7 @@ export interface ITrigger {
 }
 
 export interface ITriggerResponse {
-  alarm: ITrigger[];
+  alert: ITrigger[];
   periodic: ITrigger[];
 }
 
@@ -97,9 +98,9 @@ export interface ProjectState {
   loading?: IProjectLoadingState;
   projects?: IProject[];
   devices?: IDevice[];
-  triggers?: ITriggerResponse;
   activities?: IActivity[];
   deviceActivities?: IActivity[];
+  deviceTriggers?: ITriggerResponse;
   currentProject?: IProject;
   currentDevice?: IDevice;
   deviceBrands?: any;
@@ -123,9 +124,6 @@ export const GET_DEVICES_FAILURE = '@@project/GET_DEVICES_FAILURE';
 export const GET_DEVICE_BY_ID = '@@project/GET_DEVICE_BY_ID';
 export const GET_DEVICE_BY_ID_SUCCESS = '@@project/GET_DEVICE_BY_ID_SUCCESS';
 export const GET_DEVICE_BY_ID_FAILURE = '@@project/GET_DEVICE_BY_ID_FAILURE';
-export const GET_TRIGGERS = '@@project/GET_TRIGGERS';
-export const GET_TRIGGERS_SUCCESS = '@@project/GET_TRIGGERS_SUCCESS';
-export const GET_TRIGGERS_FAILURE = '@@project/GET_TRIGGERS_FAILURE';
 export const GET_ACTIVITIES = '@@project/GET_ACTIVITIES';
 export const GET_ACTIVITIES_SUCCESS = '@@project/GET_ACTIVITIES_SUCCESS';
 export const GET_ACTIVITIES_FAILURE = '@@project/GET_ACTIVITIES_FAILURE';
@@ -180,6 +178,9 @@ export const GET_DEVICE_CHART_BY_ID_FAILURE = '@@project/GET_DEVICE_CHART_BY_ID_
 export const DELETE_DEVICE_CHART_BY_ID = '@@project/DELETE_DEVICE_CHART_BY_ID';
 export const DELETE_DEVICE_CHART_BY_ID_SUCCESS = '@@project/DELETE_DEVICE_CHART_BY_ID_SUCCESS';
 export const DELETE_DEVICE_CHART_BY_ID_FAILURE = '@@project/DELETE_DEVICE_CHART_BY_ID_FAILURE';
+export const GET_DEVICE_TRIGGERS = '@@project/GET_DEVICE_TRIGGERS';
+export const GET_DEVICE_TRIGGERS_SUCCESS = '@@project/GET_DEVICE_TRIGGERS_SUCCESS';
+export const GET_DEVICE_TRIGGERS_FAILURE = '@@project/GET_DEVICE_TRIGGERS_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -238,20 +239,6 @@ interface GetDeviceByIdSuccessAction {
 interface GetDeviceByIdFailureAction {
   type: typeof GET_DEVICE_BY_ID_FAILURE;
   payload?: IDevice;
-}
-
-interface GetTriggersAction {
-  type: typeof GET_TRIGGERS;
-}
-
-interface GetTriggersSuccessAction {
-  type: typeof GET_TRIGGERS_SUCCESS;
-  payload: ProjectState;
-}
-
-interface GetTriggersFailureAction {
-  type: typeof GET_TRIGGERS_FAILURE;
-  payload: ProjectState;
 }
 
 interface GetActivitiesAction {
@@ -338,6 +325,7 @@ interface GetDeviceBrandsFailureAction {
   type: typeof GET_DEVICE_BRANDS_FAILURE;
   payload: ProjectState;
 }
+
 export interface AddDeviceAction {
   type: typeof ADD_DEVICE;
   payload: IAddDeviceFormState;
@@ -513,6 +501,20 @@ interface DeleteChartByIdFailureAction {
   payload?: ProjectState;
 }
 
+interface GetDeviceTriggersAction {
+  type: typeof GET_DEVICE_TRIGGERS;
+}
+
+interface GetDeviceTriggersSuccessAction {
+  type: typeof GET_DEVICE_TRIGGERS_SUCCESS;
+  payload?: ProjectState;
+}
+
+interface GetDeviceTriggersFailureAction {
+  type: typeof GET_DEVICE_TRIGGERS_FAILURE;
+  payload?: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -523,9 +525,6 @@ export type ProjectActionTypes =
   | GetDevicesAction
   | GetDevicesSuccessAction
   | GetDevicesFailureAction
-  | GetTriggersAction
-  | GetTriggersSuccessAction
-  | GetTriggersFailureAction
   | GetActivitiesAction
   | GetActivitiesSuccessAction
   | GetActivitiesFailureAction
@@ -582,4 +581,7 @@ export type ProjectActionTypes =
   | GetChartByIdFailureAction
   | DeleteChartByIdAction
   | DeleteChartByIdFailureAction
-  | DeleteChartByIdSuccessAction;
+  | DeleteChartByIdSuccessAction
+  | GetDeviceTriggersAction
+  | GetDeviceTriggersSuccessAction
+  | GetDeviceTriggersFailureAction;

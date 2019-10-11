@@ -86,26 +86,6 @@ export function getDeviceByIdFailure(projects: ProjectState): ProjectActionTypes
   };
 }
 
-export function getTriggers(): ProjectActionTypes {
-  return {
-    type: types.GET_TRIGGERS
-  };
-}
-
-export function getTriggersSuccess(projects: ProjectState): ProjectActionTypes {
-  return {
-    type: types.GET_TRIGGERS_SUCCESS,
-    payload: projects
-  };
-}
-
-export function getTriggersFailure(projects: ProjectState): ProjectActionTypes {
-  return {
-    type: types.GET_TRIGGERS_FAILURE,
-    payload: projects
-  };
-}
-
 export function getActivities(): ProjectActionTypes {
   return {
     type: types.GET_ACTIVITIES
@@ -490,6 +470,26 @@ export function deleteDeviceChartByIdSuccess(projects: ProjectState): ProjectAct
 export function deleteDeviceChartByIdFailure(projects: ProjectState): ProjectActionTypes {
   return {
     type: types.DELETE_DEVICE_CHART_BY_ID_FAILURE,
+    payload: projects
+  };
+}
+
+export function getDeviceTriggers(): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_TRIGGERS
+  };
+}
+
+export function getDeviceTriggersSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_TRIGGERS_SUCCESS,
+    payload: projects
+  };
+}
+
+export function getDeviceTriggersFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_DEVICE_TRIGGERS_FAILURE,
     payload: projects
   };
 }

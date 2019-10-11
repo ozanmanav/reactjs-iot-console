@@ -10,7 +10,6 @@ import { Loading } from '../../../components/ui/loading';
 import { ProjectInfo } from './ProjectInfo';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Devices } from './Devices';
-import { Triggers } from './Triggers';
 import { Activities } from './Activities';
 import { Settings } from './Settings';
 
@@ -44,15 +43,11 @@ const ProjectBase: FunctionComponent<DetailsBaseProps> = ({ router, getProjectBy
       <Tabs className="b-project-details__tabs">
         <TabList>
           <Tab>Devices</Tab>
-          <Tab>Triggers</Tab>
           <Tab>Activity</Tab>
           <Tab>Settings</Tab>
         </TabList>
         <TabPanel>
           <Devices />
-        </TabPanel>
-        <TabPanel>
-          <Triggers />
         </TabPanel>
         <TabPanel>
           <Activities />

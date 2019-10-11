@@ -1,31 +1,35 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import './Triggers.scss';
-import { getTriggers } from '../../../../store/project/actions';
+import './DeviceTriggers.scss';
+import { getDeviceTriggers } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
 import { IProjectLoadingState, ITriggerResponse } from '../../../../store/project/types';
 import { TriggerCard } from '../../../../components/ui/cards';
 import { Loading } from '../../../../components/ui/loading';
 
-interface TriggersBaseProps {
-  getTriggers: typeof getTriggers;
+interface DeviceTriggersBaseProps {
+  getDeviceTriggers: typeof getDeviceTriggers;
   triggers?: ITriggerResponse;
   loading?: IProjectLoadingState;
   router?: any;
 }
 
-export const TriggersBase: FunctionComponent<TriggersBaseProps> = ({ triggers, getTriggers, loading }) => {
+export const DeviceTriggersBase: FunctionComponent<DeviceTriggersBaseProps> = ({
+  triggers,
+  getDeviceTriggers,
+  loading
+}) => {
   useEffect(() => {
-    getTriggers();
-  }, [getTriggers]);
+    getDeviceTriggers();
+  }, [getDeviceTriggers]);
 
   return (
     <div className="b-project-triggers-details">
       <div className="b-project-triggers">
-        {loading && loading.triggers ? (
+        {loading && loading.deviceTriggers ? (
           <Loading className="b-project-triggers-loader" />
         ) : (
-          triggers && triggers.alarm && triggers.alarm.map(trigger => <TriggerCard trigger={trigger} />)
+          triggers && triggers.alert && triggers.alert.map(trigger => <TriggerCard trigger={trigger} />)
         )}
       </div>
     </div>
@@ -33,11 +37,11 @@ export const TriggersBase: FunctionComponent<TriggersBaseProps> = ({ triggers, g
 };
 
 const mapStateToProps = (state: AppState) => ({
-  triggers: state.project.triggers,
+  deviceTriggers: state.project.deviceTriggers,
   loading: state.project.loading
 });
 
-export const Triggers = connect(
+export const DeviceTriggers = connect(
   mapStateToProps,
-  { getTriggers }
-)(TriggersBase);
+  { getDeviceTriggers }
+)(DeviceTriggersBase);

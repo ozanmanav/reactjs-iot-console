@@ -12,6 +12,7 @@ import BreadcrumbsAdv from '../../../components/ui/breadcrumbs-adv/BreadcrumbsAd
 import { DeviceActivities } from './DeviceActivities';
 import { DeviceSettings } from './DeviceSettings';
 import { DeviceCharts } from './DeviceCharts';
+import { DeviceTriggers } from './DeviceTriggers';
 
 interface DetailsBaseProps extends RouteComponentProps {
   getDeviceById?: typeof getDeviceById;
@@ -51,7 +52,9 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
         <TabPanel>
           <DeviceCharts />
         </TabPanel>
-        <TabPanel>Triggers</TabPanel>
+        <TabPanel>
+          <DeviceTriggers />
+        </TabPanel>
         <TabPanel>
           <DeviceActivities />
         </TabPanel>

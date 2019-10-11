@@ -34,7 +34,6 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.GET_PROJECT_BY_ID, projectSaga.requestGetProjectById),
     takeLatest(projectTypes.GET_DEVICES, projectSaga.requestGetDevices),
     takeLatest(projectTypes.GET_DEVICE_BY_ID, projectSaga.requestGetDeviceById),
-    takeLatest(projectTypes.GET_TRIGGERS, projectSaga.requestGetTriggers),
     takeLatest(projectTypes.GET_ACTIVITIES, projectSaga.requestGetActivities),
     takeLatest(projectTypes.GET_DEVICE_ACTIVITIES, projectSaga.requestGetDeviceActivities),
     takeLatest(projectTypes.GET_DEVICE_TOKENS, projectSaga.requestGetDeviceTokens),
@@ -52,6 +51,7 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.SAVE_DEVICE_SETTINGS, projectSaga.requestSaveDeviceSettings),
     takeLatest(projectTypes.GET_DEVICE_CHART_BY_ID, projectSaga.requestGetDeviceChartById),
     takeLatest(projectTypes.DELETE_DEVICE_CHART_BY_ID, projectSaga.requestDeleteDeviceChartById),
+    takeLatest(projectTypes.GET_DEVICE_TRIGGERS, projectSaga.requestGetDeviceTriggers),
 
     // Redux-Persist Watcher
     takeLatest(REHYDRATE, authSaga.requestCheckPersistError),

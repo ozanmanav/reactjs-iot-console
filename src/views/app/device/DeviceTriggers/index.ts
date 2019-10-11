@@ -1,0 +1,1 @@
+export { DeviceTriggers } from './DeviceTriggers';

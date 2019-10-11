@@ -7,7 +7,7 @@ export const ProjectInitialState: ProjectState = {
     currentProject: false,
     devices: false,
     currentDevice: false,
-    triggers: false,
+    deviceTriggers: false,
     activities: false,
     deviceActivities: false,
     deviceTokens: false,
@@ -23,7 +23,7 @@ export const ProjectInitialState: ProjectState = {
   activities: [],
   deviceActivities: [],
   deviceEntities: [],
-  triggers: {} as ITriggerResponse,
+  deviceTriggers: {} as ITriggerResponse,
   currentProject: undefined,
   currentDevice: undefined,
   error: undefined
@@ -139,36 +139,6 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
           currentDevice: false
         },
         currentDevice: undefined
-      };
-    }
-    case types.GET_TRIGGERS: {
-      return {
-        ...state,
-        loading: {
-          ...state.loading,
-          triggers: true
-        },
-        triggers: {} as ITriggerResponse
-      };
-    }
-    case types.GET_TRIGGERS_SUCCESS: {
-      return {
-        ...state,
-        loading: {
-          ...state.loading,
-          triggers: false
-        },
-        ...action.payload
-      };
-    }
-    case types.GET_TRIGGERS_FAILURE: {
-      return {
-        ...state,
-        loading: {
-          ...state.loading,
-          triggers: false
-        },
-        triggers: {} as ITriggerResponse
       };
     }
     case types.GET_ACTIVITIES: {
@@ -683,6 +653,36 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
           currentChart: false
         },
         currentChart: undefined
+      };
+    }
+    case types.GET_DEVICE_TRIGGERS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceTriggers: true
+        },
+        deviceTriggers: {} as ITriggerResponse
+      };
+    }
+    case types.GET_DEVICE_TRIGGERS_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceTriggers: false
+        },
+        ...action.payload
+      };
+    }
+    case types.GET_DEVICE_TRIGGERS_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          deviceTriggers: false
+        },
+        deviceTriggers: {} as ITriggerResponse
       };
     }
     default:

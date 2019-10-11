@@ -106,33 +106,6 @@ export function* requestGetDeviceById(data: any) {
   }
 }
 
-export function* requestGetTriggers() {
-  try {
-    const currentProject: IProject = yield select(state => state.project.currentProject);
-
-    if (!currentProject || !currentProject.id) {
-      return yield put(
-        actions.getTriggersFailure({
-          error: 'Not current project selected'
-        })
-      );
-    }
-
-    const triggersResponse = yield call(getRequest, `/project/${currentProject.id}/triggers`);
-
-    yield put(
-      actions.getTriggersSuccess({
-        triggers: {
-          alarm: triggersResponse.data.alarm,
-          periodic: triggersResponse.data.periodic
-        }
-      })
-    );
-  } catch (error) {
-    yield put(actions.getTriggersFailure({ error }));
-  }
-}
-
 export function* requestGetActivities() {
   try {
     const currentProject: IProject = yield select(state => state.project.currentProject);
@@ -630,5 +603,36 @@ export function* requestDeleteDeviceChartById(data: any) {
     yield put(push(`/app/projects/${currentProject.id}/devices/${currentDevice.id}`));
   } catch (error) {
     yield put(actions.deleteDeviceChartByIdFailure({ error }));
+  }
+}
+
+export function* requestGetDeviceTriggers() {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice || !currentDevice.id) {
+      return yield put(
+        actions.getDeviceTriggersFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const triggersResponse = yield call(
+      getRequest,
+      `/project/${currentProject.id}/device/${currentDevice.id}/triggers`
+    );
+
+    yield put(
+      actions.getDeviceTriggersSuccess({
+        deviceTriggers: {
+          alert: triggersResponse.data.Alert,
+          periodic: triggersResponse.data.Periodic
+        }
+      })
+    );
+  } catch (error) {
+    yield put(actions.getDeviceTriggersFailure({ error }));
   }
 }
