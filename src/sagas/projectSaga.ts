@@ -636,3 +636,17 @@ export function* requestGetDeviceTriggers() {
     yield put(actions.getDeviceTriggersFailure({ error }));
   }
 }
+
+export function* requestGetTriggerTypes() {
+  try {
+    const triggerTypesResponse = yield call(getRequest, `trigger/types`);
+
+    yield put(
+      actions.getTriggerTypesSuccess({
+        triggerTypes: triggerTypesResponse.data.Types
+      })
+    );
+  } catch (error) {
+    yield put(actions.getTriggerTypesFailure({ error }));
+  }
+}

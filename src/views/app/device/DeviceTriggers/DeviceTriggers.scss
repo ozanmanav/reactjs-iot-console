@@ -1,6 +1,6 @@
 @import '../../../../styles/variables';
 
-.b-project-triggers {
+.b-device-triggers {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -11,8 +11,28 @@
     left: calc(40%);
   }
 
+  &__add-trigger-button {
+    margin-top: 10px;
+    margin-right: 10px;
+    display: flex;
+
+    justify-content: flex-end;
+    color: $primary;
+    a,
+    a:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+    &_icon {
+      height: 20px;
+      width: 20px;
+      margin-left: 10px;
+      margin-right: 6px;
+    }
+  }
+
   &-details {
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
 

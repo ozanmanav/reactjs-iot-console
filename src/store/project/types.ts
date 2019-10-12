@@ -17,7 +17,6 @@ export interface IProjectLoadingState {
   currentProject?: boolean;
   currentDevice?: boolean;
   devices?: boolean;
-
   activities?: boolean;
   deviceActivities?: boolean;
   deviceTokens?: boolean;
@@ -35,6 +34,8 @@ export interface IProjectLoadingState {
   deviceChartsData?: boolean;
   saveDeviceSettings?: boolean;
   currentChart?: boolean;
+  triggerTypes?: boolean;
+  addTrigger?: boolean;
 }
 
 export interface IDeviceToken {
@@ -109,6 +110,7 @@ export interface ProjectState {
   deviceCharts?: IChart[];
   deviceChartsData?: any;
   currentChart?: IChart;
+  triggerTypes?: any;
   error?: string;
 }
 
@@ -181,6 +183,9 @@ export const DELETE_DEVICE_CHART_BY_ID_FAILURE = '@@project/DELETE_DEVICE_CHART_
 export const GET_DEVICE_TRIGGERS = '@@project/GET_DEVICE_TRIGGERS';
 export const GET_DEVICE_TRIGGERS_SUCCESS = '@@project/GET_DEVICE_TRIGGERS_SUCCESS';
 export const GET_DEVICE_TRIGGERS_FAILURE = '@@project/GET_DEVICE_TRIGGERS_FAILURE';
+export const GET_TRIGGER_TYPES = '@@project/GET_TRIGGER_TYPES';
+export const GET_TRIGGER_TYPES_SUCCESS = '@@project/GET_TRIGGER_TYPES_SUCCESS';
+export const GET_TRIGGER_TYPES_FAILURE = '@@project/GET_TRIGGER_TYPESFAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -515,6 +520,20 @@ interface GetDeviceTriggersFailureAction {
   payload?: ProjectState;
 }
 
+interface GetTriggerTypesAction {
+  type: typeof GET_TRIGGER_TYPES;
+}
+
+interface GetTriggerTypesSuccessAction {
+  type: typeof GET_TRIGGER_TYPES_SUCCESS;
+  payload: ProjectState;
+}
+
+interface GetTriggerTypesFailureAction {
+  type: typeof GET_TRIGGER_TYPES_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -584,4 +603,7 @@ export type ProjectActionTypes =
   | DeleteChartByIdSuccessAction
   | GetDeviceTriggersAction
   | GetDeviceTriggersSuccessAction
-  | GetDeviceTriggersFailureAction;
+  | GetDeviceTriggersFailureAction
+  | GetTriggerTypesAction
+  | GetTriggerTypesSuccessAction
+  | GetTriggerTypesFailureAction;

@@ -493,3 +493,23 @@ export function getDeviceTriggersFailure(projects: ProjectState): ProjectActionT
     payload: projects
   };
 }
+
+export function getTriggerTypes(): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_TYPES
+  };
+}
+
+export function getTriggerTypesSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_TYPES_SUCCESS,
+    payload: projects
+  };
+}
+
+export function getTriggerTypesFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_TYPES_FAILURE,
+    payload: projects
+  };
+}

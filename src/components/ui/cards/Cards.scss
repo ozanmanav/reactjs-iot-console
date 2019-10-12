@@ -205,6 +205,23 @@
     }
   }
 
+  &__periodic-trigger-entity-card {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    position: relative;
+    max-width: 295px;
+    border-radius: 6px;
+    border: solid 1px #d8d8d8;
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    &__header {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
   &__summary-card {
     display: flex;
     flex-direction: column;

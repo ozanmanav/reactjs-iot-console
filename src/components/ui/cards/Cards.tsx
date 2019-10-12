@@ -113,8 +113,7 @@ const chartTypes = [
 
 interface IEntityCardProps {
   entityName: string;
-
-  onlyScatter: boolean;
+  onlyScatter?: boolean;
   addEntity: (selectedEntity: ISelectEntity) => void;
   removeEntity: (key: string) => void;
 }
@@ -129,7 +128,7 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({
   entityName,
   addEntity,
   removeEntity,
-  onlyScatter
+  onlyScatter = false
 }) => {
   const [selectedType, setSelectedType] = useState<ISelectOption>({
     label: 'Line',
@@ -197,6 +196,40 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({
       </div>
 
       <Select options={chartTypes} onChange={onChangeChartType} isDisabled={onlyScatter} value={selectedType} />
+    </div>
+  );
+};
+
+interface ITriggerEntityCardProps {
+  entityName: string;
+  addEntity: (selectedEntity: ISelectEntity) => void;
+  removeEntity: (key: string) => void;
+}
+
+export interface ISelectEntity {
+  type: string;
+  key: string;
+  color: string;
+}
+
+export const PeriodicTriggerEntityCard: FunctionComponent<ITriggerEntityCardProps> = ({
+  entityName,
+  addEntity,
+  removeEntity
+}) => {
+  const onChangeActive = (event: React.FormEvent<HTMLInputElement>) => {
+    // if (event.currentTarget.checked) {
+    //   addEntity({ key: entityName });
+    // } else {
+    //   removeEntity(entityName);
+    // }
+  };
+
+  return (
+    <div className="c-card__periodic-trigger-entity-card">
+      <div className="c-card__periodic-trigger-entity-card__header">
+        <Checkbox label={entityName} onChangeCapture={onChangeActive} marginBottom="none" />
+      </div>
     </div>
   );
 };

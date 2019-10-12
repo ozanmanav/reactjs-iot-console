@@ -20,7 +20,16 @@ const DeviceBreadcrumbAddChartBase: FunctionComponent = () => {
   );
 };
 
+const DeviceBreadcrumbAddTriggerBase: FunctionComponent = () => {
+  return (
+    <>
+      <DeviceBreadcrumbBase /> Add Trigger
+    </>
+  );
+};
+
 const DeviceBreadcrumb = connect(mapStateToProps)(DeviceBreadcrumbBase);
 const DeviceBreadcrumbAddChart = connect(mapStateToProps)(DeviceBreadcrumbAddChartBase);
+const DeviceBreadcrumbAddTrigger = connect(mapStateToProps)(DeviceBreadcrumbAddTriggerBase);
 
-export { DeviceBreadcrumb, DeviceBreadcrumbAddChart };
+export { DeviceBreadcrumb, DeviceBreadcrumbAddChart, DeviceBreadcrumbAddTrigger };

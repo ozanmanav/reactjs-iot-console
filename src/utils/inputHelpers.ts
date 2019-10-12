@@ -8,6 +8,8 @@ export interface IModelOption extends ISelectOption {
   image?: object;
 }
 
+export interface ITriggerTypeOption extends ISelectOption {}
+
 export function getDeviceBrandOptions(brands: [] = []): IBrandOption[] {
   return brands
     ? brands.map(({ id, brand, image }) => ({
@@ -24,6 +26,15 @@ export function getDeviceModelOptions(models: [] = []): ISelectOption[] {
         value: id,
         label: model,
         image
+      }))
+    : [];
+}
+
+export function getTriggerTypeOptions(triggerTypes: [] = []): ISelectOption[] {
+  return triggerTypes
+    ? triggerTypes.map(({ id, name, image }) => ({
+        value: id,
+        label: name
       }))
     : [];
 }
