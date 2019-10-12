@@ -513,3 +513,23 @@ export function getTriggerTypesFailure(projects: ProjectState): ProjectActionTyp
     payload: projects
   };
 }
+
+export function getTriggerIntegrations(): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_INTEGRATIONS
+  };
+}
+
+export function getTriggerIntegrationsSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_INTEGRATIONS_SUCCESS,
+    payload: projects
+  };
+}
+
+export function getTriggerIntegrationsFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_INTEGRATIONS_FAILURE,
+    payload: projects
+  };
+}

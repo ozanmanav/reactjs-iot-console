@@ -200,35 +200,101 @@ export const EntityCard: FunctionComponent<IEntityCardProps> = ({
   );
 };
 
-interface ITriggerEntityCardProps {
+export interface ITriggerSelectEntity {
+  key: string;
+  min?: string;
+  max?: string;
+}
+
+interface IPeriodicTriggerEntityCardProps {
   entityName: string;
-  addEntity: (selectedEntity: ISelectEntity) => void;
+  addEntity: (selectedEntity: ITriggerSelectEntity) => void;
   removeEntity: (key: string) => void;
 }
 
-export interface ISelectEntity {
-  type: string;
-  key: string;
-  color: string;
-}
-
-export const PeriodicTriggerEntityCard: FunctionComponent<ITriggerEntityCardProps> = ({
+export const PeriodicTriggerEntityCard: FunctionComponent<IPeriodicTriggerEntityCardProps> = ({
   entityName,
   addEntity,
   removeEntity
 }) => {
   const onChangeActive = (event: React.FormEvent<HTMLInputElement>) => {
-    // if (event.currentTarget.checked) {
-    //   addEntity({ key: entityName });
-    // } else {
-    //   removeEntity(entityName);
-    // }
+    if (event.currentTarget.checked) {
+      const entity: ITriggerSelectEntity = { key: entityName };
+      addEntity(entity);
+    } else {
+      removeEntity(entityName);
+    }
   };
 
   return (
     <div className="c-card__periodic-trigger-entity-card">
       <div className="c-card__periodic-trigger-entity-card__header">
         <Checkbox label={entityName} onChangeCapture={onChangeActive} marginBottom="none" />
+      </div>
+    </div>
+  );
+};
+
+interface IAlertTriggerEntityCardProps {
+  entityName: string;
+  addEntity: (selectedEntity: ITriggerSelectEntity) => void;
+  removeEntity: (key: string) => void;
+}
+
+export const AlertTriggerEntityCard: FunctionComponent<IAlertTriggerEntityCardProps> = ({
+  entityName,
+  addEntity,
+  removeEntity
+}) => {
+  const [isEntityActive, setIsEntityActive] = useState(false);
+  const [min, setMin] = useState('0');
+  const [max, setMax] = useState('0');
+
+  const onChangeActive = (event: React.FormEvent<HTMLInputElement>) => {
+    setIsEntityActive(event.currentTarget.checked);
+
+    if (event.currentTarget.checked) {
+      const entity: ITriggerSelectEntity = { key: entityName, min, max };
+      addEntity(entity);
+    } else {
+      removeEntity(entityName);
+    }
+  };
+
+  const onChangeMin = (event: React.FormEvent<HTMLInputElement>) => {
+    setMin(event.currentTarget.value);
+  };
+
+  const onChangeMax = (event: React.FormEvent<HTMLInputElement>) => {
+    setMax(event.currentTarget.value);
+  };
+
+  return (
+    <div className="c-card__alert-trigger-entity-card">
+      <div className="c-card__alert-trigger-entity-card__header">
+        <Checkbox label={entityName} onChangeCapture={onChangeActive} marginBottom="none" />
+      </div>
+      <div className="row">
+        <div className="col-6">
+          <Input
+            placeholder="Min"
+            name="min"
+            type="number"
+            marginBottom="none"
+            onChangeCapture={onChangeMin}
+            disabled={!isEntityActive}
+          />
+        </div>
+        <div className="col-6">
+          <Input
+            placeholder="Max"
+            name="max"
+            type="number"
+            marginBottom="none"
+            onChangeCapture={onChangeMax}
+            disabled={!isEntityActive}
+          />
+        </div>
       </div>
     </div>
   );

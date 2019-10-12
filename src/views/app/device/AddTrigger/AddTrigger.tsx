@@ -4,19 +4,26 @@ import { RouteComponentProps } from 'react-router';
 import BreadcrumbsAdv from '../../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 import { AppState } from '../../../../store';
 import { connect } from 'react-redux';
-import { getDeviceEntities, addDeviceChart, getTriggerTypes } from '../../../../store/project/actions';
+import {
+  getDeviceEntities,
+  addDeviceChart,
+  getTriggerTypes,
+  getTriggerIntegrations
+} from '../../../../store/project/actions';
 import { IProjectLoadingState } from '../../../../store/project/types';
-import { IAddChartFormState } from '../../../../components/forms/AddChartForm/definitions';
 import { AddTriggerForm } from '../../../../components/forms/AddTriggerForm/AddTriggerForm';
-import { getTriggerTypeOptions } from '../../../../utils';
+import { getTriggerTypeOptions, getTriggerIntegrationOptions } from '../../../../utils';
+import { IAddTriggerFormState } from '../../../../components/forms/AddTriggerForm/definitions';
 
 interface AddTriggerBaseProps {
   getDeviceEntities: typeof getDeviceEntities;
   getTriggerTypes: typeof getTriggerTypes;
+  getTriggerIntegrations: typeof getTriggerIntegrations;
   addDeviceChart: typeof addDeviceChart;
   projectLoading?: IProjectLoadingState;
   deviceEntities: {};
   triggerTypes: [];
+  triggerIntegrations: [];
 }
 
 export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerBaseProps> = ({
@@ -25,18 +32,19 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
   getDeviceEntities,
   getTriggerTypes,
   addDeviceChart,
-  triggerTypes
+  getTriggerIntegrations,
+  triggerTypes,
+  triggerIntegrations
 }) => {
   useEffect(() => {
     getDeviceEntities();
-  }, [getDeviceEntities]);
-
-  useEffect(() => {
+    getTriggerIntegrations();
     getTriggerTypes();
-  }, [getTriggerTypes]);
+  }, []);
 
-  const onSubmit = (values: IAddChartFormState): void => {
-    addDeviceChart(values);
+  const onSubmit = (values: IAddTriggerFormState): void => {
+    console.log(values);
+    // addDeviceChart(values);
   };
 
   return (
@@ -50,6 +58,7 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
         loading={projectLoading || undefined}
         deviceEntities={deviceEntities}
         triggerTypeOptions={getTriggerTypeOptions(triggerTypes)}
+        triggerIntegrationOptions={getTriggerIntegrationOptions(triggerIntegrations)}
       />
     </div>
   );
@@ -58,10 +67,11 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
 const mapStateToProps = (state: AppState) => ({
   projectLoading: state.project.loading,
   deviceEntities: state.project.deviceEntities,
-  triggerTypes: state.project.triggerTypes
+  triggerTypes: state.project.triggerTypes,
+  triggerIntegrations: state.project.triggerIntegrations
 });
 
 export const AddTrigger = connect(
   mapStateToProps,
-  { getDeviceEntities, addDeviceChart, getTriggerTypes }
+  { getDeviceEntities, addDeviceChart, getTriggerTypes, getTriggerIntegrations }
 )(AddTriggerBase);

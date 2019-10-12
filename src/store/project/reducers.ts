@@ -26,6 +26,7 @@ export const ProjectInitialState: ProjectState = {
   deviceBrands: [],
   deviceModels: [],
   triggerTypes: [],
+  triggerIntegrations: [],
   deviceTriggers: {} as ITriggerResponse,
   currentProject: undefined,
   currentDevice: undefined,
@@ -713,6 +714,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         loading: {
           ...state.loading,
           triggerTypes: false
+        }
+      };
+    }
+    case types.GET_TRIGGER_INTEGRATIONS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          triggerIntegrations: true
+        }
+      };
+    }
+    case types.GET_TRIGGER_INTEGRATIONS_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          triggerIntegrations: false
+        },
+        ...action.payload
+      };
+    }
+    case types.GET_TRIGGER_INTEGRATIONS_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          triggerIntegrations: false
         }
       };
     }

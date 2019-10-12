@@ -10,6 +10,8 @@ export interface IModelOption extends ISelectOption {
 
 export interface ITriggerTypeOption extends ISelectOption {}
 
+export interface ITriggerIntegrationOption extends ISelectOption {}
+
 export function getDeviceBrandOptions(brands: [] = []): IBrandOption[] {
   return brands
     ? brands.map(({ id, brand, image }) => ({
@@ -35,6 +37,15 @@ export function getTriggerTypeOptions(triggerTypes: [] = []): ISelectOption[] {
     ? triggerTypes.map(({ id, name, image }) => ({
         value: id,
         label: name
+      }))
+    : [];
+}
+
+export function getTriggerIntegrationOptions(triggerIntegrations: [] = []): ISelectOption[] {
+  return triggerIntegrations
+    ? triggerIntegrations.map(({ id, brand, image }) => ({
+        value: id,
+        label: brand
       }))
     : [];
 }

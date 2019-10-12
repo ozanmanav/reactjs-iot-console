@@ -35,6 +35,7 @@ export interface IProjectLoadingState {
   saveDeviceSettings?: boolean;
   currentChart?: boolean;
   triggerTypes?: boolean;
+  triggerIntegrations?: boolean;
   addTrigger?: boolean;
 }
 
@@ -111,6 +112,7 @@ export interface ProjectState {
   deviceChartsData?: any;
   currentChart?: IChart;
   triggerTypes?: any;
+  triggerIntegrations?: any;
   error?: string;
 }
 
@@ -185,7 +187,10 @@ export const GET_DEVICE_TRIGGERS_SUCCESS = '@@project/GET_DEVICE_TRIGGERS_SUCCES
 export const GET_DEVICE_TRIGGERS_FAILURE = '@@project/GET_DEVICE_TRIGGERS_FAILURE';
 export const GET_TRIGGER_TYPES = '@@project/GET_TRIGGER_TYPES';
 export const GET_TRIGGER_TYPES_SUCCESS = '@@project/GET_TRIGGER_TYPES_SUCCESS';
-export const GET_TRIGGER_TYPES_FAILURE = '@@project/GET_TRIGGER_TYPESFAILURE';
+export const GET_TRIGGER_TYPES_FAILURE = '@@project/GET_TRIGGER_TYPES_FAILURE';
+export const GET_TRIGGER_INTEGRATIONS = '@@project/GET_TRIGGER_INTEGRATIONS';
+export const GET_TRIGGER_INTEGRATIONS_SUCCESS = '@@project/GET_TRIGGER_INTEGRATIONS_SUCCESS';
+export const GET_TRIGGER_INTEGRATIONS_FAILURE = '@@project/GET_TRIGGER_INTEGRATIONS_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -534,6 +539,20 @@ interface GetTriggerTypesFailureAction {
   payload: ProjectState;
 }
 
+interface GetTriggerIntegrationsAction {
+  type: typeof GET_TRIGGER_INTEGRATIONS;
+}
+
+interface GetTriggerIntegrationsSuccessAction {
+  type: typeof GET_TRIGGER_INTEGRATIONS_SUCCESS;
+  payload: ProjectState;
+}
+
+interface GetTriggerIntegrationsFailureAction {
+  type: typeof GET_TRIGGER_INTEGRATIONS_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -606,4 +625,7 @@ export type ProjectActionTypes =
   | GetDeviceTriggersFailureAction
   | GetTriggerTypesAction
   | GetTriggerTypesSuccessAction
-  | GetTriggerTypesFailureAction;
+  | GetTriggerTypesFailureAction
+  | GetTriggerIntegrationsAction
+  | GetTriggerIntegrationsSuccessAction
+  | GetTriggerIntegrationsFailureAction;

@@ -650,3 +650,17 @@ export function* requestGetTriggerTypes() {
     yield put(actions.getTriggerTypesFailure({ error }));
   }
 }
+
+export function* requestGetTriggerIntegrations() {
+  try {
+    const triggerIntegrationsResponse = yield call(getRequest, `trigger/integrations`);
+
+    yield put(
+      actions.getTriggerIntegrationsSuccess({
+        triggerIntegrations: triggerIntegrationsResponse.data.Integrations
+      })
+    );
+  } catch (error) {
+    yield put(actions.getTriggerIntegrationsFailure({ error }));
+  }
+}

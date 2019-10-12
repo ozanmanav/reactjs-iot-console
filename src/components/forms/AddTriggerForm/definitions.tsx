@@ -2,19 +2,26 @@ import { FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 import { IProjectLoadingState } from '../../../store/project/types';
-import { ISelectEntity } from '../../ui/cards';
-import { ITriggerTypeOption } from '../../../utils';
+import { ISelectEntity, ITriggerSelectEntity } from '../../ui/cards';
+import { ITriggerTypeOption, ITriggerIntegrationOption } from '../../../utils';
 
 export const AddTriggerFormDefaultState = {
   name: '',
   triggerType: '',
-  elements: []
+  integration: '',
+  integrationWebhook: '',
+  thresholds: []
 };
 
 export interface IAddTriggerFormState {
   name: string;
   triggerType: string;
-  elements: ISelectEntity[];
+  integration: string;
+  integrationWebhook: string;
+  thresholds: ITriggerSelectEntity[];
+  deviceEntities?: any;
+  triggerTypeOptions?: ITriggerTypeOption[];
+  triggerIntegrationOptions?: ITriggerIntegrationOption[];
 }
 
 export interface IAddTriggerFormBaseProps extends FormikProps<IAddTriggerFormState> {
@@ -25,6 +32,7 @@ export interface IAddTriggerFormProps {
   deviceEntities?: any;
   loading?: IProjectLoadingState;
   triggerTypeOptions?: ITriggerTypeOption[];
+  triggerIntegrationOptions?: ITriggerIntegrationOption[];
   onSubmit: (state: IAddTriggerFormState) => void;
   initialValues?: IAddTriggerFormState;
 }
