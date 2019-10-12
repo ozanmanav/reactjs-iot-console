@@ -136,13 +136,26 @@
           }
         }
 
-        &-delete-button {
+        &-cancel-button {
+          margin-right: 5px;
           height: 40px;
           color: #fff;
-          background-color: #ff8c97;
+          background-color: #9b9b9b;
           &:hover {
             color: #fff;
-            background-color: red;
+            background-color: #585858;
+          }
+        }
+
+        &-delete-button {
+          height: 40px;
+          border: none;
+          box-shadow: none;
+          color: red;
+          background-color: #fff;
+          margin-right: 5px;
+          &:hover {
+            background-color: #fff;
           }
         }
         &-details-button {

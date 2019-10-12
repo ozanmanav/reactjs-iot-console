@@ -6,7 +6,7 @@ import { IDevice, ITrigger, IChart } from '../../../store/project/types';
 import classNames from 'classnames';
 import DeviceImageStatic from '../../../icons/raspberry.png';
 import { TwitterPicker, ColorChangeHandler, ColorResult } from 'react-color';
-import { Checkbox, Select, ISelectOption } from '../inputs';
+import { Checkbox, Select, ISelectOption, Input } from '../inputs';
 import { ValueType } from 'react-select/src/types';
 import {
   ComposedChart,
@@ -210,6 +210,7 @@ export interface IDeviceChartCardProps {
   showDeleteButton?: boolean;
   showTooltip?: boolean;
   onClickDelete?: () => void;
+  onClickSave?: (newData: any) => void;
 }
 
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
@@ -219,17 +220,47 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   showEditButton = false,
   showDeleteButton = false,
   showTooltip = false,
-  onClickDelete
+  onClickDelete,
+  onClickSave
 }) => {
+  const [editModeActive, setEditModeActive] = useState(false);
+
+  const toggleEditMode = () => {
+    setEditModeActive(prevEditModeActive => !prevEditModeActive);
+  };
+
   return (
     <div className="c-card__graph-card _cursor-pointer" key={_id}>
       <div className="c-card__graph-card__info">
-        <div className="c-card__graph-card__info-title">{name}</div>
+        <div className="c-card__graph-card__info-title">
+          {editModeActive ? (
+            <>
+              <Input placeholder="E-mail" name="email" className="mt-15" marginBottom="none" value={name} />
+            </>
+          ) : (
+            name
+          )}
+        </div>
         <div>
           {showDeleteButton && (
             <Button text="Delete Chart" className="c-card__graph-card__info-delete-button" onClick={onClickDelete} />
           )}
-          {showEditButton && <Button text="Edit Chart" className="c-card__graph-card__info-edit-button" />}
+          {editModeActive ? (
+            <>
+              <Button text="Cancel" className="c-card__graph-card__info-cancel-button" onClick={toggleEditMode} />
+              <Button
+                text="Save"
+                primary
+                className="c-card__graph-card__info-edit-button"
+                type="submit"
+                onClick={onClickSave}
+              />
+            </>
+          ) : (
+            showEditButton && (
+              <Button text="Edit Chart" className="c-card__graph-card__info-edit-button" onClick={toggleEditMode} />
+            )
+          )}
         </div>
       </div>
       <div className="c-card__graph-card__graph _cursor-pointer">
@@ -354,8 +385,13 @@ export const DeviceChartSummaryCard: FunctionComponent<IDeviceChartSummaryCardPr
           <div className="c-card__summary-card__values-value__label">Min Value</div>
         </div>
         <div className="c-card__summary-card__values-value">
-          <div className="c-card__summary-card__values-value__data">{summaryData.average}</div>
-          <div className="c-card__summary-card__values-value__label">Average</div>
+          {summaryData.average && (
+            <>
+              {' '}
+              <div className="c-card__summary-card__values-value__data">{summaryData.average}</div>
+              <div className="c-card__summary-card__values-value__label">Average</div>{' '}
+            </>
+          )}
         </div>
       </div>
     </div>
