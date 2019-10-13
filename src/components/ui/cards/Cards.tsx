@@ -411,14 +411,16 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
               </defs>
               {elements.map(element => {
                 switch (element.type) {
-                  case 'Line':
+                  case 'Area':
                     return (
-                      <Line
-                        key={`cg-line-${_id}-${element.type}-${element.key}-${element.color}`}
+                      <Area
+                        key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
                         dataKey={element.key}
+                        fill={`url(#${element.key}-def)`}
                         stroke={element.color}
-                        activeDot={true}
+                        activeDot={false}
                         dot={false}
+                        type="monotone"
                       />
                     );
                   case 'Bar':
@@ -430,16 +432,15 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
                         barSize={45}
                       />
                     );
-                  case 'Area':
+                  case 'Line':
                     return (
-                      <Area
-                        key={`cg-area-${_id}-${element.type}-${element.key}-${element.color}`}
+                      <Line
+                        key={`cg-line-${_id}-${element.type}-${element.key}-${element.color}`}
                         dataKey={element.key}
-                        fill={`url(#${element.key}-def)`}
                         stroke={element.color}
-                        activeDot={false}
-                        dot={false}
+                        activeDot={true}
                         type="monotone"
+                        dot={false}
                       />
                     );
                   default:

@@ -15,7 +15,6 @@ interface DeviceTriggersBaseProps {
   currentDevice?: IDevice;
   triggers?: ITriggerResponse;
   loading?: IProjectLoadingState;
-  router?: any;
 }
 
 export const DeviceTriggersBase: FunctionComponent<DeviceTriggersBaseProps> = ({

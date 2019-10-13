@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  overflow: auto;
 
   &-details {
     margin-top: 20px;
@@ -11,6 +12,8 @@
     flex-direction: column;
 
     &__devices {
+      max-height: 73vh;
+      overflow: auto;
       &-card {
         margin-top: 10px;
       }

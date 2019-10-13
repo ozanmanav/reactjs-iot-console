@@ -9,12 +9,17 @@ interface Column {
   [rest: string]: any;
 }
 
-export const normalizeDataForTable = (deviceChartsData: any) => {
-  if (!deviceChartsData || deviceChartsData.length < 1) {
+interface IRow {
+  [rest: string]: any;
+  clickEvent?: (() => void) | undefined;
+}
+
+export const normalizeDataForTable = (data: any) => {
+  if (!data || data.length < 1) {
     return undefined;
   }
 
-  const columns: Column[] = Object.keys(deviceChartsData[0]).map(columnName => {
+  const columns: Column[] = Object.keys(data[0]).map(columnName => {
     return {
       label: columnName,
       field: columnName,
@@ -23,7 +28,9 @@ export const normalizeDataForTable = (deviceChartsData: any) => {
     };
   });
 
-  return { columns, rows: deviceChartsData };
+  const rows: IRow[] = data.reverse();
+
+  return { columns, rows };
 };
 
 export interface SummaryData {
