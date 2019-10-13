@@ -10,6 +10,7 @@ import { persistor } from '../App';
 export function* startup() {
   yield call(persistor.purge);
   yield put(checkUserAuthFirebase());
+  localStorage.removeItem('react-avatar/failing');
 
   yield put(getDeviceBrands());
 
