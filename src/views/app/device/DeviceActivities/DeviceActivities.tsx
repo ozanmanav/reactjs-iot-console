@@ -22,7 +22,7 @@ export const DeviceActivitiesBase: FunctionComponent<DeviceActivitiesBaseProps> 
     getDeviceActivities();
   }, [getDeviceActivities]);
 
-  if (deviceActivities && deviceActivities.length < 1) {
+  if (deviceActivities && deviceActivities.length < 1 && !loading) {
     return <div>Device activity not found</div>;
   }
   return <ActivityList activities={deviceActivities} loading={loading && loading.deviceActivities} />;

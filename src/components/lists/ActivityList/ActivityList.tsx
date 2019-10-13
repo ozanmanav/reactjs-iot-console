@@ -19,7 +19,7 @@ export const ActivityList: FunctionComponent<ActivityListProps> = ({ activities,
   return (
     <div className="b-project-activities">
       {loading ? (
-        <Loading className="b-project-activities-loader" />
+        <Loading />
       ) : (
         <div className="container-fluid b-project-activities__timeline">
           {Object.keys(dataToShowGrouped).map(group => {

@@ -45,7 +45,8 @@ export function getTriggerIntegrationOptions(triggerIntegrations: [] = []): ISel
   return triggerIntegrations
     ? triggerIntegrations.map(({ id, brand, image }) => ({
         value: id,
-        label: brand
+        label: brand,
+        image
       }))
     : [];
 }

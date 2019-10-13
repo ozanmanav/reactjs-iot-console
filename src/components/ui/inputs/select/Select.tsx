@@ -14,9 +14,10 @@ export interface ISelectOption {
 interface ISelectProps extends SelectComponentsProps {
   error?: string;
   touched?: boolean;
+  menuPlacement?: 'auto' | 'bottom' | 'top' | undefined;
 }
 
-export const Select: FunctionComponent<ISelectProps> = ({ className, error, touched, ...props }) => {
+export const Select: FunctionComponent<ISelectProps> = ({ className, error, touched, menuPlacement, ...props }) => {
   const selectWrapperClassName = classNames(['f-select', className]);
 
   const IconOption = (props: any) => (
@@ -30,6 +31,7 @@ export const Select: FunctionComponent<ISelectProps> = ({ className, error, touc
     <div className={selectWrapperClassName}>
       <ReactSelect
         {...props}
+        menuPlacement={menuPlacement}
         components={{ Option: IconOption }}
         styles={{
           control: (base, state) => ({

@@ -47,7 +47,7 @@ export const DeviceTriggersBase: FunctionComponent<DeviceTriggersBaseProps> = ({
 
       <div className="b-device-triggers">
         {loading && loading.deviceTriggers ? (
-          <Loading className="b-device-triggers-loader" />
+          <Loading />
         ) : (
           triggers && triggers.alert && triggers.alert.map(trigger => <TriggerCard trigger={trigger} />)
         )}

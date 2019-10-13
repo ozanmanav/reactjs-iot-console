@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Formik } from 'formik';
 import {
   IAddTriggerFormBaseProps,
@@ -107,6 +107,7 @@ const AddTriggerFormBase: FunctionComponent<
         <Select
           placeholder="Select Integration"
           name="integration"
+          menuPlacement="top"
           options={triggerIntegrationOptions}
           isSearchable={true}
           onChange={onChangeTriggerIntegration}

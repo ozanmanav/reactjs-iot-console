@@ -38,9 +38,15 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
 }) => {
   useEffect(() => {
     getDeviceEntities();
+  }, [getDeviceEntities]);
+
+  useEffect(() => {
     getTriggerIntegrations();
+  }, [getTriggerIntegrations]);
+
+  useEffect(() => {
     getTriggerTypes();
-  }, []);
+  }, [getTriggerTypes]);
 
   const onSubmit = (values: IAddTriggerFormState): void => {
     console.log(values);

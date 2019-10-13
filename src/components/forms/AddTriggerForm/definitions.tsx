@@ -2,7 +2,7 @@ import { FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 import { IProjectLoadingState } from '../../../store/project/types';
-import { ISelectEntity, ITriggerSelectEntity } from '../../ui/cards';
+import { ITriggerSelectEntity } from '../../ui/cards';
 import { ITriggerTypeOption, ITriggerIntegrationOption } from '../../../utils';
 
 export const AddTriggerFormDefaultState = {
@@ -40,6 +40,9 @@ export interface IAddTriggerFormProps {
 // Validation Schema
 export const AddTriggerFormValidationSchema = Yup.object().shape({
   name: Yup.string()
+    .trim()
+    .required(VALIDATION_ERRORS.required),
+  triggerType: Yup.string()
     .trim()
     .required(VALIDATION_ERRORS.required)
 });

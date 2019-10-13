@@ -18,7 +18,7 @@ const SidebarHeader: FunctionComponent<ISidebarHeaderProps> = ({
 }) => (
   <div className="b-sidebar-header">
     {!onlyText && <img src={active ? image : deactiveImage} alt="logo" className="b-sidebar-header__image" />}
-    <span className={classNames('b-sidebar-header', { active }, { onlyText })}>{text} </span>
+    <span className={classNames('b-sidebar-header__text', { active }, { onlyText })}>{text} </span>
   </div>
 );
 
