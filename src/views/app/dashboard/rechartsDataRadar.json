@@ -1,0 +1,44 @@
+[
+  {
+    "subject": "Early morning",
+    "A": 120,
+    "B": 110,
+    "fullMark": 150
+  },
+  {
+    "subject": "Morning",
+    "A": 98,
+    "B": 130,
+    "fullMark": 150
+  },
+  {
+    "subject": "Mid-morning",
+    "A": 86,
+    "B": 130,
+    "fullMark": 150
+  },
+  {
+    "subject": "Noon",
+    "A": 99,
+    "B": 100,
+    "fullMark": 150
+  },
+  {
+    "subject": "Afternoon",
+    "A": 85,
+    "B": 90,
+    "fullMark": 150
+  },
+  {
+    "subject": "Evening",
+    "A": 65,
+    "B": 85,
+    "fullMark": 150
+  },
+  {
+    "subject": "Night",
+    "A": 25,
+    "B": 15,
+    "fullMark": 150
+  }
+]
