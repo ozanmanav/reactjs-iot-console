@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './styles/index.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-tabs/style/react-tabs.css';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

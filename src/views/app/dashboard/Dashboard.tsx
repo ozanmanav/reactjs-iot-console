@@ -12,103 +12,90 @@ import {
   ScatterChart,
   Scatter,
   AreaChart,
-  Area
+  Area,
+  ResponsiveContainer
 } from 'recharts';
 import rechartsDataLine from './rechartsData.json';
 import rechartsDataBar from './rechartsDataBar.json';
 import rechartsDataArea from './rechartsDataArea.json';
 import rechartsDataScatter from './rechartsDataScatter.json';
+import GridLayout from 'react-grid-layout';
 import './Dashboard.scss';
+import { useLocalStorage } from '../../../hooks';
+
+const defaultLayout = [
+  { i: 'a', x: 0, y: 0, w: 4, h: 6 },
+  { i: 'b', x: 4, y: 0, w: 4, h: 6 },
+  { i: 'c', x: 8, y: 0, w: 4, h: 6 },
+  { i: 'd', x: 0, y: 8, w: 4, h: 6 }
+];
 
 export const Dashboard: FunctionComponent = () => {
+  const [savedLayout, saveLayout] = useLocalStorage('savedLayout', defaultLayout);
+
+  const onChangeLayout = (layout: GridLayout.Layout[]) => {
+    saveLayout(layout);
+  };
+
   return (
-    <div className="container-fluid">
-      <div className="row mt-3">
-        <div className="col-6">
-          {' '}
-          <LineChart
-            width={500}
-            height={300}
-            data={rechartsDataLine}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-          </LineChart>
+    <>
+      <GridLayout
+        className="layout"
+        layout={savedLayout}
+        cols={12}
+        rowHeight={30}
+        width={1200}
+        onLayoutChange={onChangeLayout}
+      >
+        <div key="a">
+          <ResponsiveContainer width="99%">
+            <LineChart data={rechartsDataLine}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
-        <div className="col-6">
-          <BarChart
-            width={500}
-            height={300}
-            data={rechartsDataBar}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-            <Bar dataKey="uv" fill="#82ca9d" />
-          </BarChart>
+        <div key="b">
+          <ResponsiveContainer width="99%">
+            <BarChart data={rechartsDataBar}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="pv" fill="#8884d8" />
+              <Bar dataKey="uv" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
-      </div>
-      <div className="row mt-3">
-        <div className="col-6">
-          {' '}
-          <ScatterChart
-            width={500}
-            height={300}
-            margin={{
-              top: 20,
-              right: 20,
-              bottom: 20,
-              left: 20
-            }}
-          >
-            <CartesianGrid />
-            <XAxis type="number" dataKey="x" name="stature" unit="cm" />
-            <YAxis type="number" dataKey="y" name="weight" unit="kg" />
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter name="A school" data={rechartsDataScatter} fill="#8884d8" />
-          </ScatterChart>
+        <div key="c">
+          <ResponsiveContainer width="99%">
+            <AreaChart data={rechartsDataArea}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+            </AreaChart>
+          </ResponsiveContainer>
         </div>
-        <div className="col-6">
-          {' '}
-          <AreaChart
-            width={500}
-            height={300}
-            data={rechartsDataArea}
-            margin={{
-              top: 10,
-              right: 30,
-              left: 0,
-              bottom: 0
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-          </AreaChart>
+        <div key="d">
+          <ResponsiveContainer width="99%">
+            <ScatterChart>
+              <CartesianGrid />
+              <XAxis type="number" dataKey="x" name="stature" unit="cm" />
+              <YAxis type="number" dataKey="y" name="weight" unit="kg" />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter name="A school" data={rechartsDataScatter} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
         </div>
-      </div>
-    </div>
+      </GridLayout>
+    </>
   );
 };
