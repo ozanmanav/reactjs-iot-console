@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useRef, useState, useLayoutEffect } from 'react';
 import {
   LineChart,
   Line,
@@ -30,7 +30,7 @@ import rechartsDataPie from './rechartsDataPie.json';
 import rechartsDataRadar from './rechartsDataRadar.json';
 import GridLayout from 'react-grid-layout';
 import './Dashboard.scss';
-import { useLocalStorage } from '../../../hooks';
+import { useLocalStorage, useDimensions } from '../../../hooks';
 
 const defaultLayout = [
   { i: 'a', x: 0, y: 0, w: 4, h: 6 },
@@ -45,6 +45,7 @@ const primaryColor = '#F68A4D';
 const secondaryColor = '#4A4A4A';
 
 export const Dashboard: FunctionComponent = () => {
+  const [ref, dimensions] = useDimensions();
   const [savedLayout, saveLayout] = useLocalStorage('savedLayout', defaultLayout);
 
   const onChangeLayout = (layout: GridLayout.Layout[]) => {
@@ -52,13 +53,13 @@ export const Dashboard: FunctionComponent = () => {
   };
 
   return (
-    <>
+    <div className="b-dashboard" ref={ref}>
       <GridLayout
-        className="layout"
+        className="b-dashboard-layout"
         layout={savedLayout}
         cols={12}
         rowHeight={30}
-        width={1200}
+        width={dimensions && dimensions.width}
         onLayoutChange={onChangeLayout}
       >
         <div key="a">
@@ -136,6 +137,6 @@ export const Dashboard: FunctionComponent = () => {
           </ResponsiveContainer>
         </div>
       </GridLayout>
-    </>
+    </div>
   );
 };

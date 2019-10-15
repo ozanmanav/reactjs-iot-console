@@ -1,4 +1,7 @@
 .b-dashboard {
+  &-layout {
+    text-align: center;
+  }
   &-change-layout {
     margin: 10px 10px 0px 10px;
     display: flex;
