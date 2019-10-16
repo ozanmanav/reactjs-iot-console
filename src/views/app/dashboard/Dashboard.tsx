@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, useState, useLayoutEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import {
   LineChart,
   Line,

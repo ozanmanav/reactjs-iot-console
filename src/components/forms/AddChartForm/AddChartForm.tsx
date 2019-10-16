@@ -64,16 +64,22 @@ const AddChartFormBase: FunctionComponent<
           onChangeCapture={onChangeOnlyScatter}
         />
 
-        {deviceEntities &&
-          deviceEntities.Entities &&
-          deviceEntities.Entities.map((entityName: string) => (
-            <EntityCard
-              entityName={entityName}
-              addEntity={addEntity}
-              removeEntity={removeEntity}
-              onlyScatter={onlyScatter}
-            />
-          ))}
+        <div className="row">
+          {deviceEntities &&
+            deviceEntities.Entities &&
+            deviceEntities.Entities.map((entityName: string) => (
+              <div className="col-xs-12 col-md-6 col-xl-6">
+                {' '}
+                <EntityCard
+                  entityName={entityName}
+                  addEntity={addEntity}
+                  removeEntity={removeEntity}
+                  onlyScatter={onlyScatter}
+                />
+              </div>
+            ))}
+        </div>
+
         <br />
 
         <Button
