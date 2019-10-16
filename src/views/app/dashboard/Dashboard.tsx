@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import {
   LineChart,
   Line,
@@ -45,8 +45,15 @@ const primaryColor = '#F68A4D';
 const secondaryColor = '#4A4A4A';
 
 export const Dashboard: FunctionComponent = () => {
+  const [gridWidth, setGridWidth] = useState<number>(1200);
   const [ref, dimensions] = useDimensions();
   const [savedLayout, saveLayout] = useLocalStorage('savedLayout', defaultLayout);
+
+  useEffect(() => {
+    if (dimensions && dimensions.width && !isNaN(dimensions.width)) {
+      setGridWidth(dimensions.width);
+    }
+  }, [dimensions]);
 
   const onChangeLayout = (layout: GridLayout.Layout[]) => {
     saveLayout(layout);
@@ -59,7 +66,7 @@ export const Dashboard: FunctionComponent = () => {
         layout={savedLayout}
         cols={12}
         rowHeight={30}
-        width={dimensions && dimensions.width}
+        width={gridWidth || 1200}
         onLayoutChange={onChangeLayout}
       >
         <div key="a">
