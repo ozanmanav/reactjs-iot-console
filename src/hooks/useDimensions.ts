@@ -1,4 +1,4 @@
-import { useState, useCallback, useLayoutEffect, RefObject } from 'react';
+import { useState, useCallback, useLayoutEffect } from 'react';
 
 interface DimensionObject {
   width: number;
@@ -55,7 +55,7 @@ export function useDimensions({ liveMeasure = true }: UseDimensionsArgs = {}): U
         };
       }
     }
-  }, [node]);
+  }, [node, liveMeasure]);
 
   return [ref, dimensions, node];
 }

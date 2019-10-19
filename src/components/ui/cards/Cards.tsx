@@ -497,3 +497,16 @@ export const DeviceChartSummaryCard: FunctionComponent<IDeviceChartSummaryCardPr
     </div>
   );
 };
+
+export interface IGridWidgetCardProps {
+  widgetName: string;
+}
+
+export const GridWidgetCard: FunctionComponent<IGridWidgetCardProps> = ({ widgetName, children }) => {
+  return (
+    <div className="c-card__widget-card">
+      <div className="c-card__widget-card__header">{widgetName}</div>
+      {children}
+    </div>
+  );
+};

@@ -14,6 +14,7 @@ import copy from '../../../icons/copy.svg';
 import logout from '../../../icons/logout.svg';
 import location from '../../../icons/location-icon.svg';
 import avatar from '../../../icons/avatar.svg';
+import add from '../../../icons/plus-feynlab.png';
 
 // TODO: is string type necessary?
 export type TIconType =
@@ -29,6 +30,7 @@ export type TIconType =
   | 'logout'
   | 'location'
   | 'avatar'
+  | 'addDashboard'
   | string;
 
 interface IIcons {
@@ -47,7 +49,8 @@ const ICONS: IIcons = {
   copy,
   logout,
   location,
-  avatar
+  avatar,
+  add
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {

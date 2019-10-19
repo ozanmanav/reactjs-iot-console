@@ -1,4 +1,15 @@
 .b-dashboard {
+  &-header {
+    padding: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    &__title {
+      color: #4a4a4a;
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
   &-layout {
     text-align: center;
   }

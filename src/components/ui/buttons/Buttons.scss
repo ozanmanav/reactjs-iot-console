@@ -11,229 +11,250 @@ $button-height-big: 60px;
 $button-icon-size: 21px;
 
 .button {
-    $button: &;
+  $button: &;
 
-    @include shadow-default;
+  @include shadow-default;
 
-    font-size: $h6;
-    border: 1px solid $input-border-color;
-    border-radius: $border-radius-normal;
-    height: $input-height;
-    min-width: $button-min-width;
-    background-color: $button-background-color-default;
-    color: $black;
-    transition: background-color $transition-default;
-    font-family: 'Exo', sans-serif;
-    padding: 0 15px;
+  font-size: $h6;
+  border: 1px solid $input-border-color;
+  border-radius: $border-radius-normal;
+  height: $input-height;
+  min-width: $button-min-width;
+  background-color: $button-background-color-default;
+  color: $black;
+  transition: background-color $transition-default;
+  font-family: 'Exo', sans-serif;
+  padding: 0 15px;
+
+  &:hover,
+  &[disabled] {
+    background-color: darken($button-background-color-default, $button-hover-color-change-ratio);
+  }
+
+  &._primary {
+    color: $white;
+    background-color: $button-background-color-primary;
+    border-color: $button-background-color-primary;
+    box-shadow: none;
 
     &:hover,
     &[disabled] {
-        background-color: darken($button-background-color-default, $button-hover-color-change-ratio);
+      background-color: darken($button-background-color-primary, $button-hover-color-change-ratio);
+    }
+  }
+
+  &._big {
+    height: $button-height-big;
+    min-width: $button-min-width-big;
+  }
+
+  &._add,
+  &._see-history {
+    width: 200px;
+  }
+
+  &._add-another-organization {
+    width: 250px;
+  }
+
+  &._assign {
+    width: 137px;
+  }
+
+  &._save-and-continue {
+    width: 288px;
+  }
+
+  &._remove-object {
+    padding: 0 48px 0 18px;
+    position: relative;
+
+    &:not(:last-child) {
+      margin-right: 10px;
     }
 
-    &._primary {
-        color: $white;
-        background-color: $button-background-color-primary;
-        border-color: $button-background-color-primary;
-        box-shadow: none;
+    &:after {
+      content: '';
+      position: absolute;
+      background-image: url('../../../icons/remove.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      top: 14px;
+      right: 13px;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+    }
+  }
 
-        &:hover,
-        &[disabled] {
-            background-color: darken($button-background-color-primary, $button-hover-color-change-ratio);
-        }
+  &._remove {
+    color: $red;
+    width: 140px;
+
+    .icon_plusGrey {
+      transform: rotate(45deg);
+    }
+  }
+
+  &._upload {
+    width: 150px;
+  }
+
+  &._export {
+    width: 200px;
+  }
+
+  &._github {
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 0 5px 12px 0 rgba(193, 193, 193, 0.5);
+    background-color: #444444;
+    border: 1px solid #363636;
+    font-family: Exo, sans-serif;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+  }
+
+  &._google {
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 0 5px 12px 0 rgba(193, 193, 193, 0.5);
+    background-color: #ffffff;
+    border: 1px solid #d7d7d7;
+    font-family: Exo, sans-serif;
+    text-align: center;
+    color: #343434;
+    position: relative;
+  }
+
+  &__icon {
+    width: $button-icon-size;
+    height: $button-icon-size;
+    margin-right: 7px;
+    opacity: 0.5;
+    transition: opacity $transition-default, transform $transition-default;
+
+    ._see-history & {
+      opacity: 0.9;
     }
 
-    &._big {
-        height: $button-height-big;
-        min-width: $button-min-width-big;
+    #{$button}._see-history:hover & {
+      opacity: 1;
     }
 
-    &._add,
-    &._see-history {
-        width: 200px;
+    #{$button}:hover & {
+      opacity: 0.7;
     }
-
-    &._add-another-organization {
-        width: 250px;
-    }
-
-    &._assign {
-        width: 137px;
-    }
-
-    &._save-and-continue {
-        width: 288px;
-    }
-
-    &._remove-object {
-        padding: 0 48px 0 18px;
-        position: relative;
-
-        &:not(:last-child) {
-            margin-right: 10px;
-        }
-
-        &:after {
-            content: '';
-            position: absolute;
-            background-image: url('../../../icons/remove.svg');
-            background-repeat: no-repeat;
-            background-position: center;
-            top: 14px;
-            right: 13px;
-            z-index: 1;
-            width: 20px;
-            height: 20px;
-        }
-    }
-
-    &._remove {
-        color: $red;
-        width: 140px;
-
-        .icon_plusGrey {
-            transform: rotate(45deg);
-        }
-    }
-
-    &._upload {
-        width: 150px;
-    }
-
-    &._export {
-        width: 200px;
-    }
-
-    &._github {
-        cursor: pointer;
-        width: 100%;
-        height: 50px;
-        border-radius: 10px;
-        box-shadow: 0 5px 12px 0 rgba(193, 193, 193, 0.5);
-        background-color: #444444;
-        border: 1px solid #363636;
-        font-family: Exo, sans-serif;
-        text-align: center;
-        color: #ffffff;
-        position: relative;
-    }
-
-    &._google {
-        cursor: pointer;
-        width: 100%;
-        height: 50px;
-        border-radius: 10px;
-        box-shadow: 0 5px 12px 0 rgba(193, 193, 193, 0.5);
-        background-color: #ffffff;
-        border: 1px solid #d7d7d7;
-        font-family: Exo, sans-serif;
-        text-align: center;
-        color: #343434;
-        position: relative;
-    }
-
-    &__icon {
-        width: $button-icon-size;
-        height: $button-icon-size;
-        margin-right: 7px;
-        opacity: 0.5;
-        transition: opacity $transition-default, transform $transition-default;
-
-        ._see-history & {
-            opacity: 0.9;
-        }
-
-        #{$button}._see-history:hover & {
-            opacity: 1;
-        }
-
-        #{$button}:hover & {
-            opacity: 0.7;
-        }
-    }
+  }
 }
 
 .plus-button {
-    transform: translate3d(0, 3px, 0);
-    margin: 0 10px;
+  transform: translate3d(0, 3px, 0);
+  margin: 0 10px;
 }
 
 .simple-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
 
-    &:not(:last-child) {
-        margin-right: 15px;
-    }
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
 
-    &._remove {
-        .icon_remove {
-            transform: scale(1.4);
-        }
+  &._remove {
+    .icon_remove {
+      transform: scale(1.4);
     }
+  }
 }
 
 .back-button {
-    display: flex;
-    align-items: center;
-    font-size: $h5;
-    font-weight: 700;
-    color: $primary;
+  display: flex;
+  align-items: center;
+  font-size: $h5;
+  font-weight: 700;
+  color: $primary;
 
-    &__icon {
-        width: 6px;
-        height: 11px;
-        margin-right: 5px;
-    }
+  &__icon {
+    width: 6px;
+    height: 11px;
+    margin-right: 5px;
+  }
 }
 
 .google-container {
-    margin-bottom: 10px;
-    position: relative;
-    cursor: pointer;
-    span {
-        position: absolute;
-        background: url('../../../icons/googleLogo.svg') no-repeat center;
-        z-index: 1;
-        width: 26px;
-        height: 26px;
-        top: 12px;
-        left: 12px;
-    }
-    &-vertical {
-        width: 1px;
-        height: 50px;
-        background-color: #d7d7d7;
-        position: absolute;
-        left: 50px;
-        top: 0;
-        z-index: 1;
-    }
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+  span {
+    position: absolute;
+    background: url('../../../icons/googleLogo.svg') no-repeat center;
+    z-index: 1;
+    width: 26px;
+    height: 26px;
+    top: 12px;
+    left: 12px;
+  }
+  &-vertical {
+    width: 1px;
+    height: 50px;
+    background-color: #d7d7d7;
+    position: absolute;
+    left: 50px;
+    top: 0;
+    z-index: 1;
+  }
 }
 
 .github-container {
-    margin-bottom: 10px;
-    position: relative;
-    cursor: pointer;
-    span {
-        position: absolute;
-        background: url('../../../icons/githubLogo.svg') no-repeat center;
-        z-index: 1;
-        width: 26px;
-        height: 26px;
-        top: 12px;
-        left: 12px;
-    }
-    &-vertical {
-        width: 1px;
-        height: 50px;
-        background-color: #363636;
-        position: absolute;
-        left: 50px;
-        top: 0;
-        z-index: 1;
-    }
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+  span {
+    position: absolute;
+    background: url('../../../icons/githubLogo.svg') no-repeat center;
+    z-index: 1;
+    width: 26px;
+    height: 26px;
+    top: 12px;
+    left: 12px;
+  }
+  &-vertical {
+    width: 1px;
+    height: 50px;
+    background-color: #363636;
+    position: absolute;
+    left: 50px;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.add-button {
+  cursor: pointer;
+  color: $primary;
+  display: flex;
+  align-items: center;
+
+  &-text {
+    margin-left: 5px;
+  }
+}
+
+.remove-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &-text {
+    margin-left: 5px;
+  }
 }

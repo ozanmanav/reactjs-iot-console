@@ -14,10 +14,18 @@ export interface ISelectOption {
 interface ISelectProps extends SelectComponentsProps {
   error?: string;
   touched?: boolean;
+  selectHeight?: string;
   menuPlacement?: 'auto' | 'bottom' | 'top' | undefined;
 }
 
-export const Select: FunctionComponent<ISelectProps> = ({ className, error, touched, menuPlacement, ...props }) => {
+export const Select: FunctionComponent<ISelectProps> = ({
+  className,
+  error,
+  touched,
+  menuPlacement,
+  selectHeight = '50px',
+  ...props
+}) => {
   const selectWrapperClassName = classNames(['f-select', className]);
 
   const IconOption = (props: any) => (
@@ -37,7 +45,7 @@ export const Select: FunctionComponent<ISelectProps> = ({ className, error, touc
           control: (base, state) => ({
             ...base,
             '&:hover': { borderColor: '#f68a4d' },
-            height: '50px',
+            height: selectHeight,
             boxShadow: 'none',
             borderColor: error && touched ? 'red' : state.isFocused ? '#f68a4d' : '#dfe1eb'
           })

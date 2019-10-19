@@ -7,7 +7,7 @@ import { appendClassName } from '../../../utils';
 import { ClipLoader } from 'react-spinners';
 
 interface IButtonBaseProps {
-  text: string;
+  text?: string;
   primary?: boolean;
   big?: boolean;
   icon?: TIconType;
@@ -92,5 +92,23 @@ export const GoogleButton: FunctionComponent<IButtonProps> = ({
       <div className="google-container-vertical" />
       <Button text={text} className={buttonClassName} {...props} />
     </div>
+  );
+};
+
+export const AddButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
+  return (
+    <button className="add-button" {...props}>
+      <Icon icon="add" width="20px" />
+      {text && <div className="add-button-text">{text}</div>}
+    </button>
+  );
+};
+
+export const RemoveButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
+  return (
+    <button className="remove-button" {...props}>
+      <Icon icon="trash" width="20px" />
+      {text && <div className="remove-button-text">{text}</div>}
+    </button>
   );
 };
