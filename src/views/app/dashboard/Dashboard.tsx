@@ -77,7 +77,7 @@ export const Dashboard: FunctionComponent = () => {
 
       <GridLayout
         className="b-dashboard-layout"
-        layout={savedLayout}
+        layout={defaultLayout}
         cols={12}
         rowHeight={30}
         width={gridWidth || 1200}
