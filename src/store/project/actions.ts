@@ -533,3 +533,23 @@ export function getTriggerIntegrationsFailure(projects: ProjectState): ProjectAc
     payload: projects
   };
 }
+
+export function getTriggerIntervals(): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_INTERVALS
+  };
+}
+
+export function getTriggerIntervalsSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_INTERVALS_SUCCESS,
+    payload: projects
+  };
+}
+
+export function getTriggerIntervalsFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.GET_TRIGGER_INTERVALS_FAILURE,
+    payload: projects
+  };
+}

@@ -1,12 +1,12 @@
 .b-dashboard {
-  &-header {
+  &-actions {
     padding: 0px 10px;
     display: flex;
     justify-content: space-between;
-    &__title {
-      color: #4a4a4a;
-      font-size: 24px;
-      font-weight: 500;
+    .flex {
+      .add-button + .add-button {
+        margin-left: 10px;
+      }
     }
   }
 
@@ -22,4 +22,8 @@
       margin-right: 10px;
     }
   }
+}
+
+.react-grid-item.react-grid-placeholder {
+  background-color: #9b9b9b;
 }

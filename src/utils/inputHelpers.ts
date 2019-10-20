@@ -12,6 +12,8 @@ export interface ITriggerTypeOption extends ISelectOption {}
 
 export interface ITriggerIntegrationOption extends ISelectOption {}
 
+export interface ITriggerIntervalOption extends ISelectOption {}
+
 export function getDeviceBrandOptions(brands: [] = []): IBrandOption[] {
   return brands
     ? brands.map(({ id, brand, image }) => ({
@@ -34,7 +36,7 @@ export function getDeviceModelOptions(models: [] = []): ISelectOption[] {
 
 export function getTriggerTypeOptions(triggerTypes: [] = []): ISelectOption[] {
   return triggerTypes
-    ? triggerTypes.map(({ id, name, image }) => ({
+    ? triggerTypes.map(({ id, name }) => ({
         value: id,
         label: name
       }))
@@ -47,6 +49,15 @@ export function getTriggerIntegrationOptions(triggerIntegrations: [] = []): ISel
         value: id,
         label: brand,
         image
+      }))
+    : [];
+}
+
+export function getTriggerIntervalOptions(triggerIntervals: [] = []): ISelectOption[] {
+  return triggerIntervals
+    ? triggerIntervals.map(({ id, name }) => ({
+        value: id,
+        label: name
       }))
     : [];
 }

@@ -3,12 +3,13 @@ import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
 import { IProjectLoadingState } from '../../../store/project/types';
 import { ITriggerSelectEntity } from '../../ui/cards';
-import { ITriggerTypeOption, ITriggerIntegrationOption } from '../../../utils';
+import { ITriggerTypeOption, ITriggerIntegrationOption, ITriggerIntervalOption } from '../../../utils';
 
 export const AddTriggerFormDefaultState = {
   name: '',
   triggerType: '',
   integration: '',
+  period: '',
   integrationWebhook: '',
   thresholds: []
 };
@@ -17,11 +18,13 @@ export interface IAddTriggerFormState {
   name: string;
   triggerType: string;
   integration: string;
+  period: string;
   integrationWebhook: string;
   thresholds: ITriggerSelectEntity[];
   deviceEntities?: any;
   triggerTypeOptions?: ITriggerTypeOption[];
   triggerIntegrationOptions?: ITriggerIntegrationOption[];
+  triggerIntervalOptions?: ITriggerIntervalOption[];
 }
 
 export interface IAddTriggerFormBaseProps extends FormikProps<IAddTriggerFormState> {
@@ -33,6 +36,7 @@ export interface IAddTriggerFormProps {
   loading?: IProjectLoadingState;
   triggerTypeOptions?: ITriggerTypeOption[];
   triggerIntegrationOptions?: ITriggerIntegrationOption[];
+  triggerIntervalOptions?: ITriggerIntervalOption[];
   onSubmit: (state: IAddTriggerFormState) => void;
   initialValues?: IAddTriggerFormState;
 }

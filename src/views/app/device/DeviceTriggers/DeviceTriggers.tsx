@@ -8,17 +8,18 @@ import { TriggerCard } from '../../../../components/ui/cards';
 import { Loading } from '../../../../components/ui/loading';
 import { NavLink } from 'react-router-dom';
 import PlusIcon from '../../../../icons/plus-feynlab.png';
+import groupBy from 'lodash.groupby';
 
 interface DeviceTriggersBaseProps {
   getDeviceTriggers: typeof getDeviceTriggers;
   currentProject?: IProject;
   currentDevice?: IDevice;
-  triggers?: ITriggerResponse;
+  deviceTriggers?: ITriggerResponse;
   loading?: IProjectLoadingState;
 }
 
 export const DeviceTriggersBase: FunctionComponent<DeviceTriggersBaseProps> = ({
-  triggers,
+  deviceTriggers,
   getDeviceTriggers,
   currentProject,
   currentDevice,
@@ -27,7 +28,9 @@ export const DeviceTriggersBase: FunctionComponent<DeviceTriggersBaseProps> = ({
   useEffect(() => {
     getDeviceTriggers();
   }, [getDeviceTriggers]);
-
+  console.log(deviceTriggers);
+  const dataToShowGrouped = groupBy(deviceTriggers, 'deviceBrandName');
+  console.log(dataToShowGrouped);
   return (
     <div className="b-device-triggers-details">
       <div className="b-device-triggers__add-trigger-button">
@@ -44,13 +47,37 @@ export const DeviceTriggersBase: FunctionComponent<DeviceTriggersBaseProps> = ({
         </NavLink>
       </div>
 
-      <div className="b-device-triggers">
-        {loading && loading.deviceTriggers ? (
-          <Loading />
-        ) : (
-          triggers && triggers.alert && triggers.alert.map(trigger => <TriggerCard trigger={trigger} />)
-        )}
-      </div>
+      {loading && loading.deviceTriggers ? (
+        <Loading />
+      ) : (
+        <div className="b-device-triggers-sections">
+          {deviceTriggers && (
+            <>
+              {' '}
+              {deviceTriggers && deviceTriggers.alert && deviceTriggers.alert.length > 0 && (
+                <>
+                  <div className="b-device-triggers-sections-section">
+                    <div className="b-device-triggers-sections-section__name">Alert</div>
+                  </div>
+                  {deviceTriggers.alert.map(trigger => (
+                    <TriggerCard trigger={trigger} />
+                  ))}
+                </>
+              )}
+              {deviceTriggers && deviceTriggers.periodic && deviceTriggers.periodic.length > 0 && (
+                <>
+                  <div className="b-device-triggers-sections-section">
+                    <div className="b-device-triggers-sections-section__name">Periodic</div>
+                  </div>
+                  {deviceTriggers.periodic.map(trigger => (
+                    <TriggerCard trigger={trigger} />
+                  ))}
+                </>
+              )}{' '}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

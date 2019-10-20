@@ -664,3 +664,17 @@ export function* requestGetTriggerIntegrations() {
     yield put(actions.getTriggerIntegrationsFailure({ error }));
   }
 }
+
+export function* requestGetTriggerIntervals() {
+  try {
+    const triggerIntervalsResponse = yield call(getRequest, `trigger/intervals`);
+
+    yield put(
+      actions.getTriggerIntervalsSuccess({
+        triggerIntervals: triggerIntervalsResponse.data.Intervals
+      })
+    );
+  } catch (error) {
+    yield put(actions.getTriggerIntervalsFailure({ error }));
+  }
+}

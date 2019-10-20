@@ -33,7 +33,7 @@ import './Dashboard.scss';
 import { useLocalStorage, useDimensions } from '../../../hooks';
 import { GridWidgetCard } from '../../../components/ui/cards';
 import { DashboardNavbar } from '../../../components/dashboardNavbar';
-import { AddButton } from '../../../components/ui';
+import { AddButton, RemoveButton } from '../../../components/ui';
 import { LiquidGauge } from '../../../components/liquidGauge';
 import { AppState } from '../../../store/index.js';
 import { getDashboardLayouts } from '../../../store/ui/actions';
@@ -72,13 +72,19 @@ const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboar
   return (
     <div className="b-dashboard" ref={ref}>
       <DashboardNavbar />
+      <div className="b-dashboard-actions">
+        <div className="flex">
+          <AddButton text="New Dashboard" />
+          <AddButton text="Add Widget" />
+        </div>
+
+        <div>
+          {' '}
+          <RemoveButton onClick={() => alert('ok')} text="Delete Dashboard" />
+        </div>
+      </div>
       {selectedDashboardLayout && (
         <>
-          <div className="b-dashboard-header">
-            <div className="b-dashboard-header__title">{selectedDashboardLayout.title}</div>
-            <AddButton text="Add Widget" />
-          </div>
-
           <GridLayout
             className="b-dashboard-layout"
             layout={selectedDashboardLayout.layout}
@@ -90,7 +96,7 @@ const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboar
             <div key="l1_1">
               <GridWidgetCard widgetName="Environmental Sensor Humidity">
                 <ResponsiveContainer width="99%">
-                  <LiquidGauge value={32} />
+                  <LiquidGauge value={32} startColor="red" endColor="red" />
                 </ResponsiveContainer>
               </GridWidgetCard>
             </div>
@@ -139,8 +145,8 @@ const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboar
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="pv" fill={primaryColor} />
-                    <Bar dataKey="uv" fill={secondaryColor} />
+                    <Bar dataKey="pv" fill={'red'} />
+                    <Bar dataKey="uv" fill={'blue'} />
                   </BarChart>
                 </ResponsiveContainer>
               </GridWidgetCard>

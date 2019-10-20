@@ -11,6 +11,18 @@
     left: calc(40%);
   }
 
+  &-sections {
+    &-section {
+      display: flex;
+
+      &__name {
+        font-size: 12px;
+        font-weight: 600;
+        color: #4a4a4a;
+      }
+    }
+  }
+
   &__add-trigger-button {
     margin-top: 10px;
     margin-right: 10px;

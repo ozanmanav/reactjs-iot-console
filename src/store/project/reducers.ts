@@ -745,6 +745,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
+    case types.GET_TRIGGER_INTERVALS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          triggerIntervals: true
+        }
+      };
+    }
+    case types.GET_TRIGGER_INTERVALS_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          triggerIntervals: false
+        },
+        ...action.payload
+      };
+    }
+    case types.GET_TRIGGER_INTERVALS_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          triggerIntervals: false
+        }
+      };
+    }
     default:
       return state;
   }

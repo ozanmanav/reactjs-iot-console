@@ -12,15 +12,16 @@ import './AddTriggerForm.scss';
 import { FormCaption } from '../FormsUI';
 import { PeriodicTriggerEntityCard, AlertTriggerEntityCard, ITriggerSelectEntity } from '../../ui/cards';
 import { ValueType } from 'react-select/src/types';
-import { ITriggerTypeOption, ITriggerIntegrationOption } from '../../../utils';
+import { ITriggerTypeOption, ITriggerIntegrationOption, ITriggerIntervalOption } from '../../../utils';
 
 const AddTriggerFormBase: FunctionComponent<
   IAddTriggerFormBaseProps & {
     deviceEntities?: any;
     triggerTypeOptions?: ITriggerTypeOption[];
     triggerIntegrationOptions?: ITriggerIntegrationOption[];
+    triggerIntervalOptions?: ITriggerIntervalOption[];
   }
-> = ({ deviceEntities, triggerTypeOptions, triggerIntegrationOptions, ...formikProps }) => {
+> = ({ deviceEntities, triggerTypeOptions, triggerIntegrationOptions, triggerIntervalOptions, ...formikProps }) => {
   const { values, handleSubmit, handleChange, errors, touched, handleBlur, setFieldValue, loading } = formikProps;
 
   const addEntity = (selectedEntity: ITriggerSelectEntity) => {
@@ -54,6 +55,11 @@ const AddTriggerFormBase: FunctionComponent<
     }
   };
 
+  const onChangeTriggerInterval = (option: ValueType<any>): void => {
+    if (option) {
+      setFieldValue('period', option.label);
+    }
+  };
   return (
     <form className="f-add-trigger__form" onSubmit={handleSubmit}>
       <div className="f-add-trigger__form-content">
@@ -81,6 +87,21 @@ const AddTriggerFormBase: FunctionComponent<
           error={errors && errors.triggerType}
           touched={touched && touched.triggerType}
         />
+
+        {values.triggerType === 'Periodic' && (
+          <Select
+            placeholder="Select Period"
+            name="period"
+            options={triggerIntervalOptions}
+            isSearchable={true}
+            onChange={onChangeTriggerInterval}
+            value={triggerIntervalOptions && triggerIntervalOptions.filter(({ label }) => label === values.period)}
+            className={'f-add-trigger__form-dropdown'}
+            error={errors && errors.period}
+            touched={touched && touched.period}
+          />
+        )}
+
         {values.triggerType !== '' && deviceEntities && deviceEntities.Entities && (
           <>
             <FormCaption>SELECT ENTITY / ENTITIES</FormCaption>
@@ -149,7 +170,8 @@ export const AddTriggerForm: FunctionComponent<IAddTriggerFormProps> = ({
   loading,
   deviceEntities,
   triggerTypeOptions,
-  triggerIntegrationOptions
+  triggerIntegrationOptions,
+  triggerIntervalOptions
 }) => {
   return (
     <Formik
@@ -163,6 +185,7 @@ export const AddTriggerForm: FunctionComponent<IAddTriggerFormProps> = ({
           deviceEntities={deviceEntities}
           triggerTypeOptions={triggerTypeOptions}
           triggerIntegrationOptions={triggerIntegrationOptions}
+          triggerIntervalOptions={triggerIntervalOptions}
         />
       )}
     />

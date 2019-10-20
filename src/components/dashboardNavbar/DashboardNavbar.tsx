@@ -17,6 +17,9 @@ export const DashboardNavbarBase: FunctionComponent<IDashboardControlBarProps> =
 }) => {
   return (
     <div className="b-dashboard-navbar">
+      <div className="b-dashboard-navbar-title">{selectedDashboardLayout && selectedDashboardLayout.title}</div>
+
+      <div className="b-dashboard-navbar__spacer" />
       <div className="b-dashboard-navbar-dropdown">
         {dashboardLayouts && (
           <Select
@@ -30,12 +33,10 @@ export const DashboardNavbarBase: FunctionComponent<IDashboardControlBarProps> =
           />
         )}
       </div>
-
-      <div className="b-dashboard-navbar__spacer" />
-      <div className="b-dashboard-navbar-buttons ml-2">
+      {/* <div className="b-dashboard-navbar-buttons ml-2">
         <AddButton text="New Dashboard" />
         <RemoveButton onClick={() => alert('ok')} />
-      </div>
+      </div> */}
     </div>
   );
 };

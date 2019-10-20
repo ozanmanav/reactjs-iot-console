@@ -8,22 +8,24 @@ import {
   getDeviceEntities,
   addDeviceChart,
   getTriggerTypes,
-  getTriggerIntegrations
+  getTriggerIntegrations,
+  getTriggerIntervals
 } from '../../../../store/project/actions';
 import { IProjectLoadingState } from '../../../../store/project/types';
 import { AddTriggerForm } from '../../../../components/forms/AddTriggerForm/AddTriggerForm';
-import { getTriggerTypeOptions, getTriggerIntegrationOptions } from '../../../../utils';
+import { getTriggerTypeOptions, getTriggerIntegrationOptions, getTriggerIntervalOptions } from '../../../../utils';
 import { IAddTriggerFormState } from '../../../../components/forms/AddTriggerForm/definitions';
 
 interface AddTriggerBaseProps {
   getDeviceEntities: typeof getDeviceEntities;
   getTriggerTypes: typeof getTriggerTypes;
   getTriggerIntegrations: typeof getTriggerIntegrations;
-  addDeviceChart: typeof addDeviceChart;
+  getTriggerIntervals: typeof getTriggerIntervals;
   projectLoading?: IProjectLoadingState;
   deviceEntities: {};
   triggerTypes: [];
   triggerIntegrations: [];
+  triggerIntervals: [];
 }
 
 export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerBaseProps> = ({
@@ -31,22 +33,18 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
   deviceEntities,
   getDeviceEntities,
   getTriggerTypes,
-  addDeviceChart,
   getTriggerIntegrations,
+  getTriggerIntervals,
   triggerTypes,
-  triggerIntegrations
+  triggerIntegrations,
+  triggerIntervals
 }) => {
   useEffect(() => {
     getDeviceEntities();
-  }, [getDeviceEntities]);
-
-  useEffect(() => {
-    getTriggerIntegrations();
-  }, [getTriggerIntegrations]);
-
-  useEffect(() => {
     getTriggerTypes();
-  }, [getTriggerTypes]);
+    getTriggerIntegrations();
+    getTriggerIntervals();
+  }, []);
 
   const onSubmit = (values: IAddTriggerFormState): void => {
     console.log(values);
@@ -65,6 +63,7 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
         deviceEntities={deviceEntities}
         triggerTypeOptions={getTriggerTypeOptions(triggerTypes)}
         triggerIntegrationOptions={getTriggerIntegrationOptions(triggerIntegrations)}
+        triggerIntervalOptions={getTriggerIntervalOptions(triggerIntervals)}
       />
     </div>
   );
@@ -74,10 +73,11 @@ const mapStateToProps = (state: AppState) => ({
   projectLoading: state.project.loading,
   deviceEntities: state.project.deviceEntities,
   triggerTypes: state.project.triggerTypes,
-  triggerIntegrations: state.project.triggerIntegrations
+  triggerIntegrations: state.project.triggerIntegrations,
+  triggerIntervals: state.project.triggerIntervals
 });
 
 export const AddTrigger = connect(
   mapStateToProps,
-  { getDeviceEntities, addDeviceChart, getTriggerTypes, getTriggerIntegrations }
+  { getDeviceEntities, addDeviceChart, getTriggerTypes, getTriggerIntegrations, getTriggerIntervals }
 )(AddTriggerBase);

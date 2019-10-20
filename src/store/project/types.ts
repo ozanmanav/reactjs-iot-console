@@ -36,6 +36,7 @@ export interface IProjectLoadingState {
   currentChart?: boolean;
   triggerTypes?: boolean;
   triggerIntegrations?: boolean;
+  triggerIntervals?: boolean;
   addTrigger?: boolean;
 }
 
@@ -113,6 +114,7 @@ export interface ProjectState {
   currentChart?: IChart;
   triggerTypes?: any;
   triggerIntegrations?: any;
+  triggerIntervals?: any;
   error?: string;
 }
 
@@ -191,6 +193,9 @@ export const GET_TRIGGER_TYPES_FAILURE = '@@project/GET_TRIGGER_TYPES_FAILURE';
 export const GET_TRIGGER_INTEGRATIONS = '@@project/GET_TRIGGER_INTEGRATIONS';
 export const GET_TRIGGER_INTEGRATIONS_SUCCESS = '@@project/GET_TRIGGER_INTEGRATIONS_SUCCESS';
 export const GET_TRIGGER_INTEGRATIONS_FAILURE = '@@project/GET_TRIGGER_INTEGRATIONS_FAILURE';
+export const GET_TRIGGER_INTERVALS = '@@project/GET_TRIGGER_INTERVALS';
+export const GET_TRIGGER_INTERVALS_SUCCESS = '@@project/GET_TRIGGER_INTERVALS_SUCCESS';
+export const GET_TRIGGER_INTERVALS_FAILURE = '@@project/GET_TRIGGER_INTERVALS_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -553,6 +558,20 @@ interface GetTriggerIntegrationsFailureAction {
   payload: ProjectState;
 }
 
+interface GetTriggerIntervalsAction {
+  type: typeof GET_TRIGGER_INTERVALS;
+}
+
+interface GetTriggerIntervalsSuccessAction {
+  type: typeof GET_TRIGGER_INTERVALS_SUCCESS;
+  payload: ProjectState;
+}
+
+interface GetTriggerIntervalsFailureAction {
+  type: typeof GET_TRIGGER_INTERVALS_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -628,4 +647,7 @@ export type ProjectActionTypes =
   | GetTriggerTypesFailureAction
   | GetTriggerIntegrationsAction
   | GetTriggerIntegrationsSuccessAction
-  | GetTriggerIntegrationsFailureAction;
+  | GetTriggerIntegrationsFailureAction
+  | GetTriggerIntervalsAction
+  | GetTriggerIntervalsSuccessAction
+  | GetTriggerIntervalsFailureAction;

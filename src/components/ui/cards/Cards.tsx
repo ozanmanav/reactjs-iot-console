@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { IDevice, ITrigger, IChart } from '../../../store/project/types';
 import classNames from 'classnames';
 import DeviceImageStatic from '../../../icons/raspberry.png';
+import TriggerImageStatic from '../../../icons/alarm-settings.svg';
 import { TwitterPicker, ColorChangeHandler, ColorResult } from 'react-color';
 import { Checkbox, Select, ISelectOption, Input } from '../inputs';
 import { ValueType } from 'react-select/src/types';
@@ -25,6 +26,7 @@ import {
 } from 'recharts';
 import { Button } from '../buttons';
 import { SummaryData } from '../../../views/app/device/DeviceChartDetail/utils';
+import { Icon } from '../icons';
 
 export interface IDeviceCardProps {
   device: IDevice;
@@ -73,25 +75,34 @@ export const TriggerCard: FunctionComponent<ITriggerCardProps> = ({
   trigger: { id, name, triggerType, integration, triggerImage }
 }) => {
   return (
-    <div className="c-card__device-container" key={id}>
-      <Link to="{device.deviceLink}">
-        <div className="c-card__device-card">
-          <img
-            src={triggerImage}
-            onError={(e: any) => {
-              e.target.onerror = null;
-              e.target.src = DeviceImageStatic;
-            }}
-            alt={'device'}
-            style={{ width: 50, height: 50 }}
-          />
-          <div className="c-card__device-card-info">
-            <div className="c-card__device-card-info-title">{name}</div>
-            <div className="c-card__device-card-info-description">{integration}</div>
-            <div className="c-card__device-card-info-location">{triggerType}</div>
+    <div className="c-card__trigger-container" key={id}>
+      <div className="c-card__trigger-card">
+        <img
+          src={triggerImage}
+          onError={(e: any) => {
+            e.target.onerror = null;
+            e.target.src = TriggerImageStatic;
+          }}
+          alt={'trigger'}
+          style={{ width: 50, height: 50 }}
+        />
+        <div className="c-card__trigger-card-info">
+          <div className="c-card__trigger-card-info-title">{name}</div>
+          <div className="c-card__trigger-card-info-description">{integration}</div>
+          <div className="c-card__trigger-card-info-triggerType">
+            {' '}
+            <div className="c-card__trigger-card-info-triggerType__icon">
+              {' '}
+              {triggerType === 'Alarm' ? (
+                <Icon icon="alarm" width={11} height={11} />
+              ) : (
+                <Icon icon="calendar" width={11} height={11} />
+              )}
+            </div>{' '}
+            {triggerType}
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

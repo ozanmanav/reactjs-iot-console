@@ -6,11 +6,15 @@ import './LiquidGauge.scss';
 
 interface ILiquidGaugeProps {
   value?: number;
+  startColor?: string;
+  endColor?: string;
 }
 
-export const LiquidGauge: FunctionComponent<ILiquidGaugeProps> = ({ value = 0 }) => {
-  const startColor = '#f68a4d'; // cornflowerblue
-  const endColor = '#f68a4d'; // crimson
+export const LiquidGauge: FunctionComponent<ILiquidGaugeProps> = ({
+  value = 0,
+  startColor = '#0077be',
+  endColor = '#0077be'
+}) => {
   const radius = 200;
   const interpolate = interpolateRgb(startColor, endColor);
   const fillColor = interpolate(value / 100);
