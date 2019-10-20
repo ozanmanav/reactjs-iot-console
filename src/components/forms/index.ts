@@ -3,3 +3,4 @@ export * from './SignUpForm';
 export * from './ProjectSettingsForm';
 export * from './FormsUI';
 export * from './DeviceSettingsForm';
+export * from './AddDashboardForm';

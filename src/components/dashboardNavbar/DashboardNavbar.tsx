@@ -1,78 +1,34 @@
 import React, { FunctionComponent } from 'react';
 import './DashboardNavbar.scss';
 import { Select, Button, AddButton, RemoveButton } from '../ui';
+import { AppState } from '../../store';
+import { connect } from 'react-redux';
+import { IDashboardLayout } from '../../store/ui/types';
+import { normalizeDashboardLayoutsOptions, normalizeDashboardLayoutsOption } from './utils';
 
-interface IDashboardControlBarProps {}
+interface IDashboardControlBarProps {
+  dashboardLayouts?: IDashboardLayout[];
+  selectedDashboardLayout?: IDashboardLayout;
+}
 
-const dashboardLayoutOptions = [
-  {
-    label: 'Dashboard 1',
-    value: 'dashboard1'
-  },
-  {
-    label: 'Dashboard 2',
-    value: 'dashboard2'
-  },
-  {
-    label: 'Dashboard 3',
-    value: 'dashboard3'
-  }
-];
-
-const dashboardLayouts = [
-  {
-    dashboardId: '1',
-    widgets: [
-      {
-        widgetId: '1_1',
-        widgetName: 'widget1'
-      },
-      {
-        widgetId: '1_2',
-        widgetName: 'widget2'
-      },
-      {
-        widgetId: '1_3',
-        widgetName: 'widget3'
-      },
-      {
-        widgetId: '1_4',
-        widgetName: 'widget4'
-      }
-    ]
-  },
-  {
-    dashboardId: '2',
-    widgets: [
-      {
-        widgetId: '2_1',
-        widgetName: 'widget34'
-      },
-      {
-        widgetId: '2_2',
-        widgetName: 'widget45'
-      },
-      {
-        widgetId: '2_3',
-        widgetName: 'widget64'
-      },
-      {
-        widgetId: '2_4',
-        widgetName: 'widget43'
-      }
-    ]
-  }
-];
-
-export const DashboardNavbar: FunctionComponent<IDashboardControlBarProps> = () => {
+export const DashboardNavbarBase: FunctionComponent<IDashboardControlBarProps> = ({
+  dashboardLayouts,
+  selectedDashboardLayout
+}) => {
   return (
     <div className="b-dashboard-navbar">
       <div className="b-dashboard-navbar-dropdown">
-        <Select
-          options={dashboardLayoutOptions}
-          selectHeight="20px"
-          value={dashboardLayoutOptions.find(item => item.value === 'dashboard2')}
-        />
+        {dashboardLayouts && (
+          <Select
+            options={normalizeDashboardLayoutsOptions(dashboardLayouts)}
+            selectHeight="20px"
+            value={
+              selectedDashboardLayout
+                ? normalizeDashboardLayoutsOption(selectedDashboardLayout)
+                : normalizeDashboardLayoutsOptions(dashboardLayouts)[0]
+            }
+          />
+        )}
       </div>
 
       <div className="b-dashboard-navbar__spacer" />
@@ -83,3 +39,10 @@ export const DashboardNavbar: FunctionComponent<IDashboardControlBarProps> = () 
     </div>
   );
 };
+
+const mapStateToProps = (state: AppState): any => ({
+  dashboardLayouts: state.ui.dashboardLayouts,
+  selectedDashboardLayout: state.ui.selectedDashboardLayout
+});
+
+export const DashboardNavbar = connect(mapStateToProps)(DashboardNavbarBase);

@@ -59,7 +59,9 @@ export const rootSaga = function* root() {
     takeLatest(REHYDRATE, authSaga.requestCheckPersistError),
 
     // UI
-    takeLatest(uiTypes.SET_SIDEBAR_STATUS, uiSaga.requestSidebarOpen),
+    takeLatest(uiTypes.GET_DASHBOARD_LAYOUTS, uiSaga.requestGetDashboardLayouts),
+    takeLatest(uiTypes.SAVE_DASHBOARD_LAYOUTS, uiSaga.requestSaveDashboardLayouts),
+    takeLatest(uiTypes.SET_DASHBOARD_LAYOUT, uiSaga.requestSetDashboardLayout),
 
     // User
     takeLatest(userTypes.GET_USER_PROFILE, userSaga.requestGetUserProfile)
