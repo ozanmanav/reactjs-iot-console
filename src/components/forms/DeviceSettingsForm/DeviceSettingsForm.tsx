@@ -37,16 +37,16 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
           error={errors && errors.deviceToken}
           touched={touched && touched.deviceToken}
         />
-        <FormCaption>Client Secret</FormCaption>
+        <FormCaption>Device ID</FormCaption>
         <Input
-          placeholder="Client Secret"
+          placeholder="Device ID"
           name="clientSecret"
           showCopyIcon={true}
-          copyText="Client Secret copied to clipboard!"
+          copyText="Device ID copied to clipboard!"
           disabled={true}
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.id || 'Client Secret not found'}
+          value={values.id || 'Device ID not found'}
           error={errors && errors.clientSecret}
           touched={touched && touched.clientSecret}
         />

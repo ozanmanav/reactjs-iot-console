@@ -55,6 +55,7 @@ export const rootSaga = function* root() {
     takeLatest(projectTypes.GET_TRIGGER_TYPES, projectSaga.requestGetTriggerTypes),
     takeLatest(projectTypes.GET_TRIGGER_INTEGRATIONS, projectSaga.requestGetTriggerIntegrations),
     takeLatest(projectTypes.GET_TRIGGER_INTERVALS, projectSaga.requestGetTriggerIntervals),
+    takeLatest(projectTypes.SAVE_DEVICE_CHART, projectSaga.requestSaveDeviceChart),
 
     // Redux-Persist Watcher
     takeLatest(REHYDRATE, authSaga.requestCheckPersistError),

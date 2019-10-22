@@ -6,7 +6,7 @@ import {
   AddDashboardFormValidationSchema,
   IAddDashboardFormProps
 } from './definitions';
-import { Input, Select } from '../../ui';
+import { Input } from '../../ui';
 import { Button } from '../../ui/buttons';
 import './AddDashboardForm.scss';
 

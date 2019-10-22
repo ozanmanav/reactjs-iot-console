@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import './Cards.scss';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 import { IDevice, ITrigger, IChart } from '../../../store/project/types';
 import classNames from 'classnames';
 import DeviceImageStatic from '../../../icons/raspberry.png';
@@ -320,7 +319,7 @@ export interface IDeviceChartCardProps {
   showDeleteButton?: boolean;
   showTooltip?: boolean;
   onClickDelete?: () => void;
-  onClickSave?: (newData: any) => void;
+  onClickSave?: (newChartName: string) => void;
 }
 
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
@@ -333,10 +332,23 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   onClickDelete,
   onClickSave
 }) => {
+  const [chartName, setChartName] = useState<string>(name);
   const [editModeActive, setEditModeActive] = useState(false);
 
   const toggleEditMode = () => {
     setEditModeActive(prevEditModeActive => !prevEditModeActive);
+  };
+
+  const onChangeChartName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setChartName(newValue);
+  };
+
+  const onClickSaveButton = () => {
+    if (onClickSave) {
+      setEditModeActive(false);
+      onClickSave(chartName);
+    }
   };
 
   return (
@@ -345,10 +357,17 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
         <div className="c-card__graph-card__info-title">
           {editModeActive ? (
             <>
-              <Input placeholder="E-mail" name="email" className="mt-15" marginBottom="none" value={name} />
+              <Input
+                placeholder="E-mail"
+                name="email"
+                className="mt-15"
+                marginBottom="none"
+                value={chartName}
+                onChange={onChangeChartName}
+              />
             </>
           ) : (
-            name
+            chartName
           )}
         </div>
         <div>
@@ -363,7 +382,7 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
                 primary
                 className="c-card__graph-card__info-edit-button"
                 type="submit"
-                onClick={onClickSave}
+                onClick={onClickSaveButton}
               />
             </>
           ) : (

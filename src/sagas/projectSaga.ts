@@ -7,7 +7,8 @@ import {
   AddDeviceAction,
   CreateProjectAction,
   IProject,
-  AddDeviceChartAction
+  AddDeviceChartAction,
+  SaveDeviceChartAction
 } from '../store/project/types';
 import { showSuccessToast, showErrorToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
@@ -149,7 +150,7 @@ export function* requestGetDeviceActivities() {
     );
 
     const successDeviceActivitiesResponse: ProjectState = {
-      deviceActivities: deviceActivitiesResponse.data.Activities
+      deviceActivities: deviceActivitiesResponse.data.Activities && deviceActivitiesResponse.data.Activities.reverse()
     };
 
     yield put(actions.getDeviceActivitiesSuccess(successDeviceActivitiesResponse));
@@ -676,5 +677,46 @@ export function* requestGetTriggerIntervals() {
     );
   } catch (error) {
     yield put(actions.getTriggerIntervalsFailure({ error }));
+  }
+}
+
+export function* requestSaveDeviceChart(data: SaveDeviceChartAction) {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice) {
+      return yield put(
+        actions.addDeviceChartFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const saveChartResponse = yield call(
+      putRequest,
+      `charts`,
+      {},
+      {
+        ...data.payload,
+        id: data.payload._id,
+        deviceId: currentDevice.id,
+        projectId: currentProject.id
+      }
+    );
+
+    if (saveChartResponse.data.Charts === 'Chart successfully updated') {
+      showSuccessToast('Chart successfully updated');
+      yield put(actions.saveDeviceChartSuccess({}));
+    } else {
+      yield put(
+        actions.saveDeviceChartFailure({
+          error: saveChartResponse.data
+        })
+      );
+    }
+  } catch (error) {
+    showErrorToast(error);
+    yield put(actions.saveDeviceChartFailure({ error }));
   }
 }

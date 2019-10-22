@@ -1,7 +1,6 @@
 import { FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
-import { IProjectLoadingState } from '../../../store/project/types';
 
 export const AddDashboardFormDefaultState = {
   name: ''

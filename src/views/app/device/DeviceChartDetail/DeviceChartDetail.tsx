@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import './DeviceChartDetail.scss';
-import { getDeviceChartById, deleteDeviceChartById } from '../../../../store/project/actions';
+import { getDeviceChartById, deleteDeviceChartById, saveDeviceChart } from '../../../../store/project/actions';
 import { connect } from 'react-redux';
 import { IDevice, IProjectLoadingState, IProject, IChart } from '../../../../store/project/types';
 import { AppState } from '../../../../store';
@@ -15,6 +15,7 @@ import { useModal } from '../../../../components/ui';
 interface DeviceChartDetailBaseProps {
   getDeviceChartById: typeof getDeviceChartById;
   deleteDeviceChartById: typeof deleteDeviceChartById;
+  saveDeviceChart: typeof saveDeviceChart;
   currentProject?: IProject;
   currentDevice?: IDevice;
   currentChart?: IChart;
@@ -29,6 +30,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
   currentChart,
   loading,
   deviceChartsData,
+  saveDeviceChart,
   router
 }) => {
   const { open: openDeleteChartModal, hide: hideDeleteChartModal, isOpen: isOpenDeleteChartModal } = useModal();
@@ -45,6 +47,12 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
     if (currentChart) {
       deleteDeviceChartById(currentChart._id);
       hideDeleteChartModal();
+    }
+  };
+
+  const onSaveChart = (newChartName: string) => {
+    if (currentChart && currentChart.name !== newChartName) {
+      saveDeviceChart({ ...currentChart, name: newChartName });
     }
   };
 
@@ -70,6 +78,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 showDeleteButton
                 showTooltip
                 onClickDelete={openDeleteChartModal}
+                onClickSave={onSaveChart}
               />
               <ConfirmModal
                 title={`Are you sure delete ${currentChart.name} chart?`}
@@ -113,5 +122,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const DeviceChartDetail = connect(
   mapStateToProps,
-  { getDeviceChartById, deleteDeviceChartById }
+  { getDeviceChartById, deleteDeviceChartById, saveDeviceChart }
 )(DeviceChartDetailBase);

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import './DashboardNavbar.scss';
-import { Select, Button, AddButton, RemoveButton } from '../ui';
+import { Select } from '../ui';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
 import { IDashboardLayout } from '../../store/ui/types';
@@ -18,7 +18,6 @@ export const DashboardNavbarBase: FunctionComponent<IDashboardControlBarProps> =
   return (
     <div className="b-dashboard-navbar">
       <div className="b-dashboard-navbar-title">{selectedDashboardLayout && selectedDashboardLayout.title}</div>
-
       <div className="b-dashboard-navbar__spacer" />
       <div className="b-dashboard-navbar-dropdown">
         {dashboardLayouts && (
@@ -33,10 +32,6 @@ export const DashboardNavbarBase: FunctionComponent<IDashboardControlBarProps> =
           />
         )}
       </div>
-      {/* <div className="b-dashboard-navbar-buttons ml-2">
-        <AddButton text="New Dashboard" />
-        <RemoveButton onClick={() => alert('ok')} />
-      </div> */}
     </div>
   );
 };

@@ -38,6 +38,7 @@ export interface IProjectLoadingState {
   triggerIntegrations?: boolean;
   triggerIntervals?: boolean;
   addTrigger?: boolean;
+  saveDeviceChart?: boolean;
 }
 
 export interface IDeviceToken {
@@ -118,21 +119,36 @@ export interface ProjectState {
   error?: string;
 }
 
+/* PROJECTS */
+export const CREATE_PROJECT = '@@project/CREATE_PROJECT';
+export const CREATE_PROJECT_SUCCESS = '@@project/CREATE_PROJECT_SUCCESS';
+export const CREATE_PROJECT_FAILURE = '@@project/CREATE_PROJECT_FAILURE';
+export const DELETE_PROJECT = '@@project/DELETE_PROJECT';
+export const DELETE_PROJECT_SUCCESS = '@@project/DELETE_PROJECT_SUCCESS';
+export const DELETE_PROJECT_FAILURE = '@@project/DELETE_PROJECT_FAILURE';
 export const GET_PROJECTS = '@@project/GET_PROJECTS';
 export const GET_PROJECTS_SUCCESS = '@@project/GET_PROJECTS_SUCCESS';
 export const GET_PROJECTS_FAILURE = '@@project/GET_PROJECTS_FAILURE';
 export const GET_PROJECT_BY_ID = '@@project/GET_PROJECT_BY_ID';
 export const GET_PROJECT_BY_ID_SUCCESS = '@@project/GET_PROJECT_BY_ID_SUCCESS';
 export const GET_PROJECT_BY_ID_FAILURE = '@@project/GET_PROJECT_BY_ID_FAILURE';
+export const GET_ACTIVITIES = '@@project/GET_ACTIVITIES';
+export const GET_ACTIVITIES_SUCCESS = '@@project/GET_ACTIVITIES_SUCCESS';
+export const GET_ACTIVITIES_FAILURE = '@@project/GET_ACTIVITIES_FAILURE';
+export const ADD_DEVICE = '@@project/ADD_DEVICE';
+export const ADD_DEVICE_SUCCESS = '@@project/ADD_DEVICE_SUCCESS';
+export const ADD_DEVICE_FAILURE = '@@project/ADD_DEVICE_FAILURE';
+export const SAVE_PROJECT_SETTINGS = '@@project/SAVE_PROJECT_SETTINGS';
+export const SAVE_PROJECT_SETTINGS_SUCCESS = '@@project/SAVE_PROJECT_SETTINGS_SUCCESS';
+export const SAVE_PROJECT_SETTINGS_FAILURE = '@@project/SAVE_PROJECT_SETTINGS_FAILURE';
+
+/* DEVICES */
 export const GET_DEVICES = '@@project/GET_DEVICES';
 export const GET_DEVICES_SUCCESS = '@@project/GET_DEVICES_SUCCESS';
 export const GET_DEVICES_FAILURE = '@@project/GET_DEVICES_FAILURE';
 export const GET_DEVICE_BY_ID = '@@project/GET_DEVICE_BY_ID';
 export const GET_DEVICE_BY_ID_SUCCESS = '@@project/GET_DEVICE_BY_ID_SUCCESS';
 export const GET_DEVICE_BY_ID_FAILURE = '@@project/GET_DEVICE_BY_ID_FAILURE';
-export const GET_ACTIVITIES = '@@project/GET_ACTIVITIES';
-export const GET_ACTIVITIES_SUCCESS = '@@project/GET_ACTIVITIES_SUCCESS';
-export const GET_ACTIVITIES_FAILURE = '@@project/GET_ACTIVITIES_FAILURE';
 export const GET_DEVICE_ACTIVITIES = '@@project/GET_DEVICE_ACTIVITIES';
 export const GET_DEVICE_ACTIVITIES_SUCCESS = '@@project/GET_DEVICE_ACTIVITIES_SUCCESS';
 export const GET_DEVICE_ACTIVITIES_FAILURE = '@@project/GET_DEVICE_ACTIVITIES_FAILURE';
@@ -142,48 +158,24 @@ export const GET_DEVICE_SETTINGS_FAILURE = '@@project/GET_DEVICE_SETTINGS_FAILUR
 export const GET_DEVICE_TOKENS = '@@project/GET_DEVICE_TOKENS';
 export const GET_DEVICE_TOKENS_SUCCESS = '@@project/GET_DEVICE_TOKENS_SUCCESS';
 export const GET_DEVICE_TOKENS_FAILURE = '@@project/GET_DEVICE_TOKENS_FAILURE';
-export const SAVE_PROJECT_SETTINGS = '@@project/SAVE_PROJECT_SETTINGS';
-export const SAVE_PROJECT_SETTINGS_SUCCESS = '@@project/SAVE_PROJECT_SETTINGS_SUCCESS';
-export const SAVE_PROJECT_SETTINGS_FAILURE = '@@project/SAVE_PROJECT_SETTINGS_FAILURE';
 export const GET_DEVICE_BRANDS = '@@project/GET_DEVICE_BRANDS';
 export const GET_DEVICE_BRANDS_SUCCESS = '@@project/GET_DEVICE_BRANDS_SUCCESS';
 export const GET_DEVICE_BRANDS_FAILURE = '@@project/GET_DEVICE_BRANDS_FAILURE';
-export const ADD_DEVICE = '@@project/ADD_DEVICE';
-export const ADD_DEVICE_SUCCESS = '@@project/ADD_DEVICE_SUCCESS';
-export const ADD_DEVICE_FAILURE = '@@project/ADD_DEVICE_FAILURE';
 export const GET_DEVICE_MODELS = '@@project/GET_DEVICE_MODELS';
 export const GET_DEVICE_MODELS_SUCCESS = '@@project/GET_DEVICE_MODELS_SUCCESS';
 export const GET_DEVICE_MODELS_FAILURE = '@@project/GET_DEVICE_MODELS_FAILURE';
-export const CREATE_PROJECT = '@@project/CREATE_PROJECT';
-export const CREATE_PROJECT_SUCCESS = '@@project/CREATE_PROJECT_SUCCESS';
-export const CREATE_PROJECT_FAILURE = '@@project/CREATE_PROJECT_FAILURE';
-export const DELETE_PROJECT = '@@project/DELETE_PROJECT';
-export const DELETE_PROJECT_SUCCESS = '@@project/DELETE_PROJECT_SUCCESS';
-export const DELETE_PROJECT_FAILURE = '@@project/DELETE_PROJECT_FAILURE';
 export const GET_DEVICE_ENTITIES = '@@project/GET_DEVICE_ENTITIES';
 export const GET_DEVICE_ENTITIES_SUCCESS = '@@project/GET_DEVICE_ENTITIES_SUCCESS';
 export const GET_DEVICE_ENTITIES_FAILURE = '@@project/GET_DEVICE_ENTITIES_FAILURE';
-export const ADD_DEVICE_CHART = '@@project/ADD_DEVICE_CHART';
-export const ADD_DEVICE_CHART_SUCCESS = '@@project/ADD_DEVICE_CHART_SUCCESS';
-export const ADD_DEVICE_CHART_FAILURE = '@@project/ADD_DEVICE_CHART_FAILURE';
 export const GET_DEVICE_CHARTS = '@@project/GET_DEVICE_CHARTS';
 export const GET_DEVICE_CHARTS_SUCCESS = '@@project/GET_DEVICE_CHARTS_SUCCESS';
 export const GET_DEVICE_CHARTS_FAILURE = '@@project/GET_DEVICE_CHARTS_FAILURE';
-export const DELETE_DEVICE = '@@project/DELETE_DEVICE';
-export const DELETE_DEVICE_SUCCESS = '@@project/DELETE_DEVICE_SUCCESS';
-export const DELETE_DEVICE_FAILURE = '@@project/DELETE_DEVICE_FAILURE';
 export const GET_DEVICE_CHARTS_DATA = '@@project/GET_DEVICE_CHARTS_DATA';
 export const GET_DEVICE_CHARTS_DATA_SUCCESS = '@@project/GET_DEVICE_CHARTS_DATA_SUCCESS';
 export const GET_DEVICE_CHARTS_DATA_FAILURE = '@@project/GET_DEVICE_CHARTS_DATA_FAILURE';
-export const SAVE_DEVICE_SETTINGS = '@@project/SAVE_DEVICE_SETTINGS';
-export const SAVE_DEVICE_SETTINGS_SUCCESS = '@@project/SAVE_DEVICE_SETTINGS_SUCCESS';
-export const SAVE_DEVICE_SETTINGS_FAILURE = '@@project/SAVE_DEVICE_SETTINGS_FAILURE';
 export const GET_DEVICE_CHART_BY_ID = '@@project/GET_DEVICE_CHART_BY_ID';
 export const GET_DEVICE_CHART_BY_ID_SUCCESS = '@@project/GET_DEVICE_CHART_BY_ID_SUCCESS';
 export const GET_DEVICE_CHART_BY_ID_FAILURE = '@@project/GET_DEVICE_CHART_BY_ID_FAILURE';
-export const DELETE_DEVICE_CHART_BY_ID = '@@project/DELETE_DEVICE_CHART_BY_ID';
-export const DELETE_DEVICE_CHART_BY_ID_SUCCESS = '@@project/DELETE_DEVICE_CHART_BY_ID_SUCCESS';
-export const DELETE_DEVICE_CHART_BY_ID_FAILURE = '@@project/DELETE_DEVICE_CHART_BY_ID_FAILURE';
 export const GET_DEVICE_TRIGGERS = '@@project/GET_DEVICE_TRIGGERS';
 export const GET_DEVICE_TRIGGERS_SUCCESS = '@@project/GET_DEVICE_TRIGGERS_SUCCESS';
 export const GET_DEVICE_TRIGGERS_FAILURE = '@@project/GET_DEVICE_TRIGGERS_FAILURE';
@@ -196,6 +188,21 @@ export const GET_TRIGGER_INTEGRATIONS_FAILURE = '@@project/GET_TRIGGER_INTEGRATI
 export const GET_TRIGGER_INTERVALS = '@@project/GET_TRIGGER_INTERVALS';
 export const GET_TRIGGER_INTERVALS_SUCCESS = '@@project/GET_TRIGGER_INTERVALS_SUCCESS';
 export const GET_TRIGGER_INTERVALS_FAILURE = '@@project/GET_TRIGGER_INTERVALS_FAILURE';
+export const ADD_DEVICE_CHART = '@@project/ADD_DEVICE_CHART';
+export const ADD_DEVICE_CHART_SUCCESS = '@@project/ADD_DEVICE_CHART_SUCCESS';
+export const ADD_DEVICE_CHART_FAILURE = '@@project/ADD_DEVICE_CHART_FAILURE';
+export const DELETE_DEVICE = '@@project/DELETE_DEVICE';
+export const DELETE_DEVICE_SUCCESS = '@@project/DELETE_DEVICE_SUCCESS';
+export const DELETE_DEVICE_FAILURE = '@@project/DELETE_DEVICE_FAILURE';
+export const DELETE_DEVICE_CHART_BY_ID = '@@project/DELETE_DEVICE_CHART_BY_ID';
+export const DELETE_DEVICE_CHART_BY_ID_SUCCESS = '@@project/DELETE_DEVICE_CHART_BY_ID_SUCCESS';
+export const DELETE_DEVICE_CHART_BY_ID_FAILURE = '@@project/DELETE_DEVICE_CHART_BY_ID_FAILURE';
+export const SAVE_DEVICE_SETTINGS = '@@project/SAVE_DEVICE_SETTINGS';
+export const SAVE_DEVICE_SETTINGS_SUCCESS = '@@project/SAVE_DEVICE_SETTINGS_SUCCESS';
+export const SAVE_DEVICE_SETTINGS_FAILURE = '@@project/SAVE_DEVICE_SETTINGS_FAILURE';
+export const SAVE_DEVICE_CHART = '@@project/SAVE_DEVICE_CHART';
+export const SAVE_DEVICE_CHART_SUCCESS = '@@project/SAVE_DEVICE_CHART_SUCCESS';
+export const SAVE_DEVICE_CHART_FAILURE = '@@project/SAVE_DEVICE_CHART_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -572,6 +579,21 @@ interface GetTriggerIntervalsFailureAction {
   payload: ProjectState;
 }
 
+export interface SaveDeviceChartAction {
+  type: typeof SAVE_DEVICE_CHART;
+  payload: IChart;
+}
+
+interface SaveDeviceChartSuccessAction {
+  type: typeof SAVE_DEVICE_CHART_SUCCESS;
+  payload: ProjectState;
+}
+
+interface SaveDeviceChartFailureAction {
+  type: typeof SAVE_DEVICE_CHART_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -650,4 +672,7 @@ export type ProjectActionTypes =
   | GetTriggerIntegrationsFailureAction
   | GetTriggerIntervalsAction
   | GetTriggerIntervalsSuccessAction
-  | GetTriggerIntervalsFailureAction;
+  | GetTriggerIntervalsFailureAction
+  | SaveDeviceChartAction
+  | SaveDeviceChartSuccessAction
+  | SaveDeviceChartFailureAction;

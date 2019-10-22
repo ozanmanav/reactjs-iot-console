@@ -29,7 +29,7 @@ export const defaultLayout = [
 ];
 
 export const UIInitialState: UIState = {
-  dashboardLayouts: [{ id: 'dashboard_1', title: 'Dashboard 1', layout: defaultLayout }],
+  dashboardLayouts: [{ id: 'dashboard_1', title: 'First Floor', layout: defaultLayout }],
   selectedDashboardLayout: undefined
 };
 

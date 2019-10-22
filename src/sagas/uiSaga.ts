@@ -15,12 +15,12 @@ export function* requestGetDashboardLayouts(data: any) {
 
     yield put(
       setDashboardLayoutSuccess({
-        selectedDashboardLayout: { id: 'dashboard_1', title: 'Dashboard 1', layout: defaultLayout }
+        selectedDashboardLayout: { id: 'dashboard_1', title: 'First Floor', layout: defaultLayout }
       })
     );
     yield put(
       getDashboardLayoutsSuccess({
-        dashboardLayouts: data ? JSON.parse(data) : [{ id: 'dashboard_1', title: 'Dashboard 1', layout: defaultLayout }]
+        dashboardLayouts: data ? JSON.parse(data) : [{ id: 'dashboard_1', title: 'First Floor', layout: defaultLayout }]
       } as UIState)
     );
   } catch (error) {

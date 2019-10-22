@@ -553,3 +553,24 @@ export function getTriggerIntervalsFailure(projects: ProjectState): ProjectActio
     payload: projects
   };
 }
+
+export function saveDeviceChart(newChart: types.IChart): ProjectActionTypes {
+  return {
+    type: types.SAVE_DEVICE_CHART,
+    payload: newChart
+  };
+}
+
+export function saveDeviceChartSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.SAVE_DEVICE_CHART_SUCCESS,
+    payload: projects
+  };
+}
+
+export function saveDeviceChartFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.SAVE_DEVICE_CHART_FAILURE,
+    payload: projects
+  };
+}

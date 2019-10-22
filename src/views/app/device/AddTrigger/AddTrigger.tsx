@@ -44,7 +44,7 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
     getTriggerTypes();
     getTriggerIntegrations();
     getTriggerIntervals();
-  }, []);
+  }, [getDeviceEntities, getTriggerTypes, getTriggerIntegrations, getTriggerIntervals]);
 
   const onSubmit = (values: IAddTriggerFormState): void => {
     console.log(values);

@@ -30,7 +30,7 @@ import rechartsDataPie from './rechartsDataPie.json';
 import rechartsDataRadar from './rechartsDataRadar.json';
 import GridLayout from 'react-grid-layout';
 import './Dashboard.scss';
-import { useLocalStorage, useDimensions } from '../../../hooks';
+import { useDimensions } from '../../../hooks';
 import { GridWidgetCard } from '../../../components/ui/cards';
 import { DashboardNavbar } from '../../../components/dashboardNavbar';
 import { AddButton, RemoveButton } from '../../../components/ui';
@@ -51,13 +51,12 @@ interface DashboardBaseProps {
 const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboardLayout, getDashboardLayouts }) => {
   const [gridWidth, setGridWidth] = useState<number>(1200);
   const [ref, dimensions] = useDimensions();
-  // const [savedLayout, saveLayout] = useLocalStorage('savedLayout', defaultLayout);
 
   useEffect(() => {
     if (getDashboardLayouts) {
       getDashboardLayouts();
     }
-  }, []);
+  }, [getDashboardLayouts]);
 
   useEffect(() => {
     if (dimensions && dimensions.width && !isNaN(dimensions.width)) {
@@ -80,7 +79,7 @@ const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboar
 
         <div>
           {' '}
-          <RemoveButton onClick={() => alert('ok')} text="Delete Dashboard" />
+          <RemoveButton onClick={() => alert('ok')} />
         </div>
       </div>
       {selectedDashboardLayout && (
