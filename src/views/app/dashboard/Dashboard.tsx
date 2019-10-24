@@ -38,7 +38,8 @@ import { LiquidGauge } from '../../../components/liquidGauge';
 import { AppState } from '../../../store/index.js';
 import { getDashboardLayouts } from '../../../store/ui/actions';
 import { connect } from 'react-redux';
-import { IDashboardLayout } from '../../../store/ui/types.js';
+import { IDashboardLayout } from '../../../store/ui/types';
+import { HeatMapTable } from '../../../components/heatMapTable';
 
 const primaryColor = '#F68A4D';
 const secondaryColor = '#4A4A4A';
@@ -100,10 +101,8 @@ const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboar
               </GridWidgetCard>
             </div>
             <div key="l1_2">
-              <GridWidgetCard widgetName="Nano I">
-                <ResponsiveContainer width="99%">
-                  <LiquidGauge value={37} />
-                </ResponsiveContainer>
+              <GridWidgetCard widgetName="Population Density Map">
+                <HeatMapTable />
               </GridWidgetCard>
             </div>
             <div key="l1_3">
