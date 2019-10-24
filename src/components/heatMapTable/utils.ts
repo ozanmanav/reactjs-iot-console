@@ -1,4 +1,4 @@
-function generateData(count: any, yrange: any) {
+export function generateData(count: any, yrange: any) {
   let i = 0;
   const series = [];
   while (i < count) {
@@ -52,4 +52,4 @@ export const data = [
   }
 ];
 
-export const colors = ['#333;'];
+export const colors = ['#333'];

@@ -70,6 +70,7 @@
     "react-spinners": "^0.6.1",
     "react-tabs": "^3.0.0",
     "react-toastify": "^5.4.0",
+    "react-vis": "^1.11.7",
     "recharts": "^1.7.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",

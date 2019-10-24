@@ -40,6 +40,7 @@ import { getDashboardLayouts } from '../../../store/ui/actions';
 import { connect } from 'react-redux';
 import { IDashboardLayout } from '../../../store/ui/types';
 import { HeatMapTable } from '../../../components/heatMapTable';
+import { HeatMapTable2 } from '../../../components/heatMapTable2';
 
 const primaryColor = '#F68A4D';
 const secondaryColor = '#4A4A4A';
@@ -106,9 +107,9 @@ const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboar
               </GridWidgetCard>
             </div>
             <div key="l1_3">
-              <GridWidgetCard widgetName="Refrigerated Vehicle Battery">
+              <GridWidgetCard widgetName="Density">
                 <ResponsiveContainer width="99%">
-                  <LiquidGauge value={86} />
+                  <HeatMapTable2 />
                 </ResponsiveContainer>
               </GridWidgetCard>
             </div>
