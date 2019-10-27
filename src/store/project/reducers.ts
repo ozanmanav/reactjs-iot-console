@@ -801,6 +801,34 @@ export function projectReducer(state = ProjectInitialState, action: ProjectActio
         }
       };
     }
+    case types.ADD_DEVICE_TRIGGER: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveDeviceChart: true
+        }
+      };
+    }
+    case types.ADD_DEVICE_TRIGGER_SUCCESS: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveDeviceChart: false
+        },
+        ...action.payload
+      };
+    }
+    case types.ADD_DEVICE_TRIGGER_FAILURE: {
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          saveDeviceChart: false
+        }
+      };
+    }
     default:
       return state;
   }

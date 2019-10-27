@@ -8,7 +8,8 @@ import {
   CreateProjectAction,
   IProject,
   AddDeviceChartAction,
-  SaveDeviceChartAction
+  SaveDeviceChartAction,
+  AddDeviceTriggerAction
 } from '../store/project/types';
 import { showSuccessToast, showErrorToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
@@ -718,5 +719,43 @@ export function* requestSaveDeviceChart(data: SaveDeviceChartAction) {
   } catch (error) {
     showErrorToast(error);
     yield put(actions.saveDeviceChartFailure({ error }));
+  }
+}
+
+export function* requestAddDeviceTrigger(data: AddDeviceTriggerAction) {
+  try {
+    const currentProject: IProject = yield select(state => state.project.currentProject);
+    const currentDevice: IDevice = yield select(state => state.project.currentDevice);
+
+    if (!currentProject || !currentDevice) {
+      return yield put(
+        actions.addDeviceTriggerFailure({
+          error: 'Not current project or device selected'
+        })
+      );
+    }
+
+    const addDeviceTriggerResponse = yield call(
+      postRequest,
+      `project/${currentProject.id}/device/${currentDevice.id}/triggers`,
+      {},
+      data.payload
+    );
+
+    console.log(addDeviceTriggerResponse);
+
+    if (addDeviceTriggerResponse.data.Message === 'Added Device successful') {
+      const addDeviceTriggerResponse: ProjectState = {};
+      showSuccessToast('Trigger successfully added');
+      // yield put(actions.getDevices());
+    } else {
+      yield put(
+        actions.addDeviceTriggerFailure({
+          error: addDeviceTriggerResponse.data
+        })
+      );
+    }
+  } catch (error) {
+    yield put(actions.addDeviceTriggerFailure({ error }));
   }
 }

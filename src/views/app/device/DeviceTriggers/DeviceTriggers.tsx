@@ -28,9 +28,7 @@ export const DeviceTriggersBase: FunctionComponent<DeviceTriggersBaseProps> = ({
   useEffect(() => {
     getDeviceTriggers();
   }, [getDeviceTriggers]);
-  console.log(deviceTriggers);
-  const dataToShowGrouped = groupBy(deviceTriggers, 'deviceBrandName');
-  console.log(dataToShowGrouped);
+
   return (
     <div className="b-device-triggers-details">
       <div className="b-device-triggers__add-trigger-button">

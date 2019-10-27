@@ -2,6 +2,7 @@ import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/defini
 import { ICreateProjectFormState } from '../../components/forms/CreateProjectForm/definitions';
 import { IAddChartFormState } from '../../components/forms/AddChartForm/definitions';
 import { ISelectEntity } from '../../components/ui/cards';
+import { IAddTriggerFormState } from '../../components/forms/AddTriggerForm/definitions';
 
 export interface IProject {
   id: string;
@@ -39,6 +40,7 @@ export interface IProjectLoadingState {
   triggerIntervals?: boolean;
   addTrigger?: boolean;
   saveDeviceChart?: boolean;
+  addDeviceTrigger?: boolean;
 }
 
 export interface IDeviceToken {
@@ -203,6 +205,9 @@ export const SAVE_DEVICE_SETTINGS_FAILURE = '@@project/SAVE_DEVICE_SETTINGS_FAIL
 export const SAVE_DEVICE_CHART = '@@project/SAVE_DEVICE_CHART';
 export const SAVE_DEVICE_CHART_SUCCESS = '@@project/SAVE_DEVICE_CHART_SUCCESS';
 export const SAVE_DEVICE_CHART_FAILURE = '@@project/SAVE_DEVICE_CHART_FAILURE';
+export const ADD_DEVICE_TRIGGER = '@@project/ADD_DEVICE_TRIGGER';
+export const ADD_DEVICE_TRIGGER_SUCCESS = '@@project/ADD_DEVICE_TRIGGER_SUCCESS';
+export const ADD_DEVICE_TRIGGER_FAILURE = '@@project/ADD_DEVICE_TRIGGER_FAILURE';
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -594,6 +599,21 @@ interface SaveDeviceChartFailureAction {
   payload: ProjectState;
 }
 
+export interface AddDeviceTriggerAction {
+  type: typeof ADD_DEVICE_TRIGGER;
+  payload: IAddTriggerFormState;
+}
+
+interface AddDeviceTriggerSuccessAction {
+  type: typeof ADD_DEVICE_TRIGGER_SUCCESS;
+  payload: ProjectState;
+}
+
+interface AddDeviceTriggerFailureAction {
+  type: typeof ADD_DEVICE_TRIGGER_FAILURE;
+  payload: ProjectState;
+}
+
 export type ProjectActionTypes =
   | GetProjectsAction
   | GetProjectsSuccessAction
@@ -675,4 +695,7 @@ export type ProjectActionTypes =
   | GetTriggerIntervalsFailureAction
   | SaveDeviceChartAction
   | SaveDeviceChartSuccessAction
-  | SaveDeviceChartFailureAction;
+  | SaveDeviceChartFailureAction
+  | AddDeviceTriggerAction
+  | AddDeviceTriggerSuccessAction
+  | AddDeviceTriggerFailureAction;

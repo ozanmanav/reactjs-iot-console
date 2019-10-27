@@ -3,6 +3,7 @@ import { ProjectState, ProjectActionTypes } from './types';
 import { IAddDeviceFormState } from '../../components/forms/AddDeviceForm/definitions';
 import { ICreateProjectFormState } from '../../components/forms/CreateProjectForm/definitions';
 import { IAddChartFormState } from '../../components/forms/AddChartForm/definitions';
+import { IAddTriggerFormState } from '../../components/forms/AddTriggerForm/definitions';
 
 export function getProjects(): ProjectActionTypes {
   return {
@@ -571,6 +572,27 @@ export function saveDeviceChartSuccess(projects: ProjectState): ProjectActionTyp
 export function saveDeviceChartFailure(projects: ProjectState): ProjectActionTypes {
   return {
     type: types.SAVE_DEVICE_CHART_FAILURE,
+    payload: projects
+  };
+}
+
+export function addDeviceTrigger(newTrigger: IAddTriggerFormState): ProjectActionTypes {
+  return {
+    type: types.ADD_DEVICE_TRIGGER,
+    payload: newTrigger
+  };
+}
+
+export function addDeviceTriggerSuccess(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.ADD_DEVICE_TRIGGER_SUCCESS,
+    payload: projects
+  };
+}
+
+export function addDeviceTriggerFailure(projects: ProjectState): ProjectActionTypes {
+  return {
+    type: types.ADD_DEVICE_TRIGGER_FAILURE,
     payload: projects
   };
 }

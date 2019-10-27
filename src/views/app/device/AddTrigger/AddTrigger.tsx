@@ -6,7 +6,7 @@ import { AppState } from '../../../../store';
 import { connect } from 'react-redux';
 import {
   getDeviceEntities,
-  addDeviceChart,
+  addDeviceTrigger,
   getTriggerTypes,
   getTriggerIntegrations,
   getTriggerIntervals
@@ -21,6 +21,7 @@ interface AddTriggerBaseProps {
   getTriggerTypes: typeof getTriggerTypes;
   getTriggerIntegrations: typeof getTriggerIntegrations;
   getTriggerIntervals: typeof getTriggerIntervals;
+  addDeviceTrigger: typeof addDeviceTrigger;
   projectLoading?: IProjectLoadingState;
   deviceEntities: {};
   triggerTypes: [];
@@ -37,7 +38,8 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
   getTriggerIntervals,
   triggerTypes,
   triggerIntegrations,
-  triggerIntervals
+  triggerIntervals,
+  addDeviceTrigger
 }) => {
   useEffect(() => {
     getDeviceEntities();
@@ -47,8 +49,7 @@ export const AddTriggerBase: FunctionComponent<RouteComponentProps & AddTriggerB
   }, [getDeviceEntities, getTriggerTypes, getTriggerIntegrations, getTriggerIntervals]);
 
   const onSubmit = (values: IAddTriggerFormState): void => {
-    console.log(values);
-    // addDeviceChart(values);
+    addDeviceTrigger(values);
   };
 
   return (
@@ -79,5 +80,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export const AddTrigger = connect(
   mapStateToProps,
-  { getDeviceEntities, addDeviceChart, getTriggerTypes, getTriggerIntegrations, getTriggerIntervals }
+  { getDeviceEntities, addDeviceTrigger, getTriggerTypes, getTriggerIntegrations, getTriggerIntervals }
 )(AddTriggerBase);
