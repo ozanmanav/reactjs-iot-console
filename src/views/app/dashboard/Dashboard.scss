@@ -1,15 +1,4 @@
 .b-dashboard {
-  &-actions {
-    padding: 0px 10px;
-    display: flex;
-    justify-content: space-between;
-    .flex {
-      .add-button + .add-button {
-        margin-left: 10px;
-      }
-    }
-  }
-
   &-layout {
     text-align: center;
   }

@@ -1,9 +1,25 @@
 import GridLayout from 'react-grid-layout';
 
+type WidgetTypes =
+  | 'liquid-gauge'
+  | 'line-chart'
+  | 'heat-map'
+  | 'bar-chart'
+  | 'area-chart'
+  | 'scatter-chart'
+  | 'pie-chart'
+  | 'radar-chart';
+
+export interface IWidget extends GridLayout.Layout {
+  name: string;
+  type: WidgetTypes;
+}
+
 export interface IDashboardLayout {
   id: string;
   title: string;
-  layout: GridLayout.Layout[];
+  layouts?: GridLayout.Layout[];
+  widgets: IWidget[];
 }
 
 export interface UIState {
@@ -24,6 +40,9 @@ export const SAVE_DASHBOARD_LAYOUTS_SUCCESS = 'SAVE_DASHBOARD_LAYOUTS_SUCCESS';
 export const SET_DASHBOARD_LAYOUT = 'SET_DASHBOARD_LAYOUT';
 export const SET_DASHBOARD_LAYOUT_FAILURE = 'SET_DASHBOARD_LAYOUT_FAILURE';
 export const SET_DASHBOARD_LAYOUT_SUCCESS = 'SET_DASHBOARD_LAYOUT_SUCCESS';
+export const CREATE_DASHBOARD_LAYOUT = 'CREATE_DASHBOARD_LAYOUT';
+export const CREATE_DASHBOARD_LAYOUT_FAILURE = 'CREATE_DASHBOARD_LAYOUT_FAILURE';
+export const CREATE_DASHBOARD_LAYOUT_SUCCESS = 'CREATE_DASHBOARD_LAYOUT_SUCCESS';
 
 interface GetDashboardLayoutsAction {
   type: typeof GET_DASHBOARD_LAYOUTS;
@@ -76,6 +95,19 @@ interface SetDashboardLayoutActionFailure {
   payload: UIState;
 }
 
+interface CreateDashboardLayoutAction {
+  type: typeof CREATE_DASHBOARD_LAYOUT;
+  payload: UIState;
+}
+interface CreateDashboardLayoutActionSuccess {
+  type: typeof CREATE_DASHBOARD_LAYOUT_SUCCESS;
+  payload: UIState;
+}
+interface CreateDashboardLayoutActionFailure {
+  type: typeof CREATE_DASHBOARD_LAYOUT_FAILURE;
+  payload: UIState;
+}
+
 export type UIActionTypes =
   | SaveDashboardLayoutsAction
   | SaveDashboardLayoutsActionSuccess
@@ -88,4 +120,7 @@ export type UIActionTypes =
   | GetDashboardLayoutsActionFailure
   | SaveDashboardLayoutAction
   | SaveDashboardLayoutActionSuccess
-  | SaveDashboardLayoutActionFailure;
+  | SaveDashboardLayoutActionFailure
+  | CreateDashboardLayoutAction
+  | CreateDashboardLayoutActionSuccess
+  | CreateDashboardLayoutActionFailure;

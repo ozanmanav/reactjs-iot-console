@@ -1,56 +1,108 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  BarChart,
-  Bar,
-  ScatterChart,
-  Scatter,
-  AreaChart,
-  Area,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar
-} from 'recharts';
-import rechartsDataLine from './rechartsData.json';
-import rechartsDataBar from './rechartsDataBar.json';
-import rechartsDataArea from './rechartsDataArea.json';
-import rechartsDataScatter from './rechartsDataScatter.json';
-import rechartsDataPie from './rechartsDataPie.json';
-import rechartsDataRadar from './rechartsDataRadar.json';
 import GridLayout from 'react-grid-layout';
 import './Dashboard.scss';
-import { useDimensions } from '../../../hooks';
-import { GridWidgetCard } from '../../../components/ui/cards';
+import { useDimensions, useLocalStorage } from '../../../hooks';
 import { DashboardNavbar } from '../../../components/dashboardNavbar';
-import { AddButton, RemoveButton } from '../../../components/ui';
-import { LiquidGauge } from '../../../components/liquidGauge';
 import { AppState } from '../../../store/index.js';
-import { getDashboardLayouts } from '../../../store/ui/actions';
+import { getDashboardLayouts, createDashboardLayout } from '../../../store/ui/actions';
 import { connect } from 'react-redux';
-import { IDashboardLayout } from '../../../store/ui/types';
-import { HeatMapTable } from '../../../components/heatMapTable';
-import { HeatMapTable2 } from '../../../components/heatMapTable2';
+import { WidthProvider, Responsive } from 'react-grid-layout';
+import { IDashboardLayout, IWidget } from '../../../store/ui/types';
+import { Widget } from '../../../components/widget';
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-const primaryColor = '#F68A4D';
-const secondaryColor = '#4A4A4A';
+const dashboard: IDashboardLayout = {
+  id: 'dashboard_1',
+  title: 'Dashboard Title',
+  widgets: [
+    {
+      name: 'Environmental Sensor Humidity',
+      type: 'liquid-gauge',
+      i: 'widget1',
+      x: 0,
+      y: 0,
+      w: 3,
+      h: 2
+    },
+    {
+      name: 'Population Density Map',
+      type: 'heat-map',
+      i: 'widget2',
+      x: 3,
+      y: 0,
+      w: 6,
+      h: 2
+    },
+    {
+      name: 'Water Level',
+      type: 'liquid-gauge',
+      i: 'widget3',
+      x: 9,
+      y: 0,
+      w: 3,
+      h: 2
+    },
+    {
+      name: 'PV/UV Weekdays Line Widget',
+      type: 'line-chart',
+      i: 'widget4',
+      x: 0,
+      y: 2,
+      w: 3,
+      h: 2
+    },
+    {
+      name: 'PV/UV Weekdays Bar Widget',
+      type: 'bar-chart',
+      i: 'widget5',
+      x: 3,
+      y: 2,
+      w: 3,
+      h: 2
+    },
+    {
+      name: 'PV/UV Weekdays Area Widget',
+      type: 'area-chart',
+      i: 'widget6',
+      x: 6,
+      y: 2,
+      w: 3,
+      h: 2
+    },
+    {
+      name: 'PV/UV Weekdays Scatter Widget',
+      type: 'scatter-chart',
+      i: 'widget7',
+      x: 9,
+      y: 2,
+      w: 3,
+      h: 2
+    },
+    {
+      name: 'Work Counts Pie Widget',
+      type: 'pie-chart',
+      i: 'widget8',
+      x: 0,
+      y: 4,
+      w: 4,
+      h: 3
+    },
+    {
+      name: 'Watering Flowers by Day',
+      type: 'radar-chart',
+      i: 'widget9',
+      x: 4,
+      y: 4,
+      w: 4,
+      h: 3
+    }
+  ]
+};
 
-interface DashboardBaseProps {
-  getDashboardLayouts: typeof getDashboardLayouts;
-  selectedDashboardLayout?: IDashboardLayout;
-}
+interface DashboardBaseProps {}
 
-const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboardLayout, getDashboardLayouts }) => {
+const DashboardBase: FunctionComponent<DashboardBaseProps> = () => {
+  const [widgets, setWidgets] = useLocalStorage('widgets', dashboard.widgets);
   const [gridWidth, setGridWidth] = useState<number>(1200);
   const [ref, dimensions] = useDimensions();
 
@@ -66,149 +118,42 @@ const DashboardBase: FunctionComponent<DashboardBaseProps> = ({ selectedDashboar
     }
   }, [dimensions]);
 
-  const onChangeLayout = (layout: GridLayout.Layout[]) => {
-    // saveLayout(layout);
+  // We're using the cols coming back from this to calculate where to add new items.
+  const onBreakpointChange = (newBreakpoint: string, newCols: number) => {
+    // console.log('newBreakpoint', newBreakpoint);
+    // console.log('newCols', newCols);
+  };
+
+  const onLayoutChange = (currentLayout: GridLayout.Layout[], allLayouts: GridLayout.Layouts) => {
+    console.log('currentLayout', currentLayout);
+
+    const updatedWidgets = widgets.map((widget: IWidget) => {
+      const { i, x, y, w, h }: GridLayout.Layout = currentLayout.find(item => item.i === widget.i) || widget;
+
+      return { name: widget.name, type: widget.type, i, x, y, w, h };
+    });
+
+    console.log('updateLayout', updatedWidgets);
+
+    setWidgets(updatedWidgets);
   };
 
   return (
     <div className="b-dashboard" ref={ref}>
-      <DashboardNavbar />
-      <div className="b-dashboard-actions">
-        <div className="flex">
-          <AddButton text="New Dashboard" />
-          <AddButton text="Add Widget" />
-        </div>
-
-        <div>
-          {' '}
-          <RemoveButton onClick={() => alert('ok')} />
-        </div>
-      </div>
-      {selectedDashboardLayout && (
-        <>
-          <GridLayout
-            className="b-dashboard-layout"
-            layout={selectedDashboardLayout.layout}
-            cols={12}
-            rowHeight={30}
-            width={gridWidth || 1200}
-            onLayoutChange={onChangeLayout}
-          >
-            <div key="l1_1">
-              <GridWidgetCard widgetName="Environmental Sensor Humidity">
-                <ResponsiveContainer width="99%">
-                  <LiquidGauge value={32} startColor="red" endColor="red" />
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-            <div key="l1_2">
-              <GridWidgetCard widgetName="Population Density Map">
-                <HeatMapTable />
-              </GridWidgetCard>
-            </div>
-            <div key="l1_3">
-              <GridWidgetCard widgetName="Density">
-                <ResponsiveContainer width="99%">
-                  <HeatMapTable2 />
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-            <div key="l1_4">
-              <GridWidgetCard widgetName="Water Level">
-                <ResponsiveContainer width="99%">
-                  <LiquidGauge value={21} />
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-            <div key="l2_1">
-              <GridWidgetCard widgetName="PV/UV Weekdays Line Widget">
-                <ResponsiveContainer width="99%">
-                  <LineChart data={rechartsDataLine}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="pv" stroke={primaryColor} activeDot={{ r: 8 }} />
-                    <Line type="monotone" dataKey="uv" stroke={secondaryColor} />
-                  </LineChart>
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-            <div key="l2_2">
-              <GridWidgetCard widgetName="PV/UV Weekdays Bar Widget">
-                <ResponsiveContainer width="99%">
-                  <BarChart data={rechartsDataBar}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="pv" fill={'red'} />
-                    <Bar dataKey="uv" fill={'blue'} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-            <div key="l2_3">
-              <GridWidgetCard widgetName="PV/UV Weekdays Area Widget">
-                <ResponsiveContainer width="99%">
-                  <AreaChart data={rechartsDataArea}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Area type="monotone" dataKey="Temp" fill={primaryColor} stroke={secondaryColor} />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-            <div key="l3_1">
-              <GridWidgetCard widgetName="PV/UV Weekdays Scatter Widget">
-                <ResponsiveContainer width="99%">
-                  <ScatterChart>
-                    <CartesianGrid />
-                    <XAxis type="number" dataKey="x" name="Amper" unit="Amp" />
-                    <YAxis type="number" dataKey="y" name="Temprature" unit="Temp" />
-                    <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                    <Scatter name="A school" data={rechartsDataScatter} fill={primaryColor} />
-                  </ScatterChart>
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-            <div key="l3_2">
-              <GridWidgetCard widgetName="Work Counts Pie Widget">
-                <ResponsiveContainer width="99%">
-                  <PieChart>
-                    <Pie dataKey="value" isAnimationActive={false} data={rechartsDataPie} fill={primaryColor} label />
-
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-            <div key="l3_3">
-              <GridWidgetCard widgetName="Watering Flowers by Day">
-                <ResponsiveContainer width="99%">
-                  <RadarChart data={rechartsDataRadar}>
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey="subject" />
-                    <PolarRadiusAxis />
-                    <Radar
-                      name="Watering Flowers"
-                      dataKey="A"
-                      stroke={secondaryColor}
-                      fill={primaryColor}
-                      fillOpacity={0.6}
-                    />
-                    <Legend />
-                  </RadarChart>
-                </ResponsiveContainer>
-              </GridWidgetCard>
-            </div>
-          </GridLayout>
-        </>
-      )}
+      <DashboardNavbar onSubmitAddNewDashboard={createDashboardLayout} />
+      <ResponsiveReactGridLayout
+        width={gridWidth || 1200}
+        onLayoutChange={onLayoutChange}
+        onBreakpointChange={onBreakpointChange}
+        cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+        rowHeight={100}
+      >
+        {widgets.map((widget: IWidget) => (
+          <div key={widget.i} data-grid={widget}>
+            <Widget widget={widget} />
+          </div>
+        ))}
+      </ResponsiveReactGridLayout>
     </div>
   );
 };
@@ -219,5 +164,5 @@ const mapStateToProps = (state: AppState): any => ({
 
 export const Dashboard = connect(
   mapStateToProps,
-  { getDashboardLayouts }
+  { getDashboardLayouts, createDashboardLayout }
 )(DashboardBase);

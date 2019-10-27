@@ -11,8 +11,12 @@ import {
   GET_DASHBOARD_LAYOUTS_FAILURE,
   SAVE_DASHBOARD_LAYOUT,
   SAVE_DASHBOARD_LAYOUT_SUCCESS,
-  SAVE_DASHBOARD_LAYOUT_FAILURE
+  SAVE_DASHBOARD_LAYOUT_FAILURE,
+  CREATE_DASHBOARD_LAYOUT,
+  CREATE_DASHBOARD_LAYOUT_SUCCESS,
+  CREATE_DASHBOARD_LAYOUT_FAILURE
 } from './types';
+import { IAddNewDashboardModalState } from '../../components/modals/addNewDashboardModal/AddNewDashboardModal';
 
 export function getDashboardLayouts() {
   return {
@@ -93,6 +97,27 @@ export function saveDashboardLayoutSuccess(uiState: UIState) {
 export function saveDashboardLayoutFailure(uiState: UIState) {
   return {
     type: SAVE_DASHBOARD_LAYOUT_FAILURE,
+    payload: uiState
+  };
+}
+
+export function createDashboardLayout(newDashboardValues: IAddNewDashboardModalState) {
+  return {
+    type: CREATE_DASHBOARD_LAYOUT,
+    payload: newDashboardValues
+  };
+}
+
+export function createDashboardLayoutSuccess(uiState: UIState) {
+  return {
+    type: CREATE_DASHBOARD_LAYOUT_SUCCESS,
+    payload: uiState
+  };
+}
+
+export function createDashboardLayoutFailure(uiState: UIState) {
+  return {
+    type: CREATE_DASHBOARD_LAYOUT_FAILURE,
     payload: uiState
   };
 }

@@ -7,20 +7,19 @@ import {
   saveDashboardLayoutsFailure
 } from '../store/ui/actions';
 import { UIState } from '../store/ui/types';
-import { defaultLayout } from '../store/ui/reducers';
 
 export function* requestGetDashboardLayouts(data: any) {
   try {
     const data = yield localStorage.getItem('savedlayouts');
 
-    yield put(
-      setDashboardLayoutSuccess({
-        selectedDashboardLayout: { id: 'dashboard_1', title: 'First Floor', layout: defaultLayout }
-      })
-    );
+    // yield put(
+    //   setDashboardLayoutSuccess({
+    //     selectedDashboardLayout: { id: 'dashboard_1', title: 'First Floor', layout: defaultLayout }
+    //   })
+    // );
     yield put(
       getDashboardLayoutsSuccess({
-        dashboardLayouts: data ? JSON.parse(data) : [{ id: 'dashboard_1', title: 'First Floor', layout: defaultLayout }]
+        dashboardLayouts: data ? JSON.parse(data) : [{ id: 'dashboard_1', title: 'First Floor', widgets: [] }]
       } as UIState)
     );
   } catch (error) {
