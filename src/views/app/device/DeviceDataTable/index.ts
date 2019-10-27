@@ -1,0 +1,1 @@
+export { DeviceDataTable } from './DeviceDataTable';

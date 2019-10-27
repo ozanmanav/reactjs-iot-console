@@ -13,6 +13,7 @@ import { DeviceActivities } from './DeviceActivities';
 import { DeviceSettings } from './DeviceSettings';
 import { DeviceCharts } from './DeviceCharts';
 import { DeviceTriggers } from './DeviceTriggers';
+import { DeviceDataTable } from './DeviceDataTable';
 
 interface DetailsBaseProps extends RouteComponentProps {
   getDeviceById?: typeof getDeviceById;
@@ -46,6 +47,7 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
           <Tab>Charts</Tab>
           <Tab>Triggers</Tab>
           <Tab>Activity</Tab>
+          <Tab>Table</Tab>
           <Tab>Archive</Tab>
           <Tab>Settings</Tab>
         </TabList>
@@ -57,6 +59,9 @@ const DeviceBase: FunctionComponent<DetailsBaseProps> = ({ router, getDeviceById
         </TabPanel>
         <TabPanel>
           <DeviceActivities />
+        </TabPanel>
+        <TabPanel>
+          <DeviceDataTable />
         </TabPanel>
         <TabPanel>Archive</TabPanel>
         <TabPanel>
