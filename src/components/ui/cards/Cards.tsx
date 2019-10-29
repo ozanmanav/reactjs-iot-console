@@ -315,6 +315,7 @@ export interface IDeviceChartCardProps {
   deviceChartsData: any;
   chartWidth?: number;
   chartHeight?: number;
+  isPreviewMode?: boolean;
   showEditButton?: boolean;
   showDeleteButton?: boolean;
   showTooltip?: boolean;
@@ -324,6 +325,7 @@ export interface IDeviceChartCardProps {
 
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   chart: { _id, name, elements },
+  isPreviewMode = false,
   deviceChartsData,
   chartHeight = 200,
   showEditButton = false,
@@ -395,14 +397,7 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
       <div className="c-card__graph-card__graph _cursor-pointer">
         <ResponsiveContainer width={'99%'} height={chartHeight}>
           {elements && elements.some(element => element.type === 'Scatter') ? (
-            <ScatterChart
-              margin={{
-                top: 0,
-                right: 10,
-                bottom: 0,
-                left: -35
-              }}
-            >
+            <ScatterChart {...(isPreviewMode && { margin: { left: -35 } })}>
               <CartesianGrid />
               {elements.length > 0 && (
                 <XAxis type="number" dataKey={elements[0].key} name={elements[0].key} tick={{ fill: '#9b9b9b' }} />
@@ -420,7 +415,7 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
               />
             </ScatterChart>
           ) : (
-            <ComposedChart data={deviceChartsData} margin={{ top: 0, right: 10, left: -35, bottom: 0 }}>
+            <ComposedChart data={deviceChartsData} {...(isPreviewMode && { margin: { left: -35 } })}>
               <CartesianGrid stroke="#f5f5f5" />
               <XAxis tick={{ fill: '#9b9b9b' }} dataKey="Timestamp" />
               <YAxis tick={{ fill: '#9b9b9b' }} />
