@@ -151,7 +151,7 @@ export function* requestGetDeviceActivities() {
     );
 
     const successDeviceActivitiesResponse: ProjectState = {
-      deviceActivities: deviceActivitiesResponse.data.Activities && deviceActivitiesResponse.data.Activities.reverse()
+      deviceActivities: deviceActivitiesResponse.data.Activities && deviceActivitiesResponse.data.Activities
     };
 
     yield put(actions.getDeviceActivitiesSuccess(successDeviceActivitiesResponse));
@@ -464,9 +464,14 @@ export function* requestGetDeviceChartsData() {
       }
     );
 
+    const cleanedDeviceChartsData = deviceChartsDataResponse.data.Data.map((item: any) => {
+      const { MS, HM, ...rest } = item;
+      return rest;
+    });
+
     yield put(
       actions.getDeviceChartsDataSuccess({
-        deviceChartsData: deviceChartsDataResponse.data
+        deviceChartsData: { ...deviceChartsDataResponse.data, Data: cleanedDeviceChartsData }
       })
     );
   } catch (error) {

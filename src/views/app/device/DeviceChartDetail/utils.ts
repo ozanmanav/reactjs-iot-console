@@ -28,7 +28,7 @@ export const normalizeDataForTable = (data: any) => {
     };
   });
 
-  const rows: IRow[] = data.reverse();
+  const rows: IRow[] = data;
 
   return { columns, rows };
 };

@@ -23,7 +23,7 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import { Button } from '../buttons';
+import { Button, RemoveButton } from '../buttons';
 import { SummaryData } from '../../../views/app/device/DeviceChartDetail/utils';
 import { Icon } from '../icons';
 
@@ -374,7 +374,7 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
         </div>
         <div>
           {showDeleteButton && (
-            <Button text="Delete Chart" className="c-card__graph-card__info-delete-button" onClick={onClickDelete} />
+            <RemoveButton className="c-card__graph-card__info-delete-button" onClick={onClickDelete} />
           )}
           {editModeActive ? (
             <>

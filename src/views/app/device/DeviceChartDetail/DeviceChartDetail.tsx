@@ -73,7 +73,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
               <DeviceChartCard
                 showEditButton
                 chart={currentChart}
-                deviceChartsData={deviceChartsData.Data.reverse()}
+                deviceChartsData={deviceChartsData.Data}
                 chartHeight={350}
                 showDeleteButton
                 showTooltip
@@ -94,16 +94,17 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 </div>
               ))}
             </div>
-            <MDBDataTable
-              hover
-              fixed
-              className="b-device-chart-detail-table"
-              info={false}
-              searching={false}
-              sortable
-              displayEntries={false}
-              data={normalizeDataForTable(deviceChartsData.Data)}
-            />{' '}
+            <div>
+              <div className="b-device-chart-detail-label">Data</div>
+              <MDBDataTable
+                searching={false}
+                hover
+                borderless
+                displayEntries={false}
+                className="b-device-chart-detail-table"
+                data={normalizeDataForTable(deviceChartsData.Data)}
+              />{' '}
+            </div>
           </div>
         )
       )}

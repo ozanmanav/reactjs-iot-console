@@ -63,10 +63,7 @@ export const DeviceChartsBase: FunctionComponent<DevicesBaseProps> = ({
                 className="col-xl-3 col-md-6 col-sm-12 col-xs-12 b-device-chart-detail__devices-card _cursor-pointer"
                 to={`/app/projects/${currentProject.id}/devices/${currentDevice.id}/charts/${deviceChart._id}`}
               >
-                <DeviceChartCard
-                  chart={deviceChart}
-                  deviceChartsData={getSlicedArray(deviceChartsData.Data.reverse(), 6)}
-                />{' '}
+                <DeviceChartCard chart={deviceChart} deviceChartsData={getSlicedArray(deviceChartsData.Data, 6)} />{' '}
               </NavLink>
             ))
           )}

@@ -25,15 +25,15 @@
   &__breadcrumb-wrapper {
     display: flex;
     &__prefix {
-      margin-top: 20px;
-      font-size: 12px;
+      margin-top: 19px;
+      font-size: 13px;
       font-weight: normal;
       color: #9b9b9b;
     }
     &__postfix {
       margin-top: 19px;
       margin-left: 5px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: normal;
       color: #9b9b9b;
     }
@@ -44,6 +44,14 @@
     flex-direction: column;
   }
 
+  &-label {
+    margin-top: 5px;
+    font-family: Exo;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4a4a4a;
+  }
+
   &__devices {
     &-card {
       padding-left: 10px;
@@ -51,7 +59,25 @@
     }
   }
   &-table {
-    margin-top: 20px;
+    thead {
+      text-transform: capitalize;
+      tr {
+        font-size: 14px;
+
+        color: #9b9b9b;
+        border-bottom: solid 1px #d8d8d8;
+      }
+    }
+    margin-top: 10px;
     width: 100%;
+    padding: 5px 10px 10px;
+    border-radius: 6px;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
+    border: solid 1px #d8d8d8;
+    background-color: #ffffff;
+
+    tbody + thead {
+      display: none;
+    }
   }
 }

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
 import { getDeviceChartsData } from '../../../../store/project/actions';
 import { IProjectLoadingState, IActivity } from '../../../../store/project/types';
-import { ActivityList } from '../../../../components/lists/ActivityList';
 import { MDBDataTable } from 'mdbreact';
 import { normalizeDataForTable } from '../DeviceChartDetail/utils';
 import { Loading } from '../../../../components/ui/loading';
@@ -37,12 +36,11 @@ export const DeviceDataTableBase: FunctionComponent<DeviceDataTableBaseProps> = 
 
   return (
     <MDBDataTable
-      hover
-      fixed
-      className="b-device-data-table"
-      info={false}
       searching={false}
-      sortable
+      className="b-device-data-table"
+      hover
+      entries={6}
+      borderless
       displayEntries={false}
       data={normalizeDataForTable(deviceChartsData.Data)}
     />

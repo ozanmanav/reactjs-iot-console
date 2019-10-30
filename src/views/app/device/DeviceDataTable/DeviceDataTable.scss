@@ -2,5 +2,26 @@
 
 .b-device-data-table {
   margin-top: 20px;
-  width: 100%;
+
+  width: 65%;
+  padding: 5px 10px 0px 10px;
+
+  border-radius: 6px;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
+  border: solid 1px #d8d8d8;
+  background-color: #ffffff;
+
+  thead {
+    text-transform: capitalize;
+    tr {
+      font-size: 14px;
+
+      color: #9b9b9b;
+      border-bottom: solid 1px #d8d8d8;
+    }
+  }
+
+  tbody + thead {
+    display: none;
+  }
 }

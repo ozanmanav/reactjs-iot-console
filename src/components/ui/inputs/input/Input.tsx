@@ -2,6 +2,7 @@ import React, { FunctionComponent, useRef } from 'react';
 import classnames from 'classnames';
 import { IInputProps } from '../config';
 import { Icon } from '../../icons';
+import copy from 'copy-to-clipboard';
 import { showSuccessToast, showErrorToast } from '../../toasts';
 
 export const Input: FunctionComponent<IInputProps> = ({
@@ -26,14 +27,12 @@ export const Input: FunctionComponent<IInputProps> = ({
 
   const copyToClipboard = (): void => {
     if (inputRef && inputRef.current) {
-      navigator.clipboard.writeText(inputRef.current.value).then(
-        () => {
-          showSuccessToast(copyText);
-        },
-        () => {
-          showErrorToast('Unable to write to clipboard. :-(');
-        }
-      );
+      try {
+        copy(inputRef.current.value);
+        showSuccessToast(copyText);
+      } catch (error) {
+        showErrorToast('Unable to write to clipboard. :-(');
+      }
     }
   };
 
