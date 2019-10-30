@@ -122,7 +122,9 @@ module.exports = {
     '@typescript-eslint/require-await': 'warn', // REMOVE when v2 comes out, in recommended
     '@typescript-eslint/no-misused-promises': 'warn', // REMOVE when v2 comes out, in recommended
     // require explicit return types on functions and class methods
-    '@typescript-eslint/explicit-function-return-type': 'off'
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'react-hooks/exhaustive-deps': 'off'
   },
   env: {
     browser: true,
