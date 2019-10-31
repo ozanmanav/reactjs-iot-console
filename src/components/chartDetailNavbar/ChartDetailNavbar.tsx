@@ -38,30 +38,30 @@ export const ChartDetailNavbar: FunctionComponent<IChartDetailNavbarProps> = ({
     <div className="b-chart-detail-navbar">
       <div className="b-chart-detail-navbar-title">
         {editModeActive ? (
-          <Input
-            placeholder="Chart Name"
-            name="chartName"
-            className="b-chart-detail-navbar-chart-name-input"
-            marginBottom="none"
-            value={chartName}
-            onChange={onChangeChartName}
-          />
+          <div className="b-chart-detail-navbar-input-container">
+            <Input
+              placeholder="Chart Name"
+              name="chartName"
+              className="b-chart-detail-navbar-chart-name-input"
+              marginBottom="none"
+              value={chartName}
+              onChange={onChangeChartName}
+            />
+            <div className="b-chart-detail-navbar-input-container__actions">
+              <CancelButton onClick={toggleEditMode} />
+              <SaveButton onClick={onClickSave} />
+            </div>
+          </div>
         ) : (
-          chartName
+          <div className="b-chart-detail-navbar-title-container">
+            {chartName} <EditButton onClick={toggleEditMode} />
+          </div>
         )}
       </div>
 
       <div className="b-chart-detail-navbar-actions">
-        {editModeActive ? (
-          <>
-            <CancelButton onClick={toggleEditMode} />
-            <SaveButton onClick={onClickSave} />
-          </>
-        ) : (
-          <EditButton onClick={toggleEditMode} />
-        )}
-        <RemoveButton onClick={onClickDeleteButton} />
         <DownloadButton onClick={() => alert('ok')} />
+        <RemoveButton onClick={onClickDeleteButton} />
       </div>
     </div>
   );

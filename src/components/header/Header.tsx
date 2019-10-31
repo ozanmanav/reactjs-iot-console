@@ -14,7 +14,8 @@ import { Loading } from '../ui/loading';
 export const HeaderLogo: FunctionComponent<HTMLAttributes<HTMLAnchorElement> & NavLinkProps> = ({ className, to }) => {
   return (
     <CustomNavLink to={to} className={classNames('b-header__link flex', className)}>
-      <Logo className="b-header__logo" />
+      <Logo className="b-header__link-logo" />
+      <div className="b-header__link-title">Qubitro </div>
     </CustomNavLink>
   );
 };

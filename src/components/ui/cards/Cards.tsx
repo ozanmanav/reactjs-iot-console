@@ -316,11 +316,8 @@ export interface IDeviceChartCardProps {
   chartWidth?: number;
   chartHeight?: number;
   isPreviewMode?: boolean;
-  showEditButton?: boolean;
-  showDeleteButton?: boolean;
+  showChartName?: boolean;
   showTooltip?: boolean;
-  onClickDelete?: () => void;
-  onClickSave?: (newChartName: string) => void;
 }
 
 export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
@@ -328,10 +325,14 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   isPreviewMode = false,
   deviceChartsData,
   chartHeight = 200,
-  showTooltip = false
+  showTooltip = false,
+  showChartName = true
 }) => {
   return (
     <div className="c-card__graph-card _cursor-pointer" key={_id}>
+      <div className="c-card__graph-card__info">
+        {showChartName && <div className="c-card__graph-card__info-title">{name}</div>}
+      </div>
       <div className="c-card__graph-card__graph _cursor-pointer">
         <ResponsiveContainer width={'99%'} height={chartHeight}>
           {elements && elements.some(element => element.type === 'Scatter') ? (

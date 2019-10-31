@@ -59,6 +59,21 @@
     }
   }
   &-table {
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px 10px 10px;
+    border-radius: 6px;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
+    border: solid 1px #f7f4f4;
+    background-color: #ffffff;
+
+    .page-item.active .page-link {
+      z-index: 1;
+      color: #fff;
+      background-color: $primary;
+      border-color: $primary;
+    }
+
     thead {
       text-transform: capitalize;
       tr {
@@ -70,13 +85,12 @@
         }
       }
     }
-    margin-top: 10px;
-    width: 100%;
-    padding: 5px 10px 10px;
-    border-radius: 6px;
-    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.06);
-    border: solid 1px #d8d8d8;
-    background-color: #ffffff;
+
+    tbody {
+      tr {
+        border-bottom: solid 1px #f7f4f4;
+      }
+    }
 
     tbody + thead {
       display: none;

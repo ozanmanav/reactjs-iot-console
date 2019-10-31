@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48pt" height="48pt" viewBox="0 0 48 48" version="1.1">
-<g id="surface172210">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(60.784314%,60.784314%,60.784314%);fill-opacity:1;" d="M 34 6 L 10 6 C 7.78125 6 6 7.800781 6 10 L 6 38 C 6 40.199219 7.78125 42 10 42 L 38 42 C 40.199219 42 42 40.199219 42 38 L 42 14 Z M 24 38 C 20.679688 38 18 35.320312 18 32 C 18 28.679688 20.679688 26 24 26 C 27.320312 26 30 28.679688 30 32 C 30 35.320312 27.320312 38 24 38 Z M 30 18 L 10 18 L 10 10 L 30 10 Z M 30 18 "/>
-</g>
+<svg width="52px" height="52px" viewBox="0 0 52 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>success</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="success" fill="#9B9B9B" fill-rule="nonzero">
+            <path d="M26,0 C11.664,0 0,11.663 0,26 C0,40.337 11.664,52 26,52 C40.336,52 52,40.337 52,26 C52,11.663 40.336,0 26,0 Z M26,50 C12.767,50 2,39.233 2,26 C2,12.767 12.767,2 26,2 C39.233,2 50,12.767 50,26 C50,39.233 39.233,50 26,50 Z" id="Shape"></path>
+            <path d="M38.252,15.336 L22.883,32.626 L13.624,25.219 C13.194,24.874 12.563,24.945 12.219,25.375 C11.874,25.807 11.944,26.436 12.375,26.781 L22.375,34.781 C22.559,34.928 22.78,35 23,35 C23.276,35 23.551,34.886 23.748,34.664 L39.748,16.664 C40.115,16.252 40.078,15.619 39.665,15.253 C39.251,14.885 38.62,14.922 38.252,15.336 Z" id="Path"></path>
+        </g>
+    </g>
 </svg>

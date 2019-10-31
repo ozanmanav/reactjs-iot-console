@@ -7,7 +7,25 @@
   align-items: center;
   padding: 10px;
   margin-bottom: 10px;
-  padding-right: 30px;
+  padding-right: 10px;
+
+  &-title-container {
+    display: flex;
+    width: 120px;
+    justify-content: space-between;
+  }
+
+  &-input-container {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    &__actions {
+      margin-left: 10px;
+      display: flex;
+      width: 100px;
+      justify-content: space-between;
+    }
+  }
 
   &-title {
     color: #4a4a4a;
@@ -23,7 +41,7 @@
 
   &-actions {
     display: flex;
-    width: 150px;
+    width: 100px;
     color: #9b9b9b;
     justify-content: space-evenly;
   }

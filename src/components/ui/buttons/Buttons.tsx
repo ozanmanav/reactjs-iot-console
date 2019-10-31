@@ -125,7 +125,7 @@ export const EditButton: FunctionComponent<IButtonProps> = ({ text, ...props }) 
 export const CancelButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
   return (
     <button className="cancel-button" {...props}>
-      <Icon icon="cancel" width="22px" />
+      <Icon icon="cancel" width="20px" />
       {text && <div className="cancel-button-text">{text}</div>}
     </button>
   );
@@ -134,7 +134,7 @@ export const CancelButton: FunctionComponent<IButtonProps> = ({ text, ...props }
 export const SaveButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
   return (
     <button className="save-button" {...props}>
-      <Icon icon="save" width="22px" />
+      <Icon icon="save" width="20px" />
       {text && <div className="save-button-text">{text}</div>}
     </button>
   );
@@ -143,7 +143,7 @@ export const SaveButton: FunctionComponent<IButtonProps> = ({ text, ...props }) 
 export const DownloadButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
   return (
     <button className="download-button" {...props}>
-      <Icon icon="download" width="22px" />
+      <Icon icon="download" width="20px" />
       {text && <div className="download-button-text">{text}</div>}
     </button>
   );

@@ -10,6 +10,13 @@
   border: solid 1px #d8d8d8;
   background-color: #ffffff;
 
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: $primary;
+    border-color: $primary;
+  }
+
   thead {
     text-transform: capitalize;
     tr {
@@ -19,6 +26,12 @@
       th {
         width: 300px;
       }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: solid 1px #f7f4f4;
     }
   }
 

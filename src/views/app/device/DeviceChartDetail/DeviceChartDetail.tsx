@@ -77,11 +77,10 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 onClickSaveButton={onSaveChart}
               />
               <DeviceChartCard
-                showEditButton
                 chart={currentChart}
+                showChartName={false}
                 deviceChartsData={deviceChartsData.Data}
                 chartHeight={350}
-                showDeleteButton
                 showTooltip
               />
               <ConfirmModal
