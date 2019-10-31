@@ -102,6 +102,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
               <MDBDataTable
                 searching={false}
                 hover
+                responsive
                 borderless
                 displayEntries={false}
                 className="b-device-chart-detail-table"

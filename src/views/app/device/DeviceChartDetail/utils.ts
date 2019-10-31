@@ -23,8 +23,7 @@ export const normalizeDataForTable = (data: any) => {
     return {
       label: columnName,
       field: columnName,
-      sort: 'desc',
-      width: 100
+      sort: 'desc'
     };
   });
 

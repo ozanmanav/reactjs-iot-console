@@ -63,9 +63,11 @@
       text-transform: capitalize;
       tr {
         font-size: 14px;
-
         color: #9b9b9b;
         border-bottom: solid 1px #d8d8d8;
+        th {
+          width: 300px;
+        }
       }
     }
     margin-top: 10px;

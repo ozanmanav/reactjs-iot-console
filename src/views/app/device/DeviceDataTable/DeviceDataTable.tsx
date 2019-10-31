@@ -39,8 +39,8 @@ export const DeviceDataTableBase: FunctionComponent<DeviceDataTableBaseProps> = 
       searching={false}
       className="b-device-data-table"
       hover
-      entries={6}
       borderless
+      responsive
       displayEntries={false}
       data={normalizeDataForTable(deviceChartsData.Data)}
     />

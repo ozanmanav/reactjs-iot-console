@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  box-shadow: 0 4px 2px -4px #9b9b9b;
   height: 55px;
   align-items: center;
   padding: 10px;
@@ -18,7 +19,6 @@
     color: #4a4a4a;
     font-size: 24px;
     font-weight: 500;
-    padding-left: 5px;
   }
 
   &-actions {
