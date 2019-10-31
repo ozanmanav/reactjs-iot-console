@@ -11,6 +11,7 @@ import { MDBDataTable } from 'mdbreact';
 import { normalizeDataForTable, normalizeSummaryData } from './utils';
 import { ConfirmModal } from '../../../../components/modals';
 import { useModal } from '../../../../components/ui';
+import { ChartDetailNavbar } from '../../../../components/chartDetailNavbar';
 
 interface DeviceChartDetailBaseProps {
   getDeviceChartById: typeof getDeviceChartById;
@@ -70,6 +71,11 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
         deviceChartsData && (
           <div className="container-fluid b-device-chart-detail__charts">
             <div className="row">
+              <ChartDetailNavbar
+                chartTitle={currentChart.name}
+                onClickDeleteButton={openDeleteChartModal}
+                onClickSaveButton={onSaveChart}
+              />
               <DeviceChartCard
                 showEditButton
                 chart={currentChart}
@@ -77,8 +83,6 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
                 chartHeight={350}
                 showDeleteButton
                 showTooltip
-                onClickDelete={openDeleteChartModal}
-                onClickSave={onSaveChart}
               />
               <ConfirmModal
                 title={`Are you sure delete ${currentChart.name} chart?`}
@@ -95,7 +99,6 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
               ))}
             </div>
             <div>
-              <div className="b-device-chart-detail-label">Data</div>
               <MDBDataTable
                 searching={false}
                 hover

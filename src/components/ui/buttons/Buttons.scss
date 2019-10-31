@@ -259,3 +259,47 @@ $button-icon-size: 21px;
     margin-left: 5px;
   }
 }
+
+.edit-button {
+  cursor: pointer;
+  display: flex;
+  color: #9b9b9b;
+  align-items: center;
+
+  &-text {
+    margin-left: 5px;
+  }
+}
+
+.cancel-button {
+  cursor: pointer;
+  display: flex;
+  color: #9b9b9b;
+  align-items: center;
+
+  &-text {
+    margin-left: 5px;
+  }
+}
+
+.save-button {
+  cursor: pointer;
+  display: flex;
+  color: #9b9b9b;
+  align-items: center;
+
+  &-text {
+    margin-left: 5px;
+  }
+}
+
+.download-button {
+  cursor: pointer;
+  display: flex;
+  color: #9b9b9b;
+  align-items: center;
+
+  &-text {
+    margin-left: 5px;
+  }
+}

@@ -328,72 +328,10 @@ export const DeviceChartCard: FunctionComponent<IDeviceChartCardProps> = ({
   isPreviewMode = false,
   deviceChartsData,
   chartHeight = 200,
-  showEditButton = false,
-  showDeleteButton = false,
-  showTooltip = false,
-  onClickDelete,
-  onClickSave
+  showTooltip = false
 }) => {
-  const [chartName, setChartName] = useState<string>(name);
-  const [editModeActive, setEditModeActive] = useState(false);
-
-  const toggleEditMode = () => {
-    setEditModeActive(prevEditModeActive => !prevEditModeActive);
-  };
-
-  const onChangeChartName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    setChartName(newValue);
-  };
-
-  const onClickSaveButton = () => {
-    if (onClickSave) {
-      setEditModeActive(false);
-      onClickSave(chartName);
-    }
-  };
-
   return (
     <div className="c-card__graph-card _cursor-pointer" key={_id}>
-      <div className="c-card__graph-card__info">
-        <div className="c-card__graph-card__info-title">
-          {editModeActive ? (
-            <>
-              <Input
-                placeholder="E-mail"
-                name="email"
-                className="mt-15"
-                marginBottom="none"
-                value={chartName}
-                onChange={onChangeChartName}
-              />
-            </>
-          ) : (
-            chartName
-          )}
-        </div>
-        <div>
-          {showDeleteButton && (
-            <RemoveButton className="c-card__graph-card__info-delete-button" onClick={onClickDelete} />
-          )}
-          {editModeActive ? (
-            <>
-              <Button text="Cancel" className="c-card__graph-card__info-cancel-button" onClick={toggleEditMode} />
-              <Button
-                text="Save"
-                primary
-                className="c-card__graph-card__info-edit-button"
-                type="submit"
-                onClick={onClickSaveButton}
-              />
-            </>
-          ) : (
-            showEditButton && (
-              <Button text="Edit Chart" className="c-card__graph-card__info-edit-button" onClick={toggleEditMode} />
-            )
-          )}
-        </div>
-      </div>
       <div className="c-card__graph-card__graph _cursor-pointer">
         <ResponsiveContainer width={'99%'} height={chartHeight}>
           {elements && elements.some(element => element.type === 'Scatter') ? (

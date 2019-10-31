@@ -1,0 +1,30 @@
+.b-chart-detail-navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 55px;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  padding-right: 30px;
+
+  &-title {
+    color: #4a4a4a;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  &-chart-name-input {
+    color: #4a4a4a;
+    font-size: 24px;
+    font-weight: 500;
+    padding-left: 5px;
+  }
+
+  &-actions {
+    display: flex;
+    width: 150px;
+    color: #9b9b9b;
+    justify-content: space-evenly;
+  }
+}

@@ -17,6 +17,10 @@ import avatar from '../../../icons/avatar.svg';
 import add from '../../../icons/plus-feynlab.png';
 import alarm from '../../../icons/alarm.svg';
 import calendar from '../../../icons/calendar.svg';
+import edit from '../../../icons/edit-icon.svg';
+import download from '../../../icons/download-icon.svg';
+import save from '../../../icons/save-icon.svg';
+import cancel from '../../../icons/cancel-icon.svg';
 
 // TODO: is string type necessary?
 export type TIconType =
@@ -35,6 +39,10 @@ export type TIconType =
   | 'addDashboard'
   | 'alarm'
   | 'calendar'
+  | 'edit'
+  | 'download'
+  | 'save'
+  | 'cancel'
   | string;
 
 interface IIcons {
@@ -56,7 +64,11 @@ const ICONS: IIcons = {
   avatar,
   add,
   alarm,
-  calendar
+  calendar,
+  edit,
+  download,
+  save,
+  cancel
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {

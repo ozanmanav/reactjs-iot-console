@@ -112,3 +112,39 @@ export const RemoveButton: FunctionComponent<IButtonProps> = ({ text, ...props }
     </button>
   );
 };
+
+export const EditButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
+  return (
+    <button className="edit-button" {...props}>
+      <Icon icon="edit" width="20px" />
+      {text && <div className="edit-button-text">{text}</div>}
+    </button>
+  );
+};
+
+export const CancelButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
+  return (
+    <button className="cancel-button" {...props}>
+      <Icon icon="cancel" width="22px" />
+      {text && <div className="cancel-button-text">{text}</div>}
+    </button>
+  );
+};
+
+export const SaveButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
+  return (
+    <button className="save-button" {...props}>
+      <Icon icon="save" width="22px" />
+      {text && <div className="save-button-text">{text}</div>}
+    </button>
+  );
+};
+
+export const DownloadButton: FunctionComponent<IButtonProps> = ({ text, ...props }) => {
+  return (
+    <button className="download-button" {...props}>
+      <Icon icon="download" width="22px" />
+      {text && <div className="download-button-text">{text}</div>}
+    </button>
+  );
+};
