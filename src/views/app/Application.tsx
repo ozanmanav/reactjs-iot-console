@@ -6,6 +6,7 @@ import { ProjectMain } from './project/ProjectMain';
 import { Dashboard } from './dashboard';
 import './Application.scss';
 import { Account } from './account';
+import { Onboard } from '../../components/onboard';
 
 export const Application: FunctionComponent = () => {
   return (
@@ -14,6 +15,7 @@ export const Application: FunctionComponent = () => {
         <Sidebar />
         <div className={'content'}>
           <Switch>
+            <Route path="/app/onboarding" component={Onboard} />
             <Route path="/app/projects" component={ProjectMain} />
             <Route path="/app/dashboard" component={Dashboard} />
             <Route path="/app/account" component={Account} />

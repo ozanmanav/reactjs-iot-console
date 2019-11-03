@@ -79,6 +79,14 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
             active={checkActiveItem('support')}
           />
         </a>
+        <NavLink to={'/app/onboarding'}>
+          <SidebarHeader
+            text={'Onboarding'}
+            onlyText
+            deactiveImage={DashboardIconDeactive}
+            active={checkActiveItem('onboarding')}
+          />
+        </NavLink>
       </div>
     </React.Fragment>
   );

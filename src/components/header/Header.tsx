@@ -57,7 +57,7 @@ export const LandingHeader: FunctionComponent<LandingHeaderBaseProps> = () => {
   return (
     <header
       className={classNames('flex justify-between align-center b-header', {
-        _login: auth && !auth.loggedIn
+        _login: !isAuthenticated
       })}
     >
       <nav className="flex align-center b-header__main-nav">
