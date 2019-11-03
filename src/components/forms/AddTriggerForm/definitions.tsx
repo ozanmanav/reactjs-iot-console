@@ -10,6 +10,7 @@ export const AddTriggerFormDefaultState = {
   triggerType: '',
   integration: '',
   period: '',
+  phoneCode: '',
   integrationWebhook: '',
   thresholds: []
 };
@@ -20,6 +21,7 @@ export interface IAddTriggerFormState {
   integration: string;
   period: string;
   integrationWebhook: string;
+  phoneCode: string;
   thresholds: ITriggerSelectEntity[];
   deviceEntities?: any;
   triggerTypeOptions?: ITriggerTypeOption[];
@@ -48,5 +50,26 @@ export const AddTriggerFormValidationSchema = Yup.object().shape({
     .required(VALIDATION_ERRORS.required),
   triggerType: Yup.string()
     .trim()
-    .required(VALIDATION_ERRORS.required)
+    .required(VALIDATION_ERRORS.required),
+  integrationWebhook: Yup.string()
+    .when('integration', {
+      is: 'E-mail',
+      then: Yup.string()
+        .email('Please use a valid email address.')
+        .required('Email address is required.')
+    })
+    .when('integration', {
+      is: 'Slack',
+      then: Yup.string().required('Webhook URL is required.')
+    })
+    .when('integration', {
+      is: 'SMS',
+      then: Yup.string()
+        .required('Phone Number is required.')
+        .max(10, 'Phone Number can be up to 10 characters.')
+    }),
+  phoneCode: Yup.string().when('integration', {
+    is: 'SMS',
+    then: Yup.string().required('Phone Code is required.')
+  })
 });

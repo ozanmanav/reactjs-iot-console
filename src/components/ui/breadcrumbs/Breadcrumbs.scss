@@ -1,21 +1,21 @@
 .b-breadcrumbs-simple {
-    margin-top: 10px;
-    font-size: 12px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #9b9b9b;
-    &.active {
-        font-weight: 600;
-    }
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #9b9b9b;
+  &.active {
+    font-weight: 600;
+  }
 
-    &.link {
-        margin-left: 5px;
-        color: #9b9b9b;
-        &:hover {
-            color: #6a6a6a;
-        }
+  &.link {
+    margin-left: 5px;
+    color: #9b9b9b;
+    &:hover {
+      color: #6a6a6a;
     }
+  }
 }

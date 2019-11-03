@@ -1,15 +1,15 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import './Header.scss';
-import { Logo, CustomNavLink, useModal, Icon } from '../ui';
+import { Logo, CustomNavLink, useModal } from '../ui';
 import classNames from 'classnames';
 import { NavLinkProps, NavLink } from 'react-router-dom';
-import { AuthState, IUser } from '../../store/auth/types';
+import { AuthState } from '../../store/auth/types';
 import { userLogout } from '../../store/auth/actions';
 import { AppState } from '../../store';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ConfirmModal } from '../modals';
-import Avatar from 'react-avatar';
-import { Loading } from '../ui/loading';
+import { UserNav } from './UserNav';
+import get from 'lodash.get';
 
 export const HeaderLogo: FunctionComponent<HTMLAttributes<HTMLAnchorElement> & NavLinkProps> = ({ className, to }) => {
   return (
@@ -37,57 +37,23 @@ export const AuthNav: FunctionComponent = () => {
   );
 };
 
-interface UserNavProps {
-  currentUser?: IUser;
-  loading?: boolean;
-  userLogout: () => void;
-}
-export const UserNavBase: FunctionComponent<UserNavProps> = ({ userLogout, currentUser, loading }) => {
-  const { open, hide, isOpen } = useModal();
-
-  return loading ? (
-    <Loading loading={loading} />
-  ) : (
-    <nav className="b-header-user">
-      <div className="b-header-user__info-wrapper">
-        <NavLink className="flex align-center b-header-user__container-button" to={'/app/account'}>
-          <div className="b-header-user__container flex align-center justify-center _font-bold _text-primary">
-            {' '}
-            {currentUser && currentUser.profilePhoto ? (
-              <Avatar round={true} src={currentUser.profilePhoto} size="45px" />
-            ) : (
-              <Icon icon="avatar" />
-            )}{' '}
-          </div>
-
-          {currentUser && (
-            <div className="flex flex-column b-header-user__info">
-              <div className=" _text-left _font-bold">{currentUser.firstname || ``}</div>
-            </div>
-          )}
-        </NavLink>
-      </div>
-      <Icon icon="logout" width={20} height={20} onClick={open} className="_cursor-pointer" />
-      <ConfirmModal title="Are you sure log out?" onConfirm={userLogout} hide={hide} isOpen={isOpen} />
-    </nav>
-  );
-};
-
-const mapStateToPropsUser = (state: AppState) => ({
-  currentUser: state.user.currentUser,
-  loading: state.user.loading && state.user.loading.currentUser
-});
-
-export const UserNav = connect(
-  mapStateToPropsUser,
-  { userLogout }
-)(UserNavBase);
-
 interface LandingHeaderBaseProps {
   auth?: AuthState;
 }
 
-const LandingHeaderBase: FunctionComponent<LandingHeaderBaseProps> = ({ auth }) => {
+export const LandingHeader: FunctionComponent<LandingHeaderBaseProps> = () => {
+  const { open: openLogoutModal, hide, isOpen } = useModal();
+  const dispatch = useDispatch();
+
+  const auth = useSelector((state: AppState) => state.auth);
+  const isAuthenticated = get(auth, 'loggedIn');
+  const isLoading = get(auth, 'loading.login');
+
+  const onConfirmLogout = () => {
+    hide();
+    dispatch(userLogout());
+  };
+
   return (
     <header
       className={classNames('flex justify-between align-center b-header', {
@@ -97,16 +63,8 @@ const LandingHeaderBase: FunctionComponent<LandingHeaderBaseProps> = ({ auth }) 
       <nav className="flex align-center b-header__main-nav">
         <HeaderLogo to="/app/dashboard" />
       </nav>
-      {auth && auth.loggedIn && auth.loading && !auth.loading.login ? <UserNav /> : <AuthNav />}
+      {isAuthenticated && !isLoading ? <UserNav openLogoutModal={openLogoutModal} /> : <AuthNav />}
+      <ConfirmModal title="Are you sure log out?" onConfirm={onConfirmLogout} hide={hide} isOpen={isOpen} />
     </header>
   );
 };
-
-const mapStateToProps = (state: AppState) => ({
-  auth: state.auth
-});
-
-export const LandingHeader = connect(
-  mapStateToProps,
-  null
-)(LandingHeaderBase);

@@ -8,7 +8,6 @@ import { TriggerCard } from '../../../../components/ui/cards';
 import { Loading } from '../../../../components/ui/loading';
 import { NavLink } from 'react-router-dom';
 import PlusIcon from '../../../../icons/plus-feynlab.png';
-import groupBy from 'lodash.groupby';
 
 interface DeviceTriggersBaseProps {
   getDeviceTriggers: typeof getDeviceTriggers;

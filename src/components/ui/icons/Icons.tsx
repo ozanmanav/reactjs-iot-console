@@ -4,8 +4,10 @@ import { appendClassName } from '../../../utils';
 
 import building from '../../../icons/building.svg';
 import selectArrows from '../../../icons/selectArrows.svg';
+import upArrow from '../../../icons/up-arrow.svg';
 import downArrow from '../../../icons/down-arrow.svg';
 import accordionArrow from '../../../icons/accordionArrow.svg';
+import blackArrow from '../../../icons/blackArrow.svg';
 import narrowIcon from '../../../icons/narrow-icon.svg';
 import narrowIconDeactive from '../../../icons/narrow-icon-deactive.svg';
 import history from '../../../icons/history.svg';
@@ -27,6 +29,7 @@ export type TIconType =
   | 'building'
   | 'selectArrows'
   | 'downArrow'
+  | 'upArrow'
   | 'accordionArrow'
   | 'narrowIcon'
   | 'narrowIconDeactive'
@@ -43,6 +46,7 @@ export type TIconType =
   | 'download'
   | 'save'
   | 'cancel'
+  | 'blackArrow'
   | string;
 
 interface IIcons {
@@ -53,7 +57,9 @@ const ICONS: IIcons = {
   building,
   selectArrows,
   downArrow,
+  upArrow,
   accordionArrow,
+  blackArrow,
   narrowIcon,
   narrowIconDeactive,
   history,

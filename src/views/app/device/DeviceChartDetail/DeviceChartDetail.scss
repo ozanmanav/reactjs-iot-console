@@ -1,7 +1,7 @@
 @import '../../../../styles/variables';
 
 .b-device-chart-detail {
-  padding: 10px 20px 0;
+  padding: 0px 20px 0;
   padding-right: 0px;
   display: flex;
   flex-wrap: wrap;
@@ -26,14 +26,14 @@
     display: flex;
     &__prefix {
       margin-top: 19px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: normal;
       color: #9b9b9b;
     }
     &__postfix {
       margin-top: 19px;
       margin-left: 5px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: normal;
       color: #9b9b9b;
     }

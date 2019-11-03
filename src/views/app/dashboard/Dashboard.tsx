@@ -37,7 +37,7 @@ const DashboardBase: FunctionComponent<DashboardBaseProps> = () => {
     const updatedWidgets = dashboard.widgets.map((widget: IWidget) => {
       const { i, x, y, w, h }: GridLayout.Layout = currentLayout.find(item => item.i === widget.i) || widget;
 
-      return { name: widget.name, type: widget.type, i, x, y, w, h };
+      return { name: widget.name, type: widget.type, i, x, y, w, h, minH: 2 };
     });
 
     console.log('updateLayout', updatedWidgets);

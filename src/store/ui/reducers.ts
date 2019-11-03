@@ -33,7 +33,7 @@ import {
 
 export const UIInitialState: UIState = {
   dashboardLayouts: [{ id: 'dashboard_1', title: 'First Floor', widgets: [] }],
-  selectedDashboardLayout: undefined
+  selectedDashboardLayout: { id: 'dashboard_1', title: 'First Floor', widgets: [] }
 };
 
 export function uiReducer(state = UIInitialState, action: UIActionTypes): UIState {

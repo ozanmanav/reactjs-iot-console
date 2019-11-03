@@ -2,18 +2,18 @@
 @import '../../../../styles/mixins';
 
 .f-select {
-    &__error {
-        top: $input-height;
-        left: 0;
-        font-size: $h6;
-        color: $red;
-        line-height: 1;
-        padding-top: 3px;
-    }
+  &__error {
+    top: $input-height;
+    left: 0;
+    font-size: $h6;
+    color: $red;
+    line-height: 1;
+    padding-top: 3px;
+  }
 
-    &__icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 10px;
-    }
+  &__icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
 }

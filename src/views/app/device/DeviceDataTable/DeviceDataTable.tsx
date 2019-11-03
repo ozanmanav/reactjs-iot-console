@@ -3,7 +3,7 @@ import './DeviceDataTable.scss';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
 import { getDeviceChartsData } from '../../../../store/project/actions';
-import { IProjectLoadingState, IActivity } from '../../../../store/project/types';
+import { IProjectLoadingState } from '../../../../store/project/types';
 import { MDBDataTable } from 'mdbreact';
 import { normalizeDataForTable } from '../DeviceChartDetail/utils';
 import { Loading } from '../../../../components/ui/loading';

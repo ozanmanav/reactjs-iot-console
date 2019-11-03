@@ -13,6 +13,7 @@ import { FormCaption } from '../FormsUI';
 import { PeriodicTriggerEntityCard, AlertTriggerEntityCard, ITriggerSelectEntity } from '../../ui/cards';
 import { ValueType } from 'react-select/src/types';
 import { ITriggerTypeOption, ITriggerIntegrationOption, ITriggerIntervalOption } from '../../../utils';
+import { phoneCodesByCountry } from '../../../config/phoneCodesByCountry';
 
 const AddTriggerFormBase: FunctionComponent<
   IAddTriggerFormBaseProps & {
@@ -23,7 +24,7 @@ const AddTriggerFormBase: FunctionComponent<
   }
 > = ({ deviceEntities, triggerTypeOptions, triggerIntegrationOptions, triggerIntervalOptions, ...formikProps }) => {
   const { values, handleSubmit, handleChange, errors, touched, handleBlur, setFieldValue, loading } = formikProps;
-
+  console.log(values);
   const addEntity = (selectedEntity: ITriggerSelectEntity) => {
     let updatedThresholds = values.thresholds;
     if (values.thresholds.find((item: ITriggerSelectEntity) => item.key === selectedEntity.key)) {
@@ -58,6 +59,12 @@ const AddTriggerFormBase: FunctionComponent<
   const onChangeTriggerInterval = (option: ValueType<any>): void => {
     if (option) {
       setFieldValue('period', option.label);
+    }
+  };
+
+  const onChangePhoneCode = (option: ValueType<any>): void => {
+    if (option) {
+      setFieldValue('phone_code', option.value);
     }
   };
   return (
@@ -139,17 +146,64 @@ const AddTriggerFormBase: FunctionComponent<
           error={errors && errors.integration}
           touched={touched && touched.integration}
         />
-        {values.integration !== '' && (
-          <Input
-            placeholder="Integration Webhook URL"
-            name="integrationWebhook"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.integrationWebhook}
-            error={errors && errors.integrationWebhook}
-            touched={touched && touched.integrationWebhook}
-          />
-        )}
+        {(() => {
+          switch (values.integration) {
+            case 'Slack':
+              return (
+                <Input
+                  placeholder="Integration Webhook URL"
+                  name="integrationWebhook"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.integrationWebhook}
+                  error={errors && errors.integrationWebhook}
+                  touched={touched && touched.integrationWebhook}
+                />
+              );
+            case 'E-mail':
+              return (
+                <Input
+                  placeholder="Enter e-mail address"
+                  name="integrationWebhook"
+                  onBlur={handleBlur}
+                  type="email"
+                  onChange={handleChange}
+                  value={values.integrationWebhook}
+                  error={errors && errors.integrationWebhook}
+                  touched={touched && touched.integrationWebhook}
+                />
+              );
+            case 'SMS':
+              return (
+                <div className={'f-add-trigger__form-phone-container'}>
+                  <Select
+                    menuPlacement="top"
+                    options={phoneCodesByCountry}
+                    placeholder="Phone code"
+                    name="phoneCode"
+                    value={phoneCodesByCountry && phoneCodesByCountry.find(({ value }) => value === values.phoneCode)}
+                    error={errors.phoneCode}
+                    touched={touched.phoneCode}
+                    onChange={onChangePhoneCode}
+                    onBlur={handleBlur}
+                    className={'f-add-trigger__form-phone-container__code'}
+                  />
+                  <Input
+                    placeholder="Enter Phone Number"
+                    name="integrationWebhook"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.integrationWebhook}
+                    error={errors && errors.integrationWebhook}
+                    touched={touched && touched.integrationWebhook}
+                  />
+                </div>
+              );
+            default:
+              return null;
+          }
+        })()}
+
         <br />
 
         <Button

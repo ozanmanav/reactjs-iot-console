@@ -39,6 +39,7 @@ export const Select: FunctionComponent<ISelectProps> = ({
     <div className={selectWrapperClassName}>
       <ReactSelect
         {...props}
+        isSearchable
         menuPlacement={menuPlacement}
         components={{ Option: IconOption }}
         styles={{

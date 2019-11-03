@@ -12,11 +12,6 @@ export function* requestGetDashboardLayouts(data: any) {
   try {
     const data = yield localStorage.getItem('savedlayouts');
 
-    // yield put(
-    //   setDashboardLayoutSuccess({
-    //     selectedDashboardLayout: { id: 'dashboard_1', title: 'First Floor', layout: defaultLayout }
-    //   })
-    // );
     yield put(
       getDashboardLayoutsSuccess({
         dashboardLayouts: data ? JSON.parse(data) : [{ id: 'dashboard_1', title: 'First Floor', widgets: [] }]

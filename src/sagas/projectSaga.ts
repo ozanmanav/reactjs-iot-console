@@ -339,6 +339,7 @@ export function* requestDeleteProject() {
     showSuccessToast('Project successfully deleted');
     yield put(actions.deleteProjectSuccess({}));
   } catch (error) {
+    showErrorToast(error && error.Message);
     yield put(actions.deleteProjectFailure({ error }));
   }
 }
@@ -749,7 +750,7 @@ export function* requestAddDeviceTrigger(data: AddDeviceTriggerAction) {
 
     console.log(addDeviceTriggerResponse);
 
-    if (addDeviceTriggerResponse.data.Message === 'Added Device successful') {
+    if (addDeviceTriggerResponse.data.Message === 'Added Trigger successful') {
       const addDeviceTriggerResponse: ProjectState = {};
       showSuccessToast('Trigger successfully added');
       // yield put(actions.getDevices());

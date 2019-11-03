@@ -23,7 +23,6 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import { Button, RemoveButton } from '../buttons';
 import { SummaryData } from '../../../views/app/device/DeviceChartDetail/utils';
 import { Icon } from '../icons';
 
