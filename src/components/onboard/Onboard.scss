@@ -1,6 +1,6 @@
 .c-onboard {
   display: flex;
-  padding: 55px;
+  padding: 40px;
   height: 80%;
   margin: 70px;
   margin-top: 30px;
@@ -17,6 +17,10 @@
   &-divider {
     width: 0.1%;
     background-color: #c7c7c7;
+  }
+
+  &-prev {
+    margin-top: 10px;
   }
 
   &-steps {

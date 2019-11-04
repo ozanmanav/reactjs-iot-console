@@ -28,6 +28,7 @@ export interface IAddDeviceFormBaseProps extends FormikProps<IAddDeviceFormState
 
 export interface IAddDeviceFormProps {
   loading?: IProjectLoadingState;
+  disableValidation?: boolean;
   onSubmit: (state: IAddDeviceFormState) => void;
   brandsOptions?: IBrandOption[];
   initialValues?: IAddDeviceFormState;

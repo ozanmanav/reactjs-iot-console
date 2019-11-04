@@ -38,8 +38,8 @@ export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBas
         onSubmit={onSubmit}
         brandsOptions={getDeviceBrandOptions(brands)}
         modelsOptions={getDeviceModelOptions(models)}
-        loading={projectLoading || undefined}
         getDeviceModels={brand => getDeviceModels(brand)}
+        loading={projectLoading || undefined}
       />
     </div>
   );

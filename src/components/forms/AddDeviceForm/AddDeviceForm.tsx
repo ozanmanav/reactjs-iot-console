@@ -120,13 +120,14 @@ export const AddDeviceForm: FunctionComponent<IAddDeviceFormProps> = ({
   loading,
   brandsOptions,
   getDeviceModels,
-  modelsOptions
+  modelsOptions,
+  disableValidation
 }) => {
   return (
     <Formik
       onSubmit={onSubmit}
       initialValues={initialValues || AddDeviceFormDefaultState}
-      validationSchema={AddDeviceFormValidationSchema}
+      validationSchema={!disableValidation && AddDeviceFormValidationSchema}
       component={formikProps => (
         <AddDeviceFormBase
           {...formikProps}
