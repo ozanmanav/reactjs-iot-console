@@ -22,18 +22,12 @@ export interface IAddDeviceFormState {
   loading?: boolean;
 }
 
-export interface IAddDeviceFormBaseProps extends FormikProps<IAddDeviceFormState> {
-  loading?: IProjectLoadingState;
-}
+export interface IAddDeviceFormBaseProps extends FormikProps<IAddDeviceFormState> {}
 
 export interface IAddDeviceFormProps {
-  loading?: IProjectLoadingState;
   disableValidation?: boolean;
   onSubmit: (state: IAddDeviceFormState) => void;
-  brandsOptions?: IBrandOption[];
   initialValues?: IAddDeviceFormState;
-  getDeviceModels?: (brand: string) => void;
-  modelsOptions?: IModelOption[];
 }
 
 // Validation Schema

@@ -1,12 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import './AddDevice.scss';
 import { RouteComponentProps } from 'react-router';
 import { AddDeviceForm } from '../../../../components/forms/AddDeviceForm';
 import BreadcrumbsAdv from '../../../../components/ui/breadcrumbs-adv/BreadcrumbsAdv';
 import { AppState } from '../../../../store';
-import { connect } from 'react-redux';
-import { addDevice, getDeviceModels } from '../../../../store/project/actions';
-import { getDeviceBrandOptions, getDeviceModelOptions } from '../../../../utils';
+import { connect, useDispatch } from 'react-redux';
+import { addDevice, getDeviceModels, getDeviceBrands } from '../../../../store/project/actions';
 import { IProjectLoadingState } from '../../../../store/project/types';
 import { IAddDeviceFormState } from '../../../../components/forms/AddDeviceForm/definitions';
 
@@ -18,29 +17,26 @@ interface AddDeviceBaseProps {
   models: [];
 }
 
-export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBaseProps> = ({
-  brands,
-  models,
-  addDevice,
-  getDeviceModels,
-  projectLoading = undefined
-}) => {
+export const AddDeviceBase: FunctionComponent<RouteComponentProps & AddDeviceBaseProps> = ({ addDevice }) => {
+  const reduxDispatch = useDispatch();
+
+  useEffect(() => {
+    if (getDeviceBrands) {
+      reduxDispatch(getDeviceBrands());
+    }
+  }, []);
+
   const onSubmit = (values: IAddDeviceFormState): void => {
     addDevice(values);
   };
+
   return (
     <div className="b-add-device">
       <div className="b-add-device__breadcrumb-wrapper">
         <div className="b-add-device__breadcrumb-wrapper__present">Projects /</div>
         <BreadcrumbsAdv />
       </div>
-      <AddDeviceForm
-        onSubmit={onSubmit}
-        brandsOptions={getDeviceBrandOptions(brands)}
-        modelsOptions={getDeviceModelOptions(models)}
-        getDeviceModels={brand => getDeviceModels(brand)}
-        loading={projectLoading || undefined}
-      />
+      <AddDeviceForm onSubmit={onSubmit} />
     </div>
   );
 };

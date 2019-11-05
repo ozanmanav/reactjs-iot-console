@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Formik } from 'formik';
 import {
   IAddDeviceFormBaseProps,
@@ -12,26 +12,35 @@ import { ClipLoader } from 'react-spinners';
 import './AddDeviceForm.scss';
 import isNil from 'ramda/es/isNil';
 import { ValueType } from 'react-select/src/types';
-import { IBrandOption, IModelOption } from '../../../utils';
+import { IBrandOption, IModelOption, getDeviceBrandOptions, getDeviceModelOptions } from '../../../utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../../store';
+import { getDeviceModels, getDeviceBrands } from '../../../store/project/actions';
 
-const AddDeviceFormBase: FunctionComponent<
-  IAddDeviceFormBaseProps & {
-    brandsOptions?: IBrandOption[];
-    getDeviceModels?: (brand: string) => void;
-    modelsOptions?: IModelOption[];
-  }
-> = ({ brandsOptions = [], modelsOptions, getDeviceModels, ...formikProps }) => {
-  const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading, setFieldValue } = formikProps;
+const AddDeviceFormBase: FunctionComponent<IAddDeviceFormBaseProps> = ({
+  values,
+  handleSubmit,
+  handleChange,
+  errors,
+  touched,
+  handleBlur,
+  setFieldValue
+}) => {
+  const { deviceBrands, deviceModels, loading } = useSelector((state: AppState) => state.project);
+  const reduxDispatch = useDispatch();
+
+  const brandsOptions = getDeviceBrandOptions(deviceBrands);
+  const modelsOptions = getDeviceModelOptions(deviceModels);
 
   const onChangeBrand = (option: ValueType<any>): void => {
     setFieldValue('deviceModel', undefined);
 
-    if (!getDeviceModels || !option) {
+    if (!option) {
       return setFieldValue('deviceBrand', undefined);
     }
 
     setFieldValue('deviceBrand', option.value);
-    getDeviceModels(option.value);
+    reduxDispatch(getDeviceModels(option.value));
   };
 
   const onChangeModel = (option: ValueType<any>): void => {
@@ -63,7 +72,7 @@ const AddDeviceFormBase: FunctionComponent<
         <Select
           placeholder="Select Model"
           name="deviceModel"
-          options={modelsOptions}
+          options={getDeviceModelOptions(deviceModels)}
           isSearchable={true}
           onChange={onChangeModel}
           isClearable={true}
@@ -117,10 +126,6 @@ const AddDeviceFormBase: FunctionComponent<
 export const AddDeviceForm: FunctionComponent<IAddDeviceFormProps> = ({
   onSubmit,
   initialValues,
-  loading,
-  brandsOptions,
-  getDeviceModels,
-  modelsOptions,
   disableValidation
 }) => {
   return (
@@ -128,15 +133,7 @@ export const AddDeviceForm: FunctionComponent<IAddDeviceFormProps> = ({
       onSubmit={onSubmit}
       initialValues={initialValues || AddDeviceFormDefaultState}
       validationSchema={!disableValidation && AddDeviceFormValidationSchema}
-      component={formikProps => (
-        <AddDeviceFormBase
-          {...formikProps}
-          loading={loading}
-          brandsOptions={brandsOptions}
-          getDeviceModels={getDeviceModels}
-          modelsOptions={modelsOptions}
-        />
-      )}
+      component={formikProps => <AddDeviceFormBase {...formikProps} />}
     />
   );
 };

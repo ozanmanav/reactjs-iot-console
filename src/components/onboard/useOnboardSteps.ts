@@ -14,7 +14,6 @@ function onboardStepsReducer(state: OnboardStepsState, action: TOnboardStepsActi
 
       return { ...state, activeStep: action.index + 1, finishedSteps: [...state.finishedSteps, action.index] };
     case 'GO_NEXT':
-      console.log(state.activeStep);
       if (state.activeStep === state.numberOfSteps) {
         return state;
       }
@@ -27,7 +26,6 @@ function onboardStepsReducer(state: OnboardStepsState, action: TOnboardStepsActi
           : [...state.finishedSteps, state.activeStep]
       };
     case 'GO_PREV':
-      console.log(state.activeStep);
       if (state.activeStep === 1) {
         return state;
       }
@@ -73,7 +71,6 @@ export const useOnboardSteps = (numberOfSteps: number) => {
   }
 
   function isActiveStep(index: number) {
-    console.log('isActiveStep', state.activeStep);
     return state.activeStep === index;
   }
 

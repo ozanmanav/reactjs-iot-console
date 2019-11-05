@@ -10,17 +10,26 @@ import { AddDeviceForm } from '../forms/AddDeviceForm';
 import { IAddDeviceFormState } from '../forms/AddDeviceForm/definitions';
 import { useDispatch } from 'react-redux';
 import { getDeviceBrands } from '../../store/project/actions';
+import { ConnectionDetails } from './connectionDetails';
 
 interface OnboardStepProps {
   step: number;
   title: string;
   finished?: boolean;
   active?: boolean;
+  onClick?: () => void;
 }
 
-const OnboardStep: FunctionComponent<OnboardStepProps> = ({ step, title, finished = false, active = false }) => {
+const OnboardStep: FunctionComponent<OnboardStepProps> = ({
+  step,
+  title,
+  finished = false,
+  active = false,
+  onClick
+}) => {
   return (
     <div
+      onClick={onClick}
       className={classNames('c-onboard-step', {
         finished,
         active
@@ -71,13 +80,13 @@ export const Onboard: FunctionComponent = () => {
             case 2:
               return <AddDeviceForm onSubmit={onClickAddDevice} initialValues={addDeviceFormState} disableValidation />;
             case 3:
-              return <div>CONNECTION DETAILS </div>;
+              return <ConnectionDetails />;
             default:
               return null;
           }
         })()}
-        <Button text="Prev" className="c-onboard-prev" onClick={goPrevOnboardStep} />
       </div>
+      <Button text="Prev" className="c-onboard-prev" onClick={goPrevOnboardStep} />
     </div>
   );
 };
