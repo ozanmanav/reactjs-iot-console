@@ -10940,6 +10940,13 @@ react-draggable@3.x, react-draggable@^3.0.3:
     classnames "^2.2.5"
     prop-types "^15.6.0"
 
+react-embed-gist@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-embed-gist/-/react-embed-gist-1.0.10.tgz#2a3b8ce8788928278e825289b3b475f1870153ca"
+  integrity sha512-c5Sn6tOkXXITFJ8sCS1qShLP++j32/5ImiVwwTgTG5dyLQyftF1WUtyk/r25B5zAR3FF1+/S5gYSorqQlM3Rug==
+  dependencies:
+    react "^16.9.0"
+
 react-error-overlay@^6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
@@ -11365,6 +11372,15 @@ react@^16.10.2:
   version "16.10.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.10.2.tgz#a5ede5cdd5c536f745173c8da47bda64797a4cf0"
   integrity sha512-MFVIq0DpIhrHFyqLU0S3+4dIcBhhOvBE8bJ/5kHPVOVaGdo0KuiQzpcjCPsf585WvhypqtrMILyoE2th6dT+Lw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
+react@^16.9.0:
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.11.0.tgz#d294545fe62299ccee83363599bf904e4a07fdbb"
+  integrity sha512-M5Y8yITaLmU0ynd0r1Yvfq98Rmll6q8AxaEe88c8e7LxO8fZ2cNgmFt0aGAS9wzf1Ao32NKXtCl+/tVVtkxq6g==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

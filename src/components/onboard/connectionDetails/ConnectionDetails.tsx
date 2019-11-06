@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import './ConnectionDetails.scss';
+import ReactEmbedGist from 'react-embed-gist';
 import { Select, Icon } from '../../ui';
 
 const options = [
@@ -29,9 +30,15 @@ export const ConnectionDetails: FunctionComponent = () => {
         <Select options={options} value={options[0]} />
       </div>
       <div className="c-connection-details__code">
-        <SyntaxHighlighter language="markdown" style={docco}>
-          {codeString}
-        </SyntaxHighlighter>
+        <ReactEmbedGist
+          gist="ozanmanav/0b8a104fd73a866322a0b50e8e2d92d2"
+          wrapperClass="gist__bash"
+          loadingClass="loading__screen"
+          titleClass="gist__title"
+          contentClass="gist__content"
+          errorClass="gist__error"
+          file="cloudSettings"
+        />
         <div className="c-connection-details__code-copy">
           <Icon
             icon="copy"
