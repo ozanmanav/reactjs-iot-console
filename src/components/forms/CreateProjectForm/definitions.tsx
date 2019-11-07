@@ -5,12 +5,16 @@ import { VALIDATION_ERRORS } from '../../../config';
 export const CreateProjectFormState = {
   name: '',
   description: '',
+  redirectToProject: true,
+  fetchAfterCreate: false,
   loading: false
 };
 
 export interface ICreateProjectFormState {
   name: string;
   description: string;
+  redirectToProject?: boolean;
+  fetchAfterCreate?: boolean;
   loading?: boolean;
 }
 

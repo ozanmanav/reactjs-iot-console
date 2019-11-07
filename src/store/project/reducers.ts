@@ -35,6 +35,13 @@ export const ProjectInitialState: ProjectState = {
 
 export function projectReducer(state = ProjectInitialState, action: ProjectActionTypes): ProjectState {
   switch (action.type) {
+    case types.RESET_CURRENTS: {
+      return {
+        ...state,
+        currentProject: undefined,
+        currentDevice: undefined
+      };
+    }
     case types.GET_PROJECTS: {
       return {
         ...state

@@ -1,52 +1,74 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import './ConnectionDetails.scss';
 import ReactEmbedGist from 'react-embed-gist';
 import { Select, Icon } from '../../ui';
+import { DeviceInfo } from '../../../views/app/device/DeviceInfo';
+import { IDevice } from '../../../store/project/types';
+import { IAddDeviceFormState } from '../../forms/AddDeviceForm/definitions';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../store';
+import { Loading } from '../../ui/loading';
+import { CircleLoader, ClipLoader } from 'react-spinners';
 
 const options = [
+  {
+    label: 'NodeJS',
+    value: 'NodeJS'
+  },
+  {
+    label: 'GoLang',
+    value: 'GoLang'
+  },
+  {
+    label: 'Python',
+    value: 'Python'
+  },
   {
     label: 'Connection Parameters',
     value: 'connectionParameters'
   }
 ];
 
-const codeString = `
-username = doadmin 
-password = blablabla
-host = http://qubitro.com/app/projects/d01eade7-4514-
-4e6b-aba2-ada319031837/devices/45388e0f-26bc-4873-ace7-78d12862a0f1
-port = 1231
-database = defaultdb
-sslmode = require`;
+interface ConnectionDetailsProps {}
 
-export const ConnectionDetails: FunctionComponent = () => {
+export const ConnectionDetails: FunctionComponent<ConnectionDetailsProps> = () => {
+  const currentDevice = useSelector((state: AppState) => state.project.currentDevice);
+  console.log(currentDevice);
+  const [connection, setSelectedConnection] = useState(options[0]);
+
   return (
     <div className="c-connection-details">
+      <div className="c-connection-details__device">
+        {currentDevice ? (
+          <DeviceInfo device={currentDevice} />
+        ) : (
+          <ClipLoader sizeUnit={'px'} size={24} color={'#f68a4d'} loading={true} />
+        )}
+      </div>
+      <div className="c-connection-details__info">Choose the language supported by selected device model</div>
       <div className="c-connection-details__title">CONNECTION DETAILS</div>
       <div className="c-connection-details__info">Run the following code to start sending data.</div>
       <div className="c-connection-details__dropdown">
-        <Select options={options} value={options[0]} />
+        <Select options={options} value={connection} onChange={setSelectedConnection} />
       </div>
       <div className="c-connection-details__code">
         <ReactEmbedGist
-          gist="ozanmanav/0b8a104fd73a866322a0b50e8e2d92d2"
-          wrapperClass="gist__bash"
-          loadingClass="loading__screen"
-          titleClass="gist__title"
-          contentClass="gist__content"
-          errorClass="gist__error"
-          file="cloudSettings"
+          gist="stylpen/8364ef6fe71af24e216f"
+          wrapperClass="c-connection-details__code-gist__bash"
+          titleClass="c-connection-details__code-gist__title"
+          contentClass="c-connection-details__code-gist__content"
+          errorClass="c-connection-details__code-gist__error"
         />
-        <div className="c-connection-details__code-copy">
+        {/* <div className="c-connection-details__code-copy">
           <Icon
             icon="copy"
             className="c-connection-details__code-copy-icon"
             onClick={() => console.log('ok')}
             alt="Copy to Clipboard"
           />
-        </div>
+        </div> */}
       </div>
       <div className="c-connection-details__info">
         Visit{' '}

@@ -5,6 +5,12 @@ import { ICreateProjectFormState } from '../../components/forms/CreateProjectFor
 import { IAddChartFormState } from '../../components/forms/AddChartForm/definitions';
 import { IAddTriggerFormState } from '../../components/forms/AddTriggerForm/definitions';
 
+export function resetCurrents(): ProjectActionTypes {
+  return {
+    type: types.RESET_CURRENTS
+  };
+}
+
 export function getProjects(): ProjectActionTypes {
   return {
     type: types.GET_PROJECTS

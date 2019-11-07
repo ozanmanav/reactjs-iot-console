@@ -14,6 +14,7 @@ import {
 import { showSuccessToast, showErrorToast } from '../components/ui';
 import { PROJECTS_FIRST_LOAD_KEY } from '../config';
 import { push } from 'connected-react-router';
+import get from 'lodash.get';
 
 export function* requestGetProjects() {
   try {
@@ -58,7 +59,7 @@ export function* requestGetDevices() {
   try {
     const currentProject: IProject = yield select(state => state.project.currentProject);
 
-    if (!currentProject || !currentProject.id) {
+    if (!get(currentProject, 'id')) {
       return yield put(
         actions.getDevicesFailure({
           error: 'Not current project selected'
@@ -112,7 +113,7 @@ export function* requestGetActivities() {
   try {
     const currentProject: IProject = yield select(state => state.project.currentProject);
 
-    if (!currentProject || !currentProject.id) {
+    if (!get(currentProject, 'id')) {
       return yield put(
         actions.getActivitiesFailure({
           error: 'Not current project selected'
@@ -238,7 +239,7 @@ export function* requestAddDevice(data: AddDeviceAction) {
   try {
     const currentProject: IProject = yield select(state => state.project.currentProject);
 
-    if (!currentProject || !currentProject.id) {
+    if (!get(currentProject, 'id')) {
       return yield put(
         actions.addDeviceFailure({
           error: 'Not current project selected'
@@ -246,15 +247,29 @@ export function* requestAddDevice(data: AddDeviceAction) {
       );
     }
 
-    delete data.payload.loading;
-    const addDeviceResponse = yield call(postRequest, `user/projects/${currentProject.id}/devices`, {}, data.payload);
+    const { loading, redirectToProject, fetchAfterAdd, ...requestParameters } = data.payload;
+    const addDeviceResponse = yield call(
+      postRequest,
+      `user/projects/${currentProject.id}/devices`,
+      {},
+      requestParameters
+    );
 
-    if (addDeviceResponse.data.Message === 'Added Device successful') {
-      const successAddDeviceResponse: ProjectState = {};
+    if (get(addDeviceResponse, 'data.Message') === 'Added Device successful') {
       showSuccessToast('Device successfully added');
+
       yield put(actions.getDevices());
-      yield put(push(`/app/projects/${currentProject.id}`));
-      yield put(actions.addDeviceSuccess(successAddDeviceResponse));
+
+      if (redirectToProject) {
+        yield put(push(`/app/projects/${currentProject.id}`));
+      }
+
+      const addedDeviceID = get(addDeviceResponse, 'data.id');
+      if (fetchAfterAdd && addedDeviceID) {
+        yield put(actions.getDeviceById(addedDeviceID));
+      }
+
+      yield put(actions.addDeviceSuccess({}));
     } else {
       yield put(
         actions.saveProjectSettingsFailure({
@@ -285,8 +300,9 @@ export function* requestGetDeviceModels(data: any) {
 
 export function* requestCreateProject(data: CreateProjectAction) {
   try {
-    delete data.payload.loading;
-    const createProjectResponse = yield call(postRequest, `user/projects`, {}, data.payload);
+    const { loading, redirectToProject, fetchAfterCreate, ...requestParameters } = data.payload;
+
+    const createProjectResponse = yield call(postRequest, `user/projects`, {}, requestParameters);
 
     if (!createProjectResponse.data.Message || !createProjectResponse.data.Message.includes('Project created with')) {
       return yield put(
@@ -297,9 +313,21 @@ export function* requestCreateProject(data: CreateProjectAction) {
     }
 
     showSuccessToast('Project successfully created');
+
     yield put(actions.getProjects());
-    yield put(push(`/app/projects/${createProjectResponse.data.id}`));
+
     yield put(actions.createProjectSuccess({}));
+
+    if (redirectToProject) {
+      yield put(push(`/app/projects/${createProjectResponse.data.id}`));
+    }
+
+    if (fetchAfterCreate) {
+      const createdProjectID = get(createProjectResponse, 'data.id');
+      if (createdProjectID) {
+        yield put(actions.getProjectById(createdProjectID));
+      }
+    }
   } catch (error) {
     yield put(actions.createProjectFailure({ error }));
   }
@@ -309,7 +337,7 @@ export function* requestDeleteProject() {
   try {
     const currentProject: IProject = yield select(state => state.project.currentProject);
 
-    if (!currentProject || !currentProject.id) {
+    if (!get(currentProject, 'id')) {
       return yield put(
         actions.deleteProjectFailure({
           error: 'Not current project selected'

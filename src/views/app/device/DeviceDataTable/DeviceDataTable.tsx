@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useCallback } from 'react';
 import './DeviceDataTable.scss';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../store';
@@ -20,11 +20,17 @@ export const DeviceDataTableBase: FunctionComponent<DeviceDataTableBaseProps> = 
   loading,
   getDeviceChartsData
 }) => {
-  useEffect(() => {
+  const getDeviceChartsDataCallback = useCallback(() => {
     if (getDeviceChartsData) {
       getDeviceChartsData();
     }
-  }, []);
+  }, [getDeviceChartsData]);
+
+  useEffect(() => {
+    if (getDeviceChartsDataCallback) {
+      getDeviceChartsDataCallback();
+    }
+  }, [getDeviceChartsDataCallback]);
 
   if (loading && loading.deviceChartsData) {
     return <Loading />;

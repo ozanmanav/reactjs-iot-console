@@ -121,6 +121,8 @@ export interface ProjectState {
   error?: string;
 }
 
+export const RESET_CURRENTS = '@@project/RESET_CURRENTS';
+
 /* PROJECTS */
 export const CREATE_PROJECT = '@@project/CREATE_PROJECT';
 export const CREATE_PROJECT_SUCCESS = '@@project/CREATE_PROJECT_SUCCESS';
@@ -208,6 +210,10 @@ export const SAVE_DEVICE_CHART_FAILURE = '@@project/SAVE_DEVICE_CHART_FAILURE';
 export const ADD_DEVICE_TRIGGER = '@@project/ADD_DEVICE_TRIGGER';
 export const ADD_DEVICE_TRIGGER_SUCCESS = '@@project/ADD_DEVICE_TRIGGER_SUCCESS';
 export const ADD_DEVICE_TRIGGER_FAILURE = '@@project/ADD_DEVICE_TRIGGER_FAILURE';
+
+interface ResetCurrentsAction {
+  type: typeof RESET_CURRENTS;
+}
 
 interface GetProjectsAction {
   type: typeof GET_PROJECTS;
@@ -615,6 +621,7 @@ interface AddDeviceTriggerFailureAction {
 }
 
 export type ProjectActionTypes =
+  | ResetCurrentsAction
   | GetProjectsAction
   | GetProjectsSuccessAction
   | GetProjectsFailureAction

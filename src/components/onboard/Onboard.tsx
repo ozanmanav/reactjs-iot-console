@@ -1,15 +1,14 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import classNames from 'classnames';
-
 import './Onboard.scss';
-import { Icon, Button } from '../ui';
+import { Icon } from '../ui';
 import { useOnboardSteps } from './useOnboardSteps';
 import { CreateProjectForm } from '../forms/CreateProjectForm';
 import { ICreateProjectFormState } from '../forms/CreateProjectForm/definitions';
 import { AddDeviceForm } from '../forms/AddDeviceForm';
 import { IAddDeviceFormState } from '../forms/AddDeviceForm/definitions';
 import { useDispatch } from 'react-redux';
-import { getDeviceBrands } from '../../store/project/actions';
+import { getDeviceBrands, createProject, addDevice, resetCurrents } from '../../store/project/actions';
 import { ConnectionDetails } from './connectionDetails';
 
 interface OnboardStepProps {
@@ -43,23 +42,35 @@ const OnboardStep: FunctionComponent<OnboardStepProps> = ({
 
 export const Onboard: FunctionComponent = () => {
   const reduxDispatch = useDispatch();
-  const { isActiveStep, activeStep, isFinishedStep, goNextOnboardStep, goPrevOnboardStep } = useOnboardSteps(3);
-  const [createProjectState, setCreateProjectState] = useState<ICreateProjectFormState>();
-  const [addDeviceFormState, setAddDeviceFormState] = useState<IAddDeviceFormState>();
+
+  const { isActiveStep, activeStep, isFinishedStep, goNextOnboardStep } = useOnboardSteps(3);
 
   useEffect(() => {
+    reduxDispatch(resetCurrents());
     if (getDeviceBrands) {
       reduxDispatch(getDeviceBrands());
     }
   }, []);
 
   const onClickCreateProject = (values: ICreateProjectFormState) => {
-    setCreateProjectState(values);
+    const createValues: ICreateProjectFormState = {
+      ...values,
+      redirectToProject: false,
+      fetchAfterCreate: true
+    };
+
+    reduxDispatch(createProject(createValues));
     goNextOnboardStep();
   };
 
   const onClickAddDevice = (values: IAddDeviceFormState) => {
-    setAddDeviceFormState(values);
+    const addDeviceValues: IAddDeviceFormState = {
+      ...values,
+      redirectToProject: false,
+      fetchAfterAdd: true
+    };
+
+    reduxDispatch(addDevice(addDeviceValues));
     goNextOnboardStep();
   };
 
@@ -76,9 +87,9 @@ export const Onboard: FunctionComponent = () => {
         {(() => {
           switch (activeStep) {
             case 1:
-              return <CreateProjectForm onSubmit={onClickCreateProject} initialValues={createProjectState} />;
+              return <CreateProjectForm onSubmit={onClickCreateProject} />;
             case 2:
-              return <AddDeviceForm onSubmit={onClickAddDevice} initialValues={addDeviceFormState} disableValidation />;
+              return <AddDeviceForm onSubmit={onClickAddDevice} disableValidation />;
             case 3:
               return <ConnectionDetails />;
             default:
@@ -86,7 +97,7 @@ export const Onboard: FunctionComponent = () => {
           }
         })()}
       </div>
-      <Button text="Prev" className="c-onboard-prev" onClick={goPrevOnboardStep} />
+      {/* <Button text="Prev" className="c-onboard-prev" onClick={goPrevOnboardStep} /> */}
     </div>
   );
 };

@@ -10,7 +10,9 @@ export const AddDeviceFormDefaultState = {
   deviceName: '',
   deviceDescription: '',
   location: '',
-  loading: false
+  loading: false,
+  redirectToProject: true,
+  fetchAfterAdd: false
 };
 
 export interface IAddDeviceFormState {
@@ -20,6 +22,8 @@ export interface IAddDeviceFormState {
   deviceDescription: string;
   location: string;
   loading?: boolean;
+  redirectToProject?: boolean;
+  fetchAfterAdd?: boolean;
 }
 
 export interface IAddDeviceFormBaseProps extends FormikProps<IAddDeviceFormState> {}

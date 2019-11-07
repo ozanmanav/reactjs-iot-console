@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Formik } from 'formik';
 import {
   IAddDeviceFormBaseProps,
@@ -12,10 +12,10 @@ import { ClipLoader } from 'react-spinners';
 import './AddDeviceForm.scss';
 import isNil from 'ramda/es/isNil';
 import { ValueType } from 'react-select/src/types';
-import { IBrandOption, IModelOption, getDeviceBrandOptions, getDeviceModelOptions } from '../../../utils';
+import { getDeviceBrandOptions, getDeviceModelOptions } from '../../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../store';
-import { getDeviceModels, getDeviceBrands } from '../../../store/project/actions';
+import { getDeviceModels } from '../../../store/project/actions';
 
 const AddDeviceFormBase: FunctionComponent<IAddDeviceFormBaseProps> = ({
   values,

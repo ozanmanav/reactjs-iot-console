@@ -5,6 +5,11 @@
   &__title {
     margin-bottom: 20px;
   }
+
+  &__device {
+    margin-bottom: 20px;
+  }
+
   &__info {
     margin-bottom: 20px;
   }
@@ -15,10 +20,12 @@
   }
 
   &__code {
-    pre {
-      padding-bottom: 25px !important;
-    }
     margin-bottom: 20px;
+    &-gist {
+      &__title {
+        display: none;
+      }
+    }
     &-copy {
       position: relative;
       &-icon {
