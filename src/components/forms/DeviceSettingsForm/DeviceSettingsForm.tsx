@@ -21,6 +21,11 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
   const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
   const { open, hide, isOpen } = useModal();
 
+  const onClickDeviceDeleteConfirm = () => {
+    hide();
+    onClickDeviceDelete();
+  };
+
   return (
     <form className="f-device-settings__form" onSubmit={handleSubmit}>
       <div className="f-device-settings__form-content">
@@ -104,7 +109,7 @@ const DeviceSettingsFormBase: FunctionComponent<IDeviceSettingsFormBaseProps> = 
             <Icon icon="trash" className="_cursor-pointer" onClick={open} />
             <ConfirmModal
               title={`Are you sure delete device?`}
-              onConfirm={onClickDeviceDelete}
+              onConfirm={onClickDeviceDeleteConfirm}
               hide={hide}
               isOpen={isOpen}
             />

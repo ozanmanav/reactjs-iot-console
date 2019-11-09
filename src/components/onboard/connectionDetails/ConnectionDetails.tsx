@@ -3,7 +3,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import './ConnectionDetails.scss';
 import ReactEmbedGist from 'react-embed-gist';
-import { Select, Icon } from '../../ui';
+import { Select, Icon, Button } from '../../ui';
 import { DeviceInfo } from '../../../views/app/device/DeviceInfo';
 import { IDevice } from '../../../store/project/types';
 import { IAddDeviceFormState } from '../../forms/AddDeviceForm/definitions';
@@ -35,7 +35,6 @@ interface ConnectionDetailsProps {}
 
 export const ConnectionDetails: FunctionComponent<ConnectionDetailsProps> = () => {
   const currentDevice = useSelector((state: AppState) => state.project.currentDevice);
-  console.log(currentDevice);
   const [connection, setSelectedConnection] = useState(options[0]);
 
   return (
@@ -61,14 +60,6 @@ export const ConnectionDetails: FunctionComponent<ConnectionDetailsProps> = () =
           contentClass="c-connection-details__code-gist__content"
           errorClass="c-connection-details__code-gist__error"
         />
-        {/* <div className="c-connection-details__code-copy">
-          <Icon
-            icon="copy"
-            className="c-connection-details__code-copy-icon"
-            onClick={() => console.log('ok')}
-            alt="Copy to Clipboard"
-          />
-        </div> */}
       </div>
       <div className="c-connection-details__info">
         Visit{' '}
@@ -77,6 +68,7 @@ export const ConnectionDetails: FunctionComponent<ConnectionDetailsProps> = () =
         </a>{' '}
         for further info.
       </div>
+      <Button text="Finish" />
     </div>
   );
 };

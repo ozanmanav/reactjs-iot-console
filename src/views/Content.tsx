@@ -17,9 +17,7 @@ interface ContentBaseProps {
 }
 
 const ContentBase: FunctionComponent<ContentBaseProps> = ({ startup, auth }) => {
-  useEffect(() => {
-    startup();
-  }, [startup]);
+  useEffect(() => {}, [startup]);
 
   if (auth && auth.loading && auth.loading.checkUserAuthFirebase) {
     return <Loading />;

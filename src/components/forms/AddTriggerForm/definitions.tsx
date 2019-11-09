@@ -9,7 +9,7 @@ export const AddTriggerFormDefaultState = {
   name: '',
   triggerType: '',
   integration: '',
-  period: '',
+  interval: '',
   phoneCode: '',
   integrationWebhook: '',
   thresholds: []
@@ -19,7 +19,7 @@ export interface IAddTriggerFormState {
   name: string;
   triggerType: string;
   integration: string;
-  period: string;
+  interval: string;
   integrationWebhook: string;
   phoneCode: string;
   thresholds: ITriggerSelectEntity[];

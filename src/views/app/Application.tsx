@@ -15,7 +15,6 @@ export const Application: FunctionComponent = () => {
         <Sidebar />
         <div className={'content'}>
           <Switch>
-            <Route path="/app/onboarding" component={Onboard} />
             <Route path="/app/projects" component={ProjectMain} />
             <Route path="/app/dashboard" component={Dashboard} />
             <Route path="/app/account" component={Account} />

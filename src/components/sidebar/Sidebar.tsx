@@ -10,6 +10,8 @@ import { getProjects } from '../../store/project/actions';
 import './Sidebar.scss';
 import SidebarProjects from './SidebarProjects';
 import { IProject } from '../../store/project/types';
+import { OnboardModal } from '../modals/onboardModal';
+import { useModal } from '../ui';
 
 interface SidebarBaseProps {
   router?: any;
@@ -17,6 +19,7 @@ interface SidebarBaseProps {
   projects?: IProject[];
 }
 export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getProjects }) => {
+  const { open: openOnboardModal, hide: hideOnboardModal, isOpen: isOpenOnboardModal } = useModal();
   useEffect(() => {
     if (getProjects) {
       getProjects();
@@ -79,15 +82,16 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
             active={checkActiveItem('support')}
           />
         </a>
-        <NavLink to={'/app/onboarding'}>
+        <div onClick={openOnboardModal}>
           <SidebarHeader
             text={'Onboarding'}
             onlyText
             deactiveImage={DashboardIconDeactive}
             active={checkActiveItem('onboarding')}
           />
-        </NavLink>
+        </div>
       </div>
+      <OnboardModal hide={hideOnboardModal} isOpen={isOpenOnboardModal} onSubmitSuccess={() => console.log('ok')} />
     </React.Fragment>
   );
 };

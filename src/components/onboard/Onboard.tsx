@@ -29,13 +29,15 @@ const OnboardStep: FunctionComponent<OnboardStepProps> = ({
   return (
     <div
       onClick={onClick}
-      className={classNames('c-onboard-step', {
+      className={classNames('c-onboard-steps-step', {
         finished,
         active
       })}
     >
-      <div className="c-onboard-step__circle">{finished ? <Icon icon="checkmark" width={14} height={14} /> : step}</div>
-      <div className="c-onboard-step__title">{title}</div>
+      <div className="c-onboard-steps-step__circle">
+        {finished ? <Icon icon="checkmark" width={14} height={14} /> : step}
+      </div>
+      <div className="c-onboard-steps-step__title">{title}</div>
     </div>
   );
 };
@@ -76,6 +78,7 @@ export const Onboard: FunctionComponent = () => {
 
   return (
     <div className="c-onboard">
+      <h2 className="c-onboard__title">Welcome! You're onboarding</h2>
       <div className="c-onboard-steps">
         <OnboardStep step={1} title="Create Project" active={isActiveStep(1)} finished={isFinishedStep(1)} />
         <OnboardStep step={2} title="Add Device" active={isActiveStep(2)} finished={isFinishedStep(2)} />

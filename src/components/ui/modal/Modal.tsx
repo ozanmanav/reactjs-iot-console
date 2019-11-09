@@ -7,23 +7,35 @@ import classnames from 'classnames';
 export interface IModalProps extends HTMLAttributes<HTMLDivElement> {
   hide: () => void;
   isOpen: boolean;
+  modalWindowClassName?: string;
   overflow?: 'visible' | 'hidden';
 }
 
-export const Modal: FunctionComponent<IModalProps> = ({ isOpen, hide, className, children, overflow }) => {
+export const Modal: FunctionComponent<IModalProps> = ({
+  isOpen,
+  hide,
+  className,
+  modalWindowClassName,
+  children,
+  overflow
+}) => {
   if (!isOpen) {
     return null;
   }
 
   const modalClassName = classnames(['b-modal flex align-center justify-center', className]);
 
-  const windowClassName = classnames(['b-modal__window', { [`_overflow-${overflow}`]: overflow }]);
+  const windowClassName = classnames([
+    'b-modal__window',
+    { [`_overflow-${overflow}`]: overflow },
+    modalWindowClassName
+  ]);
 
   return (
     <div className={modalClassName}>
       <div className={windowClassName}>
         <button className="b-modal__close" onClick={hide}>
-          <Icon icon="plusGrey" className="b-modal__close-icon" />
+          <Icon icon="close" className="b-modal__close-icon" />
         </button>
         <div className="b-modal__content">{children}</div>
       </div>

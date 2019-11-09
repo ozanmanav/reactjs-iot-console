@@ -24,7 +24,7 @@ const AddTriggerFormBase: FunctionComponent<
   }
 > = ({ deviceEntities, triggerTypeOptions, triggerIntegrationOptions, triggerIntervalOptions, ...formikProps }) => {
   const { values, handleSubmit, handleChange, errors, touched, handleBlur, setFieldValue, loading } = formikProps;
-  console.log(values);
+
   const addEntity = (selectedEntity: ITriggerSelectEntity) => {
     let updatedThresholds = values.thresholds;
     if (values.thresholds.find((item: ITriggerSelectEntity) => item.key === selectedEntity.key)) {
@@ -58,7 +58,7 @@ const AddTriggerFormBase: FunctionComponent<
 
   const onChangeTriggerInterval = (option: ValueType<any>): void => {
     if (option) {
-      setFieldValue('period', option.label);
+      setFieldValue('interval', option.value);
     }
   };
 
@@ -67,6 +67,7 @@ const AddTriggerFormBase: FunctionComponent<
       setFieldValue('phone_code', option.value);
     }
   };
+
   return (
     <form className="f-add-trigger__form" onSubmit={handleSubmit}>
       <div className="f-add-trigger__form-content">
@@ -98,14 +99,14 @@ const AddTriggerFormBase: FunctionComponent<
         {values.triggerType === 'Periodic' && (
           <Select
             placeholder="Select Period"
-            name="period"
+            name="interval"
             options={triggerIntervalOptions}
             isSearchable={true}
             onChange={onChangeTriggerInterval}
-            value={triggerIntervalOptions && triggerIntervalOptions.filter(({ label }) => label === values.period)}
+            value={triggerIntervalOptions && triggerIntervalOptions.filter(({ value }) => value === values.interval)}
             className={'f-add-trigger__form-dropdown'}
-            error={errors && errors.period}
-            touched={touched && touched.period}
+            error={errors && errors.interval}
+            touched={touched && touched.interval}
           />
         )}
 

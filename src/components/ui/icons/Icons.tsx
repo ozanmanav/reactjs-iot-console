@@ -24,6 +24,7 @@ import download from '../../../icons/download-icon.svg';
 import save from '../../../icons/save-icon.svg';
 import cancel from '../../../icons/cancel-icon.svg';
 import checkmark from '../../../icons/checkmark.svg';
+import close from '../../../icons/close.svg';
 
 // TODO: is string type necessary?
 export type TIconType =
@@ -49,6 +50,7 @@ export type TIconType =
   | 'cancel'
   | 'blackArrow'
   | 'checkmark'
+  | 'close'
   | string;
 
 interface IIcons {
@@ -77,7 +79,8 @@ const ICONS: IIcons = {
   download,
   save,
   cancel,
-  checkmark
+  checkmark,
+  close
 };
 
 interface IIconProps<T> extends ImgHTMLAttributes<T> {

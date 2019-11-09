@@ -20,6 +20,11 @@ const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> 
   const { values, handleSubmit, handleChange, errors, touched, handleBlur, loading } = formikProps;
   const { open, hide, isOpen } = useModal();
 
+  const onClickProjectDeleteConfirm = () => {
+    hide();
+    onClickProjectDelete();
+  };
+
   return (
     <form className="f-project-settings__form" onSubmit={handleSubmit}>
       <div className="f-project-settings__form-content">
@@ -54,7 +59,7 @@ const ProjectSettingsFormBase: FunctionComponent<IProjectSettingsFormBaseProps> 
             <Icon icon="trash" className="_cursor-pointer" onClick={open} />
             <ConfirmModal
               title="Are you sure delete project?"
-              onConfirm={onClickProjectDelete}
+              onConfirm={onClickProjectDeleteConfirm}
               hide={hide}
               isOpen={isOpen}
             />

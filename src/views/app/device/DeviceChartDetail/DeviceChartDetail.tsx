@@ -57,6 +57,11 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
     }
   };
 
+  const onClickChartDeleteConfirm = () => {
+    hideDeleteChartModal();
+    onDeleteChart();
+  };
+
   return (
     <div className="b-device-chart-detail">
       <div className="b-device-chart-detail__breadcrumb-wrapper">
@@ -85,7 +90,7 @@ export const DeviceChartDetailBase: FunctionComponent<DeviceChartDetailBaseProps
               />
               <ConfirmModal
                 title={`Are you sure delete ${currentChart.name} chart?`}
-                onConfirm={onDeleteChart}
+                onConfirm={onClickChartDeleteConfirm}
                 hide={hideDeleteChartModal}
                 isOpen={isOpenDeleteChartModal}
               />
