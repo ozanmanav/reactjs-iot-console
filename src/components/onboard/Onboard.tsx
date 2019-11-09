@@ -45,13 +45,12 @@ const OnboardStep: FunctionComponent<OnboardStepProps> = ({
 export const Onboard: FunctionComponent = () => {
   const reduxDispatch = useDispatch();
 
-  const { isActiveStep, activeStep, isFinishedStep, goNextOnboardStep } = useOnboardSteps(3);
+  const { isActiveStep, activeStep, isFinishedStep, goNextOnboardStep, setActiveOnboardStep } = useOnboardSteps(3);
 
   useEffect(() => {
+    setActiveOnboardStep(3);
     reduxDispatch(resetCurrents());
-    if (getDeviceBrands) {
-      reduxDispatch(getDeviceBrands());
-    }
+    reduxDispatch(getDeviceBrands());
   }, []);
 
   const onClickCreateProject = (values: ICreateProjectFormState) => {
