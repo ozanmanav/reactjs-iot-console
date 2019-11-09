@@ -54,7 +54,7 @@ export const ConnectionDetails: FunctionComponent<ConnectionDetailsProps> = () =
       </div>
       <div className="c-connection-details__code">
         <ReactEmbedGist
-          gist="stylpen/8364ef6fe71af24e216f"
+          gist="Qubitro-Docs/f72bf668c9cf518ff51ad9fdfd74357a"
           wrapperClass="c-connection-details__code-gist__bash"
           titleClass="c-connection-details__code-gist__title"
           contentClass="c-connection-details__code-gist__content"
