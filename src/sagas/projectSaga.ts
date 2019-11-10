@@ -778,10 +778,11 @@ export function* requestAddDeviceTrigger(data: AddDeviceTriggerAction) {
 
     console.log(addDeviceTriggerResponse);
 
-    if (addDeviceTriggerResponse.data.Message === 'Added Trigger successful') {
-      const addDeviceTriggerResponse: ProjectState = {};
-      showSuccessToast('Trigger successfully added');
-      // yield put(actions.getDevices());
+    if (addDeviceTriggerResponse.data.Message === 'Trigger added successfully') {
+      showSuccessToast('Trigger added successfully');
+      yield put(push(`/app/projects/${currentProject.id}/devices/${currentDevice.id}`));
+      yield put(actions.getDeviceTriggers());
+      yield put(actions.addDeviceTriggerSuccess({}));
     } else {
       yield put(
         actions.addDeviceTriggerFailure({

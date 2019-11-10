@@ -16,6 +16,7 @@ interface ISelectProps extends SelectComponentsProps {
   touched?: boolean;
   selectHeight?: string;
   menuPlacement?: 'auto' | 'bottom' | 'top' | undefined;
+  placeholder?: string;
 }
 
 export const Select: FunctionComponent<ISelectProps> = ({
@@ -24,6 +25,7 @@ export const Select: FunctionComponent<ISelectProps> = ({
   touched,
   menuPlacement,
   selectHeight = '50px',
+  placeholder = '',
   ...props
 }) => {
   const selectWrapperClassName = classNames(['f-select', className]);
@@ -40,6 +42,7 @@ export const Select: FunctionComponent<ISelectProps> = ({
       <ReactSelect
         {...props}
         isSearchable
+        placeholder={placeholder}
         menuPlacement={menuPlacement}
         components={{ Option: IconOption }}
         styles={{

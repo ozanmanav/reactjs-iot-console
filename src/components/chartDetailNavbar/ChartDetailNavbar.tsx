@@ -54,7 +54,7 @@ export const ChartDetailNavbar: FunctionComponent<IChartDetailNavbarProps> = ({
           </div>
         ) : (
           <div className="b-chart-detail-navbar-title-container">
-            {chartName} <EditButton onClick={toggleEditMode} />
+            {chartName} <EditButton onClick={toggleEditMode} className="b-chart-detail-navbar-title-container__edit" />
           </div>
         )}
       </div>

@@ -11,18 +11,20 @@
 
   &-title-container {
     display: flex;
-    width: 120px;
-    justify-content: space-between;
+
+    &__edit {
+      margin-left: 10px;
+    }
   }
 
   &-input-container {
     display: flex;
-    width: 200px;
+
     justify-content: space-between;
     &__actions {
       margin-left: 10px;
       display: flex;
-      width: 100px;
+      width: 50px;
       justify-content: space-between;
     }
   }
@@ -36,6 +38,7 @@
   &-chart-name-input {
     color: #4a4a4a;
     font-size: 24px;
+    width: 240px;
     font-weight: 500;
   }
 

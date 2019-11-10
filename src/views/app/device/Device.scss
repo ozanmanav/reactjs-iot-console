@@ -5,12 +5,6 @@
   padding-right: 0px;
   height: 80px;
   margin-bottom: 32px;
-  h1 {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 0px;
-    color: #4a4a4a;
-  }
 
   &__tabs {
     width: 100%;
@@ -62,11 +56,11 @@
         width: 80px;
       }
 
-      &-title  {
-        font-size: 24px;
+      &-titleInner {
+        font-size: 30px;
         font-weight: 500;
         color: #4a4a4a;
-        margin: 0;
+        margin-bottom: 0px;
       }
 
       &-description {

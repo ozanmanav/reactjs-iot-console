@@ -7,6 +7,7 @@ import { IProjectLoadingState } from '../../../../store/project/types';
 import { MDBDataTable } from 'mdbreact';
 import { normalizeDataForTable } from '../DeviceChartDetail/utils';
 import { Loading } from '../../../../components/ui/loading';
+import isEmpty from 'ramda/es/isEmpty';
 
 interface DeviceDataTableBaseProps {
   getDeviceChartsData?: typeof getDeviceChartsData;
@@ -36,7 +37,7 @@ export const DeviceDataTableBase: FunctionComponent<DeviceDataTableBaseProps> = 
     return <Loading />;
   }
 
-  if (deviceChartsData && deviceChartsData.length < 1 && !loading) {
+  if (deviceChartsData && isEmpty(deviceChartsData.Data)) {
     return <div>Device data not found</div>;
   }
 

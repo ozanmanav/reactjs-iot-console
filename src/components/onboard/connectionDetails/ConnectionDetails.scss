@@ -1,12 +1,12 @@
 .c-connection-details {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  width: 100%;
 
   &__title {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-family: Exo;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     color: #4a4a4a;
   }
@@ -27,8 +27,14 @@
   &__code {
     margin-bottom: 20px;
     &-gist {
+      &__bash {
+        overflow: overlay;
+        max-height: 400px;
+      }
       &__title {
         display: none;
+      }
+      &__loading {
       }
     }
     &-copy {

@@ -42,13 +42,16 @@ const OnboardStep: FunctionComponent<OnboardStepProps> = ({
   );
 };
 
-export const Onboard: FunctionComponent = () => {
+interface IOnboardProps {
+  hideModal?: () => void;
+}
+
+export const Onboard: FunctionComponent<IOnboardProps> = ({ hideModal }) => {
   const reduxDispatch = useDispatch();
 
-  const { isActiveStep, activeStep, isFinishedStep, goNextOnboardStep, setActiveOnboardStep } = useOnboardSteps(3);
+  const { isActiveStep, activeStep, isFinishedStep, goNextOnboardStep } = useOnboardSteps(3);
 
   useEffect(() => {
-    setActiveOnboardStep(3);
     reduxDispatch(resetCurrents());
     reduxDispatch(getDeviceBrands());
   }, []);
@@ -75,16 +78,21 @@ export const Onboard: FunctionComponent = () => {
     goNextOnboardStep();
   };
 
+  const onClickFinish = () => {
+    if (hideModal) {
+      hideModal();
+    }
+  };
+
   return (
     <div className="c-onboard">
-      <h2 className="c-onboard__title">Welcome! You're onboarding</h2>
+      <h2 className="c-onboard__title">Welcome to the Qubitro</h2>
       <div className="c-onboard-steps">
         <OnboardStep step={1} title="Create Project" active={isActiveStep(1)} finished={isFinishedStep(1)} />
         <OnboardStep step={2} title="Add Device" active={isActiveStep(2)} finished={isFinishedStep(2)} />
         <OnboardStep step={3} title="Connection Details" active={isActiveStep(3)} finished={isFinishedStep(3)} />
       </div>
 
-      <div className="c-onboard-divider"></div>
       <div className="c-onboard-content">
         {(() => {
           switch (activeStep) {
@@ -93,12 +101,13 @@ export const Onboard: FunctionComponent = () => {
             case 2:
               return <AddDeviceForm onSubmit={onClickAddDevice} disableValidation />;
             case 3:
-              return <ConnectionDetails />;
+              return <ConnectionDetails onClickFinish={onClickFinish} />;
             default:
               return null;
           }
         })()}
       </div>
+
       {/* <Button text="Prev" className="c-onboard-prev" onClick={goPrevOnboardStep} /> */}
     </div>
   );

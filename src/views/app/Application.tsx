@@ -6,7 +6,6 @@ import { ProjectMain } from './project/ProjectMain';
 import { Dashboard } from './dashboard';
 import './Application.scss';
 import { Account } from './account';
-import { Onboard } from '../../components/onboard';
 
 export const Application: FunctionComponent = () => {
   return (

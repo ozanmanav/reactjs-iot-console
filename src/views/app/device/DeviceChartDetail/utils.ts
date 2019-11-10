@@ -52,9 +52,9 @@ export const normalizeSummaryData = (deviceChartsData: any, currentChart: IChart
 
         return {
           entityName: key,
-          average: averages[key],
-          maxValue: maxValues[key],
-          minValue: minValues[key],
+          average: averages[key] || '',
+          maxValue: maxValues[key] || '',
+          minValue: minValues[key] || '',
           color: element && element.color
         };
       });

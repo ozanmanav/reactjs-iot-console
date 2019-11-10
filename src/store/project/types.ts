@@ -51,6 +51,7 @@ export interface IDeviceToken {
 export interface IDevice {
   id?: string;
   deviceModel: string;
+  deviceModelId: string;
   deviceBrand?: string;
   deviceName: string;
   deviceLocation: string;

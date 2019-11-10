@@ -91,7 +91,7 @@ export const SidebarBase: FunctionComponent<SidebarBaseProps> = ({ router, getPr
           />
         </div>
       </div>
-      <OnboardModal hide={hideOnboardModal} isOpen={isOpenOnboardModal} onSubmitSuccess={() => console.log('ok')} />
+      <OnboardModal hide={hideOnboardModal} isOpen={isOpenOnboardModal} />
     </React.Fragment>
   );
 };

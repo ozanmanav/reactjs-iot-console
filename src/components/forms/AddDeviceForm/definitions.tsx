@@ -1,8 +1,6 @@
 import { FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { VALIDATION_ERRORS } from '../../../config';
-import { IProjectLoadingState } from '../../../store/project/types';
-import { IBrandOption, IModelOption } from '../../../utils';
 
 export const AddDeviceFormDefaultState = {
   deviceBrand: undefined,
