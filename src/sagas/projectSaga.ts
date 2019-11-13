@@ -541,6 +541,7 @@ export function* requestDeleteDevice() {
     showSuccessToast('Device successfully deleted');
     yield put(actions.deleteDeviceSuccess({}));
   } catch (error) {
+    showErrorToast(get(error, 'Message'));
     yield put(actions.deleteDeviceFailure({ error }));
   }
 }

@@ -107,8 +107,6 @@ export const Onboard: FunctionComponent<IOnboardProps> = ({ hideModal }) => {
           }
         })()}
       </div>
-
-      {/* <Button text="Prev" className="c-onboard-prev" onClick={goPrevOnboardStep} /> */}
     </div>
   );
 };

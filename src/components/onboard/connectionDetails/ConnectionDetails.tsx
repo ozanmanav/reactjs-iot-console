@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import './ConnectionDetails.scss';
-import ReactEmbedGist from 'react-embed-gist';
+import ReactEmbedGist from 're-gist';
 import { Select, Button } from '../../ui';
 import { DeviceInfo } from '../../../views/app/device/DeviceInfo';
 import { useSelector } from 'react-redux';
